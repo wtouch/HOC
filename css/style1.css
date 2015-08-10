@@ -1,3 +1,21 @@
-.bottomspace {
+header {
+  padding-top: 20px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
+}
+header img {
+  border: 1px solid #ccc;
+}
+.bottomspace {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.content {
+  border: 1px solid #ccc;
+  padding: 15px 15px 0px;
+}
+footer {
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 10px;
 }

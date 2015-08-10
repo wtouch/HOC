@@ -27,9 +27,11 @@
 		<ng-include src="'modules/component/header.html'"></ng-include> 
 		<ng-include src="'modules/component/nav.html'"></ng-include> 
 		
-		<div class="container">			
-			<div  ng-view>
-			</div>
+		<div class="container">
+			<!-- <div class="col-sm-12"> -->
+				<div class="content" ng-view>
+				</div>
+			<!-- </div> -->
 		</div>
 	 <ng-include src="'modules/component/footer.html'"></ng-include> 
 	</body>
