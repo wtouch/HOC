@@ -69,6 +69,11 @@ app.controller("quotationController",function($scope,$http){
 			console.log(addquotation);
 		}
 		
+		$scope.openViewQuotation = function($event,opened){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened = ($scope.opened==true)?false:true;
+	};
 		/* $scope.openViewQuotation = function (url) {
 			var modalDefaults = {
 				templateUrl: url,	// apply template to modal
