@@ -18,7 +18,7 @@ app.controller("summaryController",function($scope,$http){
 app.controller("partyController",function($scope,$http){
 	console.log("this is party controller");
 });
-app.controller("invoiceController",function($scope,$http){
+app.controller("invoiceController",function($scope,$http,$modal,$location){
 	console.log("this is invoice controller");
 	$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	$scope.format = $scope.formats[0];
@@ -35,6 +35,26 @@ app.controller("invoiceController",function($scope,$http){
 		$event.stopPropagation();
 		$scope.opened1 = ($scope.opened==true)?false:true;
 	};
+	
+	$scope.postData =function(invoice){
+		
+		console.log(invoice);
+	}
+	//code to open modal
+	$scope.open = function () {
+		size = 'lg';
+		$modal.open({
+			templateUrl: 'modules/viewinvoice.html',
+			size: size,
+		});
+	}
+	$scope.ok = function () {
+		$modal.close();
+	};
+	$scope.cancel = function () {
+		$modal.dismiss();
+	};
+	
 });
 app.controller("measurementController",function($scope,$http){
 	console.log("this is measurement controller");

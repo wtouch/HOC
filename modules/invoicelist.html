@@ -2,14 +2,14 @@
 <div class="row">
 	<div class="col-sm-12 ">	
 		<a class="btn btn-primary pull-right" href="#/invoice">Add New Party Name</a>
-	
-		<a class="btn btn-primary pull-right" href="#/viewinvoice">Invoice sheet</a>
+		<a class="btn btn-primary pull-right" href="#/invoicelist">Invoice List</a>
+		<a class="btn btn-primary pull-right" ng-click ="open()">Invoice sheet</a>
 	</div>
 </div>
 <h3>Invoice List</h3>
 <div class="row">
 	<div class="col-sm-3">
-		<label for="from" class="control-label">From Date </label>
+		<label for="fromdate" class="control-label">From Date </label>
 		<div class="input-group">
 			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
 			<span class="input-group-btn">

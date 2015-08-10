@@ -1,16 +1,17 @@
 <div class="row">
 	<div class="col-sm-12 ">	
 		<a class="btn btn-primary pull-right" href="#/invoice">Add New Party Name</a>
+		<a class="btn btn-primary pull-right" href="#/invoicelist">Invoice List</a>
 	
-		<a class="btn btn-primary pull-right" href="#/viewinvoice">Invoice sheet</a>
+		<a class="btn btn-primary pull-right" ng-click ="open()">Invoice sheet</a>
 	</div>
 </div>
 <h3 class="text-center"> Add Invoice</h3>
-<form name="invoiceform" role="form" class="form-horizontal">
+<form name="invoiceform" role="form" class="form-horizontal"  ng-submit="invoiceform.$valid" novalidate="novalidate">
 	<div class="form-group">
 		<label for="partyname" class=" col-sm-2 control-label">Party Name</label>
-		<div class="col-sm-8">
-			<select class="form-control " required>
+		<div class="col-sm-9">
+			<select class="form-control " required ng-model="invoice.partyname">
 				<option value="">SPD</option>
 				<option value="SPD">SPD</option>
 				<option value="SPD">SPD</option>
@@ -20,4 +21,59 @@
 			</span>	
 		</div>
 	</div>	
+	<div class="form-group">
+		<label  for="fromdate" class="col-sm-2 control-label">From Date</label>
+		<div class="col-sm-9">
+			<div class="input-group">
+				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</div>
+		</div>
+	</div>	
+	<div class="form-group">
+		<label  for="todate" class="col-sm-2 control-label">To Date</label>
+		<div class="col-sm-9">
+			<div class="input-group">
+				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="servicetax" class="col-sm-2 control-label">Service Tax</label>
+		<div class="col-sm-9">
+			<input type="text"  name="servicetax" id="servicetax" ng-model="invoice.servicetax" placeholder="12%" readOnly class="form-control" >
+					
+		</div>
+	</div>	
+	<div class="form-group">
+		<label for="VAT" class="col-sm-2 control-label">VAT</label>
+		<div class="col-sm-9">
+			<input type="text"  name="VAT" id="VAT" ng-model="invoice.vat" placeholder="2%" readOnly class="form-control" ng-init="invoice.vat=2.5">
+		</div>
+	</div>	
+	<div class="form-group">
+		<label for="bill" class="col-sm-2 control-label">Bill Amount</label>
+		<div class="col-sm-9">
+			<input type="text"  name="bill" id="bill" ng-model="invoice.bill" placeholder="5240" readOnly class="form-control" ng-init="invoice.bill=5240" >
+		</div>
+	</div>	
+	<div class="form-group">
+		<label for="total" class="col-sm-2 control-label">Total Amount</label>
+		<div class="col-sm-9">
+			<input type="text"  name="total" id="total" ng-model="invoice.total" placeholder="8240" readOnly class="form-control" ng-init="invoice.total=8240" >
+		</div>
+	</div>	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-9">
+		  <button type="submit" class="btn btn-primary" ng-disabled="invoiceform.$invalid"  ng-click="postData(invoice)">Generate</button>
+		  <button type="submit" class="btn btn-primary" ng-click="updateData(invoice)">Edit Invoice </button>
+		  <button type="reset" class="btn btn-danger">Cancel</button>
+		</div>
+	</div>
+	
 </form>
