@@ -4,6 +4,10 @@
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style1.css">
+		<link rel="stylesheet" href="css/style2.css">
+		<link rel="stylesheet" href="css/style3.css">
+		<link rel="stylesheet" href="css/mystyle.css">
 		
 		<script src="lib/jquery/jquery.min.js"></script>
 		<script src="lib/angular/angular.min.js"></script>
@@ -24,10 +28,8 @@
 		<ng-include src="'modules/component/nav.html'"></ng-include> 
 		
 		<div class="container">			
-			<section class="row">
-				<div class="col-md-12" ng-view>
-				</div>
-			</section>
+			<div  ng-view>
+			</div>
 		</div>
 	 <ng-include src="'modules/component/footer.html'"></ng-include> 
 	</body>

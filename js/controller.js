@@ -20,6 +20,16 @@ app.controller("partyController",function($scope,$http){
 });
 app.controller("invoiceController",function($scope,$http){
 	console.log("this is invoice controller");
+	$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	$scope.format = $scope.formats[0];
+	$scope.today = function() {
+			$scope.date = new Date();
+	};
+	$scope.open = function($event,opened){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened = ($scope.opened==true)?false:true;
+	};
 });
 app.controller("measurementController",function($scope,$http){
 	console.log("this is measurement controller");
