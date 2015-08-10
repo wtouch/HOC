@@ -20,7 +20,6 @@
 				</span>
 			</div>						
 	</div>	
-	
 	<div class="form-group">	
 		<label  for="address" class="col-sm-2 control-label">Address *</label>
 			<div class="col-sm-9">
@@ -34,7 +33,6 @@
 		</span>			
 			</div>						
 	</div>	
-	
 	<div class="form-group">	
 		<label  for="subject" class="col-sm-2 control-label">Subject *</label>
 			<div class="col-sm-9">
@@ -56,26 +54,26 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="text" class="form-control" id="label" name="label" ng-model="addquotation.label" required>
+				<input type="text" class="form-control" id="label" name="label" ng-model="addquotation.particular.label" required>
 				<span class="help-block" ng-show="addInvoiceForm.label.$dirty && addInvoiceForm.label.$invalid">
 					<span ng-show="addInvoiceForm.label.$error.required" class="text-danger">Required Field.</span>
 				</span>
 			</td>			
 			<td>
-				<select class="form-control">
+				<select class="form-control" name="unit" id="unit" ng-model="addquotation.particular.unit" required>
 					<option>Select Unit</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 				</select>
 			</td>
 			<td>
-			<input type="text" id="area" name="area" />
+			<input type="text" id="area" name="area" ng-model="addquotation.particular.area"/>
 			</td>
 			<td>
-			<input type="text" id="rate" name="rate" />
+			<input type="text" id="rate" name="rate" ng-model="addquotation.particular.rate"/>
 			</td>
 			<td>
-				<input type="text" id="amount" name="amount" />
+				<input type="text" id="amount" name="amount" ng-model="addquotation.particular.amount" />
 			</td>
 		</tr>
 	</table>
@@ -122,7 +120,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="postData(addquotation)">Submit</button>
-			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="updateData(addquotation)">Update Quotation</button> 
+			<!-- <button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="updateData(addquotation)">Update Quotation</button>  -->
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>

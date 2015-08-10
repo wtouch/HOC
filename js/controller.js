@@ -62,12 +62,27 @@ app.controller("measurementController",function($scope,$http){
 app.controller("itemController",function($scope,$http){
 	console.log("this is item controller");
 });
-app.controller("quotationController",function($scope,$http){
-	
-	$scope.apply = function(addquotation)
-	{ 
+app.controller("quotationController",function($scope,$http,modalService,modalOptions){
 		console.log("this is quotation controller");
-	});
+		$scope.addData = function(addquotation)
+		{ 
+			console.log(addquotation);
+		}
+		
+		$scope.openViewQuotation = function (url) {
+			var modalDefaults = {
+				templateUrl: url,	// apply template to modal
+				size : 'lg'
+			};
+			var modalOptions = {
+			};
+			modalService.show(modalDefaults, modalOptions).then(function (result) {
+			modalOptions.addincome.date = dataService.currentDate;
+				console.log("modalOpened");
+		
+		});	
+		};
+});
 app.controller("departmentController",function($scope,$http){
 	console.log("this is department controller");
 });
