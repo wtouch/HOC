@@ -1,34 +1,36 @@
-
+<div class="text-right bottomspace">
+	<a href="/partylist" class="btn btn-default">Party List</a>
+	<a href="/party" class="btn btn-default">Add New Party</a>
+</div>
+<h3> Party View</h3>
 <div class="row">
-	<div class="col-sm-2">
-		<select class="form-control">
-			<option>Select Order</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-		</select>
-	</div>
-	<div class="col-sm-2">
-		<select class="form-control">
-			<option>Select Status</option>
-			<option value="active">Active</option>
-			<option value="deleted">Deleted</option>
-		</select>
-	</div>
-	<div class="col-sm-2">
-		<select class="form-control">
-			<option>Select Party/Vendor</option>
-			<option value="active">Sharma</option>
-			<option value="deleted">Kulkarni</option>
-		</select>
-	</div>
-	<div class="col-sm-6">
-		<a href="/partylist" class="btn btn-default">Party List</a>
-		<a href="/party" class="btn btn-default">Add New Party</a>
+	<div class="bottomspace">
+		<div class="col-sm-4">
+			<select class="form-control">
+				<option>Select Order</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>
+		</div>
+		<div class="col-sm-4">
+			<select class="form-control">
+				<option>Select Status</option>
+				<option value="active">Active</option>
+				<option value="deleted">Deleted</option>
+			</select>
+		</div>
+		<div class="col-sm-4">
+			<select class="form-control">
+				<option>Select Party/Vendor</option>
+				<option value="active">Sharma</option>
+				<option value="deleted">Kulkarni</option>
+			</select>
+		</div>
 	</div>
 </div>
 <div class="table-responsive">
-	<table class="table-bordered">
+	<table class="table table-bordered">
 		<tr>
 			<th>Party Name</th>
 			<th>Email</th>
@@ -44,11 +46,9 @@
 			<td>Nigadi</td>
 			<td>Pune</td>
 			<td>
-				<div class="btn-group">
-					<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
-					<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
-					<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
-				</div>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
 			</td>
 		</tr>
 		<tr>
@@ -58,11 +58,9 @@
 			<td>Thergaon</td>
 			<td>Pune</td>
 			<td>
-				<div class="btn-group">
-					<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
-					<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
-					<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
-				</div>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
 			</td>
 		</tr>
 	</table>
