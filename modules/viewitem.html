@@ -1,93 +1,81 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body>				
-		<div class="container">
-			<div class="row">
-				<div class="pull-right">
+<div class="row">
+		<div class="pull-right">
+		
+			<a href="#/viewitem" type="submit" class="btn btn-primary" >Item List</a>
+			<a href="#/item" class="btn btn-primary" >Add New Item </a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<label for="searchItem" class="control-label">Search </label>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button">Go!</button>
+						</span>
+				</div>
+		</div>
+		<div class="col-sm-2">
+			<label for="itemlist" class="control-label">Item List</label>
 				
-					<a href="#/viewitem" type="submit" class="btn btn-primary" >Item List</a>
-					<a href="#/item" class="btn btn-primary" >Add New Item </a>
-				</div>
+					<select class="form-control">
+							<option>Select Item</option>
+							<option>Item1</option>
+							<option>Item2</option>
+					</select>
+				
+		</div>
+		<div class="col-sm-2">
+			<label for="itemtype" class="control-label">Item Type</label>
+				
+					<select class="form-control">
+							<option>Select Type</option>
+							<option>Department</option>
+							<option>Measurement</option>
+					</select>
+				
+		</div>
+	</div>
+	<div class="row">
+		<h4 class="text-center">Items View</h4>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Sr.No</th>
+							<th>Item Name</th>	
+							<th>Description</th>
+							<th>Price</th>
+							<th>Manage</th>
+						</tr>		
+						<tr>
+							<td>1.</td>
+							<td>Item1</td>	
+							<td>Item1 description is that</td>
+							<td>80</td>
+							<td>
+							<a href="#" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
+							</a>
+							<a href="#" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
+							</a>
+							<button type="button" tooltip="Delete Item" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span></button>
+							</td>
+						</tr>
+						 <tr>
+							 <td>2.</td>
+							 <td>Item2</td>	
+							 <td>Item2 description is that</td>
+							 <td>100</td>
+							<td>
+								<a href="#" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
+								</a>
+								<a href="#" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
+								</a>
+								<button type="button" tooltip="Delete Item" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span></button>
+							</td>
+						 </tr>
+				</table>
 			</div>
-			<div class="row">
-				<div class="col-sm-3">
-					<label for="searchItem" class="control-label">Search </label>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for...">
-								<span class="input-group-btn">
-									<button class="btn btn-success" type="button">Go!</button>
-								</span>
-						</div>
-				</div>
-				<div class="col-sm-2">
-					<label for="itemlist" class="control-label">Item List</label>
-						<div class="input-group">
-							<select class="form-control">
-									<option>Select Item</option>
-									<option>Item1</option>
-									<option>Item2</option>
-							</select>
-						</div>
-				</div>
-				<div class="col-sm-2">
-					<label for="itemtype" class="control-label">Item Type</label>
-						<div class="input-group">
-							<select class="form-control">
-									<option>Select Type</option>
-									<option>Department</option>
-									<option>Measurement</option>
-							</select>
-						</div>
-				</div>
-			</div>
-			<div class="row">
-				<h4 class="text-center">Items View</h4>
-					<div class="table-responsive">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Sr.No</th>
-									<th>Item Name</th>	
-									<th>Description</th>
-									<th>Price</th>
-									<th>Manage</th>
-								</tr>		
-								<tr>
-									<td>1.</td>
-									<td>Item1</td>	
-									<td>Item1 description is that</td>
-									<td>80</td>
-									<td>
-									<a href="#" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
-									</a>
-									<a href="#" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
-									</a>
-									<button type="button" tooltip="Delete Item" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span></button>
-								    </td>
-								</tr>
-								 <tr>
-									 <td>2.</td>
-									 <td>Item2</td>	
-									 <td>Item2 description is that</td>
-									 <td>100</td>
-									<td>
-										<a href="#" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
-										</a>
-										<a href="#" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
-										</a>
-										<button type="button" tooltip="Delete Item" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span></button>
-									</td>
-								 </tr>
-						</table>
-                    </div>
-			</div>	
-		</div>	
-	</body>						
-</html>
+	</div>	
+</div>	
+
