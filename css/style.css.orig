@@ -1,9 +1,29 @@
+<<<<<<< HEAD
+=======
+body .container {
+ 
+  border: 1px solid #DED9D9;
+  padding: 15px;
+}
+
+>>>>>>> "invoice.html modified"
 .log {
   border: 1px solid;
   text-align: center;
   padding: 10px;
 }
+<<<<<<< HEAD
 .form1 {
+  border: 1px solid;
+  width: 100%;
+  padding: 20px;
+  min-width: 250px;
+  max-width: 350px;
+  text-align: center;
+}
+=======
+
+>>>>>>> "invoice.html modified"
 .glyphicon-user {
   font-size: 60px;
 }

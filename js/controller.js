@@ -30,6 +30,11 @@ app.controller("invoiceController",function($scope,$http){
 		$event.stopPropagation();
 		$scope.opened = ($scope.opened==true)?false:true;
 	};
+	$scope.open1 = function($event,opened){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened1 = ($scope.opened==true)?false:true;
+	};
 });
 app.controller("measurementController",function($scope,$http){
 	console.log("this is measurement controller");

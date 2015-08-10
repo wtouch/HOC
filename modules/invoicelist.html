@@ -1,51 +1,108 @@
+
+<div class="row">
+	<div class="col-sm-12 ">	
+		<a class="btn btn-primary pull-right" href="#/invoice">Add New Party Name</a>
+	
+		<a class="btn btn-primary pull-right" href="#/viewinvoice">Invoice sheet</a>
+	</div>
+</div>
 <h3>Invoice List</h3>
-	<div class="row">	
-		<div class="col-sm-3">
-			<label for="from" class="control-label">From Date </label>
-			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>
-			</div>
+<div class="row">
+	<div class="col-sm-3">
+		<label for="from" class="control-label">From Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
 		</div>
-		<div class="col-sm-3">
-			<label for="from" class="control-label">To Date </label>
-			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>
-			</div>
-		</div>		
-</div>		
-		<!-- <div class="col-sm-3">
-			<div class="bottomspace">
-				<label for="id" class="control-label">Sort by Order</label>
-					<select id="id" class="form-control" ng-model="id"> 
-						<option value="">Select Order</option>	
-						<option value="-business_name">Descending</option>
-						<option value="business_name">Ascending</option>  
-					</select>
-			</div>
+	</div>
+	<div class="col-sm-3">
+		<label for="from" class="control-label">To Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoicelist.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
 		</div>
-		<div class="col-sm-2">
-			<div class="bottomspace">
-				<label for="verified" class="control-label">Filter By Verified</label>
-					<select id="verified" class="form-control" ng-model="verifiedFilter" ng-change="changeStatus('verified',verifiedFilter)">
-						<option value="" selected>Select Verified</option>
-						<option value="1" >Verified</option>
-						<option value="0">Not Verified</option>
-					</select>
-			</div>
+	</div>	
+	<div class="col-sm-3">
+		<label for="partyname" class="control-label">Party Name</label>
+		<div class="form-group">
+			<select class="form-control">
+				<option value="">SPD</option>
+				<option value="SPD">SPD</option>
+				<option value="SPD">SPD</option>
+			</select>
 		</div>
-		<div class="col-sm-2">
-			<div class="bottomspace">
-				<label for="featured" class="control-label">Filter By Featured</label>
-					<select id="featured" class="form-control" ng-model="featuredFilter" ng-change="changeStatus('featured',featuredFilter)">
-						<option value="" selected>Select Featured</option>
-						<option value="1" >Featured</option>
-						<option value="0">Not Featured</option> 
-					</select>
-			</div>
-		</div> -->
+	</div>	
+</div>	
+<div class="table-responsive">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Sr.No.</th>
+				<th>Generate Date</th>
+				<th>Party Name</th>
+				<th>Service Tax</th> 
+				<th>VAT</th>
+				<th>Bill Amount</th>
+				<th>Total Amount</th>
+				<th class="col-sm-2">Manage</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>20/12/2015</td>
+				<td>SPD</td>
+				<td>200</td>
+				<td>500</td>
+				<td>2500</td>
+				<td>3200</td>
+				<td>
+					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>2/10/2015</td>
+				<td>SPD</td>
+				<td>200</td>
+				<td>500</td>
+				<td>2500</td>
+				<td>3200</td>
+				<td>
+					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>30/12/2015</td>
+				<td>SPD</td>
+				<td>200</td>
+				<td>500</td>
+				<td>2500</td>
+				<td>3200</td>
+				<td>
+					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>6/11/2015</td>
+				<td>SPD</td>
+				<td>200</td>
+				<td>500</td>
+				<td>2500</td>
+				<td>3200</td>
+				<td>
+					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+			</tr>
+		</thead>
+	</table>
+</div>	
+		

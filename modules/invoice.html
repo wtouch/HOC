@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-sm-12 ">	
+		<a class="btn btn-primary pull-right" href="#/invoice">Add New Party Name</a>
+	
+		<a class="btn btn-primary pull-right" href="#/viewinvoice">Invoice sheet</a>
+	</div>
+</div>
+<h3 class="text-center"> Add Invoice</h3>
+<form name="invoiceform" role="form" class="form-horizontal">
+	<div class="form-group">
+		<label for="partyname" class=" col-sm-2 control-label">Party Name</label>
+		<div class="col-sm-8">
+			<select class="form-control " required>
+				<option value="">SPD</option>
+				<option value="SPD">SPD</option>
+				<option value="SPD">SPD</option>
+			</select>
+			<span class="help-block" ng-show="invoiceform.partyname.$dirty && invoiceform.partyname.$invalid">
+				<span ng-show="invoiceform.partyname.$error.required" class="text-danger">Required Field.</span>
+			</span>	
+		</div>
+	</div>	
+</form>
