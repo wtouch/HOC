@@ -1,0 +1,96 @@
+<h3 class="text-center">Tax Information</h3>
+<form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid">
+	<div class="form-group">
+		<label for="serviceTax" class="col-sm-2 control-label">Service Tax</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.serviceTax" required>
+			<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
+				<span ng-show="taxInfoForm.serviceTax.$error.required" class="text-danger">Please Enter Service Tax.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="VAT" class="col-sm-2 control-label">VAT</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.VAT" required>
+			<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
+				<span ng-show="taxInfoForm.VAT.$error.required" class="text-danger">Please Enter VAT.</span>
+			</span>
+		</div>
+	</div>
+	<hr>
+	<div class="form-group">
+		<label for="PAN" class="col-sm-2 control-label">Pan No.</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.PAN" required>
+			<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty">
+				<span ng-show="taxInfoForm.PAN.$error.required" class="text-danger">Please Enter Pan No.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No.</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.VATTIN" required>
+			<span class="block" ng-show="taxInfoForm.VATTIN.$invalid && taxInfoForm.VATTIN.$dirty">
+				<span ng-show="taxInfoForm.VATTIN.$error.required" class="text-danger">Please Enter VAT Tin No.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.ServTaxNo" required>
+			<span class="block" ng-show="taxInfoForm.ServTaxNo.$invalid && taxInfoForm.ServTaxNo.$dirty">
+				<span ng-show="taxInfoForm.ServTaxNo.$error.required" class="text-danger">Please Enter Service Tax No.</span>
+			</span>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-6">
+			<p><strong>TERMS AND CONDITIONS :</strong></p>
+		</div>
+		<div class="col-sm-6">
+			<a href="#" class="btn btn-primary pull-right" style="margin-bottom : 10px;">Add Terms and Conditions</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 table-responsive">
+			<table class="table table-bordered">
+				<tr>
+					<th>Sr. No.</th>
+					<th>Terms and Conditions</th>
+					<th>Manage</th>
+				</tr>
+				<tr>
+					<td>1.</td>
+					<td>Terms 1</td>
+					<td>
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-9">
+			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="insert(taxinfo)">Submit</button>
+			<button type="reset" class="btn btn-danger">Cancel</button>
+		</div>
+	</div>
+	<!-- 
+	<div class="form-group">
+		<label for="clientAddress" class="col-sm-2 control-label">Address</label>
+		<div class="col-sm-9">
+			<textarea type="text" name="clientAddress" id="clientAddress" ng-model="taxinfo.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
+			<span ng-hide="taxInfoForm.clientAddress.$error.maxlength">
+				{{ 256 - taxinfo.clientAddress.length + " Chars left" }}
+			</span>	
+			<span class="help-block ng-hide" ng-show="taxInfoForm.clientAddress.$dirty && taxInfoForm.clientAddress.$invalid">
+				<span class="text-danger" ng-show="taxInfoForm.clientAddress.$error.required">Please Enter Address.</span>
+				<span class="text-danger" ng-show="taxInfoForm.clientAddress.$error.maxlength">Sorry You are Exceeding the Limit</span>
+			</span>	
+		</div>
+	</div> -->
+</form>
