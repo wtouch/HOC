@@ -33,6 +33,7 @@ app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/viewitem', {templateUrl: 'modules/viewitem.html', controller: 'itemController'});
  //quotation pages route
 	$routeProvider.when('/quotation/:id?', {templateUrl: 'modules/quotation.html', controller: 'quotationController'});
+	
 	$routeProvider.when('/quotationlist', {templateUrl: 'modules/quotationlist.html', controller: 'quotationController'});
 	$routeProvider.when('/viewquotation', {templateUrl: 'modules/viewquotation.html', controller: 'quotationController'});
 //department pages route

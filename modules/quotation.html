@@ -1,0 +1,83 @@
+<div class="text-right bottomspace">
+	<a href="#/quotationlist" class="btn btn-default">Quotation List</a>
+	<a href="#/quotation" class="btn btn-default">Add New Quotation</a>
+</div>
+<h3 class="text-center">Add New Quotation</h3>
+<form name="addquotationForm" class="form-horizontal" role="form" novalidate="novalidate" ng-submit="addquotationForm.$valid">
+	<div class="form-group">
+		<label for="template" class="col-sm-2 control-label" name="template"></label>
+			<div class="col-sm-7">
+				<p>Note that Fields Marked * are Required.</p>		
+			</div>
+	</div>
+	<div class="form-group">	
+		<label  for="name" class="col-sm-2 control-label">Name *</label>
+			<div class="col-sm-9">
+				<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="addquotation.name" required>
+				
+				<span class="help-block" ng-show="addquotationForm.name.$dirty && addquotationForm.name.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.name.$error.required">Required Field.</span>
+					
+				</span>
+			</div>						
+	</div>	
+	
+	<div class="form-group">	
+		<label  for="address" class="col-sm-2 control-label">Address *</label>
+			<div class="col-sm-9">
+				<input type="text" id="address" class="form-control" name="address" placeholder="Enter address" ng-model="addquotation.address" required>
+				
+				<span class="help-block" ng-show="addquotationForm.address.$dirty && addquotationForm.address.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.address.$error.required">Required Field.</span>
+					
+				</span>
+			</div>						
+	</div>	
+	
+	<div class="form-group">	
+		<label  for="subject" class="col-sm-2 control-label">Subject *</label>
+			<div class="col-sm-9">
+				<input type="text" id="subject" class="form-control" name="subject" placeholder="Enter subject" ng-model="addquotation.subject" required>
+				
+				<span class="help-block" ng-show="addquotationForm.subject.$dirty && addquotationForm.subject.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.subject.$error.required">Required Field.</span>
+					
+				</span>
+			</div>						
+	</div>	
+	<div class="form-group">
+		<div class="table-responsive">
+	<table class="table table-bordered">
+		<tr>
+			<th>Sr.No</th>
+			<th>Description</th>
+			<th>Unit</th>
+			<th>Area</th>
+			<th>Rate</th>
+			<th>Amount</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>
+				<input type="text" id="description" name="description" />
+			</td>
+			<td>
+				<select class="form-control">
+					<option>Select Status</option>
+					<option value="active">Active</option>
+					<option value="deleted">Deleted</option>
+				</select>
+			</td>
+			<td>Deadline</td>
+			<td>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+			</td>
+		</tr>
+		
+	</table>
+</div>
+
+	</div>
+</form>

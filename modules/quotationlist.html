@@ -1,0 +1,62 @@
+<div class="text-right bottomspace">
+	<a href="#/quotationlist" class="btn btn-default">Quotation List</a>
+	<a href="#/quotation" class="btn btn-default">Add New Quotation</a>
+</div>
+<h3> Quotation View</h3>
+<div class="row bottomspace">
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Select Order</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Select Status</option>
+				<option value="active">Active</option>
+				<option value="deleted">Deleted</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Select Party/Vendor</option>
+				<option value="active">Sharma</option>
+				<option value="deleted">Kulkarni</option>
+			</select>
+		</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Subject</th>
+			<th>Terms & Conditions</th>
+			<th>Manage</th>
+		</tr>
+		<tr>
+			<td>Sharma</td>
+			<td>Nigadi,Pune.</td>
+			<td>Computerised System</td>
+			<td>Deadline</td>
+			<td>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+			</td>
+		</tr>
+		<tr>
+			<td>Sawant</td>
+			<td>Deccan,Pune</td>
+			<td>Software</td>
+			<td>Deadline</td>
+			<td>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+			</td>
+		</tr>
+	</table>
+</div>
