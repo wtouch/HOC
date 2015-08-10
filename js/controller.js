@@ -2,7 +2,6 @@
 
 
 /* Controllers */
-
 angular.module('hoc.controllers',[]);
 app.controller("loginController",function($scope,$http){
 	console.log("this is login controller");
@@ -32,5 +31,5 @@ app.controller("quotationController",function($scope,$http){
 	console.log("this is quotation controller");
 });
 app.controller("departmentController",function($scope,$http){
-	console.log("this is depertment controller");
+	console.log("this is department controller");
 });
