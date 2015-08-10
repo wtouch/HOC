@@ -63,8 +63,11 @@ app.controller("itemController",function($scope,$http){
 	console.log("this is item controller");
 });
 app.controller("quotationController",function($scope,$http){
-	console.log("this is quotation controller");
-});
+	
+	$scope.apply = function(addquotation)
+	{ 
+		console.log("this is quotation controller");
+	});
 app.controller("departmentController",function($scope,$http){
 	console.log("this is department controller");
 });
