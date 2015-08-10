@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/angular.min.js"></script>
+	</head>
+	<body>				
+		<div class="container">
+			<form name="AddItem" class="form-horizontal">
+				<h4 class="text-center">Add New Item</h4>
+					<div class="form-group">
+						<label for="newitem" class="col-sm-2 control-label">Item Name *</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="newitem" name="newitem"placeholder="Item Name" ng-model="itemadd.newitem" required>
+								<!-- <span class="help-block" ng-show="AddItem.newitem.$dirty && AddItem.newitem.$invalid">
+								<span ng-show="AddItem.newitem.$error.required" class="text-danger">Required Field.</span>
+								</span> -->
+							</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label" >Description *</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="itemadd.description" required></textarea>
+								<!-- <p ng-hide="AddItem.description.$error.maxlength">
+									{{ 5000 - additem.description.length + " Chars left"}} 
+								</p> -->
+							</div>
+					</div>
+					<div class="form-group">
+						<label for="itemprice" class="col-sm-2 control-label" required>Price *</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Name" ng-model="itemadd.itemprice">
+								<!-- <span class="help-block" ng-show="AddItem.itemprice.$dirty && AddItem.itemprice.$invalid">
+								<span ng-show="AddItem.itemprice.$error.required" class="text-danger">Required Field.</span>
+								</span> -->
+							</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="itemtype" class="col-sm-2 control-label" required>Item Type*</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="item_type" ng-model="itemadd.item_type">
+									<option>Select</option>
+									<option>Department</option>
+									<option>Measurement</option>
+								</select>
+								<!-- <span class="help-block" ng-show="AddItem.item_type.$dirty && AddItem.item_type.$invalid">
+									<span ng-show="AddItem.item_type.$error.required" class="text-danger">Required Field.</span>
+								</span>	 -->
+							</div>
+					</div>
+					
+					<div class="form-group">
+						 <div class="col-sm-offset-2 col-sm-8">
+							<button type="submit" class="btn btn-primary" >Add Item</button>
+							<button type="submit" class="btn btn-primary btnsp" >Edit Item</button>
+							<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
+						</div>			
+					</div>
+			</form>
+		</div>
+	</body>						
+</html>
