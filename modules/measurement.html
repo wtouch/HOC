@@ -7,29 +7,29 @@
 	<h3 class="text-center">Add Measurement</h3>
 	<form class="form-horizontal" name="addmeasurmentFrom" novalidate ng-submit="addmeasurmentFrom.$valid">
 		<div class="form-group">{{addmeasurement}}
-				<label for="additem" class="col-sm-2 control-label">Select party</label>
+				<label for="party" class="col-sm-2 control-label">Select party</label>
 					<div class="col-sm-9">
-						<select class="form-control" id="item" name="item" ng-model="addmeasurement.item"required >
+						<select class="form-control" id="party" name="party" ng-model="addmeasurement.party"required >
 							<option value="">Select party</option>
 							<option value="Sharma">Sharma</option>
 							<option value="Sawant">Sawant</option>
 						</select>
-						<span class="text-danger" ng-show=	"addmeasurmentFrom.item.$dirty && addmeasurmentFrom.item.$invalid">
-							<span ng-show="addmeasurmentFrom.item.$error.required" class="text-danger">Required Field.</span>
+						<span class="text-danger" ng-show=	"addmeasurmentFrom.party.$dirty && addmeasurmentFrom.party.$invalid">
+							<span ng-show="addmeasurmentFrom.party.$error.required" class="text-danger">Required Field.</span>
 						</span>	
 					</div>
 		</div>
 		<div class="form-group">
-				<label for="selectitem" class="col-sm-2 control-label">Select item</label>
+				<label for="item" class="col-sm-2 control-label">Select item</label>
 					<div class="col-sm-9">
-						<select class="form-control" Id="selectitem" name="selectitem"ng-model="addmeasurement.brickstone" required>
+						<select class="form-control" Id="item" name="item"ng-model="addmeasurement.item" required>
 							<option value="">Select One</option>
 							<option value="Beick Stone">Beick Stone</option>
 							<option value="-">-</option>
 							<option value="-">-</option>
 						</select>
-						<span class="block" ng-show="addmeasurmentFrom.selectitem.$invalid && addmeasurmentFrom.selectitem.$dirty">
-							<span ng-show="addmeasurmentFrom.selectitem.$error.required" class="text-danger">Required Field</span>
+						<span class="block" ng-show="addmeasurmentFrom.item.$invalid && addmeasurmentFrom.item.$dirty">
+							<span ng-show="addmeasurmentFrom.item.$error.required" class="text-danger">Required Field</span>
 						</span>
 					</div>
 		</div>
