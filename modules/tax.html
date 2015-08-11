@@ -1,7 +1,7 @@
 <h3 class="text-center">Tax Information</h3>
 <form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid">
 	<div class="form-group">
-		<label for="serviceTax" class="col-sm-2 control-label">Service Tax</label>
+		<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.serviceTax" required>
 			<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="VAT" class="col-sm-2 control-label">VAT</label>
+		<label for="VAT" class="col-sm-2 control-label">VAT *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.VAT" required>
 			<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
@@ -20,7 +20,7 @@
 	</div>
 	<hr>
 	<div class="form-group">
-		<label for="PAN" class="col-sm-2 control-label">Pan No.</label>
+		<label for="PAN" class="col-sm-2 control-label">Pan No. *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.PAN" required>
 			<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty">
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No.</label>
+		<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No. *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.VATTIN" required>
 			<span class="block" ng-show="taxInfoForm.VATTIN.$invalid && taxInfoForm.VATTIN.$dirty">
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.</label>
+		<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.*</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.ServTaxNo" required>
 			<span class="block" ng-show="taxInfoForm.ServTaxNo.$invalid && taxInfoForm.ServTaxNo.$dirty">
@@ -67,7 +67,7 @@
 					<td>1.</td>
 					<td>Terms 1</td>
 					<td>
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" tooltip="Delete Terms & Conditions"></button>
 					</td>
 				</tr>
 			</table>
