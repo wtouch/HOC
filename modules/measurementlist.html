@@ -56,7 +56,8 @@
 					<td>
 					<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
 					</a>
-					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></a>
+					<a href="#/measurement" tooltip="View Measurement" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
+					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 					</td>
 		</tbody>
 		<tbody>
@@ -73,7 +74,8 @@
 					<td>
 					<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
 					</a>
-					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></a>
+					<a ng-click ="open()" tooltip="View Measurement" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
+					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 					</td>
 		</tbody>
 	</table>

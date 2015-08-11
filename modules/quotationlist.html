@@ -42,10 +42,11 @@
 			<td>Computerised System</td>
 			<td>Deadline</td>
 			<td>
-				 <a ng-click ="open()" class="btn btn-success">Views</a> 
+				 
 				 <!-- <a href="#/viewquotation" class="btn btn-primary glyphicon glyphicon-eye-open"></a>  -->
-				<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/quotation" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+				<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/quotation" ng-model="checkModel.left" btn-checkbox tooltip="Edit Quotation Details"></a>
+				<a ng-click ="open()" tooltip="View Quotation" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Quotation"></a>
 			</td>
 		</tr>
 	</table>
