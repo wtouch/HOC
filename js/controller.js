@@ -62,18 +62,25 @@ app.controller("measurementController",function($scope,$http){
 app.controller("itemController",function($scope,$http){
 	console.log("this is item controller");
 });
-app.controller("quotationController",function($scope,$http){
+app.controller("quotationController",function($scope,$http,$modal){
 		console.log("this is quotation controller");
 		$scope.addData = function(addquotation)
 		{ 
 			console.log(addquotation);
 		}
 		
-		$scope.openViewQuotation = function($event,opened){
-		$event.preventDefault();
-		$event.stopPropagation();
-		$scope.opened = ($scope.opened==true)?false:true;
-	};
+		$scope.open = function () {
+			size = 'lg';
+			$modal.open({
+				templateUrl: 'modules/viewquotation.html',
+				size: size,
+			});
+		}
+		$scope.ok = function () {
+			$modal.close();
+		};
+	
+	});
 		/* $scope.openViewQuotation = function (url) {
 			var modalDefaults = {
 				templateUrl: url,	// apply template to modal
@@ -87,7 +94,7 @@ app.controller("quotationController",function($scope,$http){
 		
 		});	
 		}; */
-});
+
 app.controller("departmentController",function($scope,$http){
 	console.log("this is department controller");
 });

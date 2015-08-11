@@ -10,7 +10,7 @@
 				<p>Note that Fields Marked * are Required.</p>		
 			</div>
 	</div>
-	<div class="form-group">	
+	<div class="form-group">{{addquotation}}
 		<label  for="name" class="col-sm-2 control-label">Name *</label>
 			<div class="col-sm-9">
 				<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="addquotation.name" required>
@@ -54,9 +54,9 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="text" class="form-control" id="label" name="label" ng-model="addquotation.particular.label" required>
-				<span class="help-block" ng-show="addInvoiceForm.label.$dirty && addInvoiceForm.label.$invalid">
-					<span ng-show="addInvoiceForm.label.$error.required" class="text-danger">Required Field.</span>
+				<input type="text" class="form-control" id="description" name="description" ng-model="addquotation.particular.description" required>
+				<span class="help-block" ng-show="addInvoiceForm.description.$dirty && addInvoiceForm.description.$invalid">
+					<span ng-show="addInvoiceForm.description.$error.required" class="text-danger">Required Field.</span>
 				</span>
 			</td>			
 			<td>
@@ -81,7 +81,7 @@
 	</div>
 	<div class="form-group">	
 		<div class="col-sm-offset-2">
-			<button type="submit" class="btn btn-success text-center" ng-click="postData(addtemplate)">Add This</button>
+			<button type="submit" class="btn btn-success text-center">Add This</button>
 		</div>
 	</div>
 	<div class="table-responsive">
@@ -117,7 +117,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="postData(addquotation)">Submit</button>
+			<button type="submit" class="btn btn-success"  ng-click="addData(addquotation)">Submit</button>
 			<!-- <button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="updateData(addquotation)">Update Quotation</button>  -->
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>

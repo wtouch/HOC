@@ -1,4 +1,29 @@
-<div class="row bottom-space ng-scope">
+
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://www.agarwalrealestates.com/ -->
+<html lang="en" ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel='stylesheet' id='fluid_dg-css'  href='css/fluid_dg.css' type='text/css' media='all'>
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.bxslider.min.js"></script>
+		<link rel="stylesheet" type="text/css"  href="css/jquery.bxslider.css"/>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/myscript.js"></script>
+		<title>{{seo.title}} | {{data.business_name}}</title>
+		<meta name="description" content="{{ seo.description }}">
+		<meta name="keywords" content="{{ seo.keywords }}">
+	</head>
+	<body>
+	
+	<div class="container">
+	<div class="row bottom-space ng-scope">
 				 <div class="col-sm-2"> 
 					<label for="sort" class="control-label">From Date</label>		
 					<input type="date" class="form-control" id="inputdate" placeholder="date">
@@ -11,14 +36,15 @@
 					<label for="sort" class="control-label">Select Party Name</label>		
 					<select id="sort" class="form-control ng-pristine ng-valid" ng-model="sort">  
 						<option value="">Select Party Name</option>		
-						<option value="-title"></option>
-						<option value="title"></option>  
+						<option value="-title">yh</option>
+						<option value="title">hgfh</option>  
 					</select>
 				</div>
-				
-				<div class="col-sm-3"> 
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-2"> 
 					<label class="control-label"> </label><br>
-					<a href="#" class="btn btn-primary" title="Add new property">Add Department</a>				
+					<a href="#" class="btn btn-primary" title="Add new property">Add Department Name</a>				
 				</div>
 				
 				<div class="col-sm-2"> 
@@ -64,7 +90,7 @@
 							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
 				</tbody>
 				<tbody>
-				    <td>1</td>
+				    <td>2</td>
 					<td>20/12/2015</td>
 							<td>Internal Plaster</td>
 							<td>17</td>
@@ -80,7 +106,7 @@
 							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
 				</tbody>
 				<tbody>
-				    <td>1</td>
+				    <td>3</td>
 					<td>20/12/2015</td>
 							<td>Shifting & Hole Repairing </td>
 							<td>17</td>
@@ -95,5 +121,9 @@
 							<span class="glyphicon glyphicon-pencil"></span>
 							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
 				</tbody>
-			
-	
+			</table>
+
+		</div>	
+
+	</body>
+</html>
