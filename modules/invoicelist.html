@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="col-sm-3">
-		<label for="from" class="control-label">To Date </label>
+		<label for="todate" class="control-label">To Date </label>
 		<div class="input-group">
 			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoicelist.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
 			<span class="input-group-btn">
@@ -59,9 +59,9 @@
 				<td>2500</td>
 				<td>3200</td>
 				<td>
-					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
-					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
-					<a class="btn btn-success" ng-click ="open()"><span class="glyphicon glyphicon-eye-open"></span></a>
+					<a class="btn btn-warning" href="#/invoice"><span class="glyphicon glyphicon-pencil"tooltip="Edit invoice "></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"tooltip="Delete invoice "></span></a>
+					<a class="btn btn-primary" ng-click ="open()"><span class="glyphicon glyphicon-eye-open" tooltip="View invoice "></span></a>
 				</td>
 			</tr>
 			<tr>
@@ -73,9 +73,9 @@
 				<td>2500</td>
 				<td>3200</td>
 				<td>
-					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
-					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
-					<a class="btn btn-success" ng-click ="open()"><span class="glyphicon glyphicon-eye-open"></span></a>
+					<a class="btn btn-warning" href="#/invoice"><span class="glyphicon glyphicon-pencil"tooltip="Edit invoice "></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"tooltip="Delete invoice "></span></a>
+					<a class="btn btn-primary" ng-click ="open()"><span class="glyphicon glyphicon-eye-open" tooltip="View invoice "></span></a>
 				</td>
 			</tr>
 			<tr>
@@ -87,9 +87,9 @@
 				<td>2500</td>
 				<td>3200</td>
 				<td>
-					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
-					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
-					<a class="btn btn-success" ng-click ="open()"><span class="glyphicon glyphicon-eye-open"></span></a>
+					<a class="btn btn-warning" href="#/invoice"><span class="glyphicon glyphicon-pencil"tooltip="Edit invoice "></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"tooltip="Delete invoice "></span></a>
+					<a class="btn btn-primary" ng-click ="open()"><span class="glyphicon glyphicon-eye-open" tooltip="View invoice "></span></a>
 				</td>
 			</tr>
 			<tr>
@@ -101,10 +101,9 @@
 				<td>2500</td>
 				<td>3200</td>
 				<td>
-					<a class="btn btn-primary" href="#/invoice"><span class="glyphicon glyphicon-pencil"></span></a> 
-					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"></span></a>
-					<a class="btn btn-success" ng-click ="open()"><span class="glyphicon glyphicon-eye-open"></span></a>
-				</td>
+					<a class="btn btn-warning" href="#/invoice"><span class="glyphicon glyphicon-pencil"tooltip="Edit invoice "></span></a> 
+					<a class="btn btn-danger" href="#/invoice"><span class="glyphicon glyphicon-remove"tooltip="Delete invoice "></span></a>
+					<a class="btn btn-primary" ng-click ="open()"><span class="glyphicon glyphicon-eye-open" tooltip="View invoice "></span></a>
 			</tr>
 		</thead>
 	</table>

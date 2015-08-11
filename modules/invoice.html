@@ -2,13 +2,13 @@
 	<div class="col-sm-12 text-right">	
 		<a class="btn btn-primary" href="#/invoice">Add New Party Name</a>
 		<a class="btn btn-primary" href="#/invoicelist">Invoice List</a>
-		<a class="btn btn-primary" ng-click ="open()">Invoice sheet</a>
+		
 	</div>
 </div>
 <h3 class="text-center"> Add Invoice</h3>
 <form name="invoiceform" role="form" class="form-horizontal"  ng-submit="invoiceform.$valid" novalidate="novalidate">
 	<div class="form-group">
-		<label for="partyname" class=" col-sm-2 control-label">Party Name</label>
+		<label for="partyname" class=" col-sm-2 control-label">Party Name *</label>
 		<div class="col-sm-9">
 			<select class="form-control " required ng-model="invoice.partyname">
 				<option value="">SPD</option>
@@ -21,7 +21,7 @@
 		</div>
 	</div>	
 	<div class="form-group">
-		<label  for="fromdate" class="col-sm-2 control-label">From Date</label>
+		<label  for="fromdate" class="col-sm-2 control-label">From Date *</label>
 		<div class="col-sm-9">
 			<div class="input-group">
 				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
@@ -32,7 +32,7 @@
 		</div>
 	</div>	
 	<div class="form-group">
-		<label  for="todate" class="col-sm-2 control-label">To Date</label>
+		<label  for="todate" class="col-sm-2 control-label">To Date *</label>
 		<div class="col-sm-9">
 			<div class="input-group">
 				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
