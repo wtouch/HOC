@@ -54,7 +54,7 @@
 	<div class="form-group">
 		<label for="clientAddress" class="col-sm-2 control-label">Address</label>
 		<div class="col-sm-9">
-			<textarea type="text" name="clientAddress" id="clientAddress" ng-model="addparty.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
+			<textarea name="clientAddress" id="clientAddress" ng-model="addparty.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
 			<span ng-hide="addPartyForm.clientAddress.$error.maxlength">
 				{{ 256 - addparty.clientAddress.length + " Chars left" }}
 			</span>	

@@ -1,62 +1,62 @@
-
-		<div class="row">
-			<div class="pull-right">
-			
-				<a href="#/viewitem" type="submit" class="btn btn-primary" >Item List</a>
-				<a href="#/item" class="btn btn-primary" >Add New Item </a>
-			</div>
-		</div>
+<div class="row">
+	<div class="col-sm-12 text-right">
+		<a href="#/itemlist" type="submit" class="btn btn-primary">Item List</a>
+		<a href="#/item" class="btn btn-primary">Add New Item </a>
+	</div>
+</div>
 		
-			<form name="AddItem" class="form-horizontal">
-				<h4 class="text-center">Add New Item</h4>
-					<div class="form-group">
-						<label for="newitem" class="col-sm-2 control-label">Item Name *</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="newitem" name="newitem"placeholder="Item Name" ng-model="itemadd.newitem" required>
-								<!-- <span class="help-block" ng-show="AddItem.newitem.$dirty && AddItem.newitem.$invalid">
-								<span ng-show="AddItem.newitem.$error.required" class="text-danger">Required Field.</span>
-								</span> -->
-							</div>
-					</div>
-					<div class="form-group">
-						<label for="description" class="col-sm-2 control-label" >Description *</label>
-							<div class="col-sm-8">
-								<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="itemadd.description" required></textarea>
-								<!-- <p ng-hide="AddItem.description.$error.maxlength">
-									{{ 5000 - additem.description.length + " Chars left"}} 
-								</p> -->
-							</div>
-					</div>
-					<div class="form-group">
-						<label for="itemprice" class="col-sm-2 control-label" required>Price *</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Name" ng-model="itemadd.itemprice">
-								<!-- <span class="help-block" ng-show="AddItem.itemprice.$dirty && AddItem.itemprice.$invalid">
-								<span ng-show="AddItem.itemprice.$error.required" class="text-danger">Required Field.</span>
-								</span> -->
-							</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="itemtype" class="col-sm-2 control-label" required>Item Type*</label>
-							<div class="col-sm-8">
-								<select class="form-control" name="item_type" ng-model="itemadd.item_type">
-									<option>Select</option>
-									<option>Department</option>
-									<option>Measurement</option>
-								</select>
-								<!-- <span class="help-block" ng-show="AddItem.item_type.$dirty && AddItem.item_type.$invalid">
-									<span ng-show="AddItem.item_type.$error.required" class="text-danger">Required Field.</span>
-								</span>	 -->
-							</div>
-					</div>
-					
-					<div class="form-group">
-						 <div class="col-sm-offset-2 col-sm-8">
-							<button type="submit" class="btn btn-primary" >Add Item</button>
-							<button type="submit" class="btn btn-primary btnsp" >Edit Item</button>
-							<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
-						</div>			
-					</div>
-			</form>
+<form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
+	<h4 class="text-center">Add New Item</h4>
+	<div class="form-group">
+		<label for="newitem" class="col-sm-2 control-label">Item Name *</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="newitem" name="newitem" placeholder="Item Name" ng-model="itemadd.newitem" required>
+			<span class="help-block" ng-show="addItemForm.newitem.$dirty && addItemForm.newitem.$invalid">
+				<span ng-show="addItemForm.newitem.$error.required" class="text-danger">Please Enter Item Name.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description" class="col-sm-2 control-label" >Description *</label>
+		<div class="col-sm-8">
+			<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="itemadd.description" required></textarea>
+			<span ng-hide="addItemForm.description.$error.maxlength">
+				{{ 256 - itemadd.description.length + " Chars left" }}
+			</span>	
+			<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
+				<span class="text-danger" ng-show="addItemForm.description.$error.required">Please Enter Item Description.</span>
+				<span class="text-danger" ng-show="addItemForm.description.$error.maxlength">Sorry You are Exceeding the Limit</span>
+			</span>	
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="itemprice" class="col-sm-2 control-label">Price *</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Name" ng-model="itemadd.itemprice" required>
+			<span class="help-block" ng-show="addItemForm.itemprice.$dirty && addItemForm.itemprice.$invalid">
+			<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="item_type" class="col-sm-2 control-label">Item Type*</label>
+		<div class="col-sm-8">
+			<select class="form-control" id="item_type" name="item_type" ng-model="itemadd.item_type" required>
+				<option value="">-Select Type-</option>
+				<option value="Department">Department</option>
+				<option value="Measurement">Measurement</option>
+			</select>
+			<span class="help-block" ng-show="addItemForm.item_type.$dirty && addItemForm.item_type.$invalid">
+				<span ng-show="addItemForm.item_type.$error.required" class="text-danger">Required Field.</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		 <div class="col-sm-offset-2 col-sm-8">
+			<button type="submit" class="btn btn-primary" ng-disabled="addItemForm.$invalid">Add Item</button>
+			<button type="submit" class="btn btn-success btnsp" >Edit Item</button>
+			<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
+		</div>			
+	</div>
+</form>
 		
