@@ -96,5 +96,9 @@ app.controller("quotationController",function($scope,$http,$modal){
 		}; */
 
 app.controller("departmentController",function($scope,$http){
-	console.log("this is department controller");
+		$scope.addData = function(adddepartment)
+		{ 
+			console.log(adddepartment);
+		}
+		console.log("this is department controller");
 });

@@ -1,0 +1,109 @@
+<div class="row">
+		<div class="col-sm-12 text-right"> 
+			<a href="#/department" class="btn btn-primary" title="Add New Department">Add New Department</a>				
+			<a href="#/departmentlist" class="btn btn-primary" title="Add New Department">Deparment List</a>
+		</div>
+	</div>		
+		<h3 class="text-center">Add Department</h3>
+		<form class="form-horizontal" name="adddepartmentForm" role="form" ng-submit="adddepartmentForm.$valid" novalidate>
+		<div class="form-group">
+			<label for="inputdate" class="col-sm-2 control-label">Date</label>
+			<div class="col-sm-9">
+				<input type="date" class="form-control" id="date" name="date" placeholder="date" ng-model="adddepartment.date" required>
+					<span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
+					<span ng-show="adddepartmentForm.date.$error.required" class="text-danger">Required Field.</span>
+					</span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="item" class="col-sm-2 control-label">Item</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="item" name="item" ng-model="adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">
+					<span class="block" ng-show="adddepartmentForm.item.$invalid && adddepartmentForm.item.$dirty">
+						<span ng-show="adddepartmentForm.item.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+	
+		<div class="form-group">
+			<label for="tilemeson" class="col-sm-2 control-label">Tile Meson</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="tilemeson" name="tilemeson" ng-model="adddepartment.tilemeson" cols="30" rows="4" ng-maxlength="5000" placeholder="Tile Meson" ui-tinymce="" required="">
+					<span class="block" ng-show="adddepartmentForm.tilemeson.$invalid && adddepartmentForm.tilemeson.$dirty">
+						<span ng-show="adddepartmentForm.tilemeson.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="plastermeson" class="col-sm-2 control-label">Plaster Meson</label>
+			<div class="col-sm-9">
+				<input  type="text" class="form-control" id="plastermeson" name="plastermeson" ng-model="adddepartment.plastermesoon" cols="30" rows="4" ng-maxlength="5000" placeholder="Plaster Meson" required="">
+				<span class="block" ng-show="adddepartmentForm.plastermeson.$invalid && adddepartmentForm.plastermeson.$dirty">
+					<span ng-show="adddepartmentForm.plastermeson.$error.required" class="text-danger">Required Field</span>
+				</span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="plumbermeson" class="col-sm-2 control-label">Plamer Meson</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="plumbermeson" name="plumbermeson" ng-model="adddepartment.plumbermeson" cols="30" rows="4" ng-maxlength="5000" placeholder="Plamber Meson" required="">
+					<span class="block" ng-show="adddepartmentForm.plumbermeson.$invalid && adddepartmentForm.plumbermeson.$dirty">
+						<span ng-show="adddepartmentForm.plumbermeson.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="bbmmeson" class="col-sm-2 control-label">BBM Meson</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="bbmmeson" name="bbmmeson" ng-model="adddepartment.bbmmeson" cols="30" rows="4" ng-maxlength="5000" placeholder="BBM Meson" ui-tinymce="" required="">
+					<span class="block" ng-show="adddepartmentForm.bbmmeson.$invalid && adddepartmentForm.bbmmeson.$dirty">
+						<span ng-show="adddepartmentForm.bbmmeson.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="meson" class="col-sm-2 control-label"> Meson</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="meson" name="meson" ng-model="meson" cols="30" rows="4" ng-maxlength="5000" placeholder="Meson" ui-tinymce="" required="">
+					<span class="block" ng-show="adddepartmentForm.meson.$invalid && adddepartmentForm.meson.$dirty">
+						<span ng-show="adddepartmentForm.meson.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+			<div class="form-group">
+					<label for="helpser" class="col-sm-2 control-label">Helpser</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="helpser" name="helpser" ng-model="helpser" cols="30" rows="4" ng-maxlength="5000" placeholder="Helpser" ui-tinymce="" required="">
+					<span class="block" ng-show="adddepartmentForm.helpser.$invalid && adddepartmentForm.helpser.$dirty">
+						<span ng-show="adddepartmentForm.helpser.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+		<div class="form-group">
+					<label for="breakingmachine" class="col-sm-2 control-label">Breaking Machine</label>
+				<div class="col-sm-9">
+					<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="breakingmachine" cols="30" rows="4" ng-maxlength="5000" placeholder="Breaking Machine" ui-tinymce="" required="">
+					<span class="block" ng-show="adddepartmentForm.breakingmachine.$invalid && adddepartmentForm.breakingmachine.$dirty">
+						<span ng-show="adddepartmentForm.breakingmachine.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		<div class="row">
+		
+		<div class="col-sm-offset-2 col-sm-9">
+		<button type="submit" ng-click="addData(adddepartment)"class="btn btn-success btn text-center  ng-scope">Generate</button>
+		<!-- <button type="submit"  ng-click="update(project)" class="btn btn-success btn text-center  ng-scope">Update</button> -->
+		<button type="reset" class="btn btn-danger" title="Cancel Sending">Cancel</button>
+		</div>
+		</div>
+		</form>
+</div>
+</body>
+</html>
