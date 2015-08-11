@@ -1,34 +1,44 @@
-<div class="row bottom-space ng-scope">
-				 <div class="col-sm-2"> 
-					<label for="sort" class="control-label">From Date</label>		
-					<input type="date" class="form-control" id="inputdate" placeholder="date">
-				</div>	
-				<div class="col-sm-2"> 
-					<label for="sort" class="control-label">To Date</label>		
-					<input type="date" class="form-control" id="inputdate" placeholder="date">
-				</div>	
-				<div class="col-sm-3">
-				<label for="sort" class="control-label">Select Party Name</label>		
-					<select id="sort" class="form-control ng-pristine ng-valid" ng-model="sort">  
-						<option value="">Select Party Name</option>		
-						<option value="-title">Sharma</option>
-						<option value="title">Sawant</option>  
-					</select>
-				</div>
-				
-				<div class="col-sm-5 text-right"> 
-					<a href="#/department" class="btn btn-default" title="Add New Department">Add New Department</a>				
-					<a href="#/departmentlist" class="btn btn-default" title="Add New Department">Deparment List</a>
-				</div>
-			</div>
-		<div class="table-responsive">	
-            <h3 style="text-align:center;">Deparment  Table</h3> 		
+<div class="row">
+	<div class="col-sm-12 text-right"> 
+		<a href="#/department" class="btn btn-default" title="Add New Department">Add New Department</a>				
+		<a href="#/departmentlist" class="btn btn-default" title="Add New Department">Deparment List</a>
+	</div>
+</div>
+ <h3 style="text-align:center;">Deparment  Table</h3>
+ 
+<div class="row bottomspace">
+<div class="col-sm-2"> 
+	<label for="sort" class="control-label">From Date</label>		
+	<input type="date" class="form-control" id="inputdate" placeholder="date">
+</div>	
+<div class="col-sm-2"> 
+	<label for="sort" class="control-label">To Date</label>		
+	<input type="date" class="form-control" id="inputdate" placeholder="date">
+</div>	
+<div class="col-sm-2">
+	<label for="sort" class="control-label">Select Party</label>		
+	<select id="sort" class="form-control ng-pristine ng-valid" ng-model="sort">  
+		<option value="">Select Party</option>		
+		<option value="Party">Party</option>
+		<option value="Vender">Vender</option>  
+	</select>
+</div>
+<div class="col-sm-2">
+	<label for="sort" class="control-label">Select Department</label>		
+	<select id="sort" class="form-control ng-pristine ng-valid" ng-model="sort">  
+		<option value="">Select Department</option>		
+		<option value="Department1">Department1</option>
+		<option value="Department2">Department2</option>  
+	</select>
+</div>
+</div>
+		<div class="table-responsive">		
 			<table class="table table-bordered">
 				<thead>
 					<tr><th>Sr.No.</th>
 					<th>Date</th>
 					<th>Description</th>
-					<th>Rpt</th> 
+					<th>Receipt No</th> 
 					<th>Tiles Meson </th>
 					<th>Plaster Meson </th>
 					<th>Plumber Meson</th>
@@ -53,7 +63,7 @@
 							<td>4</td>
 							<td>
 							<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
-							<a class="btn btn-primary glyphicon glyphicon-eye-open"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="View department Details"></a>
+
 							<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Department"></a>
 							</td>
 				</tbody>
@@ -71,7 +81,7 @@
 							<td>-</td>
 							<td>
 							<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
-							<a class="btn btn-primary glyphicon glyphicon-eye-open"  href="#/" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+							
 							<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
 							</td>
 				</tbody>

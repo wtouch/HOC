@@ -1,6 +1,7 @@
 <div class="text-right bottomspace">
+	<a href="#/printview" class="btn btn-default">Print</a>
 	<a href="#/partylist" class="btn btn-default">Party List</a>
-	<a href="#/party" class="btn btn-default">Add New Party</a>
+	<a href="#/party" class="btn btn-default">Add Party/Vender</a>
 </div>
 <h3 class="text-center">Add New Party</h3>
 <form class="form-horizontal" name="addPartyForm" role="form" novalidate ng-submit="addPartyForm.$valid">
@@ -121,9 +122,8 @@
 		<div class="col-sm-9">
 			<select class="form-control" name="type" id="type" ng-model="addparty.type" required>
 				<option value="">-Select Type-</option>
-				<option value="Type 1">Type 1</option>
-				<option value="Type 2">Type 2</option>
-				<option value="Type 3">Type 3</option>
+				<option value="Vender">Vender</option>
+				<option value="Client">Client</option>
 			</select>
 			<span class="block" ng-show="addPartyForm.type.$invalid && addPartyForm.type.$dirty">
 				<span ng-show="addPartyForm.type.$error.required" class="text-danger">Please Select Type.</span>

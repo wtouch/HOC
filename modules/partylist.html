@@ -1,29 +1,39 @@
 <div class="text-right bottomspace">
+	<a href="#/printview" class="btn btn-default">Print</a>
 	<a href="#/partylist" class="btn btn-default">Party List</a>
-	<a href="#/party" class="btn btn-default">Add New Party</a>
+	<a href="#/party" class="btn btn-default">Add Party/Vender</a>
 </div>
 <h3 class="text-center"> Party View</h3>
 <div class="row bottomspace">
-	<div class="col-sm-4">
+	<div class="col-sm-3">
+		<input type="text" class="form-control" placeholder="Search">
+	</div>
+	<div class="col-sm-2">
 		<select class="form-control">
 			<option>Sort By</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
+			<option value="Ascending">Ascending</option>
+			<option value="Descending">Descending</option>
 		</select>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-2">
 		<select class="form-control">
 			<option>Select Status</option>
 			<option value="active">Active</option>
 			<option value="deleted">Deleted</option>
 		</select>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-2">
 		<select class="form-control">
 			<option>Select Party</option>
-			<option value="active">Sharma</option>
-			<option value="deleted">Kulkarni</option>
+			<option value="active">Party</option>
+			<option value="deleted">Vender</option>
+		</select>
+	</div>
+	<div class="col-sm-2">
+		<select class="form-control">
+			<option>Select Department</option>
+			<option value="Department1">Department1</option>
+			<option value="Department2">Department2</option>
 		</select>
 	</div>
 </div>
@@ -36,6 +46,7 @@
 			<th>Contact</th>
 			<th>Address</th>
 			<th>City</th>
+			<th>Type</th>
 			<th>Manage</th>
 		</tr>
 		<tr>
@@ -45,8 +56,9 @@
 			<td>8545226575</td>
 			<td>Nigadi</td>
 			<td>Pune</td>
+			<td>Vender</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left"  tooltip="Edit Party "></a>
+				<a href="#/party" class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left"  tooltip="Edit Party "></a>
 				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-click="open()"  tooltip="View Party "></a>
 				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right"  tooltip="Delete Party "></a>
 			</td>
@@ -58,8 +70,9 @@
 			<td>8545226575</td>
 			<td>Thergaon</td>
 			<td>Pune</td>
+			<td>Party</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+				<a href="#/party" class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
 				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
 				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
 			</td>
