@@ -8,11 +8,11 @@
 					<input type="date" class="form-control" id="inputdate" placeholder="date">
 				</div>	
 				<div class="col-sm-3">
-					<label for="sort" class="control-label">Select Party Name</label>		
+				<label for="sort" class="control-label">Select Party Name</label>		
 					<select id="sort" class="form-control ng-pristine ng-valid" ng-model="sort">  
 						<option value="">Select Party Name</option>		
-						<option value="-title"></option>
-						<option value="title"></option>  
+						<option value="-title">Sharma</option>
+						<option value="title">Sawant</option>  
 					</select>
 				</div>
 				
@@ -42,22 +42,6 @@
 				<tbody>
 				    <td>1</td>
 					<td>20/12/2015</td>
-							<td>Brick work</td>
-							<td>17</td>
-							<td>2</td>
-							<td>4</td>
-						    <td>2</td>
-							<td>4</td>
-							<td>4</td>
-							<td>4</td>
-							<td>4</td>
-							<td><a href="#" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit"> 
-							<span class="glyphicon glyphicon-pencil"></span>
-							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
-				</tbody>
-				<tbody>
-				    <td>1</td>
-					<td>20/12/2015</td>
 							<td>Internal Plaster</td>
 							<td>17</td>
 							<td>2</td>
@@ -67,9 +51,11 @@
 							<td>4</td>
 							<td>4</td>
 							<td>4</td>
-							<td><a href="#" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit"> 
-							<span class="glyphicon glyphicon-pencil"></span>
-							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
+							<td>
+							<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
+							<a class="btn btn-primary glyphicon glyphicon-eye-open"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit department Details"></a>
+							<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+							</td>
 				</tbody>
 				<tbody>
 				    <td>1</td>
@@ -83,9 +69,11 @@
 							<td>4</td>
 							<td>-</td>
 							<td>-</td>
-							<td><a href="#" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit"> 
-							<span class="glyphicon glyphicon-pencil"></span>
-							</a><button type="button" tooltip="Delete Property" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-success"><span class="glyphicon glyphicon-remove"></span></button></td>
+							<td>
+							<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
+							<a class="btn btn-primary glyphicon glyphicon-eye-open"  href="#/" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
+							<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+							</td>
 				</tbody>
 			
 	

@@ -69,7 +69,7 @@
 		<div class="form-group">
 			<label for="meson" class="col-sm-2 control-label"> Meson</label>
 				<div class="col-sm-9">
-					<input  type="text" class="form-control" id="meson" name="meson" ng-model="meson" cols="30" rows="4" ng-maxlength="5000" placeholder="Meson" ui-tinymce="" required="">
+					<input  type="text" class="form-control" id="meson" name="meson" ng-model="adddepartment.meson" cols="30" rows="4" ng-maxlength="5000" placeholder="Meson" ui-tinymce="" required="">
 					<span class="block" ng-show="adddepartmentForm.meson.$invalid && adddepartmentForm.meson.$dirty">
 						<span ng-show="adddepartmentForm.meson.$error.required" class="text-danger">Required Field</span>
 					</span>
@@ -79,7 +79,7 @@
 			<div class="form-group">
 					<label for="helpser" class="col-sm-2 control-label">Helpser</label>
 				<div class="col-sm-9">
-					<input  type="text" class="form-control" id="helpser" name="helpser" ng-model="helpser" cols="30" rows="4" ng-maxlength="5000" placeholder="Helpser" ui-tinymce="" required="">
+					<input  type="text" class="form-control" id="helpser" name="helpser" ng-model="adddepartment.helpser" cols="30" rows="4" ng-maxlength="5000" placeholder="Helpser" ui-tinymce="" required="">
 					<span class="block" ng-show="adddepartmentForm.helpser.$invalid && adddepartmentForm.helpser.$dirty">
 						<span ng-show="adddepartmentForm.helpser.$error.required" class="text-danger">Required Field</span>
 					</span>
@@ -89,19 +89,17 @@
 		<div class="form-group">
 					<label for="breakingmachine" class="col-sm-2 control-label">Breaking Machine</label>
 				<div class="col-sm-9">
-					<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="breakingmachine" cols="30" rows="4" ng-maxlength="5000" placeholder="Breaking Machine" ui-tinymce="" required="">
+					<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="adddepartment.breakingmachine" cols="30" rows="4" ng-maxlength="5000" placeholder="Breaking Machine" ui-tinymce="" required="">
 					<span class="block" ng-show="adddepartmentForm.breakingmachine.$invalid && adddepartmentForm.breakingmachine.$dirty">
 						<span ng-show="adddepartmentForm.breakingmachine.$error.required" class="text-danger">Required Field</span>
 					</span>
 				</div>
 		</div>
-		<div class="row">
-		
-		<div class="col-sm-offset-2 col-sm-9">
-		<button type="submit" ng-click="addData(adddepartment)"class="btn btn-success btn text-center  ng-scope">Generate</button>
-		<!-- <button type="submit"  ng-click="update(project)" class="btn btn-success btn text-center  ng-scope">Update</button> -->
-		<button type="reset" class="btn btn-danger" title="Cancel Sending">Cancel</button>
-		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-9">
+				<button type="submit" ng-click="addData(adddepartment)"class="btn btn-success btn text-center  ng-scope">Generate</button>
+				<button type="reset" class="btn btn-danger">Cancel</button>
+			</div>
 		</div>
 		</form>
 </div>
