@@ -14,17 +14,8 @@
 						</span>
 				</div>
 		</div>
-		<div class="col-sm-2">
-			<label for="itemlist" class="control-label">Item List</label>
-				
-					<select class="form-control">
-							<option>Select Item</option>
-							<option>Item1</option>
-							<option>Item2</option>
-					</select>
-				
-		</div>
-		<div class="col-sm-2">
+		
+		<div class="col-sm-3">
 			<label for="itemtype" class="control-label">Item Type</label>
 				
 					<select class="form-control">
@@ -45,6 +36,7 @@
 							<th>Item Name</th>	
 							<th>Description</th>
 							<th>Price</th>
+							<th>Item Type</th>
 							<th>Manage</th>
 						</tr>		
 						<tr>
@@ -52,12 +44,13 @@
 							<td>Item1</td>	
 							<td>Item1 description is that</td>
 							<td>80</td>
+							<td>Department</td>
 							<td>
-							<a href="#" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
+							<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item ">
 							</a>
-							<a href="#/viewitem" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
+							<a ng-click="open()" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item "></a>
 							</a>
-							<button type="button" tooltip="Delete Item" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+							<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
 							</td>
 						</tr>
 						 <tr>
@@ -65,12 +58,14 @@
 							 <td>Item2</td>	
 							 <td>Item2 description is that</td>
 							 <td>100</td>
+							 <td>Measurement</td>
 							<td>
-								<a href="#" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item Information">
-								</a>
-								<a href="#/viewitem" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item Details"></a>
-								</a>
-								<button type="button" tooltip="Delete Item" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+							<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item ">
+							</a>
+							<a ng-click="open()" class="btn btn-info glyphicon glyphicon-eye-open" tooltip="View Item "></a>
+							</a>
+							<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
+							</td>
 							</td>
 						 </tr>
 				</table>

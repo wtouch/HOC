@@ -6,7 +6,7 @@
 <div class="row bottomspace">
 	<div class="col-sm-4">
 		<select class="form-control">
-			<option>Select Order</option>
+			<option>Sort By</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -21,7 +21,7 @@
 	</div>
 	<div class="col-sm-4">
 		<select class="form-control">
-			<option>Select Party/Vendor</option>
+			<option>Select Party</option>
 			<option value="active">Sharma</option>
 			<option value="deleted">Kulkarni</option>
 		</select>
@@ -46,9 +46,9 @@
 			<td>Nigadi</td>
 			<td>Pune</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Party Details"></a>
-				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left"  tooltip="Edit Party "></a>
+				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-click="open()"  tooltip="View Party "></a>
+				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right"  tooltip="Delete Party "></a>
 			</td>
 		</tr>
 		<tr>

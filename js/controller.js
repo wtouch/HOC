@@ -9,22 +9,48 @@ app.controller("loginController",function($scope,$http){
 app.controller("dashboardController",function($scope,$http){
 	console.log("this is dashboard controller");
 });
-app.controller("taxController",function($scope,$http){
+app.controller("taxController",function($scope,$http,$modal,$location){
 	console.log("this is tax controller");
 	$scope.postData =function(taxinfo){
 		
 		console.log(taxinfo);
 	}
+	$scope.open = function () {
+		size = 'lg';
+		$modal.open({
+			templateUrl: 'modules/viewtax.html',
+			size: size,
+		});
+	}
+	$scope.ok = function () {
+		$modal.close();
+	};
+	$scope.cancel = function () {
+		$modal.dismiss();
+	};
 });
 app.controller("summaryController",function($scope,$http){
 	console.log("this is summary controller");
 });
-app.controller("partyController",function($scope,$http){
+app.controller("partyController",function($scope,$http,$modal,$location){
 	console.log("this is party controller");
 	$scope.postData =function(addparty){
 		
 		console.log(addparty);
 	}
+	$scope.open = function () {
+		size = 'lg';
+		$modal.open({
+			templateUrl: 'modules/viewparty.html',
+			size: size,
+		});
+	}
+	$scope.ok = function () {
+		$modal.close();
+	};
+	$scope.cancel = function () {
+		$modal.dismiss();
+	};
 });
 app.controller("invoiceController",function($scope,$http,$modal,$location){
 	console.log("this is invoice controller");
@@ -71,12 +97,26 @@ app.controller("measurementController",function($scope,$http){
 		console.log(addmeasurement);
 	}
 });
-app.controller("itemController",function($scope,$http){
+app.controller("itemController",function($scope,$http,$modal,$location){
 	console.log("this is item controller");
 	$scope.postData =function(itemadd){
 		
 		console.log(itemadd);
 	}
+	//code to open modal
+	$scope.open = function () {
+		size = 'lg';
+		$modal.open({
+			templateUrl: 'modules/viewitem.html',
+			size: size,
+		});
+	}
+	$scope.ok = function () {
+		$modal.close();
+	};
+	$scope.cancel = function () {
+		$modal.dismiss();
+	};
 });
 app.controller("quotationController",function($scope,$http,$modal){
 		console.log("this is quotation controller");
