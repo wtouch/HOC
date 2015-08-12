@@ -10,9 +10,8 @@ app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/login', {templateUrl: 'modules/login.html', controller: 'loginController'});
 	$routeProvider.when('/dashboard', {templateUrl: 'modules/dashboard.html', controller: 'dashboardController'});
   //tax pages route
-	$routeProvider.when('/tax/:id?', {templateUrl: 'modules/tax.html', controller: 'taxController'});
-	$routeProvider.when('/taxlist', {templateUrl: 'modules/taxlist.html', controller: 'taxController'});
-	$routeProvider.when('/viewtax', {templateUrl: 'modules/viewtax.html', controller: 'taxController'});
+	$routeProvider.when('/taxinfo/:id?', {templateUrl: 'modules/taxinfo.html', controller: 'taxinfoController'});
+	
   //summary route
 	$routeProvider.when('/summary', {templateUrl: 'modules/summary.html', controller: 'summaryController'});
  //party pages route

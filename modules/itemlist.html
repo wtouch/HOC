@@ -1,72 +1,69 @@
+
 <div class="row">
 	<div class="col-sm-12 text-right">
 		<a href="#/itemlist" type="submit" class="btn btn-default" >Item List</a>
 		<a href="#/item" class="btn btn-default" >Add New Item </a>
 	</div>
 </div>
-	<div class="row">
-		<div class="col-sm-3">
-			<label for="searchItem" class="control-label">Search </label>
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for...">
-						<span class="input-group-btn">
-							<button class="btn btn-success" type="button">Go!</button>
-						</span>
-				</div>
-		</div>
-		
-		<div class="col-sm-3">
-			<label for="itemtype" class="control-label">Item Type</label>
-				
-					<select class="form-control">
-							<option>Select Type</option>
-							<option>Department</option>
-							<option>Measurement</option>
-					</select>
-				
+<h3 class ="text-center">Items View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
+<div class="row bottomspace">
+	<div class="col-sm-3">
+		<label for="searchItem" class="control-label">Search </label>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for...">
+				<span class="input-group-btn">
+					<button class="btn btn-success" type="button">Go!</button>
+				</span>
 		</div>
 	</div>
-	<div class="row">
-		<h4 class="text-center">Items View</h4>
-			<div class="table-responsive">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>Sr.No</th>
-							<th>Item Name</th>	
-							<th>Description</th>
-							<th>Price</th>
-							<th>Item Type</th>
-							<th>Manage</th>
-						</tr>		
-						<tr>
-							<td>1.</td>
-							<td>Item1</td>	
-							<td>Item1 description is that</td>
-							<td>80</td>
-							<td>Department</td>
-							<td>
-							<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item ">
-							</a>
-							</a>
-							<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
-							</td>
-						</tr>
-						 <tr>
-							 <td>2.</td>
-							 <td>Item2</td>	
-							 <td>Item2 description is that</td>
-							 <td>100</td>
-							 <td>Measurement</td>
-							<td>
-							<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item ">
-							</a>
-							<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
-							</td>
-							</td>
-						 </tr>
-				</table>
-			</div>
-	</div>	
-</div>	
+	<div class="col-sm-3">
+		<label for="itemtype" class="control-label">Item Type</label>
+		<select class="form-control">
+			<option>Select Type</option>
+			<option>Department</option>
+			<option>Measurement</option>
+		</select>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Sr.No</th>
+				<th>Item Name</th>	
+				<th>Description</th>
+				<th>Price</th>
+				<th>Item Type</th>
+				<th>Manage</th>
+			</tr>	
+		</thead>
+		<tr>
+			<td>1.</td>
+			<td>Item1</td>	
+			<td>Item1 description is that</td>
+			<td>80</td>
+			<td>Department</td>
+			<td>
+				<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item "></a>
+			
+				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
+			</td>
+		</tr>
+		 <tr>
+			 <td>2.</td>
+			 <td>Item2</td>	
+			 <td>Item2 description is that</td>
+			 <td>100</td>
+			 <td>Measurement</td>
+			<td>
+				<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item "></a>
+				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="text-center">
+	<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	 <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+</div>
 

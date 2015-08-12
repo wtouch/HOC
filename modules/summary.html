@@ -6,15 +6,26 @@
 		
 	</div>
 </div>
-<h3 class="text-center">Summary</h3>
+<h3 class="text-center">Summary <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace">
 	<div class="col-sm-3">
-		<label for="from" class="control-label">From :</label>
-		<input type="date" class="form-control" id="from" name="from">
+		<label for="fromdate" class="control-label">From Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="summary.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+		</div>
 	</div>
-	<div class="col-sm-2">
-		<label for="from" class="control-label">To :</label>
-		<input type="date" class="form-control" id="to" name="to">
+	<div class="col-sm-3">
+		<label for="todate" class="control-label">To Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="summary.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+			
+		</div>
 	</div>
 	<div class="col-sm-2">
 	<label for="party" class="control-label">Party Name</label>
@@ -25,19 +36,20 @@
 		</select>
 	</div>
 	<div class="col-sm-2">
-	<label for="invoice" class="control-label" >Invoice</label>
-		<select class="form-control" id="invoice">
-			<option>Select Invoice</option>
-			<option value="active">Invoice 1</option>
-			<option value="deleted">Invoice 2</option>
-		</select>
-	</div>
-	<div class="col-sm-2">
 	<label for="Department" class="control-label">Department Name</label>
 		<select class="form-control" id="Department">
 			<option>Select Department</option>
 			<option value="active">Dept 1</option>
 			<option value="deleted">Dept 2</option>
+		</select>
+		
+	</div>
+	<div class="col-sm-2">
+	<label for="invoice" class="control-label" >Invoice</label>
+		<select class="form-control" id="invoice">
+			<option>Select Invoice</option>
+			<option value="active">Invoice 1</option>
+			<option value="deleted">Invoice 2</option>
 		</select>
 	</div>
 	
@@ -71,7 +83,7 @@
 		</tr>
 		<tfoot>
 			<tr>
-				<td colspan="5" class="text-right">Total :</td>
+				<th colspan="5" class="text-right">Total :</th>
 				<td>194760.26</td>
 			</tr>
 		</tfoot>

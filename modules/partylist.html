@@ -1,9 +1,8 @@
 <div class="text-right bottomspace">
-	<a href="#/printview" class="btn btn-default">Print</a>
 	<a href="#/partylist" class="btn btn-default">Party List</a>
 	<a href="#/party" class="btn btn-default">Add Party/Vender</a>
 </div>
-<h3 class="text-center"> Party View</h3>
+<h3 class="text-center"> Party View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace">
 	<div class="col-sm-3">
 		<input type="text" class="form-control" placeholder="Search">
@@ -78,4 +77,8 @@
 			</td>
 		</tr>
 	</table>
+</div>
+<div class="text-center">
+	<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	 <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
 </div>

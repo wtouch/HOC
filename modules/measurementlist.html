@@ -2,17 +2,27 @@
 	<a href="#/measurement" class="btn btn-default" title="Add new property"> Add Measurement Item</a>	
 	<a href="#/measurementlist" class="btn btn-default" title="Add new property">Measurement Sheet </a>	
 </div>
-<h3 style="text-center">Measurement Table</h3> 	
+<h3 class="text-center">Measurement Table</h3> 	
 <div class="row bottomspace">
-	<div class="col-sm-2"> 
-		<label for="sort" class="control-label">From Date</label>		
-		<input type="date" class="form-control" id="inputdate" placeholder="date">
+	<div class="col-sm-3"> 
+		<label for="fromdate" class="control-label">From Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="measurement.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+		</div>
 	</div>	
-	<div class="col-sm-2"> 
-		<label for="sort" class="control-label">To Date</label>		
-		<input type="date" class="form-control" id="inputdate" placeholder="date">
+	<div class="col-sm-3"> 
+		<label for="todate" class="control-label">To Date </label>
+		<div class="input-group">
+			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="measurement.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 	<label for="party" class="control-label">Select Party</label>
 		<select class="form-control">
 			<option>Select Party</option>
@@ -20,7 +30,7 @@
 			<option value="Vender">Vender</option>
 		</select>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 	<label for="department" class="control-label">Select Department</label>
 		<select class="form-control">
 			<option>Select Department</option>
@@ -33,22 +43,24 @@
 	<div class="table-responsive">		
 	<table class="table table-bordered">
 	<thead>
-		<tr><th>Sr.No.</th>
-		<th>Date</th>
-		<th>Description</th>
-		<th>Rpt</th> 
-		<th>Unit</th>
-		<th>Nos </th>
-		<th>Length</th>
-		<th>Width</th>
-		<th>Height</th>
-		<th>Area</th>
-		<th class="col-sm-2">Manage</th>
+		<tr>
+			<th>Sr.No.</th>
+			<th>Date</th>
+			<th>Description</th>
+			<th>Rpt</th> 
+			<th>Unit</th>
+			<th>Nos </th>
+			<th>Length</th>
+			<th>Width</th>
+			<th>Height</th>
+			<th>Area</th>
+			<th class="col-sm-2">Manage</th>
 		</tr>
 	</thead>
-	<tbody>
-		<td>1</td>
-		<td>20/12/2015</td>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>20/12/2015</td>
 				<td>Brick work</td>
 				<td>17</td>
 				<td>Cum</td>
@@ -64,10 +76,10 @@
 				
 				<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
-	</tbody>
-	<tbody>
-		<td>2</td>
-		<td>20/12/2015</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>20/12/2015</td>
 				<td>Break Work</td>
 				<td>17</td>
 				<td>Cum</td>
@@ -82,5 +94,12 @@
 				
 				<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
-	</tbody>
+			</tr>
+		</tbody>
 	</table>
+</div>
+<div class="text-center">
+	<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	 <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+</div>
+	
