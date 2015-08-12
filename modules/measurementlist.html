@@ -1,81 +1,86 @@
-<div class="row bottom-space ng-scope">
-		 <div class="col-sm-2"> 
-			<label for="sort" class="control-label">From Date</label>		
-			<input type="date" class="form-control" id="inputdate" placeholder="date">
-		</div>	
-		<div class="col-sm-2"> 
-			<label for="sort" class="control-label">To Date</label>		
-			<input type="date" class="form-control" id="inputdate" placeholder="date">
-		</div>	
-		<div class="col-sm-4">
-		
-		</div>
-		
-		<div class="col-sm-2"> 
-			<label class="control-label"> </label><br>
-			<a href="#/measurement" class="btn btn-default" title="Add new property"> Add New Measurement</a>				
-		</div>
-		
-		<div class="col-sm-2"> 
-			<label class="control-label"> </label><br>
-			<a href="#/measurementlist" class="btn btn-default" title="Add new property">Measurement Sheet </a>				
-		</div>
-		
-		
+<div class="text-right bottomspace">
+	<a href="#/measurement" class="btn btn-default" title="Add new property"> Add Measurement Item</a>	
+	<a href="#/measurementlist" class="btn btn-default" title="Add new property">Measurement Sheet </a>	
+</div>
+<h3 style="text-center">Measurement Table</h3> 	
+<div class="row bottomspace">
+	<div class="col-sm-2"> 
+		<label for="sort" class="control-label">From Date</label>		
+		<input type="date" class="form-control" id="inputdate" placeholder="date">
+	</div>	
+	<div class="col-sm-2"> 
+		<label for="sort" class="control-label">To Date</label>		
+		<input type="date" class="form-control" id="inputdate" placeholder="date">
 	</div>
-	
-<div class="table-responsive">	
-	<h3 style="text-align:center;">Measurement  Table</h3> 		
+	<div class="col-sm-2">
+	<label for="party" class="control-label">Select Party</label>
+		<select class="form-control">
+			<option>Select Party</option>
+			<option value="Party">Party</option>
+			<option value="Vender">Vender</option>
+		</select>
+	</div>
+	<div class="col-sm-2">
+	<label for="department" class="control-label">Select Department</label>
+		<select class="form-control">
+			<option>Select Department</option>
+			<option value="Department1">Department1</option>
+			<option value="Department2">Department2</option>
+		</select>
+	</div>
+</div>
+
+	<div class="table-responsive">		
 	<table class="table table-bordered">
-		<thead>
-			<tr><th>Sr.No.</th>
-			<th>Date</th>
-			<th>Description</th>
-			<th>Rpt</th> 
-			<th>Unit</th>
-			<th>Nos </th>
-			<th>Length</th>
-			<th>Width</th>
-			<th>Height</th>
-			<th>Area</th>
-			<th class="col-sm-2">Manage</th>
-			</tr>
-	 </thead>
-		<tbody>
-			<td>1</td>
-			<td>20/12/2015</td>
-					<td>Brick work</td>
-					<td>17</td>
-					<td>Cum</td>
-					<td>1</td>
-					<td>2.50</td>
-					<td>0.23</td>
-					<td>1.00</td>
-					<td>0.58</td>
-					
-					<td>
-					<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
-					</a>
-					<a href="#/measurement" tooltip="View Measurement" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
-					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-					</td>
-		</tbody>
-		<tbody>
-			<td>2</td>
-			<td>20/12/2015</td>
-					<td>Break Work</td>
-					<td>17</td>
-					<td>Cum</td>
-					<td>1</td>
-					<td>2.50</td>
-					<td>0.23</td>
-					<td>1.00</td>
-					<td>0.58</td>
-					<td>
-					<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
-					</a>
-					<a ng-click ="open()" tooltip="View Measurement" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
-					<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-					</td>
-		</tbody>
+	<thead>
+		<tr><th>Sr.No.</th>
+		<th>Date</th>
+		<th>Description</th>
+		<th>Rpt</th> 
+		<th>Unit</th>
+		<th>Nos </th>
+		<th>Length</th>
+		<th>Width</th>
+		<th>Height</th>
+		<th>Area</th>
+		<th class="col-sm-2">Manage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<td>1</td>
+		<td>20/12/2015</td>
+				<td>Brick work</td>
+				<td>17</td>
+				<td>Cum</td>
+				<td>1</td>
+				<td>2.50</td>
+				<td>0.23</td>
+				<td>1.00</td>
+				<td>0.58</td>
+				
+				<td>
+				<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
+				</a>
+				
+				<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+	</tbody>
+	<tbody>
+		<td>2</td>
+		<td>20/12/2015</td>
+				<td>Break Work</td>
+				<td>17</td>
+				<td>Cum</td>
+				<td>1</td>
+				<td>2.50</td>
+				<td>0.23</td>
+				<td>1.00</td>
+				<td>0.58</td>
+				<td>
+				<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
+				</a>
+				
+				<a type="button" tooltip="Delete Measurement" ng-change="deleted(x.id, x.status,user_id)" btn-checkbox="" btn-checkbox-true="'1'" btn-checkbox-false="'0'" class="ng-pristine ng-valid active btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+				</td>
+	</tbody>
 	</table>
