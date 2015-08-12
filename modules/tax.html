@@ -3,18 +3,20 @@
 	<div class="form-group">
 		<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.serviceTax" required>
+			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.serviceTax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
 				<span ng-show="taxInfoForm.serviceTax.$error.required" class="text-danger">Please Enter Service Tax.</span>
+				<span ng-show="taxInfoForm.serviceTax.$error.pattern" class="text-danger">Please Enter a Number.</span>
 			</span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="VAT" class="col-sm-2 control-label">VAT *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.VAT" required>
+			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.VAT" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
 				<span ng-show="taxInfoForm.VAT.$error.required" class="text-danger">Please Enter VAT.</span>
+				<span ng-show="taxInfoForm.VAT.$error.pattern" class="text-danger">Please Enter a Number.</span>
 			</span>
 		</div>
 	</div>

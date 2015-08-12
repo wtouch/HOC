@@ -32,9 +32,10 @@
 	<div class="form-group">
 		<label for="itemprice" class="col-sm-2 control-label">Price *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="itemadd.itemprice" required>
+			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="itemadd.itemprice" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="help-block" ng-show="addItemForm.itemprice.$dirty && addItemForm.itemprice.$invalid">
-			<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
+				<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
+				<span ng-show="addItemForm.itemprice.$error.pattern" class="text-danger">Please Enter a Number.</span>
 			</span>
 		</div>
 	</div>
