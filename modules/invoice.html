@@ -28,7 +28,7 @@
 	</div>	
 	<div class="form-group">
 		<label  for="fromdate" class="col-sm-2 control-label">From Date *</label>
-		<div class="col-sm-9">
+		<div class="col-sm-3">
 			<div class="input-group">
 				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
 				<span class="input-group-btn">
@@ -36,10 +36,8 @@
 				</span>
 			</div>
 		</div>
-	</div>	
-	<div class="form-group">
 		<label  for="todate" class="col-sm-2 control-label">To Date *</label>
-		<div class="col-sm-9">
+		<div class="col-sm-3">
 			<div class="input-group">
 				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
 				<span class="input-group-btn">
@@ -47,7 +45,10 @@
 				</span>
 			</div>
 		</div>
-	</div>
+	</div>	
+	<!-- <div class="form-group">
+		
+	</div> -->
 	<div class="form-group">
 		<label for="bill" class="col-sm-2 control-label">Bill Amount</label>
 		<div class="col-sm-9">
