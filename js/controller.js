@@ -73,7 +73,7 @@ app.controller("invoiceController",function($scope,$http,$modal,$location){
 	$scope.postData =function(invoice){
 		
 		console.log(invoice);
-	}
+	}\
 	//code to open modal
 	$scope.open = function () {
 		size = 'lg';
@@ -86,8 +86,9 @@ app.controller("invoiceController",function($scope,$http,$modal,$location){
 		$modal.close();
 	};
 	$scope.cancel = function () {
-		$modal.dismiss();
+		$modal.dismiss('cancel');
 	};
+	
 	
 });
 app.controller("measurementController",function($scope,$http){
