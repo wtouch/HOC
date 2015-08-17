@@ -62,7 +62,7 @@ define(['angular',
 				.when('/dashboard/viewdepartment', route.resolve({controller:'department', template: 'viewdepartment', label: 'View Department'}, 'department/'))
 				
 				.when('/dashboard/invoice/:id?', route.resolve({controller:'invoice', template: 'invoice', label: 'Invoice'}, 'invoice/'))
-				.when('/dashboard/invoicelist', route.resolve({controller:'invoice', template: 'invoicelist', label: 'Invoice List'}, 'invoice/'))
+				.when('/dashboard/invoicelist', route.resolve({controller:'invoice', template: 'invoicelist', label: 'Invoice Report'}, 'invoice/'))
 				.when('/dashboard/viewinvoice', route.resolve({controller:'invoice', template: 'viewinvoice', label: 'View Invoice'}, 'invoice/'))
 				
 				.when('/dashboard/invoice/summary', route.resolve({controller:'invoice', template: 'summary', label: 'Summary'}, 'invoice/summary'))
