@@ -71,9 +71,10 @@
 		<div class="form-group">
 			<label for="qty" class="col-sm-2 control-label">Quantity</label>
 				<div class="col-sm-9">
-					<input class="form-control" id="qty" name="qty" type="text" ng-model="addmeasurement.qty" placeholder="Quantity" required>
+					<input class="form-control" id="qty" name="qty" type="text" ng-model="addmeasurement.qty" placeholder="Quantity" required ng-pattern="/^\d{0,9}(d{1,9})?$/">
 					<span class="block" ng-show="addmeasurmentFrom.qty.$invalid && addmeasurmentFrom.qty.$dirty">
 							<span ng-show="addmeasurmentFrom.qty.$error.required" class="text-danger">Required Field</span>
+							<span ng-show="addmeasurmentFrom.qty.$error.pattern" class="text-danger">Please Enter a Number.</span>
 					</span>
 				</div>
 		</div>
@@ -123,7 +124,7 @@
 		<div class="form-group">
 			<label for="area" class="col-sm-2 control-label">Area</label>
 			<div class="col-sm-9">
-				<input class="form-control" id="area" name="area" type="text" ng-model="addmeasurement.area" placeholder="Area" required>
+				<input class="form-control" id="area" name="area" type="text" ng-model="addmeasurement.area" placeholder="Area" required readonly>
 				<span class="block" ng-show="addmeasurmentFrom.area.$invalid && addmeasurmentFrom.area.$dirty">
 						<span ng-show="addmeasurmentFrom.area.$error.required" class="text-danger">Required Field</span>
 				</span>
