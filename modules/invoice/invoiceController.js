@@ -8,7 +8,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.CurrentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";
-	};	
+	
 	
 	console.log("this is invoice controller");
 	$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -54,7 +54,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log("cancel method");
 		};
 	}
-	
+	};	
 	// Inject controller's dependencies
 	invoiceController.$inject = injectParams;
 	// Register/apply controller dynamically
