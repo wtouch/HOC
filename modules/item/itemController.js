@@ -16,10 +16,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
-		console.log("this is item controller");
 		$scope.postData =function(itemadd){
 			console.log(itemadd);
 		}
+		console.log("this is item controller");
+		
 		
 	 };		 
 	// Inject controller's dependencies

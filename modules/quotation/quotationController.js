@@ -17,18 +17,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
+		$scope.addData = function(addquotation){ 
+			console.log(addquotation);
+		}
+		
 		//for dynamic tooltip
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;
 		};
-		//Code For Pagination
-		$scope.pageChanged = function(page) { 
-			angular.extend($scope.projectParam, $scope.user_id);
-			dataService.get("getmultiple/project/"+page+"/"+$scope.pageItems,$scope.projectParam).then(function(response){
-				$scope.projects = response.data;
-			
-			});
-		};	
+		
 	 };		 
 	// Inject controller's dependencies
 	quotationController.$inject = injectParams;

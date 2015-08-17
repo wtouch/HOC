@@ -34,9 +34,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.cancel = function () {
 				$modal.dismiss();
 			};
-			
-			$scope.postData = function(addmeasurement){
-				console.log(addmeasurement);
+			$scope.postData =function(addparty){
+				console.log(addparty);
 			}
 			
 			$scope.dynamicTooltip = function(status, active, notActive){
