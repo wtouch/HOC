@@ -1,0 +1,126 @@
+<div class="text-right bottomspace">
+	<a href="#/quotationlist" class="btn btn-default">Quotation List</a>
+	<a href="#/quotation" class="btn btn-default">Add New Quotation</a>
+</div>
+<h3 class="text-center">Add New Quotation</h3>
+<form name="addquotationForm" class="form-horizontal" role="form" novalidate="novalidate" ng-submit="addquotationForm.$valid">
+	<div class="form-group">
+		<label for="template" class="col-sm-2 control-label" name="template"></label>
+			<div class="col-sm-9">
+				<p>Note that Fields Marked * are Required.</p>		
+			</div>
+	</div>
+	<div class="form-group">{{addquotation}}
+		<label  for="name" class="col-sm-2 control-label">Name *</label>
+			<div class="col-sm-9">
+				<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="addquotation.name" required>
+				
+				<span class="help-block" ng-show="addquotationForm.name.$dirty && addquotationForm.name.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.name.$error.required">Required Field.</span>
+				</span>
+			</div>						
+	</div>	
+	<div class="form-group">	
+		<label  for="address" class="col-sm-2 control-label">Address *</label>
+			<div class="col-sm-9">
+			<textarea type="text" class="form-control" id="address" name="address" ng-model="addquotation.address" cols="30" rows="3" ng-maxlength="256" placeholder="Enter address"  required></textarea>
+		<p ng-hide="addquotationForm.address.$error.maxlength">
+			{{ 256 - addquotation.address.length + " Chars left" }}
+		</p>
+		<span class="help-block" ng-show="addquotationForm.address.$dirty && addquotationForm.address.$invalid">
+			<span ng-show="addquotationForm.address.$error.maxlength"class="text-danger">Sorry You are Exceeding the Limit</span>
+			<span class="text-danger" ng-show="addquotationForm.address.$error.required">Address is required.</span>
+		</span>			
+			</div>						
+	</div>	
+	<div class="form-group">	
+		<label  for="subject" class="col-sm-2 control-label">Subject *</label>
+			<div class="col-sm-9">
+				<input type="text" id="subject" class="form-control" name="subject" placeholder="Enter subject" ng-model="addquotation.subject" required>
+				<span class="help-block" ng-show="addquotationForm.subject.$dirty && addquotationForm.subject.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.subject.$error.required">Required Field.</span>
+				</span>
+			</div>						
+	</div>	
+	<div class="form-group">
+	<div class="table-responsive">
+	<table class="table table-bordered">
+		<tr>
+			<th>Description</th>
+			<th>Unit</th>
+			<th>Area</th>
+			<th>Rate</th>
+			<th>Amount</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" class="form-control" id="description" name="description" ng-model="addquotation.particular.description" required>
+				<span class="help-block" ng-show="addInvoiceForm.description.$dirty && addInvoiceForm.description.$invalid">
+					<span ng-show="addInvoiceForm.description.$error.required" class="text-danger">Required Field.</span>
+				</span>
+			</td>			
+			<td>
+				<select class="form-control" name="unit" id="unit" ng-model="addquotation.particular.unit" required>
+					<option value="">Select Unit</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select>
+			</td>
+			<td>
+			<input type="text" id="area" name="area" ng-model="addquotation.particular.area"/>
+			</td>
+			<td>
+			<input type="text" id="rate" name="rate" ng-model="addquotation.particular.rate"/>
+			</td>
+			<td>
+				<input type="text" id="amount" name="amount" ng-model="addquotation.particular.amount" />
+			</td>
+		</tr>
+	</table>
+	</div>
+	</div>
+	<div class="form-group">	
+		<div class="col-sm-offset-2">
+			<button type="submit" class="btn btn-success text-center">Add This</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+	<table class="table table-bordered">
+		<tr>
+			<th>Description</th>
+			<th>Unit</th>
+			<th>Area</th>
+			<th>Rate</th>
+			<th>Amount</th>
+		</tr>
+		<tr>
+			<td>
+				This is description
+			</td>
+			<td>2</td>
+			<td>2333</td>
+			<td>10</td>
+			<td>10000</td>
+		</tr>
+		
+	</table>
+	</div>
+	<h5>Terms & Conditions</h5>
+	<div class="table-responsive">
+	<table class="table table-bordered">
+		<tr>
+			<td>1</td>
+			<td><textarea class="form-control" type="text">This is description for add particular row of data.</textarea></td>
+			<td><a tooltip="Remove This"><span class="glyphicon glyphicon-remove"></span></a></td>
+		</tr>
+	</table>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-9">
+			<button type="submit" class="btn btn-success"  ng-click="addData(addquotation)">Submit</button>
+			<!-- <button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="updateData(addquotation)">Update Quotation</button>  -->
+			<button type="reset" class="btn btn-danger">Cancel</button>
+		</div>
+	</div>
+</div>
+</form>

@@ -1,6 +1,4 @@
 //'use strict';
-
-
 /* Controllers */
 angular.module('hoc.controllers',[]);
 app.controller("loginController",function($scope,$http){
@@ -60,7 +58,6 @@ app.controller("partyController",function($scope,$http,$modal,$location){
 	//code for paggination
 	$scope.totalItems = 1;
 	$scope.currentPage = 10;
-	
 	$scope.bigTotalItems = 100;
 	$scope.bigCurrentPage = 1;
 	$scope.postData =function(addmeasurement){
@@ -125,7 +122,6 @@ app.controller("invoiceController",function($scope,$http,$modal,$location){
 });
 app.controller("measurementController",function($scope,$http){
 	console.log("this is measurement controller");
-	//code for date picker
 	$scope.today = function() {
 		$scope.date = new Date();
 	};
