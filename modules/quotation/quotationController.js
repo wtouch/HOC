@@ -10,7 +10,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.projectListCurrentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";		
-		$scope.user_id = {user_id : $rootScope.userDetails.id}; 
 		$scope.alerts = [];
 		
 		// function to close alert

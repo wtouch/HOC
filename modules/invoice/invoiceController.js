@@ -5,10 +5,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 	var invoiceController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
-		$scope.projectListCurrentPage = 1;
+		$scope.CurrentPage = 1;
 		$scope.pageItems = 10;
-		$scope.numPages = "";		
-		$scope.user_id = {user_id : $rootScope.userDetails.id}; 
+		$scope.numPages = "";
 	};	
 	
 	console.log("this is invoice controller");
@@ -56,9 +55,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		};
 	}
 	
-	$scope.postData =function(invoice){
-		console.log(invoice);
-	}
 	// Inject controller's dependencies
 	invoiceController.$inject = injectParams;
 	// Register/apply controller dynamically
