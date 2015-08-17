@@ -36,10 +36,10 @@ define(['angular',
 				var route = routeResolverProvider.route;
 				$routeProvider
                 
-                .when('/', route.resolve({controller:'login', template: 'login', label:"Home"}, 'login/login/')) 
+                .when('/', route.resolve({controller:'login', template: 'login', label:"Home"}, 'login/')) 
 				// Always home url is '/' so please don't change this. In future home view can be changed.
 				
-				.when('/login', route.resolve({controller:'login', template: 'login', label: 'Login'}, 'login/login/'))
+				.when('/login', route.resolve({controller:'login', template: 'login', label: 'Login'}, 'login/'))
 				
 				.when('/dashboard', route.resolve({controller:'dashboard', template: 'dashboard', label: "Dashboard"}, 'dashboard/'))
 				
@@ -58,8 +58,8 @@ define(['angular',
 				.when('/dashboard/viewmeasurement', route.resolve({controller:'measurement', template: 'viewmeasurement', label: 'View Measurement'}, 'measurement/'))
 				
 				.when('/dashboard/department/:id?', route.resolve({controller:'department', template: 'department', label: 'Department'}, 'department/'))
-				.when('/dashboard/department', route.resolve({controller:'department', template: 'departmentlist', label: 'Department Report'}, 'department/'))
-				.when('/dashboard/department', route.resolve({controller:'department', template: 'viewdepartment', label: 'View Department'}, 'department/'))
+				.when('/dashboard/departmentlist', route.resolve({controller:'department', template: 'departmentlist', label: 'Department Report'}, 'department/'))
+				.when('/dashboard/viewdepartment', route.resolve({controller:'department', template: 'viewdepartment', label: 'View Department'}, 'department/'))
 				
 				.when('/dashboard/invoice/:id?', route.resolve({controller:'invoice', template: 'invoice', label: 'Invoice'}, 'invoice/'))
 				.when('/dashboard/invoicelist', route.resolve({controller:'invoice', template: 'invoicelist', label: 'Invoice List'}, 'invoice/'))
@@ -71,7 +71,7 @@ define(['angular',
 				.when('/dashboard/quotationlist', route.resolve({controller:'quotation', template: 'quotationlist', label: 'Quotation Report'}, 'quotation/'))
 				.when('/dashboard/viewquotation', route.resolve({controller:'quotation', template: 'viewquotation', label: 'View Quotation'}, 'quotation/'))
 				
-				.when('/dashboard/taxinfo', route.resolve({controller:'taxinfo', template: 'taxinfo', label: 'Tax Information'}, 'tax/'))
+				.when('/dashboard/taxinfo', route.resolve({controller:'tax', template: 'taxinfo', label: 'Tax Information'}, 'tax/'))
 				.otherwise({ redirectTo: '/' });
 				
 	}]);
