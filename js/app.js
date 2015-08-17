@@ -11,7 +11,7 @@ define(['angular',
 	'filters',
 	
 	'upload','uploadShim',
-	'css!../css/bootstrap.min','css!../css/style'
+	'css!../css/bootstrap.min','css!../css/style','css!../css/style1','css!../css/style2','css!../css/style4'
 ], function(angular, angularRoute, ngCookies) {
 	// Declare app level module which depends on views, and components
 	var app =  angular.module('hoc', [
@@ -71,7 +71,7 @@ define(['angular',
 				.when('/dashboard/quotationlist', route.resolve({controller:'quotation', template: 'quotationlist', label: 'Quotation Report'}, 'quotation/'))
 				.when('/dashboard/viewquotation', route.resolve({controller:'quotation', template: 'viewquotation', label: 'View Quotation'}, 'quotation/'))
 				
-				.when('/dashboard/tax', route.resolve({controller:'tax', template: 'tax', label: 'Tax'}, 'tax/'))
+				.when('/dashboard/taxinfo', route.resolve({controller:'taxinfo', template: 'taxinfo', label: 'Tax Information'}, 'tax/'))
 				.otherwise({ redirectTo: '/' });
 				
 	}]);

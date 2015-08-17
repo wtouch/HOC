@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-<html  ng-app="hoc">
+<html  lang="en">
 	<head>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/style1.css">
-		<link rel="stylesheet" href="css/style2.css">
-		<link rel="stylesheet" href="css/style4.css">
-		<link rel="stylesheet" href="css/mystyle.css">
-		
-		<script src="lib/jquery/jquery.min.js"></script>
-		<script src="lib/angular/angular.min.js"></script>
-		
-		<script src="lib/angular/angular-route.min.js"></script>
-		<script src="lib/bootstrap/ui-bootstrap.js"></script>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="fragment" content="!"/>
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		
-		<title>Hari Om Construction</title>
-	</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="fragment" content="!" /> 
+		<title ng-bind="appConfig.metaTitle"></title>
+		<meta name="keyword" content="">
+	</head>	
 	<body>
-		<ng-include src="'modules/component/header.html'"></ng-include> 
-		<ng-include src="'modules/component/nav.html'"></ng-include> 
-		
+		<div notifications="bottom right"></div>
+		<div  ng-include="'modules/component/header.html'"></div>
+		<div  ng-include="'modules/component/nav.html'"></div>
 		<div class="container">
-			<!-- <div class="col-sm-12"> -->
-				<div class="content" ng-view>
-				</div>
-			<!-- </div> -->
+			<div class="content" ng-view>
+			</div>
 		</div>
-	 <ng-include src="'modules/component/footer.html'"></ng-include> 
+		<div  ng-include="'modules/component/footer.html'"></div>
+		<script data-main="js/main" src="lib/requirejs/require.js"></script>
+	
 	</body>
-	<script src="js/app.js"></script>
-	<script src="js/controller.js"></script>
 </html>

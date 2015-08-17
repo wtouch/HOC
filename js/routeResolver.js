@@ -9,10 +9,10 @@ define([], function () {
         };
 
         this.routeConfig = function () {
-            var viewsDirectory = '/app/views/',
-                controllersDirectory = '/app/controllers/',
-				directivesDirectory = '/app/directives/',
-				servicesDirectory = '/app/services/',
+            var viewsDirectory = '/views/',
+                controllersDirectory = '/controllers/',
+				directivesDirectory = '/directives/',
+				servicesDirectory = '/services/',
 
             setBaseDirectories = function (viewsDir, controllersDir, directivesDir, servicesDir) {
                 viewsDirectory = viewsDir;
