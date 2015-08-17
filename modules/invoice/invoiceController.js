@@ -2,7 +2,7 @@
 define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService'];
   // This is controller for this view
-	var invoiceController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
+	var invoiceController = function ($modal,$scope, $injector,$routeParams,$rootScope,dataService,modalService) {
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.CurrentPage = 1;
@@ -17,11 +17,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.date = new Date();
 	};
 	//code to set current date
-	$scope.date = new Date();
-	var dd = $scope.date.getDate();
-	var mm = $scope.date.getMonth();
-	var yy = $scope.date.getFullYear();
-	$scope.cdate =dd+"/"+mm+"/"+yy;
+	var curDate = new Date();
+	var month = curDate.getMonth() + 1;
+	month = (month <= 9) ? '0' + month : month;
+	$scope.currentDate = curDate.getFullYear() + "-" + month + "-" + curDate.getDate();
 	
 	//code to date picker
 	$scope.open = function($event,opened){
@@ -32,7 +31,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 	$scope.open1 = function($event,opened){
 		$event.preventDefault();
 		$event.stopPropagation();
-		$scope.opened1 = ($scope.opened==true)?false:true;
+		$scope.opened1 = ($scope.opened1==true)?false:true;
 	};
 	$scope.postData =function(invoice){
 		console.log(invoice);
@@ -40,10 +39,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 	
 	//code to open modal
 	$scope.open = function () {
-		size = 'lg';
+		
 		$modal.open({
 			templateUrl: 'modules/viewinvoice.html',
-			size: size,
+			size: 'lg',
 		});
 		$scope.ok = function () {
 			

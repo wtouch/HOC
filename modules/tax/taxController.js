@@ -3,7 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService'];
   // This is controller for this view
 	var taxController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
-		$rootScope.metaTitle = "Real Estate Project";
+		$rootScope.metaTitle = "HOC";
 	
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
@@ -16,6 +16,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
+		
+		$scope.insertData =function(taxinfo){
+			
+			console.log(taxinfo);
+		}
 	 };		 
 	// Inject controller's dependencies
 	taxController.$inject = injectParams;

@@ -77,22 +77,9 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="insert(taxinfo)">Submit</button>
+			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="insertData(taxinfo)">Submit</button>
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>
-	<!-- 
-	<div class="form-group">
-		<label for="clientAddress" class="col-sm-2 control-label">Address</label>
-		<div class="col-sm-9">
-			<textarea type="text" name="clientAddress" id="clientAddress" ng-model="taxinfo.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
-			<span ng-hide="taxInfoForm.clientAddress.$error.maxlength">
-				{{ 256 - taxinfo.clientAddress.length + " Chars left" }}
-			</span>	
-			<span class="help-block ng-hide" ng-show="taxInfoForm.clientAddress.$dirty && taxInfoForm.clientAddress.$invalid">
-				<span class="text-danger" ng-show="taxInfoForm.clientAddress.$error.required">Please Enter Address.</span>
-				<span class="text-danger" ng-show="taxInfoForm.clientAddress.$error.maxlength">Sorry You are Exceeding the Limit</span>
-			</span>	
-		</div>
-	</div> -->
+	
 </form>
