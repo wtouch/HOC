@@ -1,6 +1,6 @@
-<div class="text-right bottomspace">
-	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add new property">Measurement Sheet </a>
-	<a href="#/dashboard/measurement" class="btn btn-default" title="Add new property"> Add Measurement Item</a>	
+<div class="text-right">
+	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add new property">Measurement Sheet </a>	
+	<a class="btn btn-default" ng-click="openAddMeasurement()" tooltip="Add Measurement Item">Add Measurement Item</a>
 </div>
 <h3>Measurement Table</h3> 	
 <div class="row bottomspace">
@@ -71,8 +71,7 @@
 				<td>0.58</td>
 				
 				<td>
-				<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
-				</a>
+				<a class="btn btn-primary glyphicon glyphicon-pencil" ng-click="openAddMeasurement()" tooltip="Edit Measurement Item"></a>
 				
 				<a type="button" tooltip="Delete Measurement"  class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>

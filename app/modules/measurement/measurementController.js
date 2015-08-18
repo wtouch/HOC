@@ -16,6 +16,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
+		$scope.openAddMeasurement = function () {
+			var modalDefaults = {
+				templateUrl: 'modules/measurement/measurement.html',	
+				size : 'lg'
+			};
+			modalService.showModal(modalDefaults).then(function (result) {
+			});
+		};
 		console.log("this is measurement controller");
 			$scope.today = function() {
 				$scope.date = new Date();

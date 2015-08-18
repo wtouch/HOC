@@ -16,6 +16,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
+		$scope.openAddQuotation = function () {
+			var modalDefaults = {
+				templateUrl: 'modules/quotation/quotation.html',	
+				size : 'lg'
+			};
+			modalService.showModal(modalDefaults).then(function (result) {
+			});
+		};
 		
 		$scope.addData = function(addquotation){ 
 			console.log(addquotation);

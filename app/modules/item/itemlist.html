@@ -2,7 +2,6 @@
 	<div class="col-sm-12 text-right">
 		<a href="#/dashboard/itemlist" type="submit" class="btn btn-default" >Item List</a>
 		<a class="btn btn-default" ng-click="openAddItem()" tooltip="Add New Party">Add New Item</a>
-		
 	</div>
 </div>
 <h3>Items View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
@@ -44,8 +43,7 @@
 			<td>80</td>
 			<td>Department</td>
 			<td>
-				<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item "></a>
-			
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddItem()" tooltip="Edit New Party"></a>
 				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
 			</td>
 		</tr>
@@ -56,7 +54,7 @@
 			 <td>100</td>
 			 <td>Measurement</td>
 			<td>
-				<a href="#/item" class="btn btn-warning glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Item "></a>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddItem()" tooltip="Edit New Party"></a>
 				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
 			</td>
 		</tr>

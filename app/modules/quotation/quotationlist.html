@@ -1,6 +1,6 @@
 <div class="text-right bottomspace">
 	<a href="#/dashboard/quotationlist" class="btn btn-default">Quotation List</a>
-	<a href="#/dashboard/quotation" class="btn btn-default">Add New Quotation</a>
+	<a class="btn btn-default" ng-click="openAddQuotation()" tooltip="Add New Quotation">Add New Quotation</a>
 </div>
 <h3> Quotation View</h3>
 <div class="row bottomspace">
@@ -48,7 +48,7 @@
 			<td>Computerised System</td>
 			<td>Deadline</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/quotation" ng-model="checkModel.left" btn-checkbox tooltip="Edit Quotation Details"></a>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddQuotation()" tooltip="Edit New Quotation"></a>
 				<a ng-click ="open()" tooltip="View Quotation" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
 				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Quotation"></a>
 			</td>
@@ -59,7 +59,7 @@
 			<td>Computerised System</td>
 			<td>Deadline</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/quotation" ng-model="checkModel.left" btn-checkbox tooltip="Edit Quotation Details"></a>
+				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddQuotation()" tooltip="Edit New Quotation"></a>
 				<a ng-click ="open()" tooltip="View Quotation" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
 				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Quotation"></a>
 			</td>

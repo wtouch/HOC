@@ -59,6 +59,12 @@ define(['app'], function (app) {
 	/*******************************************************************************/
 		var db = openDatabase('hoc', '1.0', 'HOC database', 2 * 1024 * 1024 * 1024);
 		
+			db.transaction(function (tx) {
+				tx.executeSql('CREATE TABLE IF NOT EXISTS foo (id unique, text)');
+				tx.executeSql('INSERT INTO foo (id, text) VALUES (1, "synergies")');
+				tx.executeSql('INSERT INTO foo (id, text) VALUES (2, "luyao")');
+			});
+
 		/* 
 		db.transaction(function (t) {
 		  t.executeSql('SELECT * FROM stud', [], function (t, results) {

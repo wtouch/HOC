@@ -1,16 +1,18 @@
 <div class="modal-header">
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
-<div class="text-right bottomspace">
+
+<div class="text-right">
 	<a href="#/dashboard/printview" class="btn btn-default">Print</a>
 	<a href="#/dashboard/partylist" class="btn btn-default">Party List</a>
 </div>
+
 <h3 class="text-center">Add New Party</h3>
 <form class="form-horizontal" name="addPartyForm" role="form" novalidate ng-submit="addPartyForm.$valid">
 	<div class="form-group">
 		<label for="clientName" class="col-sm-2 control-label">Client Name *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" ng-model="addparty.clientName" required>
+			<input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" ng-model="modalOptions.addparty.clientName" required>
 			<span class="block" ng-show="addPartyForm.clientName.$invalid && addPartyForm.clientName.$dirty">
 				<span ng-show="addPartyForm.clientName.$error.required" class="text-danger">Please Enter Client Name.</span>
 			</span>
@@ -19,7 +21,7 @@
 	<div class="form-group">
 		<label for="Department" class="col-sm-2 control-label">Department *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="Department" name="Department" placeholder="Department" ng-model="addparty.Department" required>
+			<input type="text" class="form-control" id="Department" name="Department" placeholder="Department" ng-model="modalOptions.addparty.Department" required>
 			<span class="block" ng-show="addPartyForm.Department.$invalid && addPartyForm.Department.$dirty">
 				<span ng-show="addPartyForm.Department.$error.required" class="text-danger">Please Enter Department.</span>
 			</span>
@@ -28,7 +30,7 @@
 	<div class="form-group">
 		<label for="contactPerson" class="col-sm-2 control-label">Contact Person *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="contactPerson" name="contactPerson" placeholder="Contact Person" ng-model="addparty.contactPerson" required>
+			<input type="text" class="form-control" id="contactPerson" name="contactPerson" placeholder="Contact Person" ng-model="modalOptions.addparty.contactPerson" required>
 			<span class="block" ng-show="addPartyForm.contactPerson.$invalid && addPartyForm.contactPerson.$dirty">
 				<span ng-show="addPartyForm.contactPerson.$error.required" class="text-danger">Please Enter Contact Person.</span>
 			</span>
@@ -37,7 +39,7 @@
 	<div class="form-group">
 		<label for="clientEmail" class="col-sm-2 control-label">Email *</label>
 		<div class="col-sm-9">
-			<input type="Email" class="form-control" id="clientEmail" name="clientEmail" placeholder="Email" ng-model="addparty.clientEmail" required>
+			<input type="Email" class="form-control" id="clientEmail" name="clientEmail" placeholder="Email" ng-model="modalOptions.addparty.clientEmail" required>
 			<span class="help-block" ng-show="addPartyForm.clientEmail.$dirty && addPartyForm.clientEmail.$invalid">
 				<span ng-show="addPartyForm.clientEmail.$error.required" class="text-danger">Please Enter Email ID.</span>
 				<span ng-show="addPartyForm.clientEmail.$error.email" class="text-danger">Invalid Email address.</span>
@@ -47,7 +49,7 @@
 	<div class="form-group">
 		<label for="clientContact" class="col-sm-2 control-label">Contact No. *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" ng-model="addparty.clientContact" ng-pattern="/^[789]\d{9}$/" maxlength="10" required>
+			<input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" ng-model="modalOptions.addparty.clientContact" ng-pattern="/^[789]\d{9}$/" maxlength="10" required>
 			<span class="help-block" ng-show="addPartyForm.clientContact.$dirty && addPartyForm.clientContact.$invalid">
 				<span ng-show="addPartyForm.clientContact.$error.required" class="text-danger">Contact is required.</span>
 				<span ng-show="addPartyForm.clientContact.$error.pattern && (addPartyForm.clientContact.$dirty || submitted)" class="text-danger">Enter a valid Contact Number</span>
@@ -57,7 +59,7 @@
 	<div class="form-group">
 		<label for="clientAddress" class="col-sm-2 control-label">Address *</label>
 		<div class="col-sm-9">
-			<textarea name="clientAddress" id="clientAddress" ng-model="addparty.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
+			<textarea name="clientAddress" id="clientAddress" ng-model="modalOptions.addparty.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
 			<span ng-hide="addPartyForm.clientAddress.$error.maxlength">
 				{{ 256 - addparty.clientAddress.length + " Chars left" }}
 			</span>	
@@ -70,7 +72,7 @@
 	<div class="form-group">
 		<label for="location" class="col-sm-2 control-label">Location *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="location" name="location" placeholder="Location" ng-model="addparty.location" required>
+			<input type="text" class="form-control" id="location" name="location" placeholder="Location" ng-model="modalOptions.addparty.location" required>
 			<span class="block" ng-show="addPartyForm.location.$invalid && addPartyForm.location.$dirty">
 				<span ng-show="addPartyForm.location.$error.required" class="text-danger">Please Enter Location.</span>
 			</span>
@@ -79,7 +81,7 @@
 	<div class="form-group">
 		<label for="area" class="col-sm-2 control-label">Area *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="area" name="area" placeholder="Area" ng-model="addparty.area" required>
+			<input type="text" class="form-control" id="area" name="area" placeholder="Area" ng-model="modalOptions.addparty.area" required>
 			<span class="block" ng-show="addPartyForm.area.$invalid && addPartyForm.area.$dirty">
 				<span ng-show="addPartyForm.area.$error.required" class="text-danger">Please Enter Area.</span>
 			</span>
@@ -88,14 +90,14 @@
 	<div class="form-group">
 		<label for="city" class="col-sm-2 control-label">City *</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" id="city" name="city" placeholder="City" ng-model="addparty.city" required>
+			<input type="text" class="form-control" id="city" name="city" placeholder="City" ng-model="modalOptions.addparty.city" required>
 			<span class="block" ng-show="addPartyForm.city.$invalid && addPartyForm.city.$dirty">
 				<span ng-show="addPartyForm.city.$error.required" class="text-danger">Please Enter City.</span>
 			</span>
 		</div>
 		<label for="state" class="col-sm-2">State *</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" id="state" name="state" placeholder="State" ng-model="addparty.state" required>
+			<input type="text" class="form-control" id="state" name="state" placeholder="State" ng-model="modalOptions.addparty.state" required>
 			<span class="block" ng-show="addPartyForm.state.$invalid && addPartyForm.state.$dirty">
 				<span ng-show="addPartyForm.state.$error.required" class="text-danger">Please Enter State.</span>
 			</span>
@@ -104,7 +106,7 @@
 	<div class="form-group">
 		<label for="country" class="col-sm-2 control-label">Country *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="country" name="country" placeholder="Country" ng-model="addparty.country" required>
+			<input type="text" class="form-control" id="country" name="country" placeholder="Country" ng-model="modalOptions.addparty.country" required>
 			<span class="block" ng-show="addPartyForm.country.$invalid && addPartyForm.country.$dirty">
 				<span ng-show="addPartyForm.country.$error.required" class="text-danger">Please Enter Country.</span>
 			</span>
@@ -113,7 +115,7 @@
 	<div class="form-group">
 		<label for="pincode" class="col-sm-2 control-label">Pincode *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" ng-model="addparty.pincode" required>
+			<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" ng-model="modalOptions.addparty.pincode" required>
 			<span class="block" ng-show="addPartyForm.pincode.$invalid && addPartyForm.pincode.$dirty">
 				<span ng-show="addPartyForm.pincode.$error.required" class="text-danger">Please Enter Pincode.</span>
 			</span>
@@ -122,7 +124,7 @@
 	<div class="form-group">
 		<label for="type" class="col-sm-2 control-label">Type *</label>
 		<div class="col-sm-9">
-			<select class="form-control" name="type" id="type" ng-model="addparty.type" required>
+			<select class="form-control" name="type" id="type" ng-model="modalOptions.addparty.type" required>
 				<option value="">-Select Type-</option>
 				<option value="Vender">Vender</option>
 				<option value="Client">Client</option>
@@ -134,7 +136,8 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-disabled="addPartyForm.$invalid" ng-click="postData(addparty)">Add Party</button>
+			<button type="submit" class="btn btn-primary"  ng-disabled="addPartyForm.$invalid" ng-click="modalOptions.postData(modalOptions.addparty)">Add Party</button> 
+			
 			<button type="submit" class="btn btn-success" ng-disabled="addPartyForm.$invalid" ng-click="update(addparty)">Edit Party</button>
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
