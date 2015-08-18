@@ -16,7 +16,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
-		
+		$scope.ok = function () {
+			$modalOptions.close('ok');
+		};
+		$scope.open = function () {
+			var modalDefaults = {
+				templateUrl: 'modules/tax/termsandconditions.html',	
+				size : 'lg'
+			};
+			modalService.showModal(modalDefaults).then(function (result) {
+			});
+		};
 		$scope.insertData =function(taxinfo){
 			
 			console.log(taxinfo);

@@ -21,18 +21,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				console.log(addparty);
 			}
 			// code for open modal
-			$scope.open = function () {
+			/* $scope.open = function () {
 				size = 'lg';
 				$modal.open({
 					templateUrl: 'modules/viewparty.html',
 					size: size,
 				});
-			}
+			} */
+			
 			$scope.ok = function () {
-				$modal.close();
+				$modalOptions.close('ok');
 			};
-			$scope.cancel = function () {
-				$modal.dismiss();
+			$scope.open = function () {
+				var modalDefaults = {
+					templateUrl: 'modules/party/viewparty.html',	
+					size : 'lg'
+				};
+				modalService.showModal(modalDefaults).then(function (result) {
+				});
 			};
 			$scope.postData =function(addparty){
 				console.log(addparty);
