@@ -16,6 +16,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
+		$scope.openAddItem = function () {
+			var modalDefaults = {
+				templateUrl: 'modules/item/item.html',	
+				size : 'lg'
+			};
+			modalService.showModal(modalDefaults).then(function (result) {
+			});
+		};
 		$scope.postData =function(itemadd){
 			console.log(itemadd);
 		}

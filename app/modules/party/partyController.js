@@ -40,6 +40,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				modalService.showModal(modalDefaults).then(function (result) {
 				});
 			};
+			
+			$scope.openAddparty = function () {
+				var modalDefaults = {
+					templateUrl: 'modules/party/party.html',	
+					size : 'lg'
+				};
+				modalService.showModal(modalDefaults).then(function (result) {
+				});
+			};
+			
 			$scope.postData =function(addparty){
 				console.log(addparty);
 			}
