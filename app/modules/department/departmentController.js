@@ -21,9 +21,23 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;
 		};
-			$scope.postData =function(addmeasurement){
-			console.log(addmeasurement);
-		}
+			
+		$scope.ok = function () {
+			$modalOptions.close('ok');
+		};
+		$scope.open = function () {
+			var modalDefaults = {
+				templateUrl: 'modules/department/department.html',	
+				size : 'md'
+			};
+			var modalOptions = {
+				addData : function(adddepartment){
+					console.log(adddepartment);
+				} 
+			};
+			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
+			});
+		};
 		$scope.addData = function(adddepartment)
 		{ 
 			console.log(adddepartment);

@@ -1,86 +1,89 @@
-<div class="row">
-	<div class="col-sm-12 text-right">	
-		<a class="btn btn-default" href="#/dashboard/invoice">Add Invoice</a>
-		<a class="btn btn-default" href="#/dashboard/invoicelist">Invoice List</a>
-		<a class="btn btn-default" href="#/dashboard/summary">Summary</a>
+<div class="modal-content">		
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3 class="text-center"> Generate Invoice</h3>
+				<form name="invoiceform" role="form" class="form-horizontal"  ng-submit="invoiceform.$valid" novalidate="novalidate">
+					<div class="form-group">
+						<label for="date" class="col-sm-2 control-label">Date</label>
+						<div class="col-sm-9">
+							<input type="text"  name="date" id="date" ng-model="modalOptions.invoice.date"   class="form-control" ng-init="invoice.date = currentDate" readOnly>
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="partyname" class=" col-sm-2 control-label">Party Name *</label>
+						<div class="col-sm-9">
+							<select class="form-control " required ng-model="modalOptions.invoice.partyname">
+								<option value="">SPD</option>
+								<option value="SPD">SPD</option>
+								<option value="SPD">SPD</option>
+							</select>
+							<span class="help-block" ng-show="invoiceform.partyname.$dirty && invoiceform.partyname.$invalid">
+								<span ng-show="invoiceform.partyname.$error.required" class="text-danger">Required Field.</span>
+							</span>	
+						</div>
+					</div>	
+					<div class="form-group">
+						<label  for="fromdate" class="col-sm-2 control-label">From Date *</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+								<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="modalOptions.invoice.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span>
+							</div>
+						</div>
+						<label  for="todate" class="col-sm-2 control-label">To Date *</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+								<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="modalOptions.invoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span>
+							</div>
+						</div>
+					</div>	
+					<!-- <div class="form-group">
+						
+					</div> -->
+					<div class="form-group">
+						<label for="bill" class="col-sm-2 control-label">Bill Amount</label>
+						<div class="col-sm-9">
+							<input type="text"  name="bill" id="bill" ng-model="modalOptions.invoice.bill" placeholder="5240" readOnly class="form-control" ng-init="invoice.bill=5240" >
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="servicetax" class="col-sm-2 control-label">Service Tax</label>
+						<div class="col-sm-9">
+							<input type="text"  name="servicetax" id="servicetax" ng-model="modalOptions.invoice.servicetax" placeholder="12%" readOnly class="form-control" >
+									
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="VAT" class="col-sm-2 control-label">VAT</label>
+						<div class="col-sm-9">
+							<input type="text"  name="VAT" id="VAT" ng-model="modalOptions.invoice.vat" placeholder="2%" readOnly class="form-control" ng-init="invoice.vat=2.5">
+						</div>
+					</div>	
+					
+					<div class="form-group">
+						<label for="total" class="col-sm-2 control-label">Total Amount</label>
+						<div class="col-sm-9">
+							<input type="text"  name="total" id="total" ng-model="modalOptions.invoice.total" placeholder="8240" readOnly class="form-control" ng-init="invoice.total=8240" >
+						</div>
+					</div>	
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-9">
+						  <button type="submit" class="btn btn-primary" ng-disabled="invoiceform.$invalid"  ng-click="postData(invoice)">Generate</button>
+						  <button type="submit" class="btn btn-success"  ng-disabled="invoiceform.$invalid" ng-click="updateData(invoice)">Edit Invoice </button>
+						  <button type="reset" class="btn btn-danger">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
-<h3 class="text-center"> Generate Invoice</h3>
-<form name="invoiceform" role="form" class="form-horizontal"  ng-submit="invoiceform.$valid" novalidate="novalidate">
-	<div class="form-group">
-		<label for="date" class="col-sm-2 control-label">Date</label>
-		<div class="col-sm-9">
-			<input type="text"  name="date" id="date" ng-model="invoice.date"   class="form-control" ng-init="invoice.date = currentDate" readOnly>
-		</div>
-	</div>	
-	<div class="form-group">
-		<label for="partyname" class=" col-sm-2 control-label">Party Name *</label>
-		<div class="col-sm-9">
-			<select class="form-control " required ng-model="invoice.partyname">
-				<option value="">SPD</option>
-				<option value="SPD">SPD</option>
-				<option value="SPD">SPD</option>
-			</select>
-			<span class="help-block" ng-show="invoiceform.partyname.$dirty && invoiceform.partyname.$invalid">
-				<span ng-show="invoiceform.partyname.$error.required" class="text-danger">Required Field.</span>
-			</span>	
-		</div>
-	</div>	
-	<div class="form-group">
-		<label  for="fromdate" class="col-sm-2 control-label">From Date *</label>
-		<div class="col-sm-3">
-			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoice.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>
-			</div>
-		</div>
-		<label  for="todate" class="col-sm-2 control-label">To Date *</label>
-		<div class="col-sm-3">
-			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>
-			</div>
-		</div>
-	</div>	
-	<!-- <div class="form-group">
-		
-	</div> -->
-	<div class="form-group">
-		<label for="bill" class="col-sm-2 control-label">Bill Amount</label>
-		<div class="col-sm-9">
-			<input type="text"  name="bill" id="bill" ng-model="invoice.bill" placeholder="5240" readOnly class="form-control" ng-init="invoice.bill=5240" >
-		</div>
-	</div>	
-	<div class="form-group">
-		<label for="servicetax" class="col-sm-2 control-label">Service Tax</label>
-		<div class="col-sm-9">
-			<input type="text"  name="servicetax" id="servicetax" ng-model="invoice.servicetax" placeholder="12%" readOnly class="form-control" >
-					
-		</div>
-	</div>	
-	<div class="form-group">
-		<label for="VAT" class="col-sm-2 control-label">VAT</label>
-		<div class="col-sm-9">
-			<input type="text"  name="VAT" id="VAT" ng-model="invoice.vat" placeholder="2%" readOnly class="form-control" ng-init="invoice.vat=2.5">
-		</div>
-	</div>	
-	
-	<div class="form-group">
-		<label for="total" class="col-sm-2 control-label">Total Amount</label>
-		<div class="col-sm-9">
-			<input type="text"  name="total" id="total" ng-model="invoice.total" placeholder="8240" readOnly class="form-control" ng-init="invoice.total=8240" >
-		</div>
-	</div>	
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-9">
-		  <button type="submit" class="btn btn-primary" ng-disabled="invoiceform.$invalid"  ng-click="postData(invoice)">Generate</button>
-		  <button type="submit" class="btn btn-success"  ng-disabled="invoiceform.$invalid" ng-click="updateData(invoice)">Edit Invoice </button>
-		  <button type="reset" class="btn btn-danger">Cancel</button>
-		</div>
-	</div>
-	
-</form>

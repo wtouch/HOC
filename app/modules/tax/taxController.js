@@ -22,15 +22,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.open = function () {
 			var modalDefaults = {
 				templateUrl: 'modules/tax/termsandconditions.html',	
-				size : 'lg'
+				size : 'md'
+			};
+			var modalOptions = {
+				insertData : function(taxinfo){
+					console.log(taxinfo);
+				}
 			};
 			modalService.showModal(modalDefaults).then(function (result) {
 			});
 		};
-		$scope.insertData =function(taxinfo){
-			
-			console.log(taxinfo);
-		}
+		
 	 };		 
 	// Inject controller's dependencies
 	taxController.$inject = injectParams;
