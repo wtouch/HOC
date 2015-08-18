@@ -1,0 +1,68 @@
+{
+    "app_name": "HOC-Management", 
+    "nodejs": true, 
+    "additional_trust_anchors": "", 
+    "inject-js-end": "", 
+    "node-remote": "", 
+    "keywords": [], 
+    "author": "", 
+    "user-agent": "", 
+    "window": {
+        "fullscreen": false, 
+        "min_height": 500, 
+        "resizable": true, 
+        "show": true,
+        "always-on-top": false, 
+        "frame": true, 
+        "title": "HOC-Management", 
+        "kiosk": false, 
+        "kiosk_emulation": false, 
+        "exe_icon": "logo.png", 
+        "visible": true, 
+        "as_desktop": false, 
+        "toolbar": true, 
+        "mac_icon": "", 
+        "min_width": 800, 
+        "position": "", 
+        "show_in_taskbar": true, 
+        "height": 500, 
+        "width": 800, 
+        "transparent": false, 
+        "icon": "logo.png"
+    }, 
+    "version": "1.0.0", 
+    "inject-js-start": "", 
+    "main": "index.html", 
+    "chromium-args": "", 
+    "webexe_settings": {
+        "linux-x32": false, 
+        "export_dir": "output", 
+        "windows-x64": true, 
+        "download_dir": "D:\\Web Touch\\Projects\\Node Desktop App\\app webkit", 
+        "nw_compression_level": 0, 
+        "mac-x32": false, 
+        "windows-x32": true, 
+        "mac-x64": false, 
+        "nw_version": "0.12.2", 
+        "force_download": false, 
+        "linux-x64": false
+    }, 
+    "description": "", 
+    "dependencies": {
+        "pretty-bytes": "^1.0.2"
+    }, 
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }, 
+    "webkit": {
+        "page-cache": false, 
+        "java": false, 
+        "plugin": false
+    }, 
+    "js-flags": "", 
+    "name": "HOC-Management", 
+    "license": "ISC", 
+    "single-instance": true, 
+    "snapshot": "", 
+    "node-main": ""
+}
