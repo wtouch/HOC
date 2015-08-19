@@ -406,7 +406,7 @@ define(['app'], function (app) {
 					i++;
 					colName += "'" + key + "',";
 					colValue += "'" + value + "',";
-					queryString = "'" + key + "' = " + "'" + value + "',";
+					//queryString = "'" + key + "' = " + "'" + value + "',";
 				});
 				colName = colName.slice(0,-1);
 				colValue = colValue.slice(0,-1);
@@ -420,7 +420,7 @@ define(['app'], function (app) {
 				};
 				function error1(t, e) {
 					console.log(t, e);
-				};
+				}; 
 				$rootScope.loading = false; 
 			};
 			obj.put = function (table, object, params) {
