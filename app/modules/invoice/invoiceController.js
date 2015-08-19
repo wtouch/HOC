@@ -33,22 +33,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$event.stopPropagation();
 			$scope.opened1 = ($scope.opened1==true)?false:true;
 		};
+		/* 
 		$scope.postData =function(invoice){
 			console.log(invoice);
 		}
-		
+		 */
 		//code to open modal
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
-		$scope.openModel = function () {
+		$scope.openInvoice = function () {
 			var modalDefaults = {
 				templateUrl: 'modules/invoice/invoice.html',	
 				size : 'lg'
 			};
 			var modalOptions = {
-				postData : function(invoice){
-					console.log(invoice);
+				postData : function(addinvoice) {
+					dataService.post("invoice", addinvoice);
+					console.log(addinvoice); 
 				} 
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {

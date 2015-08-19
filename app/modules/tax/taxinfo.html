@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.serviceTax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.service_tax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
 				<span ng-show="taxInfoForm.serviceTax.$error.required" class="text-danger">Please Enter Service Tax.</span>
 				<span ng-show="taxInfoForm.serviceTax.$error.pattern" class="text-danger">Please Enter a Number.</span>
@@ -13,7 +13,7 @@
 	<div class="form-group">
 		<label for="VAT" class="col-sm-2 control-label">VAT *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.VAT" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.vat" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
 				<span ng-show="taxInfoForm.VAT.$error.required" class="text-danger">Please Enter VAT.</span>
 				<span ng-show="taxInfoForm.VAT.$error.pattern" class="text-danger">Please Enter a Number.</span>
@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label for="PAN" class="col-sm-2 control-label">Pan No. *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.PAN" required>
+			<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.pan_no" required>
 			<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty">
 				<span ng-show="taxInfoForm.PAN.$error.required" class="text-danger">Please Enter Pan No.</span>
 			</span>
@@ -33,7 +33,7 @@
 	<div class="form-group">
 		<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No. *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.VATTIN" required>
+			<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.vat_tin_no" required>
 			<span class="block" ng-show="taxInfoForm.VATTIN.$invalid && taxInfoForm.VATTIN.$dirty">
 				<span ng-show="taxInfoForm.VATTIN.$error.required" class="text-danger">Please Enter VAT Tin No.</span>
 			</span>
@@ -42,7 +42,7 @@
 	<div class="form-group">
 		<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.*</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.ServTaxNo" required>
+			<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.service_tax_no" required>
 			<span class="block" ng-show="taxInfoForm.ServTaxNo.$invalid && taxInfoForm.ServTaxNo.$dirty">
 				<span ng-show="taxInfoForm.ServTaxNo.$error.required" class="text-danger">Please Enter Service Tax No.</span>
 			</span>

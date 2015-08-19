@@ -11,7 +11,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.pageItems = 10;
 		$scope.numPages = "";	
 		$scope.alerts = [];
-		
+		console.log("this is tax controller");
 		// function to close alert
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
@@ -25,13 +25,18 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				size : 'md'
 			};
 			var modalOptions = {
-				insertData : function(taxinfo){
-					console.log(taxinfo);
-				}
+				insertData : function(taxinfo) {
+					dataService.post("tax", taxinfo);
+					console.log(taxinfo); 
+				} 
 			};
-			modalService.showModal(modalDefaults).then(function (result) {
+			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 			});
 		};
+		$scope.insertData = function(taxinfo) {
+			dataService.post("tax", taxinfo);
+			console.log(taxinfo); 
+		} 
 		
 	 };		 
 	// Inject controller's dependencies
