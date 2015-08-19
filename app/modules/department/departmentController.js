@@ -31,8 +31,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				size : 'md'
 			};
 			var modalOptions = {
-				addData : function(adddepartment){
-					console.log(adddepartment);
+				addData : function(adddepartment) {
+					dataService.post("department", adddepartment);
+					console.log(adddepartment); 
 				} 
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
