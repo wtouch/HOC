@@ -1,5 +1,4 @@
 'use strict'; 
-var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
 var ncp = require('ncp').ncp;
 // Load native UI library
 var gui = require('nw.gui');

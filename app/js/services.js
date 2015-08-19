@@ -380,70 +380,85 @@ define(['app'], function (app) {
 					
 				});
 			};
-			obj.progressSteps = function(key, value){
-				$rootScope.userDetails.config[key] = value;
-				obj.put('put/user/'+$rootScope.userDetails.id, {config : $rootScope.userDetails.config}).then(function(response){
-					obj.setUserDetails(JSON.stringify($rootScope.userDetails));
-					$rootScope.userDetails = obj.parse(obj.userDetails);
-					if(response.status == "success"){
-						if($rootScope.userDetails.config.addbusiness == false){
-							$location.path("/dashboard/business/addbusiness");
-						}else if($rootScope.userDetails.config.addbusinessDetails != true){
-							$location.path("/dashboard/business/adddetails/"+$rootScope.userDetails.config.addbusinessDetails);
-						}else if($rootScope.userDetails.config.addProducts != true){
-							$location.path("/dashboard/business/products/"+$rootScope.userDetails.config.addProducts);
-						}else if($rootScope.userDetails.config.chooseTemplate == false){
-							$location.path("/dashboard/templates/listoftemplates");
-						}else if($rootScope.userDetails.config.requestSite == false){
-							$location.path("/dashboard/websites/requestnewsite");
-						}else if($rootScope.userDetails.config.requestSite == true){
-							$location.path("/dashboard");
-						}
+			var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
+			obj.get = function (table, params) {
+				$rootScope.loading = true;
+				var data = [];
+				db.transaction(function (tx) {
+				  tx.executeSql('SELECT * FROM ' + table, [], function (tx, results) {
+					//console.log(results.rows.item(1));
+					var len = results.rows.length, i;
+					for (i = 0; i < len; i++) {
+					  data.push(results.rows.item(i));
 					}
-				})
-			}
-			obj.get = function (q, params) {
-				$rootScope.loading = true;
-				return $http({
-					url: serviceBase + q,
-					method: "GET",
-					params: params
-				}).then(function (results) {
-					$rootScope.loading = false;
-					return results.data;
-					
+				  });
+				  console.log(data);
 				});
+				return data;
 			};
-			obj.post = function (q, object, params) {
-				if(!params) params = {};
-				angular.extend(params, {METHOD : 'POST'});
+			
+			obj.post = function (table, object) {
 				$rootScope.loading = true;
-				return $http({
-					url: serviceBase + q,
-					method: "POST",
-					data: object,
-					params: params
-				}).then(function (results) {
-					$rootScope.loading = false;
-					return results.data;
+				var colName = "";
+				var colValue = "";
+				var i = 0;
+				angular.forEach(object, function(value, key) {
+					i++;
+					colName += "'" + key + "',";
+					colValue += "'" + value + "',";
+					queryString = "'" + key + "' = " + "'" + value + "',";
 				});
+				colName = colName.slice(0,-1);
+				colValue = colValue.slice(0,-1);
+				
+				db.transaction(function (tx) {
+				  tx.executeSql("INSERT INTO "+table+" ("+colName+") VALUES ("+colValue+")");
+				}, success, error1 );
+				function success(t, e){
+					console.log(t, e);
+					alert("success");
+				};
+				function error1(t, e) {
+					console.log(t, e);
+				};
+				$rootScope.loading = false; 
 			};
-			obj.put = function (q, object, params) {
-				if(!params) params = {};
-				angular.extend(params, {METHOD : 'PUT'});
+			obj.put = function (table, object, params) {
 				$rootScope.loading = true;
-				return $http({
-					url: serviceBase + q,
-					method: "POST",
-					data: object,
-					params: params,
-					headers : {
-						Authorization : 'Digest 5rJg8fjEUH6h'
-					}
-				}).then(function (results) {
-					$rootScope.loading = false;
-					return results.data;
+				
+				var newArrObj = {};
+				var colName = "";
+				var colValue = "";
+				var queryString
+				var i = 0;
+				angular.forEach(object, function(value, key) {
+					queryString = "'" + key + "' = " + "'" + value + "',";
 				});
+				colName = colName.slice(0,-1);
+				colValue = colValue.slice(0,-1);
+				var whereString = ' id = ' + params;
+				db.transaction(function (tx) {
+				  tx.executeSql("UPDATE "+table+" SET "+queryString+" where " + whereString);
+				}, success, error1 );
+				function success(t, e){
+					console.log(t, e);
+					alert("success");
+					var result = {
+						status : "success",
+						message : "Record updated successfully!",
+						data : null
+					};
+				};
+				function error1(t, e) {
+					console.log(t, e);
+					var result = {
+						status : "error",
+						message : e,
+						data : null
+					};
+				};
+				$rootScope.loading = false;
+				return result;
 			};
 			obj.delete = function (q, object, params) {
 				if(!params) params = {};
@@ -462,9 +477,6 @@ define(['app'], function (app) {
 
 			return obj;
 	}]);
-
-	
-	'use strict';
 
 	app.factory('$notification', ['$timeout',function($timeout){
 

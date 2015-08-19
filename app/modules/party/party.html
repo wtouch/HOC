@@ -2,7 +2,7 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 
-<div class="text-right">
+<div class="text-right topspace">
 	<a href="#/dashboard/printview" class="btn btn-default">Print</a>
 	<a href="#/dashboard/partylist" class="btn btn-default">Party List</a>
 </div>
@@ -12,7 +12,7 @@
 	<div class="form-group">
 		<label for="clientName" class="col-sm-2 control-label">Client Name *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" ng-model="modalOptions.addparty.clientName" required>
+			<input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" ng-model="modalOptions.addparty.client_name" required>
 			<span class="block" ng-show="addPartyForm.clientName.$invalid && addPartyForm.clientName.$dirty">
 				<span ng-show="addPartyForm.clientName.$error.required" class="text-danger">Please Enter Client Name.</span>
 			</span>
@@ -21,7 +21,7 @@
 	<div class="form-group">
 		<label for="Department" class="col-sm-2 control-label">Department *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="Department" name="Department" placeholder="Department" ng-model="modalOptions.addparty.Department" required>
+			<input type="text" class="form-control" id="Department" name="Department" placeholder="Department" ng-model="modalOptions.addparty.department" required>
 			<span class="block" ng-show="addPartyForm.Department.$invalid && addPartyForm.Department.$dirty">
 				<span ng-show="addPartyForm.Department.$error.required" class="text-danger">Please Enter Department.</span>
 			</span>
@@ -57,15 +57,15 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="clientAddress" class="col-sm-2 control-label">Address *</label>
+		<label for="address" class="col-sm-2 control-label">Address *</label>
 		<div class="col-sm-9">
-			<textarea name="clientAddress" id="clientAddress" ng-model="modalOptions.addparty.clientAddress" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
-			<span ng-hide="addPartyForm.clientAddress.$error.maxlength">
-				{{ 256 - addparty.clientAddress.length + " Chars left" }}
+			<textarea name="address" id="address" ng-model="modalOptions.addparty.address" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
+			<span ng-hide="addPartyForm.address.$error.maxlength">
+				{{ 256 - addparty.address.length + " Chars left" }}
 			</span>	
-			<span class="help-block ng-hide" ng-show="addPartyForm.clientAddress.$dirty && addPartyForm.clientAddress.$invalid">
-				<span class="text-danger" ng-show="addPartyForm.clientAddress.$error.required">Please Enter Address.</span>
-				<span class="text-danger" ng-show="addPartyForm.clientAddress.$error.maxlength">Sorry You are Exceeding the Limit</span>
+			<span class="help-block ng-hide" ng-show="addPartyForm.address.$dirty && addPartyForm.address.$invalid">
+				<span class="text-danger" ng-show="addPartyForm.address.$error.required">Please Enter Address.</span>
+				<span class="text-danger" ng-show="addPartyForm.address.$error.maxlength">Sorry You are Exceeding the Limit</span>
 			</span>	
 		</div>
 	</div>
@@ -135,8 +135,8 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary"  ng-disabled="addPartyForm.$invalid" ng-click="modalOptions.postData(modalOptions.addparty)">Add Party</button> 
+		<div class="col-sm-offset-2 col-sm-9">ng-disabled="addPartyForm.$invalid"
+			<button type="submit" class="btn btn-primary"   ng-click="modalOptions.postData(modalOptions.addparty)">Add Party</button> 
 			
 			<button type="submit" class="btn btn-success" ng-disabled="addPartyForm.$invalid" ng-click="update(addparty)">Edit Party</button>
 			<button type="reset" class="btn btn-danger">Cancel</button>

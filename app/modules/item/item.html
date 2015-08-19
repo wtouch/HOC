@@ -2,19 +2,32 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 
-	<div class="col-sm-12 text-right">
+	<div class="col-sm-12 text-right topspace">
 		<a href="#/dashboard/itemlist" type="submit" class="btn btn-default">Item List</a>
 		<a href="#/dashboard/item" class="btn btn-default">Add New Item </a>
 	</div>
 		
 <form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
 	<h4 class="text-center">Add New Item</h4>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="newitem" class="col-sm-2 control-label">Item Name *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="newitem" name="newitem" placeholder="Item Name" ng-model="itemadd.newitem" required>
 			<span class="help-block" ng-show="addItemForm.newitem.$dirty && addItemForm.newitem.$invalid">
 				<span ng-show="addItemForm.newitem.$error.required" class="text-danger">Please Enter Item Name.</span>
+			</span>
+		</div>
+	</div> -->
+	<div class="form-group">
+		<label for="type" class="col-sm-2 control-label">Item Name*</label>
+		<div class="col-sm-9">
+			<select class="form-control" name="name" id="name" ng-model="itemadd.name" required>
+				<option value="">Select Item</option>
+				<option value="Item1">Item1</option>
+				<option value="Item2">Item2</option>
+			</select>
+			<span class="block" ng-show="addItemForm.name.$invalid && addItemForm.name.$dirty">
+				<span ng-show="addItemForm.name.$error.required" class="text-danger">Required Field.</span>
 			</span>
 		</div>
 	</div>
