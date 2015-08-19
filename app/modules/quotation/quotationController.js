@@ -21,7 +21,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
 			};
-			modalService.showModal(modalDefaults).then(function (result) {
+			var modalOptions = {
+				postData : function(addquotation) {
+					dataService.post("quotation", addquotation);
+					console.log(addquotation); 
+				} 
+			};
+			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
 		

@@ -47,39 +47,40 @@
 	</div>	
 
 	<div class="table-responsive">
-	<table class="table table-bordered">
-		<tr>
-			<th>Description</th>
-			<th>Unit</th>
-			<th>Area</th>
-			<th>Rate</th>
-			<th>Amount</th>
-		</tr>
-		<tr>
-			<td>
-				<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.addquotation.particular.description" required>
-				<span class="help-block" ng-show="addInvoiceForm.description.$dirty && addInvoiceForm.description.$invalid">
-					<span ng-show="addInvoiceForm.description.$error.required" class="text-danger">Required Field.</span>
-				</span>
-			</td>			
-			<td>
-				<select class="form-control" name="unit" id="unit" ng-model="modalOptions.addquotation.particular.unit" required>
-					<option value="">Select Unit</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-				</select>
-			</td>
-			<td>
-			<input type="text" id="area" name="area" ng-model="addquotation.particular.area"/>
-			</td>
-			<td>
-			<input type="text" id="rate" name="rate" ng-model="addquotation.particular.rate"/>
-			</td>
-			<td>
-				<input type="text" id="amount" name="amount" ng-model="addquotation.particular.amount" />
-			</td>
-		</tr>
-	</table>
+		<table class="table table-bordered">
+			<tr>
+				<th>Description</th>
+				<th>Unit</th>
+				<th>Area</th>
+				<th>Rate</th>
+				<th>Amount</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.addquotation.description" required>
+					<span class="help-block" ng-show="addInvoiceForm.description.$dirty && addInvoiceForm.description.$invalid">
+						<span ng-show="addInvoiceForm.description.$error.required" class="text-danger">Required Field.</span>
+					</span>
+				</td>			
+				<td>
+					<select class="form-control" name="unit" id="unit" required><!--ng-model="modalOptions.addquotation.unit"-->
+						<option value="">Select Unit</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+				</td>
+				<td>
+				<input type="text" id="area" name="area" /><!--ng-model="addquotation.area"-->
+				</td>
+				<td>
+				<input type="text" id="rate" name="rate" />
+				<!--ng-model="addquotation.rate"-->
+				</td>
+				<td>
+					<input type="text" id="amount" name="amount"  /><!--ng-model="addquotation.amount"-->
+				</td>
+			</tr>
+		</table>
 	</div>
 	
 	<div class="form-group">	
@@ -120,8 +121,8 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-success"  ng-click="addData(addquotation)">Submit</button>
-			<!-- <button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="updateData(addquotation)">Update Quotation</button>  -->
+			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="modalOptions.postData(modalOptions.addquotation)">Submit</button>
+			<!-- <button type="submit" class="btn btn-success" ng-click="updateData(addquotation)">Update Quotation</button>  -->
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>

@@ -21,12 +21,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/item/item.html',	
 				size : 'lg'
 			};
-			modalService.showModal(modalDefaults).then(function (result) {
+			var modalOptions = {
+				postData : function(additem) {
+					dataService.post("item", additem);
+					console.log(additem); 
+				} 
+			};
+			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
-		$scope.postData =function(itemadd){
-			console.log(itemadd);
-		}
+		
 		console.log("this is item controller");
 		
 		

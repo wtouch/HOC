@@ -39,7 +39,7 @@
 	<div class="form-group">
 		<label for="clientEmail" class="col-sm-2 control-label">Email *</label>
 		<div class="col-sm-9">
-			<input type="Email" class="form-control" id="clientEmail" name="clientEmail" placeholder="Email" ng-model="modalOptions.addparty.clientEmail" required>
+			<input type="Email" class="form-control" id="clientEmail" name="clientEmail" placeholder="Email" ng-model="modalOptions.addparty.email" required>
 			<span class="help-block" ng-show="addPartyForm.clientEmail.$dirty && addPartyForm.clientEmail.$invalid">
 				<span ng-show="addPartyForm.clientEmail.$error.required" class="text-danger">Please Enter Email ID.</span>
 				<span ng-show="addPartyForm.clientEmail.$error.email" class="text-danger">Invalid Email address.</span>
@@ -49,7 +49,7 @@
 	<div class="form-group">
 		<label for="clientContact" class="col-sm-2 control-label">Contact No. *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" ng-model="modalOptions.addparty.clientContact" ng-pattern="/^[789]\d{9}$/" maxlength="10" required>
+			<input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" ng-model="modalOptions.addparty.contact" ng-pattern="/^[789]\d{9}$/" maxlength="10" required>
 			<span class="help-block" ng-show="addPartyForm.clientContact.$dirty && addPartyForm.clientContact.$invalid">
 				<span ng-show="addPartyForm.clientContact.$error.required" class="text-danger">Contact is required.</span>
 				<span ng-show="addPartyForm.clientContact.$error.pattern && (addPartyForm.clientContact.$dirty || submitted)" class="text-danger">Enter a valid Contact Number</span>

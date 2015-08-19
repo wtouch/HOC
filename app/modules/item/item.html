@@ -9,19 +9,11 @@
 		
 <form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
 	<h4 class="text-center">Add New Item</h4>
-	<!-- <div class="form-group">
-		<label for="newitem" class="col-sm-2 control-label">Item Name *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="newitem" name="newitem" placeholder="Item Name" ng-model="itemadd.newitem" required>
-			<span class="help-block" ng-show="addItemForm.newitem.$dirty && addItemForm.newitem.$invalid">
-				<span ng-show="addItemForm.newitem.$error.required" class="text-danger">Please Enter Item Name.</span>
-			</span>
-		</div>
-	</div> -->
+	
 	<div class="form-group">
 		<label for="type" class="col-sm-2 control-label">Item Name*</label>
 		<div class="col-sm-9">
-			<select class="form-control" name="name" id="name" ng-model="itemadd.name" required>
+			<select class="form-control" name="name" id="name" ng-model="modalOptions.additem.item_name" required>
 				<option value="">Select Item</option>
 				<option value="Item1">Item1</option>
 				<option value="Item2">Item2</option>
@@ -34,9 +26,9 @@
 	<div class="form-group">
 		<label for="description" class="col-sm-2 control-label" >Description *</label>
 		<div class="col-sm-9">
-			<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="itemadd.description" required></textarea>
+			<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="modalOptions.additem.description" required></textarea>
 			<span ng-hide="addItemForm.description.$error.maxlength">
-				{{ 256 - itemadd.description.length + " Chars left" }}
+				{{ 256 - additem.description.length + " Chars left" }}
 			</span>	
 			<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
 				<span class="text-danger" ng-show="addItemForm.description.$error.required">Please Enter Item Description.</span>
@@ -47,7 +39,7 @@
 	<div class="form-group">
 		<label for="itemprice" class="col-sm-2 control-label">Price *</label>
 		<div class="col-sm-9">
-			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="itemadd.itemprice" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="modalOptions.additem.price" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
 			<span class="help-block" ng-show="addItemForm.itemprice.$dirty && addItemForm.itemprice.$invalid">
 				<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
 				<span ng-show="addItemForm.itemprice.$error.pattern" class="text-danger">Please Enter a Number.</span>
@@ -57,7 +49,7 @@
 	<div class="form-group">
 		<label for="item_type" class="col-sm-2 control-label">Item Type*</label>
 		<div class="col-sm-9">
-			<select class="form-control" id="item_type" name="item_type" ng-model="itemadd.item_type" required>
+			<select class="form-control" id="item_type" name="item_type" ng-model="modalOptions.additem.item_type" required>
 				<option value="">-Select Type-</option>
 				<option value="Department">Department</option>
 				<option value="Measurement">Measurement</option>
@@ -69,7 +61,7 @@
 	</div>
 	<div class="form-group">
 		 <div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-click="postData(itemadd)" ng-disabled="addItemForm.$invalid">Add Item</button>
+			<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem)" ng-disabled="addItemForm.$invalid">Add Item</button>
 			<button type="submit" class="btn btn-success btnsp">Edit Item</button>
 			<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
 		</div>			
