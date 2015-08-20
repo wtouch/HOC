@@ -13,27 +13,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
-		
 		$scope.openInvoice = function () {
-			var modalDefaults = {
-				templateUrl: 'modules/invoice/invoice.html',	
-				size : 'md'
-			};
-			var modalOptions = {
-				addData : function(addinvoice) {
-					dataService.post("invoice", addinvoice);
-					console.log(addinvoice); 
-				} 
-				editData : function(addinvoice) {
-					dataService.put("invoice", addinvoice,+$routeParams.id);
-					console.log(addinvoice); 
-				}
-			};
-			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
-			});
-		};
-		
-		/* $scope.openInvoice = function () {
 			var modalDefaults = {
 				templateUrl: 'modules/invoice/invoice.html',	
 				size : 'lg'
@@ -41,7 +21,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			
 			var curDate = new Date();
 			var month = curDate.getMonth() + 1;
-			
+			 
 			var modalOptions = {
 				currentDate : curDate.getFullYear() + "-" + month + "-" + curDate.getDate(),
 				/* formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
@@ -69,7 +49,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
-		}; */
+		};
 	};	
 	// Inject controller's dependencies
 	invoiceController.$inject = injectParams;

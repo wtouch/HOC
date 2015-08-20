@@ -56,7 +56,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Business List", response.message);
 				}
 			});
-		}
+		} 
 		console.log("this is department controller");
 	 };		 
 	// Inject controller's dependencies
