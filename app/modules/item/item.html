@@ -2,69 +2,64 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 
-	<div class="col-sm-12 text-right topspace">
-		<a href="#/dashboard/itemlist" type="submit" class="btn btn-default">Item List</a>
-		<a href="#/dashboard/item" class="btn btn-default">Add New Item </a>
-	</div>
+<div class="modal-body">	
 		
-<form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
-	<h4 class="text-center">Add New Item</h4>
-	
-	<div class="form-group">
-		<label for="type" class="col-sm-2 control-label">Item Name*</label>
-		<div class="col-sm-9">
-			<select class="form-control" name="name" id="name" ng-model="modalOptions.additem.item_name" required>
-				<option value="">Select Item</option>
-				<option value="Item1">Item1</option>
-				<option value="Item2">Item2</option>
-			</select>
-			<span class="block" ng-show="addItemForm.name.$invalid && addItemForm.name.$dirty">
-				<span ng-show="addItemForm.name.$error.required" class="text-danger">Required Field.</span>
-			</span>
+	<form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
+		<h4 class="text-center">Add New Item</h4>
+		
+		<div class="form-group">
+			<label for="type" class="col-sm-2 control-label">Item Name*</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="name" id="name" ng-model="modalOptions.additem.item_name" required>
+		
+				<span class="block" ng-show="addItemForm.name.$invalid && addItemForm.name.$dirty">
+					<span ng-show="addItemForm.name.$error.required" class="text-danger">Required Field.</span>
+				</span>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="description" class="col-sm-2 control-label" >Description *</label>
-		<div class="col-sm-9">
-			<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="modalOptions.additem.description" required></textarea>
-			<span ng-hide="addItemForm.description.$error.maxlength">
-				{{ 256 - additem.description.length + " Chars left" }}
-			</span>	
-			<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
-				<span class="text-danger" ng-show="addItemForm.description.$error.required">Please Enter Item Description.</span>
-				<span class="text-danger" ng-show="addItemForm.description.$error.maxlength">Sorry You are Exceeding the Limit</span>
-			</span>	
+		<div class="form-group">
+			<label for="description" class="col-sm-2 control-label" >Description *</label>
+			<div class="col-sm-9">
+				<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="modalOptions.additem.description" required></textarea>
+				<span ng-hide="addItemForm.description.$error.maxlength">
+					{{ 256 - additem.description.length + " Chars left" }}
+				</span>	
+				<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
+					<span class="text-danger" ng-show="addItemForm.description.$error.required">Please Enter Item Description.</span>
+					<span class="text-danger" ng-show="addItemForm.description.$error.maxlength">Sorry You are Exceeding the Limit</span>
+				</span>	
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="itemprice" class="col-sm-2 control-label">Price *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="modalOptions.additem.price" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
-			<span class="help-block" ng-show="addItemForm.itemprice.$dirty && addItemForm.itemprice.$invalid">
-				<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
-				<span ng-show="addItemForm.itemprice.$error.pattern" class="text-danger">Please Enter a Number.</span>
-			</span>
+		<div class="form-group">
+			<label for="itemprice" class="col-sm-2 control-label">Price *</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="itemprice" name="itemprice" placeholder="Item Price" ng-model="modalOptions.additem.price" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+				<span class="help-block" ng-show="addItemForm.itemprice.$dirty && addItemForm.itemprice.$invalid">
+					<span ng-show="addItemForm.itemprice.$error.required" class="text-danger">Required Field.</span>
+					<span ng-show="addItemForm.itemprice.$error.pattern" class="text-danger">Please Enter a Number.</span>
+				</span>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="item_type" class="col-sm-2 control-label">Item Type*</label>
-		<div class="col-sm-9">
-			<select class="form-control" id="item_type" name="item_type" ng-model="modalOptions.additem.item_type" required>
-				<option value="">-Select Type-</option>
-				<option value="Department">Department</option>
-				<option value="Measurement">Measurement</option>
-			</select>
-			<span class="help-block" ng-show="addItemForm.item_type.$dirty && addItemForm.item_type.$invalid">
-				<span ng-show="addItemForm.item_type.$error.required" class="text-danger">Required Field.</span>
-			</span>
+		<div class="form-group">
+			<label for="item_type" class="col-sm-2 control-label">Item Type*</label>
+			<div class="col-sm-9">
+				<select class="form-control" id="item_type" name="item_type" ng-model="modalOptions.additem.item_type" required>
+					<option value="">-Select Type-</option>
+					<option value="Department">Department</option>
+					<option value="Measurement">Measurement</option>
+				</select>
+				<span class="help-block" ng-show="addItemForm.item_type.$dirty && addItemForm.item_type.$invalid">
+					<span ng-show="addItemForm.item_type.$error.required" class="text-danger">Required Field.</span>
+				</span>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		 <div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem)" ng-disabled="addItemForm.$invalid">Add Item</button>
-			<button type="submit" class="btn btn-success btnsp">Edit Item</button>
-			<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
-		</div>			
-	</div>
-</form>
+		<div class="form-group">
+			 <div class="col-sm-offset-2 col-sm-9">
+				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem)" ng-disabled="addItemForm.$invalid">Add Item</button>
+				<button type="submit" class="btn btn-success btnsp">Edit Item</button>
+				<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
+			</div>			
+		</div>
+	</form>
+</div>
 		
