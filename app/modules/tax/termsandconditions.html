@@ -9,9 +9,9 @@
 					<div class="form-group">
 						<label for="termcondition" class="col-sm-2 control-label">Term And Condition *</label>
 						<div class="col-sm-9">
-							<textarea name="termcondition" id="termcondition" ng-model="modalOptions.taxinfo.termcondition" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
+							<textarea name="termcondition" id="termcondition" ng-model="modalOptions.term.term_description" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
 							<span ng-hide="addTermconditionForm.termcondition.$error.maxlength">
-								{{ 256 - taxinfo.termcondition.length + " Chars left" }}
+								{{ 256 - modalOptions.term.term_description.length + " Chars left" }}
 							</span>	
 							<span class="help-block ng-hide" ng-show="addTermconditionForm.termcondition.$dirty && addTermconditionForm.termcondition.$invalid">
 								<span class="text-danger" ng-show="addTermconditionForm.termcondition.$error.required">Please Enter Address.</span>
@@ -19,16 +19,11 @@
 							</span>	
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-9">
-							<button type="submit" class="btn btn-primary" ng-disabled="addTermconditionForm.$invalid" ng-click="modalOptions.postData(taxinfo)">Add Term</button>
-						</div>
-					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="modalOptions.ok()">OK</button>
+		<button class="btn btn-primary" ng-disabled="addTermconditionForm.$invalid" ng-click="modalOptions.insertTerm(modalOptions.term);modalOptions.ok()">OK</button>
 	</div>
 </div>

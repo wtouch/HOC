@@ -26,11 +26,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$modalOptions.close('ok');
 		};
 		$scope.open = function () {
+			//var x = angular.copy(adddepartment); 
 			var modalDefaults = {
 				templateUrl: 'modules/department/department.html',	
 				size : 'md'
 			};
 			var modalOptions = {
+				//adddepartment : adddepartment ? x : adddepartment;
 				addData : function(adddepartment) {
 					dataService.post("department", adddepartment);
 					console.log(adddepartment); 

@@ -16,6 +16,30 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
+		/* $scope.taxinfo.service_tax = 10;
+		$scope.taxinfo.vat=11;
+		$scope.taxinfo.pan_no = 'fds3434';
+		$scope.taxinfo.vat_tin_no = 'we3434';
+		$scope.taxinfo.service_tax_no = 'uyu3434'; */
+		
+		/* $scope.insertData = function(taxinfo) {
+			dataService.post("tax", taxinfo);
+			console.log(taxinfo); 
+		}*/
+		$scope.getTax = function(taxinfo){
+			dataService.get(false , "tax").then(function(response){
+				if(response.status == 'success'){	
+					$scope.taxinfo=response.data;
+					//$scope.totalRecords=response.totalRecords;
+				}
+				else{
+					$scope.taxinfo = [];
+					//$scope.totalRecords = {};	
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Business List", response.message);
+				}
+			});
+		} 
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
@@ -25,19 +49,28 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				size : 'md'
 			};
 			var modalOptions = {
-				insertData : function(taxinfo) {
-					dataService.post("tax", taxinfo);
-					console.log(taxinfo); 
-				} 
+				insertTerm : function(term) {
+					dataService.post("terms", term);
+					console.log(term); 
+				}
 			};
 			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 			});
 		};
-		$scope.insertData = function(taxinfo) {
-			dataService.post("tax", taxinfo);
-			console.log(taxinfo); 
-		} 
-		
+		$scope.termsList = function(term){
+			dataService.get(false , "terms").then(function(response){
+				if(response.status == 'success'){	
+					$scope.termList = response.data;
+					//$scope.totalRecords=response.totalRecords;
+				}
+				else{
+					$scope.termList = [];
+					//$scope.totalRecords = {};	
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Business List", response.message);
+				}
+			});
+		}
 	 };		 
 	// Inject controller's dependencies
 	taxController.$inject = injectParams;

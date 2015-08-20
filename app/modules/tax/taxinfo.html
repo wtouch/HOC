@@ -59,15 +59,15 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12 table-responsive">
-			<table class="table table-bordered">
+			<table class="table table-bordered" ng-init="termsList(term)">
 				<tr>
 					<th>Sr. No.</th>
 					<th>Terms and Conditions</th>
 					<th>Manage</th>
 				</tr>
-				<tr>
-					<td>1.</td>
-					<td>Terms 1</td>
+				<tr ng-repeat="term in termList">
+					<td>{{$index + 1}}</td>
+					<td>{{term.term_description}}</td>
 					<td>
 						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" tooltip="Delete Terms & Conditions"></button>
 					</td>
