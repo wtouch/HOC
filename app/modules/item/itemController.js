@@ -16,18 +16,47 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
-		$scope.openAddItem = function () {
+		$scope.openAddItem = function (additem) {
+			var x =angular.copy(additem);
 			var modalDefaults = {
 				templateUrl: 'modules/item/item.html',	
 				size : 'lg'
 			};
+				
 			var modalOptions = {
+				additem : (additem) ? x :{},
 				postData : function(additem) {
 					dataService.post("item", additem);
 					console.log(additem); 
-				} 
+				}, 
+				updateData : function(additem){
+					dataService.put("item" ,additem,additem.id).then(function(response){
+						if(response.status == 'success'){
+							console.log("row updated");
+						}else{
+							response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Get Transactions", response.message);
+						}
+								
+					})
+				}
+				
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
+			
+			});
+		};
+		$scope.viewItem = function (itemdata) {
+			var modalDefaults = {
+				templateUrl: 'modules/item/viewitem.html',	
+				size : 'lg'
+			};
+				
+			var modalOptions = {
+				item : itemdata,
+			};
+			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
+			
 			});
 		};
 		console.log("this is item controller");

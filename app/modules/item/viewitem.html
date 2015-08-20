@@ -1,23 +1,20 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
+</div>
 <div class="modal-body">
 	<h4 class="text-center">Items Details</h4>
 	<div class="table-responsive">
 		<table class="table table-bordered">
-			<thead>
+			<tbody>
 				<tr>
-					 <th>Sr.No</th>
-					 <th>Item Name</th>	
-					 <th>Description</th>
-					 <th>Price</th>
-					 <th>Item Type</th>
+					 <th>Sr.No</th><td>{{modalOptions.item.id}}</td></tr>
+					<tr> <th>Item Name</th>	 <td>{{modalOptions.item.item_name}}</td></tr>
+					<tr> <th>Description</th><td>{{modalOptions.item.description}}</td></tr>
+					<tr> <th>Price</th><td>{{modalOptions.item.price}}</td></tr>
+					<tr> <th>Item Type</th> <td>{{modalOptions.item.item_type}}</td></tr>
 				</tr>	
-			</thead>
-				<tr>
-					 <td>1</td>
-					 <td>SDF</td>	
-					 <td>this is item1</td>
-					 <td>8540.00</td>
-					 <td>Department</td>
-				</tr>
+			</tbody>
+				
 		</table>
 	</div>
 </div>

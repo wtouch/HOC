@@ -2,10 +2,11 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 
-<div class="modal-body">	
+<div class="modal-body" ng-init="additem =modalOptions.additem">	
 		
 	<form name="addItemForm" class="form-horizontal" ng-submit="addItemForm.$valid">
-		<h4 class="text-center">Add New Item</h4>
+		<h4 class="text-center" ng-if="!modalOptions.additem.id">Add New Item</h4>
+		<h4 class="text-center" ng-if="modalOptions.additem.id">Edit Item</h4>
 		
 		<div class="form-group">
 			<label for="type" class="col-sm-2 control-label">Item Name*</label>
@@ -56,7 +57,7 @@
 		<div class="form-group">
 			 <div class="col-sm-offset-2 col-sm-9">
 				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem)" ng-disabled="addItemForm.$invalid">Add Item</button>
-				<button type="submit" class="btn btn-success btnsp">Edit Item</button>
+				<button type="submit" class="btn btn-success btnsp" ng-click="modalOptions.updateData(modalOptions.additem)" ng-disabled="addItemForm.$invalid">Edit Item</button>
 				<button type="cancel" class="btn btn-danger btn-dan">Cancel</button> 
 			</div>			
 		</div>
