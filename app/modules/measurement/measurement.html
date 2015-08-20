@@ -3,9 +3,8 @@
 </div>
 	
 <div class="col-sm-12 text-right topspace">
-		<a class="btn btn-default" ng-click="openAddMeasurement()" tooltip="Add Measurement Item">Add Measurement Item</a>
-		
-		<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add New Department">Measurement Sheet </a>
+	<a class="btn btn-default" ng-click="openAddMeasurement()" tooltip="Add Measurement Item">Add Measurement Item</a>
+	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add New Department">Measurement Sheet </a>
 </div>
 	
 	<h3 class="text-center">Add Measurement</h3>{{addmeasurement}}
@@ -13,7 +12,8 @@
 		<div class="form-group">
 			<label for="party" class="col-sm-2 control-label">Select party</label>
 				<div class="col-sm-9">
-					<select class="form-control" id="party" name="party" ng-model="addmeasurement.party"required >
+				<!--ng-model="modalOptions.addmeasurement.party_id"-->
+					<select class="form-control" id="party" name="party" required >
 						<option value="">Select party</option>
 						<option value="Sharma">Sharma</option>
 						<option value="Sawant">Sawant</option>
@@ -27,7 +27,8 @@
 		<div class="form-group">
 			<label for="department" class="col-sm-2 control-label">Select Department</label>
 				<div class="col-sm-9">
-					<select class="form-control" id="department" name="department" ng-model="addmeasurement.department"required >
+				<!--ng-model="modalOptions.addmeasurement.department"-->
+					<select class="form-control" id="department" name="department" required >
 						<option value="">Select department</option>
 						<option value="Department1">Department1</option>
 						<option value="Department2">Department2</option>
@@ -41,7 +42,8 @@
 		<div class="form-group">
 			<label for="item" class="col-sm-2 control-label">Select item</label>
 				<div class="col-sm-9">
-					<select class="form-control" Id="item" name="item"ng-model="addmeasurement.item" required>
+				<!--ng-model="modalOptions.addmeasurement.item"-->
+					<select class="form-control" Id="item" name="item"  required>
 						<option value="">Select One</option>
 						<option value="Beick Stone">Beick Stone</option>
 						<option value="-">-</option>
@@ -56,7 +58,7 @@
 		<div class="form-group">
 			<label for="date" class="col-sm-2 control-label">Date</label>
 			<div class="col-sm-9">
-				<input type="date" class="form-control" id="date" placeholder="date" ng-model="addmeasurement.date" required>
+				<input type="date" class="form-control" id="date" placeholder="date" ng-model="modalOptions.addmeasurement.date" required>
 				<span class="block" ng-show="addmeasurmentFrom.date.$invalid && addmeasurmentFrom.date.$dirty">
 					<span ng-show="addmeasurmentFrom.date.$error.required" class="text-danger">Required Field</span>
 				</span>
@@ -66,7 +68,7 @@
 		<div class="form-group">
 			<label for="receipt_no" class="col-sm-2 control-label">Receipt number</label>
 			<div class="col-sm-9">
-				<input  type="text" class="form-control" id="receipt_no" name="receipt_no" ng-model="addmeasurement.receipt_no" cols="30" rows="4" ng-maxlength="5000" placeholder="Receipt number" required>
+				<input  type="text" class="form-control" id="receipt_no" name="receipt_no" ng-model="modalOptions.addmeasurement.receipt_no" cols="30" rows="4" ng-maxlength="5000" placeholder="Receipt number" required>
 				<span class="block" ng-show="addmeasurmentFrom.receipt_no.$invalid && addmeasurmentFrom.receipt_no.$dirty">
 					<span ng-show="addmeasurmentFrom.receipt_no.$error.required" class="text-danger">Required Field</span>
 				</span>
@@ -75,7 +77,7 @@
 		<div class="form-group">
 			<label for="qty" class="col-sm-2 control-label">Quantity</label>
 				<div class="col-sm-9">
-					<input class="form-control" id="qty" name="qty" type="text" ng-model="addmeasurement.qty" placeholder="Quantity" required ng-pattern="/^\d{0,9}(d{1,9})?$/">
+					<input class="form-control" id="qty" name="qty" type="text" ng-model="modalOptions.addmeasurement.quantity" placeholder="Quantity" required ng-pattern="/^\d{0,9}(d{1,9})?$/">
 					<span class="block" ng-show="addmeasurmentFrom.qty.$invalid && addmeasurmentFrom.qty.$dirty">
 							<span ng-show="addmeasurmentFrom.qty.$error.required" class="text-danger">Required Field</span>
 							<span ng-show="addmeasurmentFrom.qty.$error.pattern" class="text-danger">Please Enter a Number.</span>
@@ -87,7 +89,7 @@
 			<div class="form-group">
 				<label for="measurement" class="col-sm-2 control-label">Measurement Unit</label>
 					<div class="col-sm-2">
-						<select class="form-control" Id="measurement" name="measurement"ng-model="addmeasurement.measurement" required>
+						<select class="form-control" Id="measurement" name="measurement"ng-model="modalOptions.addmeasurement.measurement_unit" required>
 								<option value="">Select Unit</option>
 								<option value="Sq.Ft">Sq.Ft</option>
 								<option value="meter">meter</option>
@@ -98,26 +100,26 @@
 							</span>
 					</div>
 					<div class="col-sm-1">
-						<input  type="text" class="form-control" id="length" name="length" ng-model="addmeasurement.length" cols="30" rows="4" ng-maxlength="5000" placeholder="length" ng-pattern="/^[789]\d{9}$/" required>
+						<input  type="text" class="form-control" id="length" name="length" ng-model="modalOptions.addmeasurement.length" cols="30" rows="4" ng-maxlength="5000" placeholder="length" ng-pattern="/^[789]\d{9}$/" required>
 						<span class="block" ng-show="addmeasurmentFrom.length.$invalid && addmeasurmentFrom.length.$dirty">
 							<span ng-show="addmeasurmentFrom.length.$error.required" class="text-danger">Required Field</span>
 							<span ng-show="businessContactForm.mobile.$error.pattern && (businessContactForm.mobile.$dirty)" class="text-danger">Enter a valid Contact Number</span>
 						</span>
 					</div>
 					<div class="col-sm-1">
-						<input  type="text" class="form-control" id="Width" name="Width" ng-model="addmeasurement.Width" cols="30" rows="4" ng-maxlength="5000" placeholder="Width" required>
+						<input  type="text" class="form-control" id="Width" name="Width" ng-model="modalOptions.addmeasurement.width" cols="30" rows="4" ng-maxlength="5000" placeholder="Width" required>
 						<span class="block" ng-show="addmeasurmentFrom.Width.$invalid && addmeasurmentFrom.Width.$dirty">
 								<span ng-show="addmeasurmentFrom.Width.$error.required" class="text-danger">Required Field</span>
 							</span>
 					</div>
 					<div class="col-sm-1">
-						<input  type="text" class="form-control" id="Height" name="Height" ng-model="addmeasurement.Height" cols="30" rows="4" ng-maxlength="5000" placeholder="Height" required>
+						<input  type="text" class="form-control" id="Height" name="Height" ng-model="modalOptions.addmeasurement.height" cols="30" rows="4" ng-maxlength="5000" placeholder="Height" required>
 						<span class="block" ng-show="addmeasurmentFrom.Height.$invalid && addmeasurmentFrom.Height.$dirty">
 								<span ng-show="addmeasurmentFrom.Height.$error.required" class="text-danger">Required Field</span>
 							</span>
 					</div>
 					<div class="col-sm-1">
-						<input  type="text" class="form-control" id="NOS" name="NOS" ng-model="addmeasurement.NOS" cols="30" rows="4" ng-maxlength="5000" placeholder="NOS" required>
+						<input  type="text" class="form-control" id="NOS" name="NOS" ng-model="modalOptions.addmeasurement.nos" cols="30" rows="4" ng-maxlength="5000" placeholder="NOS" required>
 						<span class="block" ng-show="addmeasurmentFrom.NOS.$invalid && addmeasurmentFrom.NOS.$dirty">
 								<span ng-show="addmeasurmentFrom.NOS.$error.required" class="text-danger">Required Field</span>
 						</span>
@@ -127,7 +129,7 @@
 		<div class="form-group">
 			<label for="area" class="col-sm-2 control-label">Area</label>
 			<div class="col-sm-9">
-				<input class="form-control" id="area" name="area" type="text" ng-model="addmeasurement.area" placeholder="Area" required readonly>
+				<input class="form-control" id="area" name="area" type="text" ng-model="modalOptions.addmeasurement.area" placeholder="Area" required>
 				<span class="block" ng-show="addmeasurmentFrom.area.$invalid && addmeasurmentFrom.area.$dirty">
 						<span ng-show="addmeasurmentFrom.area.$error.required" class="text-danger">Required Field</span>
 				</span>
@@ -136,7 +138,7 @@
 			
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" ng-click="postData(addmeasurement)" class="btn btn-success btn text-center  ng-scope">Generate</button>
+				<button type="submit" ng-click="modalOptions.postData(modalOptions.addmeasurement)" class="btn btn-success btn text-center">Generate</button>
 				<button type="submit" ng-click="update(project)" class="btn btn-success btn text-center  ng-scope">Update</button>
 				<button type="reset" class="btn btn-danger" title="Cancel Sending">Cancel</button>
 			</div>

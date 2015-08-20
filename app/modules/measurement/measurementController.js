@@ -21,7 +21,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/measurement/measurement.html',	
 				size : 'lg'
 			};
-			modalService.showModal(modalDefaults).then(function (result) {
+			var modalOptions = {
+				postData : function(addmeasurement) {
+					dataService.post("measurement", addmeasurement);
+					console.log(addmeasurement); 
+				} 
+			};
+			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
 		console.log("this is measurement controller");
