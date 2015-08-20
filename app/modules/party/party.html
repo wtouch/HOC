@@ -2,11 +2,12 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 
-<div class="modal-body text-right topspace">
+<!-- <div class="modal-body text-right topspace">
 	<a href="#/dashboard/printview" class="btn btn-default">Print</a>
 	<a href="#/dashboard/partylist" class="btn btn-default">Party List</a>
 </div>
-
+ -->
+<div class="modal-body">
 <h3 class="text-center">Add New Party</h3>
 <form class="form-horizontal" name="addPartyForm" role="form" novalidate ng-submit="addPartyForm.$valid">
 	<div class="form-group">
@@ -135,11 +136,12 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-9">ng-disabled="addPartyForm.$invalid"
-			<button type="submit" class="btn btn-primary"   ng-click="modalOptions.postData(modalOptions.addparty)">Add Party</button> 
+		<div class="col-sm-offset-2 col-sm-9">
+			<button type="submit" class="btn btn-primary" ng-disabled="addPartyForm.$invalid" ng-click="modalOptions.postData(modalOptions.addparty)">Add Party</button> 
 			
 			<button type="submit" class="btn btn-success" ng-disabled="addPartyForm.$invalid" ng-click="update(addparty)">Edit Party</button>
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>
 </form>
+</div>
