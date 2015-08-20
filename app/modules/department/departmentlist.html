@@ -43,8 +43,8 @@
 	</div>
 </div>
 <div class="table-responsive">		
-	<table class="table table-bordered">
-		<thead>
+	<table class="table table-bordered" ng-init="departmentList(adddepartment)">
+		<thead> 
 			<tr>
 				<th>Sr.No.</th>
 				<th>Date</th>
@@ -61,35 +61,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>20/12/2015</td>
-				<td>Internal Plaster</td>
-				<td>17</td>
-				<td>2</td>
-				<td>4</td>
-				<td>2</td>
-				<td>4</td>
-				<td>4</td>
-				<td>4</td>
-				<td>4</td>
-				<td>
-					<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
-					<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Department"></a>
-				</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>20/12/2015</td>
-				<td>Shifting & Hole Repairing </td>
-				<td>17</td>
-				<td>2</td>
-				<td>4</td>
-				<td>2</td>
-				<td>4</td>
-				<td>4</td>
-				<td>-</td>
-				<td>-</td>
+			<tr ng-repeat="dept in deptList">
+				<td>{{ $index + 1 }}</td>
+				<td>{{dept.date}}</td>
+				<td>{{dept.item}}</td>
+				<td></td>
+				<td>{{dept.plaster_meson}}</td>
+				<td>{{dept.plumber_meson}}</td>
+				<td>{{dept.bbm_meson}}</td>
+				<td>{{dept.meson}}</td>
+				<td>{{dept.helper}}</td>
+				<td>{{dept.breaking_machine}}</td>
 				<td>
 					<a class="btn btn-warning glyphicon glyphicon-pencil"  href="#/department" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details"></a>
 				

@@ -35,18 +35,28 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					dataService.post("department", adddepartment);
 					console.log(adddepartment); 
 				} 
-				editData : function(adddepartment) {
+				/* editData : function(adddepartment) {
 					dataService.put("department", adddepartment,+$routeParams.id);
 					console.log(adddepartment); 
-				}
+				} */
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
-		$scope.addData = function(adddepartment)
-		{ 
-			console.log(adddepartment);
-		}
+		$scope.departmentList = function(adddepartment){
+			dataService.get(false , "department").then(function(response){
+				if(response.status == 'success'){	
+					$scope.deptList=response.data;
+					//$scope.totalRecords=response.totalRecords;
+				}
+				else{
+					$scope.deptList = [];
+					//$scope.totalRecords = {};	
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Business List", response.message);
+				}
+			});
+		} 
 		console.log("this is department controller");
 	 };		 
 	// Inject controller's dependencies
