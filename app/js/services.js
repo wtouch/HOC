@@ -385,8 +385,12 @@ define(['app'], function (app) {
 				$rootScope.loading = true;
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
+				var whereClause = "";
+				if(signle == true){
+					whereClause = ' WHERE id = ' + params.where.id;
+				}
 				db.transaction(function (tx) {
-				  tx.executeSql('SELECT * FROM ' + table + ' WHERE id = 1', [], function (tx, results) {
+				  tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
 					  deferred.notify('About to greet ' + name + '.');
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
@@ -409,16 +413,7 @@ define(['app'], function (app) {
 				});
 				return deferred.promise;
 			};
-			/* obj.get(true, "item").then(function (results) {
-				console.log(results);
-				//return results;
-			},function (error) {
-				console.log(error);
-				//return results;
-			},function (notify) {
-				console.log(notify);
-				//return results;
-			}); */
+			
 			obj.post = function (table, object) {
 				$rootScope.loading = true;
 				var colName = "";

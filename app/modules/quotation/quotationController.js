@@ -31,10 +31,21 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		};
 		
-		$scope.addData = function(addquotation){ 
-			console.log(addquotation);
+		$scope.getQuotation = function(addquotation){
+			dataService.get(false,"quotation")
+			.then(function(response) {
+				console.log(addquotation);
+				if(response.status == 'success'){
+					$scope.addquotation = response.data;
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.addquotation = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
 		}
-		
 		//for dynamic tooltip
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;

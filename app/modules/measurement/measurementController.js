@@ -45,8 +45,20 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				$scope.opened1 = ($scope.opened==true)?false:true;
 			};
 			
-			$scope.postData =function(addmeasurement){
-				console.log(addmeasurement);
+			$scope.getMeasurement = function(addmeasurement){
+				dataService.get(false,"measurement")
+				.then(function(response) {
+					console.log(addmeasurement);
+					if(response.status == 'success'){
+						$scope.addmeasurement = response.data;
+						$scope.totalRecords = response.totalRecords;
+					}else{
+						$scope.addmeasurement = [];
+						$scope.totalRecords = 0;
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
 			}
 	 };		 
 	// Inject controller's dependencies

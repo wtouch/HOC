@@ -25,7 +25,7 @@
 	</div>
 </div>
 <div class="table-responsive">
-	<table class="table table-bordered">
+	<table class="table table-bordered" ng-init="getItem(additem)">
 		<thead>
 			<tr>
 				<th>Sr.No</th>
@@ -35,29 +35,19 @@
 				<th>Item Type</th>
 				<th>Manage</th>
 			</tr>	
+			<tr ng-repeat="x in additem | orderBy:sort">
+				<td>{{$index + 1}}</td>
+				<td>{{x.item_name}}</td>
+				<td>{{x.description}}</td>
+				<td>{{x.price}}</td>
+				<td>{{x.item_type}}</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
+				</td>
+			</tr>				
 		</thead>
-		<tr>
-			<td>1.</td>
-			<td>Item1</td>	
-			<td>Item1 description is that</td>
-			<td>80</td>
-			<td>Department</td>
-			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddItem()" tooltip="Edit New Party"></a>
-				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
-			</td>
-		</tr>
-		 <tr>
-			 <td>2.</td>
-			 <td>Item2</td>	
-			 <td>Item2 description is that</td>
-			 <td>100</td>
-			 <td>Measurement</td>
-			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddItem()" tooltip="Edit New Party"></a>
-				<a href="#" tooltip="Delete Item" class="btn btn-danger glyphicon glyphicon-remove"></a>
-			</td>
-		</tr>
 	</table>
 </div>
 <div class="text-center">
