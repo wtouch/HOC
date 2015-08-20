@@ -17,18 +17,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		};
 		
 		console.log("this is party controller");
-			/* $scope.postData =function(addparty){
-				console.log(addparty);
-			} */
-			// code for open modal
-			/* $scope.open = function () {
-				size = 'lg';
-				$modal.open({
-					templateUrl: 'modules/viewparty.html',
-					size: size,
-				});
-			} */
-			
 			$scope.ok = function () {
 				$modalOptions.close('ok');
 			};
