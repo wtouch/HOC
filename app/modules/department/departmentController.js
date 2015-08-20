@@ -35,6 +35,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					dataService.post("department", adddepartment);
 					console.log(adddepartment); 
 				} 
+				editData : function(adddepartment) {
+					dataService.put("department", adddepartment,+$routeParams.id);
+					console.log(adddepartment); 
+				}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
