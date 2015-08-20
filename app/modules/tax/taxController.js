@@ -27,9 +27,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(taxinfo); 
 		}*/
 		$scope.getTax = function(taxinfo){
-			dataService.get(false , "tax").then(function(response){
+			dataService.get(true , "tax").then(function(response){
 				if(response.status == 'success'){	
-					$scope.taxinfo=response.data;
+					$scope.taxinfo = response.data;
+					console.log($scope.taxinfo);
 					//$scope.totalRecords=response.totalRecords;
 				}
 				else{

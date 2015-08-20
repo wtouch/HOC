@@ -2,7 +2,7 @@
 	<div class="modal-header">
 		<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 	</div>
-	<div class="modal-body">
+	<div class="modal-body" ng-init="adddepartment =modalOptions.adddepartment">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h3 class="text-center">Add Department</h3>
@@ -105,7 +105,8 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-9">
-							<button type="submit" ng-click="modalOptions.addData(modalOptions.adddepartment)" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid">Generate</button>
+							<button type="submit" ng-click="modalOptions.addDept(modalOptions.adddepartment)" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="!modalOptions.adddepartment.id">Generate</button>
+							<button type="submit" ng-click="modalOptions.updateDept(modalOptions.adddepartment)" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="modalOptions.adddepartment.id">Update</button>
 							<button type="reset" class="btn btn-danger">Cancel</button>
 						</div>
 					</div>

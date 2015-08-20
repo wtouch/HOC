@@ -25,22 +25,29 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
-		$scope.open = function () {
-			//var x = angular.copy(adddepartment); 
+		$scope.open = function (adddepartment) {
+			var x = angular.copy(adddepartment); 
 			var modalDefaults = {
 				templateUrl: 'modules/department/department.html',	
 				size : 'md'
 			};
 			var modalOptions = {
-				//adddepartment : adddepartment ? x : adddepartment;
-				addData : function(adddepartment) {
+				adddepartment : adddepartment ? x : {},
+				addDept : function(adddepartment) {
 					dataService.post("department", adddepartment);
 					console.log(adddepartment); 
-				} 
-				/* editData : function(adddepartment) {
-					dataService.put("department", adddepartment,+$routeParams.id);
-					console.log(adddepartment); 
-				} */
+				} , 
+				updateDept : function(adddepartment){
+					dataService.put("item" ,adddepartment,adddepartment.id).then(function(response){
+						if(response.status == 'success'){
+							console.log("row updated");
+						}else{
+							response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Get Transactions", response.message);
+						}
+								
+					})
+				}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
