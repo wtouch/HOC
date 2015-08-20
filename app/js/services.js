@@ -222,8 +222,8 @@ define(['app'], function (app) {
 	  /* $HTTP Service for server request
 	  *************************************************************************/
 	  
-	  app.factory("dataService", ['$http', '$window','$rootScope', '$cookieStore', '$cookies', '$location','$timeout','$notification',
-		function ($http, $window,$rootScope,$cookieStore,$cookies,$location,$timeout,$notification) { // This service connects to our REST API
+	  app.factory("dataService", ['$http', '$window','$rootScope', '$cookieStore', '$cookies', '$location','$timeout','$notification', '$q',
+		function ($http, $window,$rootScope,$cookieStore,$cookies,$location,$timeout, $notification, $q) { // This service connects to our REST API
 
 			var serviceBase = '../server-api/index.php/';
 			var today = new Date();
@@ -383,20 +383,39 @@ define(['app'], function (app) {
 			var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
 			obj.get = function (table, params) {
 				$rootScope.loading = true;
-				var data = [];
+				var deferred = $q.defer();
+				var data = {data : [], status : "success", message : "Data Selected!"};
 				db.transaction(function (tx) {
 				  tx.executeSql('SELECT * FROM ' + table, [], function (tx, results) {
+					  deferred.notify('About to greet ' + name + '.');
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
 					for (i = 0; i < len; i++) {
-					  data.push(results.rows.item(i));
+					  data.data.push(results.rows.item(i));
 					}
+					deferred.resolve(data);
+					//console.log(data);
+				  },function(error){
+					  data.status = 'error';
+					  data.message = error;
+					  deferred.reject(data);
+					  console.log(data.message);
 				  });
-				  console.log(data);
+				  //
 				});
-				return data;
+				return deferred.promise;
+				
 			};
-			
+			/* obj.get("item1").then(function (results) {
+				console.log(results);
+				//return results;
+			},function (error) {
+				console.log(error);
+				//return results;
+			},function (notify) {
+				console.log(notify);
+				//return results;
+			}); */
 			obj.post = function (table, object) {
 				$rootScope.loading = true;
 				var colName = "";
