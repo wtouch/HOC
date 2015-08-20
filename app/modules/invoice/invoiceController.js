@@ -2,42 +2,13 @@
 define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService'];
   // This is controller for this view
-	var invoiceController = function ($modal,$scope, $injector,$routeParams,$rootScope,dataService,modalService) {
+	var invoiceController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.CurrentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";
-	
-	
 		console.log("this is invoice controller");
-		$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		$scope.format = $scope.formats[0];
-		$scope.today = function() {
-			$scope.date = new Date();
-		};
-		//code to set current date
-		var curDate = new Date();
-		var month = curDate.getMonth() + 1;
-		month = (month <= 9) ? '0' + month : month;
-		$scope.currentDate = curDate.getFullYear() + "-" + month + "-" + curDate.getDate();
-		
-		//code to date picker
-		$scope.open = function($event,opened){
-			$event.preventDefault();
-			$event.stopPropagation();
-			$scope.opened = ($scope.opened==true)?false:true;
-		};
-		$scope.open1 = function($event,opened){
-			$event.preventDefault();
-			$event.stopPropagation();
-			$scope.opened1 = ($scope.opened1==true)?false:true;
-		};
-		/* 
-		$scope.postData =function(invoice){
-			console.log(invoice);
-		}
-		 */
 		//code to open modal
 		$scope.ok = function () {
 			$modalOptions.close('ok');
@@ -67,7 +38,30 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/invoice/invoice.html',	
 				size : 'lg'
 			};
+			
+			var curDate = new Date();
+			var month = curDate.getMonth() + 1;
+			
 			var modalOptions = {
+				currentDate : curDate.getFullYear() + "-" + month + "-" + curDate.getDate(),
+				/* formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
+				format : $scope.formats[0], */
+				
+				//code to set current date
+				month :(month <= 9) ? '0' + month : month,
+				
+				
+				//code to date picker
+				open : function($event,opened){
+					$event.preventDefault();
+					$event.stopPropagation();
+					opened :(opened==true)?false:true;
+				},
+				open1 : function($event,opened1){
+					$event.preventDefault();
+					$event.stopPropagation();
+					opened1 : (opened1==true)?false:true;
+				},
 				postData : function(addinvoice) {
 					dataService.post("invoice", addinvoice);
 					console.log(addinvoice); 
