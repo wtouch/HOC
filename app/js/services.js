@@ -381,17 +381,25 @@ define(['app'], function (app) {
 				});
 			};
 			var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
+			obj.setWhere = function(params){
+				var whereString = " WHERE 1 = 1 ";
+				if(params){
+					if(params.where != undefined){
+						angular.forEach(params.where, function(value, key) {
+							whereString += " AND " + key + " = '" + value + "'";
+						});
+					}
+				}
+				//console.log(whereString);
+				return whereString;
+			}
 			obj.get = function (signle,table, params) {
 				$rootScope.loading = true;
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
-				var whereClause = "";
-				if(signle == true){
-					whereClause = ' WHERE id = ' + params.where.id;
-				}
+				var whereClause = obj.setWhere(params);
 				db.transaction(function (tx) {
 				  tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
-					  deferred.notify('About to greet ' + name + '.');
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
 					if(len == 1 && signle == true){
@@ -401,15 +409,21 @@ define(['app'], function (app) {
 						  data.data.push(results.rows.item(i));
 						}
 					}
-					deferred.resolve(data);
+					if( len >= 1){
+						deferred.resolve(data);
+					}else{
+						data.status = 'warning';
+						data.message = "Data not found!";
+						deferred.resolve(data);
+					}
 					//console.log(data);
-				  },function(error){
+				  },function(error, er1){
 					  data.status = 'error';
-					  data.message = error;
-					  deferred.reject(data);
-					  console.log(data.message);
+					  data.message = er1.message;
+					  data.data = er1;
+					  deferred.resolve(data);
+					  //console.log(data);
 				  });
-				  //
 				});
 				return deferred.promise;
 			};

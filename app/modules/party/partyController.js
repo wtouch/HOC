@@ -1,8 +1,8 @@
 'use strict';
 define(['app'], function (app) {
-var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService'];
+var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
-	var partyController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
+	var partyController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
 		$rootScope.metaTitle = "Real Estate Project";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
@@ -73,8 +73,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			};
 			
-			$scope.getParty = function(addparty){
-				dataService.get(false,"party")
+			$scope.getParty = function(page){
+				$scope.params = {
+					where : {
+						status : 0, type : 'Client'
+					},
+					limit : {
+						page : page,
+						records : $scope.numPages
+					}
+				};
+				dataService.get(false,"party1", $scope.params)
 				.then(function(response) {
 					console.log(response);
 					if(response.status == 'success'){
