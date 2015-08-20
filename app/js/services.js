@@ -446,7 +446,7 @@ define(['app'], function (app) {
 				var newArrObj = {};
 				var colName = "";
 				var colValue = "";
-				var queryString
+				var queryString="";
 				var i = 0;
 				angular.forEach(object, function(value, key) {
 					queryString = "'" + key + "' = " + "'" + value + "',";
@@ -465,6 +465,7 @@ define(['app'], function (app) {
 						message : "Record updated successfully!",
 						data : null
 					};
+					return result;
 				};
 				function error1(t, e) {
 					console.log(t, e);
@@ -473,9 +474,10 @@ define(['app'], function (app) {
 						message : e,
 						data : null
 					};
+					return result;
 				};
 				$rootScope.loading = false;
-				return result;
+				
 			};
 			obj.delete = function (q, object, params) {
 				if(!params) params = {};

@@ -49,25 +49,27 @@
 			<th>Manage</th>
 		</tr>
 		<tr ng-repeat="x in addparty | orderBy:sort">
-			<td>{{$index + 1}}</td>
+			<td>{{((currentPage - 1) * pageItems ) +$index + 1}}</td>
 			<td>{{x.client_name}}</td>
 			<td>{{x.email}}</td>
 			<td>{{x.contact}}</td>
 			<td>{{x.address}}</td>
 			<td>{{x.city}}</td>
 			<td>{{x.type}}</td>
-			<td>
-				<div class="btn-group">
-					<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
-				</div>
-				<div class="btn-group">
-				<button type="button" tooltip="Edit" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-eye-open"></span></button>
-				</div>
+			<td class="col-sm-3">
+				<button ng-click="openAddparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
+				
+				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'">		
+				<span class="glyphicon glyphicon-remove"></span> 
+				</button>
+								
+				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
 			</td>
 		</tr>				
 	</table>
 </div>
 <div class="text-center">
-	<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="changeStatus(currentPage)"></pagination>
+	<!-- <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
 	 <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
 </div>

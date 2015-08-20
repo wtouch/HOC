@@ -6,15 +6,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$rootScope.metaTitle = "Real Estate Project";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
-		$scope.projectListCurrentPage = 1;
+		$scope.currentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";
-		$scope.alerts = [];
 		
 		// function to close alert
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
+		
+		
 		
 		console.log("this is party controller");
 			$scope.ok = function () {
@@ -29,17 +30,44 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			};
 			
-			$scope.openAddparty = function () {
+			$scope.openAddparty = function (addparty) {
+				var x = angular.copy(addparty);
 				console.log('addparty'); 
 				var modalDefaults = {
 					templateUrl: 'modules/party/party.html',	
 					size : 'lg'
 				};
 				var modalOptions = {
+					addparty : (addparty) ? x : {},
 					postData : function(addparty) {
 						dataService.post("party", addparty);
 						console.log(addparty); 
-					} 
+					},
+					updateData : function(addparty) {
+						var params={where:{id:addparty.id}};
+						console.log(params);
+						dataService.put("party",addparty,params)
+						.then(function(response) { 
+						console.log(response);
+						if(response.status == "success"){
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Add record", response.message);
+				 	});
+					}
+				};
+				modalService.showModal(modalDefaults, modalOptions).then(function (result) {
+				});
+			};
+			
+			
+			$scope.openViewparty = function (addparty) {
+					var modalDefaults = {
+					templateUrl: 'modules/party/viewparty.html',	
+					size : 'lg'
+				};
+				var modalOptions = {
+					addparty : addparty,
 				};
 				modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 				});
