@@ -41,57 +41,36 @@
 </div>
 
 	<div class="table-responsive">		
-	<table class="table table-bordered">
+	<table class="table table-bordered" ng-init="getMeasurement(addmeasurement)">
 	<thead>
 		<tr>
 			<th>Sr.No.</th>
 			<th>Date</th>
-			<th>Description</th>
-			<th>Receipt No</th> 
+			<th>Quantity</th>
 			<th>Unit</th>
 			<th>Nos </th>
 			<th>Length</th>
 			<th>Width</th>
 			<th>Height</th>
 			<th>Area</th>
-			<th class="col-sm-2">Manage</th>
+			<th>Manage</th>
 		</tr>
 	</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>20/12/2015</td>
-				<td>Brick work</td>
-				<td>17</td>
-				<td>Cum</td>
-				<td>1</td>
-				<td>2.50</td>
-				<td>0.23</td>
-				<td>1.00</td>
-				<td>0.58</td>
-				
+			<tr ng-repeat="x in addmeasurement | orderBy:sort">
+				<td>{{$index + 1}}</td>
+				<td>{{x.date}}</td>
+				<td>{{x.quantity}}</td>
+				<td>{{x.measurement_unit}}</td>
+				<td>{{x.nos}}</td>
+				<td>{{x.length}}</td>
+				<td>{{x.width}}</td>
+				<td>{{x.height}}</td>
+				<td>{{x.area}}</td>
 				<td>
-				<a class="btn btn-primary glyphicon glyphicon-pencil" ng-click="openAddMeasurement()" tooltip="Edit Measurement Item"></a>
-				
-				<a type="button" tooltip="Delete Measurement"  class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-				</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>20/12/2015</td>
-				<td>Break Work</td>
-				<td>17</td>
-				<td>Cum</td>
-				<td>1</td>
-				<td>2.50</td>
-				<td>0.23</td>
-				<td>1.00</td>
-				<td>0.58</td>
-				<td>
-				<a href="#/measurement" class="btn btn-primary glyphicon glyphicon-pencil" type="button" tooltip-animation="true" tooltip="Edit Measurement"> 
-				</a>
-				
-				<a type="button" tooltip="Delete Measurement"  class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+					<div class="btn-group">
+						<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
 				</td>
 			</tr>
 		</tbody>

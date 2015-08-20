@@ -45,10 +45,38 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			};
 			
-			/* $scope.postData =function(addparty){
-				console.log(addparty);
-			} */
+			$scope.getParty = function(addparty){
+				dataService.get(false,"party")
+				.then(function(response) {
+					console.log(response);
+					if(response.status == 'success'){
+						$scope.addparty = response.data;
+						$scope.totalRecords = response.totalRecords;
+					}else{
+						$scope.addparty = [];
+						$scope.totalRecords = 0;
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
+			}
 			
+			$scope.getSingleParty = function(addparty){
+				$scope.params ={where :{id:13}} ;
+				dataService.get(true,"party",$scope.params)
+				.then(function(response) {
+					console.log(response);
+					if(response.status == 'success'){
+						$scope.addparty = response.data;
+						$scope.totalRecords = response.totalRecords;
+					}else{
+						$scope.addparty = [];
+						$scope.totalRecords = 0;
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
+			}
 			$scope.dynamicTooltip = function(status, active, notActive){
 				return (status==1) ? active : notActive;
 			};	

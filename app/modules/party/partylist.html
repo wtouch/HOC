@@ -37,7 +37,7 @@
 	</div>
 </div>
 <div class="table-responsive">
-	<table class="table table-bordered">
+	<table class="table table-bordered" ng-init="getParty(addparty)">
 		<tr>
 			<th>Sr. No.</th>
 			<th>Party Name</th>
@@ -48,34 +48,23 @@
 			<th>Type</th>
 			<th>Manage</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>Sharma</td>
-			<td>sharma@gmail.com</td>
-			<td>8545226575</td>
-			<td>Nigadi</td>
-			<td>Pune</td>
-			<td>Vender</td>
+		<tr ng-repeat="x in addparty | orderBy:sort">
+			<td>{{$index + 1}}</td>
+			<td>{{x.client_name}}</td>
+			<td>{{x.email}}</td>
+			<td>{{x.contact}}</td>
+			<td>{{x.address}}</td>
+			<td>{{x.city}}</td>
+			<td>{{x.type}}</td>
 			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddparty()" tooltip="Edit New Party"></a>
-				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-click="open()"  tooltip="View Party "></a>
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right"  tooltip="Delete Party "></a>
+				<div class="btn-group">
+					<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
+				</div>
+				<div class="btn-group">
+				<button type="button" tooltip="Edit" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
+				</div>
 			</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Kulkarni</td>
-			<td>aarti@gmail.com</td>
-			<td>8545226575</td>
-			<td>Thergaon</td>
-			<td>Pune</td>
-			<td>Party</td>
-			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddparty()" tooltip="Edit New Party"></a>
-				<a class="btn btn-primary glyphicon glyphicon-eye-open" ng-model="checkModel.middle" btn-checkbox tooltip="View Party Details"></a>
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
-			</td>
-		</tr>
+		</tr>				
 	</table>
 </div>
 <div class="text-center">

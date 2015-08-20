@@ -34,36 +34,28 @@
 		</div>
 </div>
 <div class="table-responsive">
-	<table class="table table-bordered">
+	<table class="table table-bordered" ng-init="getQuotation(addquotation)"> 
 		<tr>
+			<th>Sr.No</th>
 			<th>Name</th>
 			<th>Address</th>
 			<th>Subject</th>
 			<th>Terms & Conditions</th>
 			<th>Manage</th>
 		</tr>
-		<tr>
-			<td>Sharma</td>
-			<td>Nigadi,Pune.</td>
-			<td>Computerised System</td>
-			<td>Deadline</td>
-			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddQuotation()" tooltip="Edit New Quotation"></a>
-				<a ng-click ="open()" tooltip="View Quotation" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Quotation"></a>
-			</td>
-		</tr>
-		<tr>
-			<td>Sharma</td>
-			<td>Nigadi,Pune.</td>
-			<td>Computerised System</td>
-			<td>Deadline</td>
-			<td>
-				<a class="btn btn-warning glyphicon glyphicon-pencil" ng-click="openAddQuotation()" tooltip="Edit New Quotation"></a>
-				<a ng-click ="open()" tooltip="View Quotation" class="btn btn-success glyphicon glyphicon-eye-open"></a> 
-				<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Quotation"></a>
-			</td>
-		</tr>
+		<tr ng-repeat="x in addquotation | orderBy:sort">
+				<td>{{$index + 1}}</td>
+				<td>{{x.name}}</td>
+				<td>{{x.address}}</td>
+				<td>{{x.subject}}</td>
+				<td>{{x.description}}</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
+				</td>
+		</tr>				
+		
 	</table>
 </div>
 <div class="text-center">
