@@ -381,17 +381,21 @@ define(['app'], function (app) {
 				});
 			};
 			var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
-			obj.get = function (table, params) {
+			obj.get = function (signle,table, params) {
 				$rootScope.loading = true;
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
 				db.transaction(function (tx) {
-				  tx.executeSql('SELECT * FROM ' + table, [], function (tx, results) {
+				  tx.executeSql('SELECT * FROM ' + table + ' WHERE id = 1', [], function (tx, results) {
 					  deferred.notify('About to greet ' + name + '.');
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
-					for (i = 0; i < len; i++) {
-					  data.data.push(results.rows.item(i));
+					if(len == 1 && signle == true){
+						data.data = results.rows.item(0);
+					}else{
+						for (i = 0; i < len; i++) {
+						  data.data.push(results.rows.item(i));
+						}
 					}
 					deferred.resolve(data);
 					//console.log(data);
@@ -404,9 +408,8 @@ define(['app'], function (app) {
 				  //
 				});
 				return deferred.promise;
-				
 			};
-			/* obj.get("item1").then(function (results) {
+			/* obj.get(true, "item").then(function (results) {
 				console.log(results);
 				//return results;
 			},function (error) {
