@@ -27,7 +27,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(taxinfo); 
 		}*/
 		$scope.getTax = function(taxinfo){
-			dataService.get(true , "tax").then(function(response){
+			$scope.param = {where : {id : 1}};
+			console.log($scope.param);
+			dataService.get(true , "tax", $scope.param).then(function(response){
 				if(response.status == 'success'){	
 					$scope.taxinfo = response.data;
 					console.log($scope.taxinfo);
@@ -40,6 +42,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Business List", response.message);
 				}
 			});
+			
 		} 
 		$scope.ok = function () {
 			$modalOptions.close('ok');
