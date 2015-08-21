@@ -509,7 +509,7 @@ define(['app'], function (app) {
 				var queryString="";
 				var i = 0;
 				angular.forEach(object, function(value, key) {
-					queryString = "" + key + " = " + "'" + value + "',";
+					queryString += "" + key + " = " + "'" + value + "',";
 				});
 				queryString = queryString.slice(0,-1);
 				
