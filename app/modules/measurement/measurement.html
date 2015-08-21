@@ -2,12 +2,10 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 	
-<div class="col-sm-12 text-right topspace">
-	<a class="btn btn-default" ng-click="openAddMeasurement()" tooltip="Add Measurement Item">Add Measurement Item</a>
-	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add New Department">Measurement Sheet </a>
-</div>
+<div class="modal-body" ng-init="addmeasurement = modalOptions.addmeasurement">	
 	
-	<h3 class="text-center">Add Measurement</h3>{{addmeasurement}}
+	<h3 class="text-center" ng-if="!modalOptions.addmeasurement.id">Add Measurement</h3>
+	<h3 class="text-center" ng-if="modalOptions.addmeasurement.id">Edit Measurement</h3>
 	<form class="form-horizontal" name="addmeasurmentFrom" novalidate ng-submit="addmeasurmentFrom.$valid">
 		<div class="form-group">
 			<label for="party" class="col-sm-2 control-label">Select party</label>
@@ -138,9 +136,10 @@
 			
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" ng-click="modalOptions.postData(modalOptions.addmeasurement)" class="btn btn-success btn text-center">Generate</button>
-				<button type="submit" ng-click="update(project)" class="btn btn-success btn text-center  ng-scope">Update</button>
-				<button type="reset" class="btn btn-danger" title="Cancel Sending">Cancel</button>
+				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.addmeasurement)" ng-disabled="addmeasurmentFrom.$invalid" ng-if="!modalOptions.addmeasurement.id">Add Item</button>
+				<button type="submit" class="btn btn-success btnsp" ng-click="modalOptions.updateData(modalOptions.addmeasurement)" ng-disabled="addmeasurmentFrom.$invalid" ng-if="modalOptions.addmeasurement.id">Edit Item</button>
+				<button type="cancel" class="btn btn-danger btn-dan" ng-click="modalOptions.close()">Cancel</button> 
 			</div>
 		</div>
 	</form>
+</div>

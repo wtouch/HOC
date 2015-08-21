@@ -3,7 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
 	var itemController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
-		$rootScope.metaTitle = "Real Estate Project";
+		$rootScope.metaTitle = "HOC";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
