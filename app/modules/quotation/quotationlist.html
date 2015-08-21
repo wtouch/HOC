@@ -49,10 +49,12 @@
 			<td>{{x.address}}</td>
 			<td>{{x.subject}}</td>
 			<td>{{x.description}}</td>
-			<td>
-				<div class="btn-group">
+			<td class="col-sm-3">
+					<button ng-click="openAddQuotation(x)" class="btn btn-warning" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
+				
 					<button type="button" tooltip="{{dynamicTooltip(x.status, 'Delete Property', 'Make Active')}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0"><span class="glyphicon glyphicon-remove"></span></button>
-				</div>
+					
+					<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
 			</td>
 		</tr>				
 	</table>
