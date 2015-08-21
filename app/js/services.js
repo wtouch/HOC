@@ -381,6 +381,53 @@ define(['app'], function (app) {
 				});
 			};
 			var db = openDatabase('hoc', '1.0', 'HOC-Management', 2 * 1024 * 1024 * 1024);
+			/* var bcrypt = require('bcrypt');
+
+			exports.cryptPassword = function(password, callback) {
+			   bcrypt.genSalt(10, function(err, salt) {
+				if (err) 
+				  return callback(err);
+
+				bcrypt.hash(password, salt, function(err, hash) {
+				  return callback(err, hash);
+				});
+
+			  });
+			};
+
+			exports.comparePassword = function(password, userPassword, callback) {
+			   bcrypt.compare(password, userPassword, function(err, isPasswordMatch) {
+				  if (err) 
+					return callback(err);
+				  return callback(null, isPasswordMatch);
+			   });
+			};
+			
+			console.log(exports); */
+			// Nodejs encryption with CTR
+			var crypto = require('crypto'),
+				algorithm = 'aes-256-ctr',
+				password = 'd6F3Efeq';
+
+			function encrypt(text){
+			  var cipher = crypto.createCipher(algorithm,password)
+			  var crypted = cipher.update(text,'utf8','hex')
+			  crypted += cipher.final('hex');
+			  return crypted;
+			}
+			 
+			function decrypt(text){
+			  var decipher = crypto.createDecipher(algorithm,password)
+			  var dec = decipher.update(text,'hex','utf8')
+			  dec += decipher.final('utf8');
+			  return dec;
+			}
+			 
+			var hw = encrypt("hello world")
+			console.log(hw);
+			// outputs hello world
+			//console.log(decrypt(hw));
+			
 			obj.setWhere = function(params){
 				var whereString = " WHERE 1 = 1 ";
 				if(params){
