@@ -5,39 +5,39 @@
 <h3> Party View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace">
 	<div class="col-sm-3">
-		<input type="text" class="form-control" placeholder="Search">
+		<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="filter('client_name', search, true)">
 	</div>
 	<div class="col-sm-2">
-		<select class="form-control" filter="addparty" ng-model="sort">
+		<select class="form-control" ng-model="sort" ng-change="orderBy('client_name', sort)">
 			<option>Sort By</option>
-			<option value="Ascending">Ascending</option>
-			<option value="Descending">Descending</option>
+			<option value="asc">Ascending</option>
+			<option value="desc">Descending</option>
 		</select>
 	</div>
 	<div class="col-sm-2">
-		<select class="form-control">
+		<select class="form-control" ng-model="status" ng-change="filter('status', status)">
 			<option>Select Status</option>
-			<option value="active">Active</option>
-			<option value="deleted">Deleted</option>
+			<option value="1">Active</option>
+			<option value="0">Deleted</option>
 		</select>
 	</div>
 	<div class="col-sm-2">
-		<select class="form-control">
-			<option>Select Party</option>
-			<option value="active">Party</option>
-			<option value="deleted">Vender</option>
+		<select class="form-control" ng-model="partyType" ng-change="filter('type', partyType)">
+			<option value="">Select Party</option>
+			<option value="Client">Client</option>
+			<option value="Vendor">Vendor</option>
 		</select>
 	</div>
-	<div class="col-sm-2">
+	<!-- <div class="col-sm-2">
 		<select class="form-control">
 			<option>Select Department</option>
 			<option value="Department1">Department1</option>
 			<option value="Department2">Department2</option>
 		</select>
-	</div>
+	</div> -->
 </div>
 <div class="table-responsive">
-	<table class="table table-bordered" ng-init="getParty(addparty)">
+	<table class="table table-bordered" ng-init="getParty(currentPage)">
 		<tr>
 			<th>Sr. No.</th>
 			<th>Party Name</th>
@@ -48,8 +48,8 @@
 			<th>Type</th>
 			<th>Manage</th>
 		</tr>
-		<tr ng-repeat="x in addparty | orderBy:sort">
-			<td>{{((currentPage - 1) * pageItems ) +$index + 1}}</td>
+		<tr ng-repeat="x in partylist | orderBy:sort">
+			<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
 			<td>{{x.client_name}}</td>
 			<td>{{x.email}}</td>
 			<td>{{x.contact}}</td>
@@ -59,8 +59,8 @@
 			<td class="col-sm-3">
 				<button ng-click="openAddparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
 				
-				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status==1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="deleted(x.id, x.status)" btn-checkbox btn-checkbox-true="'1'" btn-checkbox-false="'0'">		
-				<span class="glyphicon glyphicon-remove"></span> 
+				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="changeCol('status', x.status, x.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+					<span class="glyphicon glyphicon-remove"></span> 
 				</button>
 								
 				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
@@ -69,7 +69,7 @@
 	</table>
 </div>
 <div class="text-center">
-	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="changeStatus(currentPage)"></pagination>
-	<!-- <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
-	 <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getParty(currentPage,params)"></pagination>
+	
+	 <pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>

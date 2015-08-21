@@ -356,7 +356,7 @@ define(['app'], function (app) {
 			};
 			obj.setUserDetails = function(data){
 				if(data == (undefined || "")){
-					console.log("data undefined: "+data);
+					//console.log("data undefined: "+data);
 				}else{
 					localStorage.clear();
 					localStorage.userDetails = angular.isObject(data) ?  JSON.stringify(data) : data;
@@ -384,22 +384,50 @@ define(['app'], function (app) {
 			obj.setWhere = function(params){
 				var whereString = " WHERE 1 = 1 ";
 				if(params){
+					// Set WHERE clause
 					if(params.where != undefined){
 						angular.forEach(params.where, function(value, key) {
 							whereString += " AND " + key + " = '" + value + "'";
 						});
 					}
+					
+					// For search LIKE clause
+					if(params.search != undefined){
+						angular.forEach(params.search, function(value, key) {
+							whereString += " AND " + key + " LIKE '%" + value + "%'";
+						});
+					}
+					
+					// For OrderBy clause
+					if(params.orderBy != undefined){
+						var orderBy = " ORDER BY ";
+						angular.forEach(params.orderBy, function(value, key) {
+							orderBy += key + " " + value;
+						});
+						whereString += orderBy;
+					}
 				}
 				//console.log(whereString);
 				return whereString;
+			}
+			obj.setLimit = function(params){
+				if(!params || !params.limit){
+					return false;
+				}else{
+					var page = (params.limit.page - 1) * params.limit.records;
+					var limitString = " LIMIT " + page + ", " + params.limit.records;
+				}
+				//console.log(params.limit);
+				return limitString;
 			}
 			obj.get = function (signle,table, params) {
 				$rootScope.loading = true;
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
 				var whereClause = obj.setWhere(params);
+				var limitClause = obj.setLimit(params);
 				db.transaction(function (tx) {
-				  tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
+				  tx.executeSql('SELECT * FROM ' + table + whereClause + limitClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
 					if(len == 1 && signle == true){
@@ -409,13 +437,21 @@ define(['app'], function (app) {
 						  data.data.push(results.rows.item(i));
 						}
 					}
-					if( len >= 1){
-						deferred.resolve(data);
-					}else{
-						data.status = 'warning';
-						data.message = "Data not found!";
-						deferred.resolve(data);
-					}
+					tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
+					//console.log(results.rows.item(1));
+						data.totalRecords = results.rows.length;
+						
+						if( len >= 1){
+							deferred.resolve(data);
+						}else{
+							data.data = null;
+							data.status = 'warning';
+							data.message = "Data not found!";
+							deferred.resolve(data);
+						}
+						//console.log(data);
+					})
+					
 					//console.log(data);
 				  },function(error, er1){
 					  data.status = 'error';
@@ -429,6 +465,7 @@ define(['app'], function (app) {
 			};
 			
 			obj.post = function (table, object) {
+				var deferred = $q.defer();
 				$rootScope.loading = true;
 				var colName = "";
 				var colValue = "";
@@ -444,56 +481,66 @@ define(['app'], function (app) {
 				
 				db.transaction(function (tx) {
 				  tx.executeSql("INSERT INTO "+table+" ("+colName+") VALUES ("+colValue+")");
-				}, success, error1 );
-				function success(t, e){
-					console.log(t, e);
-					alert("success");
-				};
-				function error1(t, e) {
-					console.log(t, e);
-				}; 
-				$rootScope.loading = false; 
-			};
-			obj.put = function (table, object, params) {
-				$rootScope.loading = true;
-				
-				var newArrObj = {};
-				var colName = "";
-				var colValue = "";
-				var queryString="";
-				var i = 0;
-				angular.forEach(object, function(value, key) {
-					queryString = "'" + key + "' = " + "'" + value + "',";
-				});
-				colName = colName.slice(0,-1);
-				colValue = colValue.slice(0,-1);
-				var whereString = ' id = ' + params;
-				db.transaction(function (tx) {
-				  tx.executeSql("UPDATE "+table+" SET "+queryString+" where " + whereString);
-				}, success, error1 );
-				function success(t, e){
-					console.log(t, e);
-					alert("success");
-					var result = {
+				}, error, success);
+				// Success Handler
+				function success(){
+					var data = {
 						status : "success",
-						message : "Record updated successfully!",
+						message : "Record Inserted successfully!",
 						data : null
 					};
-					return result;
+					deferred.resolve(data);;
 				};
-				function error1(t, e) {
-					console.log(t, e);
-					var result = {
+				// Error Handler
+				function error(t, e) {
+					var data = {
 						status : "error",
 						message : e,
 						data : null
 					};
-					return result;
+					deferred.resolve(data);;
 				};
 				$rootScope.loading = false;
-				
+				return deferred.promise;
 			};
-			obj.delete = function (q, object, params) {
+			obj.put = function (table, object, params) {
+				$rootScope.loading = true;
+				var deferred = $q.defer();
+				var queryString="";
+				var i = 0;
+				angular.forEach(object, function(value, key) {
+					queryString = "" + key + " = " + "'" + value + "',";
+				});
+				queryString = queryString.slice(0,-1);
+				
+				var whereString = obj.setWhere(params);
+				
+				// Execute SQL
+				db.transaction(function (tx) {
+				  tx.executeSql("UPDATE "+table+" SET "+queryString+ whereString);
+				}, error, success);
+				// Success Handler
+				function success(){
+					var data = {
+						status : "success",
+						message : "Record updated successfully!",
+						data : null
+					};
+					deferred.resolve(data);;
+				};
+				// Error Handler
+				function error(t, e) {
+					var data = {
+						status : "error",
+						message : e,
+						data : null
+					};
+					deferred.resolve(data);;
+				};
+				$rootScope.loading = false;
+				return deferred.promise;
+			};
+			/* obj.delete = function (q, object, params) {
 				if(!params) params = {};
 				angular.extend(params, {METHOD : 'DELETE'});
 				$rootScope.loading = true;
@@ -506,8 +553,7 @@ define(['app'], function (app) {
 					$rootScope.loading = false;
 					return results.data;
 				});
-			};
-
+			}; */
 			return obj;
 	}]);
 
