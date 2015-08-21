@@ -11,6 +11,20 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.numPages = "";	
 		$scope.alerts = [];
 		
+		//datepicker
+		$scope.today = function() {
+			$scope.date = new Date();
+		};
+		$scope.open1 = function($event,opened){
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.opened = ($scope.opened==true)?false:true;
+		};
+		$scope.open2 = function($event,opened){
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.opened1 = ($scope.opened==true)?false:true;
+		};
 		//function to close alert
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
@@ -31,13 +45,27 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				size : 'lg'
 			};
 			var modalOptions = {
+				today : function() {
+					$scope.date = new Date();
+				},
+				open3 : function($event,opened){
+					$event.preventDefault();
+					$event.stopPropagation();
+					$scope.opened2 = ($scope.opened==true)?false:true;
+				},
 				adddepartment : adddepartment ? x : {},
 				addDept : function(adddepartment) {
-					dataService.post("department", adddepartment);
+					dataService.post("department", adddepartment)
+					.then(function(response) {
+						if(response.status == "success"){
+							$scope.getDept($scope.currentPage, $scope.params);
+							console.log(response);
+							$notification[response.status]("Record Updated Successfully!", response.message);
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Add record", response.message);
+					});
 					console.log(adddepartment); 
-					if(response.status == "success"){
-						$scope.getDept($scope.currentPage, $scope.params);
-					}
 				} , 
 				updateDept : function(adddepartment) {
 					var params={where:{id:adddepartment.id}};
@@ -48,6 +76,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						if(response.status == "success"){
 							$scope.getDept($scope.currentPage, $scope.params);
 							console.log(response);
+							$notification[response.status]("Record Updated Successfully!", response.message);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status]("Add record", response.message);
@@ -90,7 +119,22 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				if(!$scope.params.where) $scope.params.where = {};
 				$scope.params.where[col] = value;
 			}
-			$scope.getParty($scope.currentPage, $scope.params);
+			$scope.getDept($scope.currentPage, $scope.params);
+		}
+		$scope.changeCol = function(colName, colValue, id){
+			$scope.changeStatus = {};
+			$scope.changeStatus[colName] = colValue;
+			console.log(colName, colValue);
+			dataService.put("department",$scope.changeStatus,{where : { id : id}})
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == "success"){
+					$scope.getDept($scope.currentPage, $scope.params);
+					$notification[response.status]("Record Deleted Successfully!", response.message);
+				}
+				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+				$notification[response.status]("Add record", response.message);
+			});
 		}
 		console.log("this is department controller");
 	 };		 

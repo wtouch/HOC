@@ -37,7 +37,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.getTax = function(taxinfo, params){
 			$scope.params = (params) ? params : {
 				where : {
-					id : 1;
+					id : 1
 				}
 			};
 			dataService.get(true,"tax", $scope.params)

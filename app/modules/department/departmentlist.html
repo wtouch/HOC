@@ -10,18 +10,18 @@
 	<div class="col-sm-3"> 
 		<label for="fromdate" class="control-label">From Date </label>
 			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="department.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+				<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="department.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
 			</div>
 	</div>	
 	<div class="col-sm-3"> 
 		<label for="todate" class="control-label">To Date </label>
 			<div class="input-group">
-				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="department.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+				<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="department.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open2($event)" />
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					<button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
 			</div>
 	</div>	
@@ -65,17 +65,23 @@
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1 }}</td>
 				<td>{{dept.date}}</td>
 				<td>{{dept.item}}</td>
-				<td></td>
+				<td>RN</td>
+				<td>{{dept.tile_meson}}</td>
 				<td>{{dept.plaster_meson}}</td>
 				<td>{{dept.plumber_meson}}</td>
 				<td>{{dept.bbm_meson}}</td>
 				<td>{{dept.meson}}</td>
 				<td>{{dept.helper}}</td>
+				
 				<td>{{dept.breaking_machine}}</td>
 				<td>
-					<a class="btn btn-warning glyphicon glyphicon-pencil" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details" ng-click="open(dept)"></a>
-				
-					<a class="btn btn-danger glyphicon glyphicon-remove" ng-model="checkModel.right" btn-checkbox tooltip="Delete Party Details"></a>
+					<button class="btn btn-warning" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details" ng-click="open(dept)">
+						<span class=" glyphicon glyphicon-pencil"></span> 
+					</button>
+					
+					<button type="button" tooltip="{{(dept.status == 1) ? 'Delete' : 'Active'}}" ng-class="(dept.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="dept.status" ng-change="changeCol('status', dept.status, dept.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+						<span class="glyphicon glyphicon-remove"></span> 
+					</button>
 				</td>
 			</tr>
 		</tbody>
