@@ -23,21 +23,49 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			};
 			var modalOptions = {
 				postData : function(addquotation) {
-					dataService.post("quotation", addquotation);
+					dataService.post("quotation", addquotation).then(function(response){
+							if(response.status == "success"){
+								$scope.getQuotation($scope.currentPage, $scope.params);
+							}
+							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Add record", response.message);
+						});;
 					console.log(addquotation); 
 				},
-				getData : function() {
-					var account = {account : "account_name"};
-					 dataService.get("getsingle/transaction/"+id,account)
-					.then(function(response) { 
-						
+				updateData : function(addquotation) {
+					$scope.addquotation = addquotation;
+					var params={where:{id:addquotation.id}};
+					console.log(params);
+					console.log(addquotation);
+					delete addquotation.id;
+					dataService.put("quotation",$scope.addquotation,params)
+					.then(function(response) {
+					console.log(response);
 						if(response.status == "success"){
-							modalOptions.previousBalance = response.data.balance;
-							
-						}else{
-							modalOptions.previousBalance = 0;
-							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("", response.message);
+							$scope.getQuotation($scope.currentPage, $scope.params);
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Update record", response.message);
+					});
+				},
+				getData : function(page, params) {
+					$scope.params = (params) ? params : {
+						where : {
+							status : 1
+						}
+					};
+					angular.extend($scope.params, {limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+					dataService.get(false,"terms",$scope.params)
+					.then(function(response) { 
+						if(response.status == "success"){
+							modalOptions.termslist = response.data;
+							console.log(modalOptions.termslist);
+							console.log(response);
+							console.log('Hello');
 						}
 					});   
 				}
@@ -46,6 +74,36 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		};
 		
+		
+		//
+		$scope.getTerms = function(page, params){
+				$scope.params = (params) ? params : {
+					where : {
+						status : 1
+					}
+				};
+				angular.extend($scope.params, {limit : {
+						page : page,
+						records : $scope.pageItems
+					}
+				})
+				dataService.get(false,"terms", $scope.params)
+				.then(function(response) {
+					//console.log(response);
+					if(response.status == 'success'){
+						$scope.termslist = angular.copy(response.data);
+						console.log($scope.termslist);
+						$scope.totalRecords = response.totalRecords;
+					}else{
+						$scope.termslist = [];
+						$scope.totalRecords = 0;
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
+			}
+			
+		//
 		$scope.filter = function(col, value, search){
 			if(search == true){
 				if(!$scope.params.search) $scope.params.search = {};

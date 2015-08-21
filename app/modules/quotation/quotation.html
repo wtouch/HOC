@@ -2,7 +2,8 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 <div class="modal-body">
-<h3 class="text-center">Add New Quotation</h3>
+<h3 class="text-center" ng-if="modalOptions.addquotation.id">Add New Quotation</h3>
+<h3 class="text-center" ng-if="!modalOptions.addquotation.id">Edit New Quotation</h3>
 <form name="addquotationForm" class="form-horizontal" role="form" novalidate="novalidate" ng-submit="addquotationForm.$valid">
 	<div class="form-group">
 		<label for="template" class="col-sm-2 control-label" name="template"></label>
@@ -43,7 +44,7 @@
 			</div>						
 	</div>	
 	<div class="table-responsive">
-		<table class="table table-bordered">{{modalOptions.addquotation.particular}}
+		<table class="table table-bordered">
 			<tr>
 				<th>Description</th>
 				<th>Unit</th>
@@ -104,9 +105,9 @@
 	</table>
 	</div>
 	<h5>Terms & Conditions</h5>
-	<div class="table-responsive">
+	<div class="table-responsive" ng-init="modalOptions.getData(currentPage)">
 	<table class="table table-bordered">
-		<tr>
+		<tr ng-repeat="x in modalOptions.termslist">
 			<td>1</td>
 			<td><textarea class="form-control" type="text">This is description for add particular row of data.</textarea></td>
 			<td><a tooltip="Remove This"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -116,7 +117,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-click="modalOptions.postData(modalOptions.addquotation)">Submit</button>
-			<!-- <button type="submit" class="btn btn-success" ng-click="updateData(addquotation)">Update Quotation</button>  -->
+			<button type="submit" class="btn btn-success" ng-click="modalOptions.updateData(modalOptions.addquotation)">Update Quotation</button>  
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>
