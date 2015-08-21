@@ -25,7 +25,22 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				postData : function(addquotation) {
 					dataService.post("quotation", addquotation);
 					console.log(addquotation); 
-				} 
+				},
+				getData : function() {
+					var account = {account : "account_name"};
+					 dataService.get("getsingle/transaction/"+id,account)
+					.then(function(response) { 
+						
+						if(response.status == "success"){
+							modalOptions.previousBalance = response.data.balance;
+							
+						}else{
+							modalOptions.previousBalance = 0;
+							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("", response.message);
+						}
+					});   
+				}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});

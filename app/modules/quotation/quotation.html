@@ -42,9 +42,8 @@
 				</span>
 			</div>						
 	</div>	
-
 	<div class="table-responsive">
-		<table class="table table-bordered">
+		<table class="table table-bordered">{{modalOptions.addquotation.particular}}
 			<tr>
 				<th>Description</th>
 				<th>Unit</th>
@@ -54,36 +53,37 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.addquotation.description" required>
-					<span class="help-block" ng-show="addInvoiceForm.description.$dirty && addInvoiceForm.description.$invalid">
-						<span ng-show="addInvoiceForm.description.$error.required" class="text-danger">Required Field.</span>
+					<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.addquotation.particular.description" required>
+					<span class="help-block" ng-show="addquotationForm.description.$dirty && addquotationForm.description.$invalid">
+						<span ng-show="addquotationForm.description.$error.required" class="text-danger">Required Field.</span>
 					</span>
 				</td>			
 				<td>
-					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.addquotation.unit" required><!---->
+					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.addquotation.particular.unit" required><!---->
 						<option value="">Select Unit</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
 				</td>
 				<td>
-				<input type="text" id="area" name="area" ng-model="addquotation.area"/>
+				<input type="text" id="area" name="area" ng-model="modalOptions.addquotation.particular.area"/>
 				</td>
 				<td>
-				<input type="text" id="rate" name="rate" ng-model="addquotation.rate"/>
+				<input type="text" id="rate" name="rate" ng-model="modalOptions.addquotation.particular.rate"/>
 				</td>
 				<td>
-					<input type="text" id="amount" name="amount" ng-model="addquotation.amount" />
+					<input type="text" id="amount" name="amount" ng-model="modalOptions.addquotation.particular.amount" />
 				</td>
 			</tr>
 		</table>
 	</div>
-	
 	<div class="form-group">	
 		<div class="col-sm-offset-2">
-			<button type="submit" class="btn btn-success text-center">Add This</button>
+			<button type="submit" class="btn btn-success text-center" ng-click="modalOptions.add(modalOptions)">Add This</button>
 		</div>
 	</div>
+	</form>
+	
 	<div class="table-responsive">
 	<table class="table table-bordered">
 		<tr>
@@ -93,14 +93,12 @@
 			<th>Rate</th>
 			<th>Amount</th>
 		</tr>
-		<tr>
-			<td>
-				This is description
-			</td>
-			<td>2</td>
-			<td>2333</td>
-			<td>10</td>
-			<td>10000</td>
+		<tr ng-repeat="x in modalOptions.addquotation.particular">
+			<td>{{x.description}}</td>
+			<td>{{x.unit}}</td>
+			<td>{{x.area}}</td>
+			<td>{{x.rate}}</td>
+			<td>{{x.amount}}</td>
 		</tr>
 		
 	</table>
@@ -123,5 +121,4 @@
 		</div>
 	</div>
 </div>
-</form>
 </div>
