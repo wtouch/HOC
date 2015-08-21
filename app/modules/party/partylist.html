@@ -9,14 +9,14 @@
 	</div>
 	<div class="col-sm-2">
 		<select class="form-control" ng-model="sort" ng-change="orderBy('client_name', sort)">
-			<option>Sort By</option>
+			<option value="">Sort By</option>
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
 		</select>
 	</div>
 	<div class="col-sm-2">
 		<select class="form-control" ng-model="status" ng-change="filter('status', status)">
-			<option>Select Status</option>
+			<option value="">Select Status</option>
 			<option value="1">Active</option>
 			<option value="0">Deleted</option>
 		</select>
@@ -24,13 +24,13 @@
 	<div class="col-sm-2">
 		<select class="form-control" ng-model="partyType" ng-change="filter('type', partyType)">
 			<option value="">Select Party</option>
-			<option value="Client">Client</option>
-			<option value="Vendor">Vendor</option>
+			<option value="client">Client</option>
+			<option value="Vender">Vender</option>
 		</select>
 	</div>
 	<!-- <div class="col-sm-2">
 		<select class="form-control">
-			<option>Select Department</option>
+			<option value="">Select Department</option>
 			<option value="Department1">Department1</option>
 			<option value="Department2">Department2</option>
 		</select>
@@ -70,6 +70,5 @@
 </div>
 <div class="text-center">
 	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getParty(currentPage,params)"></pagination>
-	
-	 <pre>Page: {{currentPage}} / {{totalRecords}}</pre>
+	<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>

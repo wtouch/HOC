@@ -14,8 +14,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.alerts.splice(index, 1);
 		};
 		
-		
-		
 		console.log("this is party controller");
 			$scope.ok = function () {
 				$modalOptions.close('ok');
@@ -43,26 +41,30 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							if(response.status == "success"){
 								$scope.getParty($scope.currentPage, $scope.params);
 							}
+							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Add record", response.message);
 						});
 					},
 					updateData : function(addparty) {
+						$scope.addparty = addparty;
 						var params={where:{id:addparty.id}};
 						console.log(params);
-						dataService.put("party",addparty,params)
+						console.log(addparty);
+						delete addparty.id;
+						dataService.put("party",$scope.addparty,params)
 						.then(function(response) {
-							console.log(response);
+						console.log(response);
 							if(response.status == "success"){
 								$scope.getParty($scope.currentPage, $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("Add record", response.message);
+								$notification[response.status]("Update record", response.message);
 						});
 					}
 				};
 				modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 				});
 			};
-			
 			
 			$scope.openViewparty = function (addparty) {
 					var modalDefaults = {
@@ -86,11 +88,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 				$scope.getParty($scope.currentPage, $scope.params);
 			}
+			
 			$scope.orderBy = function(col, value){
 				if(!$scope.params.orderBy) $scope.params.orderBy = {};
 				$scope.params.orderBy[col] = value;
 				$scope.getParty($scope.currentPage, $scope.params);
 			}
+			
 			$scope.changeCol = function(colName, colValue, id){
 				$scope.changeStatus = {};
 				$scope.changeStatus[colName] = colValue;
@@ -148,6 +152,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					}
 				});
 			}
+			
 			$scope.dynamicTooltip = function(status, active, notActive){
 				return (status==1) ? active : notActive;
 			};	
