@@ -25,6 +25,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
+					modalOptions.addquotation.particular=JSON.stringify(modalOptions.addquotation.particular);
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
 								$scope.getQuotation($scope.currentPage, $scope.params);
@@ -79,10 +80,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					add : function(modalOptions){
 						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 						
-						var dtlObj = JSON.stringify(modalOptions.particular);
+						//var dtlObj = JSON.stringify(modalOptions.particular);
 						//modalOptions.addquotation.particular = (dtlObj);
-						modalOptions.addquotation.particular.push(JSON.parse(dtlObj));
-						console.log(dtlObj);
+						modalOptions.addquotation.particular.push((modalOptions.particular));
+						
 						
 					},
 					remove : function(item, modalOptions) {
