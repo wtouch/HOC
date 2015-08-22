@@ -35,22 +35,31 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		} */ 
 		$scope.getTax = function(taxinfo, params){
-			$scope.params = (params) ? params : {
-				where : {
-					id : 1
-				}
-			};
+			$scope.params ={where : {id : 1}};
 			dataService.get(true,"tax", $scope.params)
 			.then(function(response) {
 				//console.log(response);
 				if(response.status == 'success'){
-					alert("success");
+					$scope.taxinfo = angular.copy(response.data);
 				}else{
-					$scope.partylist = [];
+					$scope.taxinfo = [];
 					$scope.totalRecords = 0;
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("Get Transactions", response.message);
 				}
+			});
+		}
+		
+		$scope.updateTax = function(taxinfo) {
+			var params={where:{id:taxinfo.id}};
+			dataService.put("tax",$scope.taxinfo,params)
+			.then(function(response) {
+			console.log(response);
+				if(response.status == "success"){
+					$scope.getTax($scope.currentPage, $scope.params);
+				}
+				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Update record", response.message);
 			});
 		}
 		$scope.getTerms = function(page, params){

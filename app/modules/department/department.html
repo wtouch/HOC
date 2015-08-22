@@ -10,15 +10,12 @@
 					<div class="form-group">
 						<label for="inputdate" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-9">
-							<!-- <input type="date" class="form-control" id="date" name="date" placeholder="date" ng-model="modalOptions.adddepartment.date" required>  -->
-							
 							<div class="input-group">
-								<input type="text" placeholder="YYYY-DD-MM" id="date" name="date" class="form-control" ng-model="modalOptions.adddepartment.date" datepicker-popup="{{format}}" is-open="opened2" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="modalOptions.open3($event)" />
+								<input type="text" placeholder="YYYY-DD-MM" id="date" name="date" class="form-control" ng-model="modalOptions.adddepartment.date" datepicker-popup="{{format}}" is-open="modalOptions.opened3" min-date="minDate" max-date="'2020-12-31'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="modalOptions.open3(modalOptions.$event,'modalOptions.opened3')" />
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-default" ng-click="modalOptions.open3($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+									<button type="button" class="btn btn-default" ng-click="modalOptions.open3(modalOptions.$event,'modalOptions.opened3')"><i class="glyphicon glyphicon-calendar"></i></button>
 								</span>
 							</div>
-							
 							<input  type="hidden" class="form-control" id="status" name="status" ng-model="modalOptions.adddepartment.status" ng-init="modalOptions.adddepartment.status=1">
 								<span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
 								<span ng-show="adddepartmentForm.date.$error.required" class="text-danger">Required Field.</span>
@@ -26,34 +23,26 @@
 						</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 						<label for="item" class="col-sm-2 control-label">Item</label>
 							<div class="col-sm-9">
-								<!--<input  type="text" class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">-->
-								<select class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" ng-options="item.id as item.item_name for item in modalOptions.itemlist" required>
-									<option value="" selected>Select Item</option>
+								<select class="form-control" ng-model="items" ng-options="item.item_name for item in modalOptions.itemlist" ng-change="modalOptions.adddepartment.item = items.item_name">
+									<option value="">Select Item</option>
 								</select>
-								<!-- <select id="featured" class="form-control" ng-model="filterCategory" 
-								ng-change="changeStatus('category',filterCategory)" ng-options="item.system_name as item.name for item in temp.category">
-									<option value="" selected>Select Category</option>
-								</select>  -->
+								<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.adddepartment.item">
 								<span class="block" ng-show="adddepartmentForm.item.$invalid && adddepartmentForm.item.$dirty">
 									<span ng-show="adddepartmentForm.item.$error.required" class="text-danger">Required Field</span>
 								</span>
 							</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group" ng-init="modalOptions.getData('party', modalOptions,'partylist')">
 						<label for="item" class="col-sm-2 control-label">Party</label>
 							<div class="col-sm-9">
-								<!--<input  type="text" class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">-->
-								<select class="form-control" id="party" name="party" ng-model="modalOptions.adddepartment.party" ng-options="item.id as item.item_name for item in modalOptions.itemlist" required>
-									<option value="" selected>Select Party</option>
+								<select class="form-control" ng-model="partyType" ng-options="item.name for item in modalOptions.partylist" ng-change="modalOptions.adddepartment.party_name = partyType.name">
+									<option value="">Select Party</option>
 								</select>
-								<!-- <select id="featured" class="form-control" ng-model="filterCategory" 
-								ng-change="changeStatus('category',filterCategory)" ng-options="item.system_name as item.name for item in temp.category">
-									<option value="" selected>Select Category</option>
-								</select>  -->
+								<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.adddepartment.party_name">
 								<span class="block" ng-show="adddepartmentForm.party.$invalid && adddepartmentForm.party.$dirty">
 									<span ng-show="adddepartmentForm.party.$error.required" class="text-danger">Required Field</span>
 								</span>

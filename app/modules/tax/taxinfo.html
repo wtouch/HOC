@@ -1,6 +1,6 @@
 <h3 class="text-center">Tax Information</h3>
-<form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid" ng-init="getTax(taxinfo,taxinfo.id)">
-	<div class="form-group">{{taxinfo}}
+<form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid" ng-init="getTax(taxinfo)">
+	<div class="form-group">
 		<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.service_tax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
@@ -67,7 +67,7 @@
 				</tr>
 				<tr ng-repeat="term in termList">
 					<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
-					<td>{{term.term_description}}</td>
+					<td>{{term.description}}</td>
 					<td>
 						<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 							<span class="glyphicon glyphicon-remove"></span> 
@@ -83,7 +83,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="insertData(taxinfo)">Submit</button>
+			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="updateTax(taxinfo)">Submit</button>
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>

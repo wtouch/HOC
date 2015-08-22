@@ -77,59 +77,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				today : function() {
 					$scope.date = new Date();
 				},
-				open3 : function($event,opened){
+				open3 : function($event,opened3){
 					$event.preventDefault();
 					$event.stopPropagation();
-					$scope.opened2 = ($scope.opened==true)?false:true;
+					$scope.opened3 = ($scope.opened3==true)?false:true;
 				},
-				getItem : function(page, params){
-					$scope.params = (params) ? params : {};
-						/* where : {
-							status : 1
-						}
-					}; */
-					angular.extend($scope.params, {limit : {
-							page : page,
-							records : $scope.pageItems
-						}
-					})
-					dataService.get(false,"item", $scope.params)
-					.then(function(response) {
-						console.log(response);
-						if(response.status == 'success'){
-							$scope.itemlist = angular.copy(response.data);
-							$scope.totalRecords = response.totalRecords;
-						}else{
-							$scope.itemlist = [];
-							$scope.totalRecords = 0;
-							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("Get Transactions", response.message);
-						}
-					});
-				},
-				getParty : function(page, params){
-					$scope.params = (params) ? params : {
+				getData : function(table, modalOptions, subobj) {
+					console.log(modalOptions);
+					$scope.params = {
 						where : {
 							status : 1
 						}
 					};
-					angular.extend($scope.params, {limit : {
-							page : page,
-							records : $scope.pageItems
-						}
-					})
-					dataService.get(false,"party", $scope.params)
+					
+					dataService.get(false,table,$scope.params)
 					.then(function(response) {
-						//console.log(response);
-						if(response.status == 'success'){
-							$scope.partylist = angular.copy(response.data);
-							$scope.totalRecords = response.totalRecords;
-							console.log($scope.partylist);
-						}else{
-							$scope.partylist = [];
-							$scope.totalRecords = 0;
-							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("Get Transactions", response.message);
+						console.log(response);
+						if(response.status == "success"){
+							modalOptions[subobj] = response.data;
 						}
 					});
 				},
@@ -185,6 +150,31 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$scope.totalRecords = response.totalRecords;
 				}else{
 					$scope.deptList = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}
+		$scope.getParty = function(){
+			$scope.params = {
+				where : {
+					status : 1
+				},
+				orderBy : {
+					name : 'asc'
+				}
+			};
+			
+			dataService.get(false,"party", $scope.params)
+			.then(function(response) {
+				
+				if(response.status == 'success'){
+					$scope.partylist = response.data;
+					console.log($scope.partylist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.partylist = [];
 					$scope.totalRecords = 0;
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("Get Transactions", response.message);
