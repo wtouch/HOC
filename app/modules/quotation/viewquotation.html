@@ -4,19 +4,19 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<div class="modal-body">
+	<div class="modal-body">{{modalOptions.addquotation}}
 		<div class="row">
 			<div class="col-xs-12"><button class="btn btn-primary pull-right">Print</button></div>
 			<h3 class="text-center">Quotation</h3>
 			<div class="col-xs-12 text-right">
-				<p>Quotation No. : 1</p>
-				<p>Date : 10/08/2015</p>
+				<p>Quotation No. : {{modalOptions.addquotation.id}}</p>
+				<p>Date : {{modalOptions.addquotation.date}}</p>
 			</div>
 			<div class="col-xs-12">
 				<p>To,</p>
-				<p>Name : Mr.Mishra</p>
-				<p>Address : Pune</p>
-				<p>Subject : Replace</p>
+				<p>Name : {{modalOptions.addquotation.name}}</p>
+				<p>Address : {{modalOptions.addquotation.address}}</p>
+				<p>Subject : {{modalOptions.addquotation.subject}}</p>
 			</div>
 			<div class="col-xs-12">
 				<div class="table-responsive">
@@ -29,26 +29,29 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Brick Work</td>
-								<td>5360.40</td>
-							</tr>
-							<tr>
-								<td>P.C.C </td>
+								<td>{{modalOptions.addquotation.particular}}</td>
 								<td>5360.40</td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
 								<td>Total Amount =</td>
-								<td>22257.40</td>
+								<td>{{modalOptions.addquotation.total_amount}}</td>
 							</tr>
 						</tfoot>
 					</table>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<p><strong>Terms and Conditions :</strong></p>
-				<p>1.Term1<span class="glyphicon glyphicon-remove-circle"></span>
+			<div class="col-xs-12" ng-init="modalOptions.getData('terms', modalOptions,'termslist')">
+				<div class="table-responsive" ng-init="modalOptions.getData('terms', modalOptions,'termslist')">
+					<table class="table table-bordered">
+						<tr ng-repeat="list in modalOptions.termslist">
+							<td>{{list.id}}</td>
+							<td>{{list.description}}</td>
+							<td><a tooltip="Remove This" ng-click="modalOptions.remove(x,modalOptions)"><span class="glyphicon glyphicon-remove"></span></a></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<div class="col-xs-12">
 				<br>

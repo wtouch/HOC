@@ -25,14 +25,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
-					modalOptions.addquotation.particular=JSON.stringify(modalOptions.addquotation.particular);
+					addquotation.particular = JSON.stringify((addquotation.particular));
+					console.log(addquotation.particular);
+					
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
 								$scope.getQuotation($scope.currentPage, $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 							$notification[response.status]("Add record", response.message);
-						});;
+						});
 					console.log(addquotation); 
 				},
 				updateData : function(addquotation) {
@@ -67,25 +69,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						}
 					});
 				},
-				//particular : [],
-				/* addquotation : (addquotation) ? {
-						'id':addquotation.id,
-						'name':addquotation.user_id,
-						'address':addquotation.property_id,
-						'subject':addquotation.subtotal,
-						'particular':addquotation.particular,
-						'status':addquotation.status
-					} : {}, */
-					//singleparticular : {},
-					add : function(modalOptions){
-						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
-						
-						//var dtlObj = JSON.stringify(modalOptions.particular);
-						//modalOptions.addquotation.particular = (dtlObj);
-						modalOptions.addquotation.particular.push((modalOptions.particular));
-						
-						
-					},
+				add : function(modalOptions){
+					modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
+					
+					var dtlObj = angular.copy(modalOptions.particular);
+					//modalOptions.addquotation.particular = (dtlObj);
+					modalOptions.addquotation.particular.push((dtlObj));
+					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
+				},
 					remove : function(item, modalOptions) {
 						console.log(modalOptions);
 						var index = modalOptions.addquotation.particular.indexOf(item);
@@ -96,6 +87,35 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		};
 		
+		
+		$scope.openViewparty = function (addquotation) {
+				var modalDefaults = {
+				templateUrl: 'modules/quotation/viewquotation.html',	
+				size : 'lg'
+			};
+			var modalOptions = {
+				addquotation : addquotation,
+				getData : function(table, modalOptions, subobj) {
+					console.log(modalOptions);
+					$scope.params = {
+						where : {
+							status : 1
+						}
+					};
+					
+					dataService.get(false,table,$scope.params)
+					.then(function(response) {
+						console.log(response);
+						if(response.status == "success"){
+							modalOptions[subobj] = response.data;
+						}
+					});
+				},
+			};
+			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
+			});
+		};
+			
 		
 		//
 		$scope.getTerms = function(page, params){

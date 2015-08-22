@@ -5,7 +5,7 @@
 <div class="modal-body">
 	
 	<h3 class="text-center" ng-if="!modalOptions.addparty.id">Add New Party</h3>
-	<h3 class="text-center" ng-if="modalOptions.addparty.id">Edit Party</h3>
+	<h3 class="text-center" ng-if="modalOptions.addparty.id">Update Party</h3>
 <form class="form-horizontal" name="addPartyForm" role="form" novalidate ng-submit="addPartyForm.$valid">
 	<div class="form-group">
 		<label for="clientName" class="col-sm-2 control-label">Client Name *</label>
@@ -136,7 +136,7 @@
 		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" class="btn btn-primary" ng-disabled="addPartyForm.$invalid" ng-if="!modalOptions.addparty.id" ng-click="modalOptions.postData(modalOptions.addparty);modalOptions.ok()">Add Party</button> 
 			
-			<button type="submit" class="btn btn-primary" ng-disabled="addPartyForm.$invalid" ng-if="modalOptions.addparty.id" ng-click="modalOptions.updateData(modalOptions.addparty);modalOptions.ok()">Edit Party</button> 
+			<button type="submit" class="btn btn-primary" ng-disabled="addPartyForm.$invalid" ng-if="modalOptions.addparty.id" ng-click="modalOptions.updateData(modalOptions.addparty);modalOptions.ok()">Update Party</button> 
 			
 			<button type="reset" class="btn btn-danger" ng-click="modalOptions.ok()" >Cancel</button>
 		</div>
