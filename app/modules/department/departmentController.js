@@ -10,7 +10,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.pageItems = 10;
 		$scope.numPages = "";	
 		$scope.alerts = [];
-		
+		$scope.currentDate = dataService.currentDate;
+		$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[0];
 		//datepicker
 		$scope.today = function() {
 			$scope.date = new Date();
@@ -20,10 +22,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$event.stopPropagation();
 			$scope.opened = ($scope.opened==true)?false:true;
 		};
-		$scope.open2 = function($event,opened){
+		$scope.open2 = function($event,opened1){
 			$event.preventDefault();
 			$event.stopPropagation();
-			$scope.opened1 = ($scope.opened==true)?false:true;
+			$scope.opened1 = ($scope.opened1==true)?false:true;
 		};
 		//function to close alert
 		$scope.closeAlert = function(index) {
@@ -34,7 +36,32 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;
 		};
-			
+		$scope.getParty = function(page, params){
+			$scope.params = (params) ? params : {
+				where : {
+					status : 1
+				}
+			};
+			angular.extend($scope.params, {limit : {
+					page : page,
+					records : $scope.pageItems
+				}
+			})
+			dataService.get(false,"party", $scope.params)
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == 'success'){
+					$scope.partylist = angular.copy(response.data);
+					$scope.totalRecords = response.totalRecords;
+					console.log($scope.partylist);
+				}else{
+					$scope.partylist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}	
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
@@ -45,6 +72,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				size : 'lg'
 			};
 			var modalOptions = {
+				formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
+				format : $scope.formats[0],
 				today : function() {
 					$scope.date = new Date();
 				},
@@ -52,6 +81,57 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$event.preventDefault();
 					$event.stopPropagation();
 					$scope.opened2 = ($scope.opened==true)?false:true;
+				},
+				getItem : function(page, params){
+					$scope.params = (params) ? params : {};
+						/* where : {
+							status : 1
+						}
+					}; */
+					angular.extend($scope.params, {limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+					dataService.get(false,"item", $scope.params)
+					.then(function(response) {
+						console.log(response);
+						if(response.status == 'success'){
+							$scope.itemlist = angular.copy(response.data);
+							$scope.totalRecords = response.totalRecords;
+						}else{
+							$scope.itemlist = [];
+							$scope.totalRecords = 0;
+							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Get Transactions", response.message);
+						}
+					});
+				},
+				getParty : function(page, params){
+					$scope.params = (params) ? params : {
+						where : {
+							status : 1
+						}
+					};
+					angular.extend($scope.params, {limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+					dataService.get(false,"party", $scope.params)
+					.then(function(response) {
+						//console.log(response);
+						if(response.status == 'success'){
+							$scope.partylist = angular.copy(response.data);
+							$scope.totalRecords = response.totalRecords;
+							console.log($scope.partylist);
+						}else{
+							$scope.partylist = [];
+							$scope.totalRecords = 0;
+							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+							$notification[response.status]("Get Transactions", response.message);
+						}
+					});
 				},
 				adddepartment : adddepartment ? x : {},
 				addDept : function(adddepartment) {

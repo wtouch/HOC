@@ -29,26 +29,43 @@
 					<div class="form-group">
 						<label for="item" class="col-sm-2 control-label">Item</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">
-								<!--<select class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" ng-options="item.id as item.item_name for item in modalOptions.itemlist" required>
+								<!--<input  type="text" class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">-->
+								<select class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" ng-options="item.id as item.item_name for item in modalOptions.itemlist" required>
 									<option value="" selected>Select Item</option>
 								</select>
-								 <select id="featured" class="form-control" ng-model="filterCategory" 
+								<!-- <select id="featured" class="form-control" ng-model="filterCategory" 
 								ng-change="changeStatus('category',filterCategory)" ng-options="item.system_name as item.name for item in temp.category">
 									<option value="" selected>Select Category</option>
-								</select> -->
+								</select>  -->
 								<span class="block" ng-show="adddepartmentForm.item.$invalid && adddepartmentForm.item.$dirty">
 									<span ng-show="adddepartmentForm.item.$error.required" class="text-danger">Required Field</span>
 								</span>
 							</div>
 					</div>
-				
+					
+					<div class="form-group">
+						<label for="item" class="col-sm-2 control-label">Party</label>
+							<div class="col-sm-9">
+								<!--<input  type="text" class="form-control" id="item" name="item" ng-model="modalOptions.adddepartment.item" cols="30" rows="4" ng-maxlength="5000" placeholder="Add item"  required="">-->
+								<select class="form-control" id="party" name="party" ng-model="modalOptions.adddepartment.party" ng-options="item.id as item.item_name for item in modalOptions.itemlist" required>
+									<option value="" selected>Select Party</option>
+								</select>
+								<!-- <select id="featured" class="form-control" ng-model="filterCategory" 
+								ng-change="changeStatus('category',filterCategory)" ng-options="item.system_name as item.name for item in temp.category">
+									<option value="" selected>Select Category</option>
+								</select>  -->
+								<span class="block" ng-show="adddepartmentForm.party.$invalid && adddepartmentForm.party.$dirty">
+									<span ng-show="adddepartmentForm.party.$error.required" class="text-danger">Required Field</span>
+								</span>
+							</div>
+					</div>
+					
 					<div class="form-group">
 						<label for="tilemeson" class="col-sm-2 control-label">Tile Meson</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="tilemeson" name="tilemeson" ng-model="modalOptions.adddepartment.tile_meson" cols="30" rows="4" placeholder="Tile Meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" required>
+								<input type="text" class="form-control" id="tilemeson" name="tilemeson" ng-model="modalOptions.adddepartment.tile_meson" cols="30" rows="4" placeholder="Tile Meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10">
 								<span class="block" ng-show="adddepartmentForm.tilemeson.$invalid && adddepartmentForm.tilemeson.$dirty">
-									<span ng-show="adddepartmentForm.tilemeson.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.tilemeson.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.tilemeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -57,9 +74,9 @@
 					<div class="form-group">
 						<label for="plastermeson" class="col-sm-2 control-label">Plaster Meson</label>
 						<div class="col-sm-9">
-							<input  type="text" class="form-control" id="plastermeson" name="plastermeson" ng-model="modalOptions.adddepartment.plaster_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plaster Meson" required>
+							<input  type="text" class="form-control" id="plastermeson" name="plastermeson" ng-model="modalOptions.adddepartment.plaster_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plaster Meson">
 							<span class="block" ng-show="adddepartmentForm.plastermeson.$invalid && adddepartmentForm.plastermeson.$dirty">
-								<span ng-show="adddepartmentForm.plastermeson.$error.required" class="text-danger">Required Field</span>
+								<!-- <span ng-show="adddepartmentForm.plastermeson.$error.required" class="text-danger">Required Field</span> -->
 								<span ng-show="adddepartmentForm.plastermeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 							</span>
 						</div>
@@ -68,9 +85,9 @@
 					<div class="form-group">
 						<label for="plumbermeson" class="col-sm-2 control-label">Plumber Meson</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="plumbermeson" name="plumbermeson" ng-model="modalOptions.adddepartment.plumber_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plamber Meson" required>
+								<input  type="text" class="form-control" id="plumbermeson" name="plumbermeson" ng-model="modalOptions.adddepartment.plumber_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plamber Meson">
 								<span class="block" ng-show="adddepartmentForm.plumbermeson.$invalid && adddepartmentForm.plumbermeson.$dirty">
-									<span ng-show="adddepartmentForm.plumbermeson.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.plumbermeson.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.plumbermeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -79,9 +96,9 @@
 					<div class="form-group">
 						<label for="bbmmeson" class="col-sm-2 control-label">BBM Meson</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="bbmmeson" name="bbmmeson" ng-model="modalOptions.adddepartment.bbm_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="BBM Meson" required>
+								<input  type="text" class="form-control" id="bbmmeson" name="bbmmeson" ng-model="modalOptions.adddepartment.bbm_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="BBM Meson">
 								<span class="block" ng-show="adddepartmentForm.bbmmeson.$invalid && adddepartmentForm.bbmmeson.$dirty">
-									<span ng-show="adddepartmentForm.bbmmeson.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.bbmmeson.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.bbmmeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -90,9 +107,9 @@
 					<div class="form-group">
 						<label for="meson" class="col-sm-2 control-label"> Meson</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="meson" name="meson" ng-model="modalOptions.adddepartment.meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Meson" required>
+								<input  type="text" class="form-control" id="meson" name="meson" ng-model="modalOptions.adddepartment.meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Meson">
 								<span class="block" ng-show="adddepartmentForm.meson.$invalid && adddepartmentForm.meson.$dirty">
-									<span ng-show="adddepartmentForm.meson.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.meson.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.meson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -101,9 +118,9 @@
 						<div class="form-group">
 								<label for="helper" class="col-sm-2 control-label">Helper</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="helper" name="helper" ng-model="modalOptions.adddepartment.helper" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="helper" required>
+								<input  type="text" class="form-control" id="helper" name="helper" ng-model="modalOptions.adddepartment.helper" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="helper">
 								<span class="block" ng-show="adddepartmentForm.helper.$invalid && adddepartmentForm.helper.$dirty">
-									<span ng-show="adddepartmentForm.helper.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.helper.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.helper.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -112,9 +129,9 @@
 					<div class="form-group">
 								<label for="breakingmachine" class="col-sm-2 control-label">Breaking Machine</label>
 							<div class="col-sm-9">
-								<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="modalOptions.adddepartment.breaking_machine" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Breaking Machine" required>
+								<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="modalOptions.adddepartment.breaking_machine" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Breaking Machine">
 								<span class="block" ng-show="adddepartmentForm.breakingmachine.$invalid && adddepartmentForm.breakingmachine.$dirty">
-									<span ng-show="adddepartmentForm.breakingmachine.$error.required" class="text-danger">Required Field</span>
+									<!-- <span ng-show="adddepartmentForm.breakingmachine.$error.required" class="text-danger">Required Field</span> -->
 									<span ng-show="adddepartmentForm.breakingmachine.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>

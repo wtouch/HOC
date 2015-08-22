@@ -59,20 +59,26 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12 table-responsive">
-			<table class="table table-bordered" ng-init="termsList(term)">
+			<table class="table table-bordered" ng-init="getTerms(currentPage)">
 				<tr>
 					<th>Sr. No.</th>
 					<th>Terms and Conditions</th>
 					<th>Manage</th>
 				</tr>
 				<tr ng-repeat="term in termList">
-					<td>{{$index + 1}}</td>
+					<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
 					<td>{{term.term_description}}</td>
 					<td>
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" tooltip="Delete Terms & Conditions"></button>
+						<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+							<span class="glyphicon glyphicon-remove"></span> 
+						</button>
 					</td>
 				</tr>
 			</table>
+		</div>
+		<div class="text-center">
+			<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getTerms(currentPage,params)"></pagination>
+			<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 		</div>
 	</div>
 	<div class="form-group">
@@ -81,5 +87,4 @@
 			<button type="reset" class="btn btn-danger">Cancel</button>
 		</div>
 	</div>
-	
 </form>

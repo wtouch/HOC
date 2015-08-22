@@ -6,10 +6,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$rootScope.metaTitle = "HOC";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
-		$scope.projectListCurrentPage = 1;
-		$scope.pageItems = 10;
 		$scope.numPages = "";	
 		$scope.alerts = [];
+		$scope.currentPage = 1;
+		$scope.pageItems = 10;
 		console.log("this is tax controller");
 		// function to close alert
 		$scope.closeAlert = function(index) {
@@ -53,6 +53,31 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			});
 		}
+		$scope.getTerms = function(page, params){
+			$scope.params = (params) ? params : {
+				where : {
+					status : 1
+				}
+			};
+			angular.extend($scope.params, {limit : {
+					page : page,
+					records : $scope.pageItems
+				}
+			})
+			dataService.get(false,"terms", $scope.params)
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == 'success'){
+					$scope.termList = angular.copy(response.data);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.termList = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
@@ -63,28 +88,34 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			};
 			var modalOptions = {
 				insertTerm : function(term) {
-					dataService.post("terms", term);
-					console.log(term); 
+					dataService.post("terms", term).then(function(response){
+						if(response.status == "success"){
+							$scope.getTerms($scope.currentPage, $scope.params);
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Add record", response.message);
+					});
 				}
 			};
 			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 			});
 		};
-		$scope.termsList = function(term){
-			dataService.get(false , "terms").then(function(response){
-				console.log(response);
-				if(response.status == 'success'){	
-					$scope.termList = response.data;
-					//$scope.totalRecords=response.totalRecords;
+		$scope.changeCol = function(colName, colValue, id){
+			$scope.changeStatus = {};
+			$scope.changeStatus[colName] = colValue;
+			console.log(colName, colValue);
+			dataService.put("terms",$scope.changeStatus,{where : { id : id}})
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == "success"){
+					$scope.getTerms($scope.currentPage, $scope.params);
+					$notification[response.status]("Record Deleted Successfully!", response.message);
 				}
-				else{
-					$scope.termList = [];
-					//$scope.totalRecords = {};	
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					//$notification[response.status]("Get Business List", response.message);
-				}
+				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+				$notification[response.status]("Add record", response.message);
 			});
 		}
+		
 	 };		 
 	// Inject controller's dependencies
 	taxController.$inject = injectParams;

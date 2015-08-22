@@ -9,6 +9,7 @@
 					<div class="form-group">
 						<label for="termcondition" class="col-sm-2 control-label">Term And Condition *</label>
 						<div class="col-sm-9">
+							<input  type="hidden" class="form-control" id="status" name="status" ng-model="modalOptions.term.status" ng-init="modalOptions.term.status=1">
 							<textarea name="termcondition" id="termcondition" ng-model="modalOptions.term.term_description" placeholder="Address" class="form-control" ng-maxlength="75" required></textarea>
 							<span ng-hide="addTermconditionForm.termcondition.$error.maxlength">
 								{{ 256 - modalOptions.term.term_description.length + " Chars left" }}
