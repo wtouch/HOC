@@ -20,17 +20,13 @@
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control" ng-model="partyType" ng-init="getParty(currentPage)" ng-options="item.id as item.name for item in partylist" ng-change="filter('name', partyType)">
+			<select class="form-control" ng-model="partyType" ng-init="getParty(currentPage)" ng-options="item.name for item in partylist" ng-change="filter('name', partyType.name)">
 				<option value="">Select Party</option>
-				<option value="Party">Party</option>
-				<option value="Vender">Vender</option>
 			</select>
-		</div>
+		</div>{{partyType}}
 		<div class="col-sm-2">
-			<select class="form-control" ng-model="department" ng-init="getParty(currentPage)" ng-options="item.id as item.name for item in partylist ">
+			<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }">
 				<option value="">Select Department</option>
-				<option value="Department1">Department1</option>
-				<option value="Department2">Department2</option>
 			</select>
 		</div>
 </div>
