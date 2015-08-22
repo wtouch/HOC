@@ -77,10 +77,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					} : {}, */
 					//singleparticular : {},
 					add : function(modalOptions){
-						//modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
+						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 						
 						var dtlObj = JSON.stringify(modalOptions.particular);
 						modalOptions.addquotation.particular = (dtlObj);
+						modalOptions.addquotation.particulars.push(JSON.parse(dtlObj));
 						console.log(modalOptions.addquotation.particular);
 					}
 			};
@@ -123,6 +124,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				$scope.params = {
 					where : {
 						status : 1
+					},
+					orderBy : {
+						name : 'asc'
 					}
 				};
 				

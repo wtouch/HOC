@@ -449,10 +449,12 @@ define(['app'], function (app) {
 					if(params.groupBy != undefined){
 						var groupBy = " GROUP BY ";
 						angular.forEach(params.groupBy, function(value, key) {
-							groupBy += value + ", ";
+							groupBy += value + ",";
 						});
+						groupBy = groupBy.slice(0,-1);
 						whereString += groupBy;
 					}
+					
 					// For OrderBy clause
 					if(params.orderBy != undefined){
 						var orderBy = " ORDER BY ";
