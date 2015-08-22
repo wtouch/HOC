@@ -3,6 +3,29 @@
 	<a class="btn btn-default" ng-click="openAddQuotation()" tooltip="Add New Quotation">Add New Quotation</a>
 </div>
 <h3> Quotation View</h3>
+
+<div class="col-sm-12">
+<table class="table table-bordered" ng-init="getTerms(currentPage)"> 
+		<tr>
+			<th>id</th>
+			<th>Desc</th>
+			
+		</tr>{{termslist}}
+		<tr ng-repeat="x in termslist | orderBy:sort">
+		<td>{{x.id}}</td>
+		<td>{{x.description}}</td>
+</div>
+
+
+<div class="col-sm-12">
+<table class="table table-bordered" ng-init="getParty(currentPage)"> 
+		<tr>
+			<th>id</th>
+		</tr>
+		<tr ng-repeat="x in partylist | orderBy:sort">
+		<td>{{x.client_name}}</td>
+</div>
+
 <div class="row bottomspace">
 		<div class="col-sm-3">
 			<select class="form-control" ng-model="sort" ng-change="orderBy('name', sort)">
@@ -19,14 +42,14 @@
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control" ng-model="partyType" ng-change="filter('client_name', partyType)">
+			<select class="form-control" ng-model="partyType" ng-init="getParty(currentPage)" ng-options="item.id as item.client_name for item in partylist " ng-change="filter('client_name', partyType)">
 				<option value="">Select Party</option>
 				<option value="Party">Party</option>
 				<option value="Vender">Vender</option>
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control">
+			<select class="form-control" ng-model="department" ng-init="getParty(currentPage)" ng-options="item.id as item.client_name for item in partylist ">
 				<option value="">Select Department</option>
 				<option value="Department1">Department1</option>
 				<option value="Department2">Department2</option>

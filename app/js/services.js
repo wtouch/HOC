@@ -425,7 +425,7 @@ define(['app'], function (app) {
 			 
 			var hw = encrypt("hello world")
 			console.log(hw);
-			// outputs hello world
+			 //outputs hello world
 			//console.log(decrypt(hw));
 			
 			obj.setWhere = function(params){

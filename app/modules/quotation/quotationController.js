@@ -16,12 +16,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
-		$scope.openAddQuotation = function () {
+		$scope.openAddQuotation = function (addquotation) {
+			var x = angular.copy(addquotation);
 			var modalDefaults = {
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
 			};
 			var modalOptions = {
+				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
@@ -49,6 +51,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					});
 				},
 				getData : function(page, params) {
+					console.log('Hello');
 					$scope.params = (params) ? params : {
 						where : {
 							status : 1
@@ -68,7 +71,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							console.log('Hello');
 						}
 					});   
-				}
+				},
+				particular : [],
+				/* addquotation : (addquotation) ? {
+						'id':addquotation.id,
+						'name':addquotation.user_id,
+						'address':addquotation.property_id,
+						'subject':addquotation.subtotal,
+						'particular':addquotation.particular,
+						'status':addquotation.status
+					} : {}, */
+					//singleparticular : {},
+					add : function(modalOptions){
+						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
+						
+						var dtlObj = JSON.stringify(modalOptions.addquotation.particular);
+						modalOptions.addquotation.particular.push(JSON.parse(dtlObj));
+						console.log(modalOptions.addquotation.particular);
+					}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
@@ -89,7 +109,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				})
 				dataService.get(false,"terms", $scope.params)
 				.then(function(response) {
-					//console.log(response);
+					console.log(response);
 					if(response.status == 'success'){
 						$scope.termslist = angular.copy(response.data);
 						console.log($scope.termslist);
@@ -101,9 +121,37 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						$notification[response.status]("Get Transactions", response.message);
 					}
 				});
-			}
+			} 
 			
 		//
+		//request for party list
+			$scope.getParty = function(page, params){
+				$scope.params = (params) ? params : {
+					where : {
+						status : 1
+					}
+				};
+				angular.extend($scope.params, {limit : {
+						page : page,
+						records : $scope.pageItems
+					}
+				})
+				dataService.get(false,"party", $scope.params)
+				.then(function(response) {
+					console.log(response);
+					if(response.status == 'success'){
+						$scope.partylist = response.data;
+						console.log($scope.partylist);
+						$scope.totalRecords = response.totalRecords;
+					}else{
+						$scope.partylist = [];
+						$scope.totalRecords = 0;
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
+			}
+			//end party list
 		$scope.filter = function(col, value, search){
 			if(search == true){
 				if(!$scope.params.search) $scope.params.search = {};
