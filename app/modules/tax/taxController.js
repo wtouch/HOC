@@ -15,25 +15,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
-		/* $scope.insertData = function(taxinfo) {
-			dataService.post("tax", taxinfo);
-			console.log(taxinfo); 
-		}*/
-		/* $scope.getTax = function(taxinfo){
-			//$scope.param = {where : {id : 1}};
-			//console.log($scope.param);
-			dataService.get(false , "tax").then(function(response){
-				if(response.status == 'success'){	
-					$scope.taxinfo = response.data;
-					console.log($scope.taxinfo);
-					//$scope.totalRecords=response.totalRecords;
-				}
-				else{
-					$scope.taxinfo = [];
-					//$scope.totalRecords = {};	
-				}
-			});
-		} */ 
 		$scope.getTax = function(taxinfo, params){
 			$scope.params ={where : {id : 1}};
 			dataService.get(true,"tax", $scope.params)
@@ -102,7 +83,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							$scope.getTerms($scope.currentPage, $scope.params);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-						$notification[response.status]("Add record", response.message);
+						$notification[response.status]("Terms Added Successfully.", response.message);
 					});
 				}
 			};
@@ -121,7 +102,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Record Deleted Successfully!", response.message);
 				}
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-				$notification[response.status]("Add record", response.message);
 			});
 		}
 		
