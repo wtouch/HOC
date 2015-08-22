@@ -57,9 +57,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(response);
 				if(response.status == "success"){
 					$scope.getTax($scope.currentPage, $scope.params);
+					$notification[response.status]("Record Updated successfully.", response.message);
 				}
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Update record", response.message);
 			});
 		}
 		$scope.getTerms = function(page, params){

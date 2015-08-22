@@ -32,10 +32,8 @@
 	</div>
 	<div class="col-sm-3">
 		<label for="department" class="control-label">Select Department</label>		
-		<select id="department" class="form-control ng-pristine ng-valid" ng-model="sort">  
-			<option value="">Select Department</option>		
-			<option value="Department1">Department1</option>
-			<option value="Department2">Department2</option>  
+		<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }" ng-change="filter('department', partyType.department)">
+			<option value="">Select Department</option>
 		</select>
 	</div>
 </div>
@@ -45,9 +43,9 @@
 			<tr>
 				<th>Sr.No.</th>
 				<th>Date</th>
+				<th>Item</th>
 				<th>Party</th>
-				<th>Description</th>
-				<th>Receipt No</th> 
+				<th>Department</th>
 				<th>Tiles Meson </th>
 				<th>Plaster Meson </th>
 				<th>Plumber Meson</th>
@@ -62,9 +60,9 @@
 			<tr ng-repeat="dept in deptList">
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1 }}</td>
 				<td>{{dept.date}}</td>
-				<td>{{dept.party_name}}</td>
 				<td>{{dept.item}}</td>
-				<td>RN</td>
+				<td>{{dept.party_name}}</td>
+				<td>{{dept.department}}</td>
 				<td>{{dept.tile_meson}}</td>
 				<td>{{dept.plaster_meson}}</td>
 				<td>{{dept.plumber_meson}}</td>
@@ -72,7 +70,6 @@
 				<td>{{dept.meson}}</td>
 				<td>{{dept.helper}}</td>
 				<td>{{dept.breaking_machine}}</td>
-				
 				<td>
 					<button class="btn btn-warning" ng-model="checkModel.left" btn-checkbox tooltip="Edit Department Details" ng-click="open(dept)">
 						<span class=" glyphicon glyphicon-pencil"></span> 
