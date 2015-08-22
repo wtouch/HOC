@@ -16,13 +16,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		};
 		
 		$scope.openAddMeasurement = function (addmeasurement) {
+			console.log(addmeasurement);
+			var x = angular.copy(addmeasurement);
 			var modalDefaults = {
 				templateUrl: 'modules/measurement/measurement.html',	
 				size : 'lg'
 			};
 			var modalOptions = {
-				
 				addmeasurement : (addmeasurement) ? x :{},
+				
 				postData : function(addmeasurement) {
 					dataService.post("measurement", addmeasurement).then(function(response) {
 						console.log(response);
@@ -35,7 +37,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					
 				}, 
 				updateData : function(addmeasurement) {
-					var params={where:{id:addmeasurement.id}};
+					var params = {where:{id:addmeasurement.id}};
 					console.log(params);
 					delete addmeasurement.id;
 					console.log(addmeasurement);
@@ -49,18 +51,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						$notification[response.status]("Update record", response.message);
 					});
 				}
-				
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
-		$scope.viewMeasurement = function (itemdata) {
+		$scope.viewMeasurement = function (measurementdata) {
 			var modalDefaults = {
 				templateUrl: 'modules/measurement/viewmeasurement.html',	
 				size : 'lg'
 			};
 			var modalOptions = {
-				item : itemdata,
+				measurement : measurementdata,
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			
@@ -137,21 +138,33 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.dynamicTooltip = function(status, active, notActive){
 				return (status==1) ? active : notActive;
 			};
-			/* $scope.getMeasurement = function(addmeasurement){
-				dataService.get(false,"measurement")
+			
+			//function to get party & department type
+			$scope.getParty = function(page, params){
+				$scope.params = (params) ? params : {};
+					/* where : {
+						status : 1
+					}
+				}; */
+				angular.extend($scope.params, {limit : {
+						page : page,
+						records : $scope.pageItems
+					}
+				})
+				dataService.get(false,"party", $scope.params)
 				.then(function(response) {
-					console.log(addmeasurement);
+					console.log(response)
 					if(response.status == 'success'){
-						$scope.addmeasurement = response.data;
-						$scope.totalRecords = response.totalRecords;
+						$scope.partylist = angular.copy(response.data);
+						console.log($scope.partylist);
 					}else{
-						$scope.addmeasurement = [];
-						$scope.totalRecords = 0;
+						$scope.partylist = [];
+						
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status]("Get Transactions", response.message);
 					}
 				});
-			} */
+			}
 	 };		 
 	// Inject controller's dependencies
 	measurementController.$inject = injectParams;

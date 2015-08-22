@@ -127,20 +127,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.dynamicTooltip = function(status, active, notActive){
 				return (status==1) ? active : notActive;
 			};
-		/* $scope.getItem = function(itemlist){
-			dataService.get(false,"item")
-			.then(function(response) {
-				if(response.status == 'success'){
-					$scope.itemlist = response.data;
-					$scope.totalRecords = response.totalRecords;
-				}else{
-					$scope.itemlist = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
-				}
-			});
-		} */
 		
 	 };		 
 	// Inject controller's dependencies

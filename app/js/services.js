@@ -445,6 +445,14 @@ define(['app'], function (app) {
 						});
 					}
 					
+					// For GroupBy clause
+					if(params.groupBy != undefined){
+						var groupBy = " GROUP BY ";
+						angular.forEach(params.groupBy, function(value, key) {
+							groupBy += value + ", ";
+						});
+						whereString += groupBy;
+					}
 					// For OrderBy clause
 					if(params.orderBy != undefined){
 						var orderBy = " ORDER BY ";
