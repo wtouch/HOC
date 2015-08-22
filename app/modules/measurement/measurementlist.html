@@ -7,7 +7,7 @@
 	<div class="col-sm-3"> 
 		<label for="fromDate" class="control-label">From Date </label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="fromDate" name="fromDate" class="form-control" ng-model="fromDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" ng-change="filter('date', fromDate)" / >
+			<input type="text" placeholder="YYYY-DD-MM" id="fromDate" name="fromDate" class="form-control" ng-model="fromDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" ng-change="filter('date', fromDate)" / >
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
@@ -16,38 +16,27 @@
 	<div class="col-sm-3"> 
 		<label for="toDate" class="control-label">To Date </label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="toDate" name="toDate" class="form-control" ng-model="measurement.toDate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" ng-change="filter('date', toDate)" />
+			<input type="text" placeholder="YYYY-DD-MM" id="toDate" name="toDate" class="form-control" ng-model="measurement.toDate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" ng-change="filter('date', toDate)" />
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
 		</div>
 	</div>
 	<div class="col-sm-3">
-	<label for="party" class="control-label">Select Party</label>
-		<select class="form-control" name="type" id="type"  ng-init="getParty(currentPage)"  ng-options="item.id as item.client_name for item in partylist " >{{partylist.client_name}}
-					<option value="">Select Party</option>
+		<label for="party" class="control-label">Select Party</label>
+		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('name', partyType.name)">
+				<option value="">Select Party</option>
 		</select>
-		<!-- <select class="form-control">
-			<option>Select Party</option>
-			<option value="Party">Party</option>
-			<option value="Vender">Vender</option>
-		</select> -->
+	
 	</div>
 	<div class="col-sm-3">
 	<label for="department" class="control-label">Select Department</label>
-		<select class="form-control">
-			<option>Select Department</option>
-			<option value="Department1">Department1</option>
-			<option value="Department2">Department2</option>
+		<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }">
+				<option value="">Select Department</option>
 		</select>
 	</div>
 </div>
-<!-- <table class="table table-bordered" >
-	<tr ng-repeat="x in partylist ">
-				<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
-				<td>{{x.client_name}}</td>
-			</tr>
-</table> -->
+
 	<div class="table-responsive">		
 	<table class="table table-bordered" ng-init="getMeasurement(currentPage)">
 	<thead>

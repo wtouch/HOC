@@ -2,19 +2,16 @@
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
 	{{modalOptions.addmeasurement}}
-<div class="modal-body" ng-init="addmeasurement = modalOptions.addmeasurement">	
+<div class="modal-body" ng-init="modalOptions.getData('party', modalOptions,'partylist')">	
 	
 	<h3 class="text-center" ng-if="!modalOptions.addmeasurement.id">Add Measurement</h3>
 	<h3 class="text-center" ng-if="modalOptions.addmeasurement.id">Edit Measurement</h3>
 	<form class="form-horizontal" name="addmeasurmentForm" novalidate ng-submit="addmeasurmentForm.$valid">
 		<div class="form-group">
-			<label for="party" class="col-sm-2 control-label">Select party</label>
+			<label for="party" class="col-sm-2 control-label">Select Department</label>
 				<div class="col-sm-9">
-				<!--ng-model="modalOptions.addmeasurement.party_id"-->
-					<select class="form-control" id="party" name="party" required >
-						<option value="">Select party</option>
-						<option value="Sharma">Sharma</option>
-						<option value="Sawant">Sawant</option>
+					<select class="form-control" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist"ng-change="modalOptions.addmeasurement.party_name = partyType.name; modalOptions.addmeasurement.department = partyType.department">
+						<option value="">Select Department</option>
 					</select>
 					<span class="text-danger" ng-show=	"addmeasurmentForm.party.$dirty && addmeasurmentForm.party.$invalid">
 						<span ng-show="addmeasurmentForm.party.$error.required" class="text-danger">Required Field.</span>
@@ -23,25 +20,17 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="department" class="col-sm-2 control-label">Select Department</label>
+			<label for="name" class="col-sm-2 control-label">Party</label>
 				<div class="col-sm-9">
-				<!--ng-model="modalOptions.addmeasurement.department"-->
-					<select class="form-control" id="department" name="department" required >
-						<option value="">Select department</option>
-						<option value="Department1">Department1</option>
-						<option value="Department2">Department2</option>
-					</select>
-					<span class="text-danger" ng-show=	"addmeasurmentForm.department.$dirty && addmeasurmentForm.department.$invalid">
-						<span ng-show="addmeasurmentForm.department.$error.required" class="text-danger">Required Field.</span>
-					</span>	
+					<input type="text" class="form-control" id="name" placeholder="name" ng-model="modalOptions.addmeasurement.party_name" readonly>
 				</div>
 		</div>
 		
 		<div class="form-group">
 			<label for="item" class="col-sm-2 control-label">Select item</label>
 				<div class="col-sm-9">
-				<!--ng-model="modalOptions.addmeasurement.item"-->
-					<select class="form-control" Id="item" name="item"  required>
+				
+					<select class="form-control" Id="item" name="item"  ng-model="modalOptions.addmeasurement.item" required>
 						<option value="">Select One</option>
 						<option value="Beick Stone">Beick Stone</option>
 						<option value="-">-</option>
@@ -133,12 +122,12 @@
 				</span>
 			</div>
 		</div>
-			
+			<!-- ng-disabled="addmeasurmentForm.$invalid" --> 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" class="btn btn-primary" ng-disabled="addmeasurmentForm.$invalid" ng-click="modalOptions.postData(modalOptions.addmeasurement)"  ng-if="!modalOptions.addmeasurement.id">Add Item</button>
-				<button type="submit" class="btn btn-success btnsp" ng-disabled="addmeasurmentForm.$invalid" ng-click="modalOptions.updateData(modalOptions.addmeasurement)"  ng-if="modalOptions.addmeasurement.id">Edit Item</button>
-				<button type="cancel" class="btn btn-danger btn-dan" ng-click="modalOptions.close()">Cancel</button> 
+				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="!modalOptions.addmeasurement.id">Add Item</button>
+				<button type="submit" class="btn btn-success btnsp" ng-disabled="addmeasurmentForm.$invalid" ng-click="modalOptions.updateData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="modalOptions.addmeasurement.id">Edit Item</button>
+				<button type="cancel" class="btn btn-danger btn-dan" ng-click="modalOptions.ok()">Cancel</button> 
 			</div>
 		</div>
 	</form>
