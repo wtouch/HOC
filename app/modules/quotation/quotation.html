@@ -54,26 +54,26 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.addquotation.particular.description" required>
+					<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.particular.description" required>
 					<span class="help-block" ng-show="addquotationForm.description.$dirty && addquotationForm.description.$invalid">
 						<span ng-show="addquotationForm.description.$error.required" class="text-danger">Required Field.</span>
 					</span>
 				</td>			
 				<td>
-					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.addquotation.particular.unit" required><!---->
+					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.particular.unit" required><!---->
 						<option value="">Select Unit</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
 				</td>
 				<td>
-				<input type="text" id="area" name="area" ng-model="modalOptions.addquotation.particular.area"/>
+				<input type="text" id="area" name="area" ng-model="modalOptions.particular.area"/>
 				</td>
 				<td>
-				<input type="text" id="rate" name="rate" ng-model="modalOptions.addquotation.particular.rate"/>
+				<input type="text" id="rate" name="rate" ng-model="modalOptions.particular.rate"/>
 				</td>
 				<td>
-					<input type="text" id="amount" name="amount" ng-model="modalOptions.addquotation.particular.amount" />
+					<input type="text" id="amount" name="amount" ng-model="modalOptions.particular.amount" />
 				</td>
 			</tr>
 		</table>
@@ -103,15 +103,15 @@
 	</table>
 	</div>
 	<h5>Terms & Conditions</h5>
-	<div class="table-responsive" ng-init="modalOptions.getData(currentPage)">
+	<div class="table-responsive" ng-init="modalOptions.getData(modalOptions)">
 	<table class="table table-bordered">
-		<tr ng-repeat="x in modalOptions.termslist">{{modalOptions.termslist}}
+		<tr ng-repeat="x in modalOptions.termslist">
 			<td>{{x.id}}</td>
 			<td>{{x.description}}</td>
 			<td><a tooltip="Remove This"><span class="glyphicon glyphicon-remove"></span></a></td>
 		</tr>
 	</table>
-	</div>
+	</div>{{modalOptions.termslist}}ff
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-if="!modalOptions.addquotation.id" ng-click="modalOptions.postData(modalOptions.addquotation)">Submit</button>

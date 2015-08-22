@@ -459,7 +459,7 @@ define(['app'], function (app) {
 			}
 			obj.setLimit = function(params){
 				if(!params || !params.limit){
-					return false;
+					return "";
 				}else{
 					var page = (params.limit.page - 1) * params.limit.records;
 					var limitString = " LIMIT " + page + ", " + params.limit.records;

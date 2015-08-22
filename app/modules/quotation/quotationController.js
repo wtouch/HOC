@@ -24,6 +24,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			};
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
+				termslist : {},
 				postData : function(addquotation) {
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
@@ -50,20 +51,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							$notification[response.status]("Update record", response.message);
 					});
 				},
-				getData : function(page, params) {
-					console.log('Hello');
-					$scope.params = (params) ? params : {
+				getData : function(modalOptions) {
+					console.log(modalOptions);
+					$scope.params = {
 						where : {
 							status : 1
 						}
 					};
-					angular.extend($scope.params, {limit : {
-							page : page,
-							records : $scope.pageItems
-						}
-					})
+					
 					dataService.get(false,"terms",$scope.params)
-					.then(function(response) { 
+					.then(function(response) {
+						console.log(response);
 						if(response.status == "success"){
 							modalOptions.termslist = response.data;
 							console.log(modalOptions.termslist);
@@ -85,8 +83,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					add : function(modalOptions){
 						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 						
-						var dtlObj = JSON.stringify(modalOptions.addquotation.particular);
-						modalOptions.addquotation.particular.push(JSON.parse(dtlObj));
+						var dtlObj = JSON.stringify(modalOptions.particular);
+						modalOptions.addquotation.particular = (dtlObj);
 						console.log(modalOptions.addquotation.particular);
 					}
 			};

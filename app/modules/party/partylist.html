@@ -5,10 +5,10 @@
 <h3> Party View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace">
 	<div class="col-sm-3">
-		<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="filter('client_name', search, true)">
+		<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="filter('name', search, true)">
 	</div>
 	<div class="col-sm-2">
-		<select class="form-control" ng-model="sort" ng-change="orderBy('client_name', sort)">
+		<select class="form-control" ng-model="sort" ng-change="orderBy('name', sort)">
 			<option value="">Sort By</option>
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
@@ -50,7 +50,7 @@
 		</tr>
 		<tr ng-repeat="x in partylist | orderBy:sort">
 			<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
-			<td>{{x.client_name}}</td>
+			<td>{{x.name}}</td>
 			<td>{{x.email}}</td>
 			<td>{{x.contact}}</td>
 			<td>{{x.address}}</td>
