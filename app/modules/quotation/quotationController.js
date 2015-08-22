@@ -80,9 +80,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 						
 						var dtlObj = JSON.stringify(modalOptions.particular);
-						modalOptions.addquotation.particular = (dtlObj);
-						modalOptions.addquotation.particulars.push(JSON.parse(dtlObj));
-						console.log(modalOptions.addquotation.particular);
+						//modalOptions.addquotation.particular = (dtlObj);
+						modalOptions.addquotation.particular.push(JSON.parse(dtlObj));
+						console.log(dtlObj);
+						
+					},
+					remove : function(item, modalOptions) {
+						console.log(modalOptions);
+						var index = modalOptions.addquotation.particular.indexOf(item);
+						modalOptions.addquotation.particular.splice(index, 1); 
 					}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
