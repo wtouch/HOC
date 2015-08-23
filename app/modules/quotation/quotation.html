@@ -12,6 +12,12 @@
 				<p>Note that Fields Marked * are Required.</p>		
 			</div>
 	</div>
+	<div class="form-group" ng-if="partyType">
+		<label  for="name" class="col-sm-2 control-label">Party *</label>
+		<div class="col-sm-9">
+			<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name" readonly/>
+		</div>
+	</div>
 	<div class="form-group">
 		<label  for="name" class="col-sm-2 control-label">Department *</label>
 		<div class="col-sm-9">
@@ -21,25 +27,27 @@
 				
 				<span class="help-block" ng-show="addquotationForm.department.$dirty && addquotationForm.department.$invalid">
 					<span ng-show="addquotationForm.department.$error.required" class="text-danger">Required Field.</span>
-				</span>	
-			
+				</span>			
+
 				<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name">
 				<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.department">
-			</div>
-		</div>
-	
-	<div class="form-group">
-		<label  for="name" class="col-sm-2 control-label">Party *</label>
-		<div class="col-sm-9">
-			<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name" readonly/>
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label  for="name" class="col-sm-2 control-label">Name *</label>
 			<div class="col-sm-9">
 				<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.name" required>
 				<span class="help-block" ng-show="addquotationForm.name.$dirty && addquotationForm.name.$invalid">
 					<span class="text-danger" ng-show="addquotationForm.name.$error.required">Required Field.</span>
+				</span>
+			</div>						
+	</div>	 -->
+	<div class="form-group">	
+		<label  for="Date" class="col-sm-2 control-label">Date *</label>
+			<div class="col-sm-9">
+				<input type="text" id="Date" class="form-control" name="Date" placeholder="DD-MM-YYYY" ng-model="modalOptions.addquotation.Date" required>
+				<span class="help-block" ng-show="addquotationForm.Date.$dirty && addquotationForm.Date.$invalid">
+					<span class="text-danger" ng-show="addquotationForm.Date.$error.required">Required Field.</span>
 				</span>
 			</div>						
 	</div>	
@@ -48,7 +56,7 @@
 			<div class="col-sm-9">
 			<textarea type="text" class="form-control" id="address" name="address" ng-model="modalOptions.addquotation.address" cols="30" rows="3" ng-maxlength="256" placeholder="Enter address"  required></textarea>
 		<p ng-hide="addquotationForm.address.$error.maxlength">
-			{{ 256 - addquotation.address.length + " Chars left" }}
+			{{ 256 - modalOptions.addquotation.address.length + " Chars left" }}
 		</p>
 		<span class="help-block" ng-show="addquotationForm.address.$dirty && addquotationForm.address.$invalid">
 			<span ng-show="addquotationForm.address.$error.maxlength"class="text-danger">Sorry You are Exceeding the Limit</span>
@@ -66,7 +74,7 @@
 			</div>						
 	</div>	
 	<div class="table-responsive">
-		<table class="table table-bordered">{{modalOptions.addquotation.particular}}
+		<table class="table table-bordered">
 			<tr>
 				<th>Description</th>
 				<th>Unit</th>
@@ -82,12 +90,16 @@
 					</span>
 				</td>			
 				<td>
-					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.particular.unit" required><!---->
+					<select class="form-control" name="unit" id="unit" ng-model="modalOptions.particular.unit" required>
 						<option value="">Select Unit</option>
 						<option value="Sq.Ft">Sq.Ft</option>
 						<option value="Meter">Meter</option>
 						<option value="Cem">Cem</option>
 					</select>
+					
+					<!-- <span class="help-block" ng-show="addquotationForm.unit.$dirty && addquotationForm.unit.$invalid">
+						<span ng-show="addquotationForm.unit.$error.required" class="text-danger">Required Field.</span>
+					</span>	-->
 				</td>
 				<td>
 					<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required>
@@ -115,6 +127,7 @@
 			<th>Area</th>
 			<th>Rate</th>
 			<th>Amount</th>
+			<th>Remove</th>
 		</tr>
 		<tr ng-repeat="x in modalOptions.addquotation.particular">
 			<td>{{x.description}}</td>
@@ -122,20 +135,21 @@
 			<td>{{x.area}}</td>
 			<td>{{x.rate}}</td>
 			<td>{{x.amount}}</td>
+			<td><a tooltip="Remove This" ng-click="modalOptions.removep(x,modalOptions)"><span class="glyphicon glyphicon-remove"></span></a></td>
 		</tr>
 		<tr>
-			<td colspan="3"></td>
+			<td colspan="3" ng-hide="!modalOptions.addquotation.particular"></td>
 			<td class="text-right"><strong>Total</strong></td>
-			<td class="text-right">{{ modalOptions.subTotal  | number : 2}}</td>
+			<td class="text-right">{{ modalOptions.addquotation.total_amount  | number : 2}}</td>
 			<td></td>
 		</tr>
 		
-		<input type="text" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount" ng-init="modalOptions.addquotation.total_amount = modalOptions.subTotal">
+		<input type="hidden" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount">
 	</table>
 		<input type="hidden" id="particular" name="particular" ng-model="modalOptions.addquotation.particular">
 	</div>
 	<h5>Terms & Conditions</h5>
-	<div class="table-responsive" ng-init="modalOptions.getData('terms', modalOptions,'termslist')">
+	<div class="table-responsive" ng-init="modalOptions.getData('terms', modalOptions,'termslist')">{{modalOptions.termslist}}
 		<table class="table table-bordered">
 			<tr ng-repeat="list in modalOptions.termslist">
 				<td>{{list.id}}</td>
@@ -143,6 +157,12 @@
 				<td><a tooltip="Remove This" ng-click="modalOptions.remove(x,modalOptions)"><span class="glyphicon glyphicon-remove"></span></a></td>
 			</tr>
 		</table>
+		
+		
+		{{modalOptions.termslist.description}}
+		<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.termsnconditions.description" ng-init=" modalOptions.addquotation.termsnconditions.description = modalOptions.termslist.description"/>
+		
+		
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9"><!--ng-disabled="addquotationForm.$invalid"-->

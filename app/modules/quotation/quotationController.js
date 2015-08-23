@@ -3,8 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
 	var quotationController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
-		$rootScope.metaTitle = "Real Estate Project";
-	
+		$rootScope.metaTitle = "Hari Om Constructions!";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
@@ -12,12 +11,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.numPages = "";		
 		$scope.alerts = [];
 		
-		// function to close alert
-		$scope.closeAlert = function(index) {
-			$scope.alerts.splice(index, 1);
-		};
 		$scope.openAddQuotation = function (addquotation) {
+			console.log(addquotation);
 			var x = angular.copy(addquotation);
+			if(x!= undefined){
+			x.particular = (angular.isObject(addquotation.particular)) ? addquotation.particular : JSON.parse(addquotation.particular);
+			}
 			var modalDefaults = {
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
@@ -25,8 +24,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
+					modalOptions.addquotation.terms;
 					addquotation.particular = JSON.stringify((addquotation.particular));
-					console.log(addquotation.particular);
+					console.log(addquotation.terms);
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
 								$scope.getQuotation($scope.currentPage, $scope.params);
@@ -36,8 +36,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						});
 					console.log(addquotation); 
 				},
-				
 				updateData : function(addquotation) {
+					addquotation.particular = JSON.stringify((addquotation.particular));
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};
 					console.log(params);
@@ -70,9 +70,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					});
 				},
 				totalCal : function(modalOptions){
-					modalOptions.subTotal = 0;
+					modalOptions.addquotation.total_amount = 0;
 					for(var x in modalOptions.addquotation.particular){
-						modalOptions.subTotal += modalOptions.addquotation.particular[x].amount;
+						modalOptions.addquotation.total_amount += modalOptions.addquotation.particular[x].amount;
 					}
 					return modalOptions;
 				},
@@ -88,17 +88,21 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
-					remove : function(item, modalOptions) {
-						console.log(modalOptions);
-						var index = modalOptions.addquotation.particular.indexOf(item);
-						modalOptions.addquotation.particular.splice(index, 1); 
-					}
+				remove : function(item, modalOptions) {
+					console.log(modalOptions);
+					var index = modalOptions.termslist.indexOf(item);
+					modalOptions.termslist.splice(index, 1); 
+				},
+				removep : function(item, modalOptions) {
+					console.log(modalOptions);
+					var index = modalOptions.addquotation.particular.indexOf(item);
+					modalOptions.addquotation.particular.splice(index, 1); 
+				}
 			};
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
-		
-		
+	
 		$scope.openViewparty = function (addquotation) {
 				var modalDefaults = {
 				templateUrl: 'modules/quotation/viewquotation.html',	
@@ -126,64 +130,60 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 			});
 		};
-			
-		
 		//
 		$scope.getTerms = function(page, params){
-				$scope.params = (params) ? params : {
-					where : {
-						status : 1
-					}
-				};
-				angular.extend($scope.params, {limit : {
-						page : page,
-						records : $scope.pageItems
-					}
-				})
-				dataService.get(false,"terms", $scope.params)
-				.then(function(response) {
-					console.log(response);
-					if(response.status == 'success'){
-						$scope.termslist = angular.copy(response.data);
-						console.log($scope.termslist);
-						$scope.totalRecords = response.totalRecords;
-					}else{
-						$scope.termslist = [];
-						$scope.totalRecords = 0;
-						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-						$notification[response.status]("Get Transactions", response.message);
-					}
-				});
-			} 
-			
-		//
+			$scope.params = (params) ? params : {
+				where : {
+					status : 1
+				}
+			};
+			angular.extend($scope.params, {limit : {
+					page : page,
+					records : $scope.pageItems
+				}
+			})
+			dataService.get(false,"terms", $scope.params)
+			.then(function(response) {
+				console.log(response);
+				if(response.status == 'success'){
+					$scope.termslist = angular.copy(response.data);
+					console.log($scope.termslist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.termslist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}
 		//request for party list
-			$scope.getParty = function(){
-				$scope.params = {
-					where : {
-						status : 1
-					},
-					orderBy : {
-						name : 'asc'
-					}
-				};
+		$scope.getParty = function(){
+			$scope.params = {
+				where : {
+					status : 1
+				},
+				orderBy : {
+					name : 'asc'
+				}
+			};
+			
+			dataService.get(false,"party", $scope.params)
+			.then(function(response) {
 				
-				dataService.get(false,"party", $scope.params)
-				.then(function(response) {
-					
-					if(response.status == 'success'){
-						$scope.partylist = response.data;
-						console.log($scope.partylist);
-						$scope.totalRecords = response.totalRecords;
-					}else{
-						$scope.partylist = [];
-						$scope.totalRecords = 0;
-						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-						$notification[response.status]("Get Transactions", response.message);
-					}
-				});
-			}
-			//end party list
+				if(response.status == 'success'){
+					$scope.partylist = response.data;
+					console.log($scope.partylist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.partylist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}
+		//end party list
 		$scope.filter = function(col, value, search){
 			if(search == true){
 				if(!$scope.params.search) $scope.params.search = {};
@@ -199,6 +199,21 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			if(!$scope.params.orderBy) $scope.params.orderBy = {};
 			$scope.params.orderBy[col] = value;
 			$scope.getQuotation($scope.currentPage, $scope.params);
+		}
+		
+		$scope.changeCol = function(colName, colValue, id){
+			$scope.changeStatus = {};
+			$scope.changeStatus[colName] = colValue;
+			console.log(colName, colValue);
+			dataService.put("quotation",$scope.changeStatus,{where : { id : id}})
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == "success"){
+					$scope.getQuotation($scope.currentPage, $scope.params);
+				}
+				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+				$notification[response.status]("Add record", response.message);
+			});
 		}
 			
 		$scope.getQuotation = function(page,params){
@@ -217,7 +232,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			.then(function(response) {
 				//console.log(addquotation);
 				if(response.status == 'success'){
-					$scope.quotationlist = response.data;
+					$scope.quotationlist = (response.data);
 					$scope.totalRecords = response.totalRecords;
 				}else{
 					$scope.quotationlist = [];
@@ -227,6 +242,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			});
 		}
+		
 		//for dynamic tooltip
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;

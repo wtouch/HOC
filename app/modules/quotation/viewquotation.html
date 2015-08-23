@@ -4,7 +4,7 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<div class="modal-body">{{modalOptions.addquotation}}
+	<div class="modal-body">
 		<div class="row">
 			<div class="col-xs-12"><button class="btn btn-primary pull-right">Print</button></div>
 			<h3 class="text-center">Quotation</h3>
@@ -20,17 +20,23 @@
 			</div>
 			<div class="col-xs-12">
 				<div class="table-responsive">
-					<table class="table table-bordered">
+					<table class="table table-bordered" >
 						<thead>
 							<tr>
-								<th>Particular</th>
+								<th>Description</th>
+								<th>Unit</th>
+								<th>Area</th>
+								<th>Rate</th>
 								<th>Amount</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>{{modalOptions.addquotation.particular}}</td>
-								<td>5360.40</td>
+							<td>{{modalOptions.addquotation.particular}}</td>
+							<td>{{x.unit}}</td>
+							<td>{{x.area}}</td>
+							<td>{{x.rate}}</td>
+							<td>{{x.amount}}</td>
 							</tr>
 						</tbody>
 						<tfoot>
