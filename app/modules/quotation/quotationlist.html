@@ -19,12 +19,12 @@
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('name', partyType.name)">
+			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
 				<option value="">Select Party</option>
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }">
+			<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }" ng-change="filter('department', partyType.department)">
 				<option value="">Select Department</option>
 			</select>
 		</div>
