@@ -27,7 +27,8 @@
 				<label for="PAN" class="col-sm-2 control-label">Pan No. *</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.pan_no" required>
-					<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty" ng-pattern="^([A-Z]){5}([0-9]){4}([A-Z]){1}?$">
+					 <span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty">
+					 <!-- ng-pattern="^([A-Z]){5}([0-9]){4}([A-Z]){1}?$" -->
 						<span ng-show="taxInfoForm.PAN.$error.required" class="text-danger">Please Enter Pan No.</span>
 						<span ng-show="taxInfoForm.PAN.$error.pattern && (taxInfoForm.PAN.$dirty || submitted)" class="text-danger">Enter a valid PAN Number</span>
 					</span>
