@@ -10,23 +10,25 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.alerts = [];
 		$scope.currentPage = 1;
 		$scope.pageItems = 10;
-		console.log("this is tax controller");
-		// function to close alert
-		$scope.closeAlert = function(index) {
-			$scope.alerts.splice(index, 1);
-		};
+		
 		$scope.getTax = function(taxinfo, params){
 			$scope.params ={where : {id : 1}};
 			dataService.get(true,"tax", $scope.params)
 			.then(function(response) {
-				//console.log(response);
+				console.log(response);
 				if(response.status == 'success'){
 					$scope.taxinfo = angular.copy(response.data);
 				}else{
-					$scope.taxinfo = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
+					$scope.taxinfo = {
+						service_tax : 14,
+						vat : 5
+					};
+					dataService.post('tax',$scope.taxinfo).then(function(response){
+						console.log(response);
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					})
+					
 				}
 			});
 		}
