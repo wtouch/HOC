@@ -124,13 +124,13 @@
 			<td>{{x.amount}}</td>
 		</tr>
 		<tr>
-			<td colspan="3"></td>{{modalOptions.addquotation.total_amount}}
+			<td colspan="3"></td>
 			<td class="text-right"><strong>Total</strong></td>
 			<td class="text-right">{{ modalOptions.subTotal  | number : 2}}</td>
 			<td></td>
 		</tr>
 		
-		<input type="text" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount">
+		<input type="text" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount" ng-init="modalOptions.addquotation.total_amount = modalOptions.subTotal">
 	</table>
 		<input type="hidden" id="particular" name="particular" ng-model="modalOptions.addquotation.particular">
 	</div>
