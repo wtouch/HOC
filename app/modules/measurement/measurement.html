@@ -1,12 +1,20 @@
 <div class="modal-header">
 	<button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
 </div>
-	{{modalOptions.addmeasurement}}
+
 <div class="modal-body" ng-init="modalOptions.getData('party', modalOptions,'partylist')">	
 	
 	<h3 class="text-center" ng-if="!modalOptions.addmeasurement.id">Add Measurement</h3>
 	<h3 class="text-center" ng-if="modalOptions.addmeasurement.id">Edit Measurement</h3>
 	<form class="form-horizontal" name="addmeasurmentForm" novalidate ng-submit="addmeasurmentForm.$valid">
+		<div class="form-group" ng-if="partyType">
+			<label for="name" class="col-sm-2 control-label">Party</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="name" placeholder="name" ng-model="partyType.name"  readonly>
+				<input type="hidden" class="form-control" id="name" placeholder="name" ng-model="modalOptions.addmeasurement.party_id" >
+				<input type="hidden" class="form-control" id="department" placeholder="department" ng-model="modalOptions.addmeasurement.department_id"  >
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="party" class="col-sm-2 control-label">Select Department</label>
 				<div class="col-sm-9">
@@ -18,14 +26,7 @@
 					</span>	
 				</div>
 		</div>
-		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Party</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="name" placeholder="name" ng-model="partyType.name"  readonly>
-				<input type="hidden" class="form-control" id="name" placeholder="name" ng-model="modalOptions.addmeasurement.party_id" >
-				<input type="hidden" class="form-control" id="department" placeholder="department" ng-model="modalOptions.addmeasurement.department_id"  >
-			</div>
-		</div>
+		
 		
 		<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 			<label for="item" class="col-sm-2 control-label">Select item</label>
@@ -78,43 +79,47 @@
 						<select class="form-control" Id="measurement" name="measurement"ng-model="modalOptions.addmeasurement.measurement_unit"  required>
 								<option value="">Select Unit</option>
 								<option value="Sq.Ft" >Sq.Ft</option>
-								<option value="meter">meter</option>
-								<option value="Cem">Cem</option>
+								<option value="Sq.meter">Sq.meter</option>
+								<option value="Rm">Rm</option>
+								<option value="Fft">Fft</option>
+								<option value="Cum">Cum</option>
+								<option value="Cft">Cft</option>
+								<option value="NOS">NOS</option>
 						</select>
 							<span class="block" ng-show="addmeasurmentForm.measurement.$invalid && addmeasurmentForm.measurement.$dirty">
 								<span ng-show="addmeasurmentForm.measurement.$error.required" class="text-danger">Required Field</span>
 							</span>
 					</div>
-					<div class="col-sm-2"  ng-if="(modalOptions.addmeasurement.measurement_unit =='Sq.Ft' )||(modalOptions.addmeasurement.measurement_unit =='Cem')">
-						<input  type="text" class="form-control" id="length" name="length" ng-model="modalOptions.addmeasurement.length" placeholder="length" ng-pattern="/^[0-9]{1,7}$/" required>
+					<div class="col-sm-2"  ng-if="(modalOptions.addmeasurement.measurement_unit =='Sq.Ft' )||(modalOptions.addmeasurement.measurement_unit =='Cum')||(modalOptions.addmeasurement.measurement_unit =='Cft')||(modalOptions.addmeasurement.measurement_unit =='Sq.meter' )||(modalOptions.addmeasurement.measurement_unit =='Rm' )||(modalOptions.addmeasurement.measurement_unit =='Fft' )">
+						<input  type="text" class="form-control" id="length" name="length" ng-model="modalOptions.addmeasurement.length" placeholder="length" ng-pattern="/^[0-9]{1,7}$/" required ng-change ="modalOptions.cal(modalOptions.addmeasurement)">
 						<span class="block" ng-show="addmeasurmentForm.length.$invalid && addmeasurmentForm.length.$dirty">
 							<span ng-show="addmeasurmentForm.length.$error.pattern" class="text-danger">Please Enter a Number.</span>
 						</span>
 					</div>
-					<div class="col-sm-2" ng-if="(modalOptions.addmeasurement.measurement_unit =='Sq.Ft' )||(modalOptions.addmeasurement.measurement_unit =='Cem')">
-						<input  type="text" class="form-control" id="Width" name="Width" ng-model="modalOptions.addmeasurement.width"  placeholder="Width" required>
+					<div class="col-sm-2" ng-if="(modalOptions.addmeasurement.measurement_unit =='Sq.Ft' )||(modalOptions.addmeasurement.measurement_unit =='Cum')||(modalOptions.addmeasurement.measurement_unit =='Cft')||(modalOptions.addmeasurement.measurement_unit =='Sq.meter' )">
+						<input  type="text" class="form-control" id="Width" name="Width" ng-model="modalOptions.addmeasurement.width"  placeholder="Width" required ng-change ="modalOptions.cal(modalOptions.addmeasurement)">
 						<span class="block" ng-show="addmeasurmentForm.Width.$invalid && addmeasurmentForm.Width.$dirty">
 								<span ng-show="addmeasurmentForm.Width.$error.required" class="text-danger">Required Field</span>
 							</span>
 					</div>
-					<div class="col-sm-2" ng-if="modalOptions.addmeasurement.measurement_unit =='Cem' ">
-						<input  type="text" class="form-control" id="Height" name="Height" ng-model="modalOptions.addmeasurement.height"  placeholder="Height" required>
+					<div class="col-sm-2" ng-if="(modalOptions.addmeasurement.measurement_unit =='Cum')||(modalOptions.addmeasurement.measurement_unit =='Cft') ">
+						<input  type="text" class="form-control" id="Height" name="Height" ng-model="modalOptions.addmeasurement.height"  placeholder="Height" required ng-change ="modalOptions.cal(modalOptions.addmeasurement)">
 						<span class="block" ng-show="addmeasurmentForm.Height.$invalid && addmeasurmentForm.Height.$dirty">
 							<span ng-show="addmeasurmentForm.Height.$error.required" class="text-danger">Required Field</span>
 						</span>
 					</div>
-					<div class="col-sm-2"  ng-if="modalOptions.addmeasurement.measurement_unit =='meter' ">
-						<input  type="text" class="form-control" id="NOS" name="NOS" ng-model="modalOptions.addmeasurement.nos" placeholder="NOS" required>
+					<div class="col-sm-2"  ng-if="modalOptions.addmeasurement.measurement_unit =='NOS' ">
+						<input  type="text" class="form-control" id="NOS" name="NOS" ng-model="modalOptions.addmeasurement.nos" placeholder="NOS" required ng-change ="modalOptions.cal(modalOptions.addmeasurement)">
 						<span class="block" ng-show="addmeasurmentForm.NOS.$invalid && addmeasurmentForm.NOS.$dirty">
 								<span ng-show="addmeasurmentForm.NOS.$error.required" class="text-danger">Required Field</span>
 						</span>
 					</div>
 			</div>	
-<!-- ng-change="modalOptions.cal(modalOptions.addmeasurement.measurement_unit ,modalOptions.addmeasurement.height,modalOptions.addmeasurement.width) -->
-		<div class="form-group"  ">
+
+		<div class="form-group" >
 			<label for="area" class="col-sm-2 control-label">Area</label>
 			<div class="col-sm-9">
-				<input class="form-control" id="area" name="area" type="text" ng-model="modalOptions.addmeasurement.area" placeholder="Area" ng-value="modalOptions.area()">
+				<input class="form-control" id="area" name="area" type="text" ng-model="modalOptions.addmeasurement.area" placeholder="Area"  >
 				<span class="block" ng-show="addmeasurmentForm.area.$invalid && addmeasurmentForm.area.$dirty">
 						<span ng-show="addmeasurmentForm.area.$error.required" class="text-danger">Required Field</span>
 				</span>
@@ -123,8 +128,8 @@
 			<!-- ng-disabled="addmeasurmentForm.$invalid" --> 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="!modalOptions.addmeasurement.id" ng-disabled="addmeasurmentForm.$invalid">Add Item</button>
-				<button type="submit" class="btn btn-success btnsp"  ng-click="modalOptions.updateData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="modalOptions.addmeasurement.id" ng-disabled="addmeasurmentForm.$invalid">Edit Item</button>
+				<button type="submit" class="btn btn-primary" ng-disabled="addmeasurmentForm.$invalid" ng-click="modalOptions.postData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="!modalOptions.addmeasurement.id" >Add Item</button>
+				<button type="submit" class="btn btn-success btnsp" ng-disabled="addmeasurmentForm.$invalid" ng-click="modalOptions.updateData(modalOptions.addmeasurement);modalOptions.ok()"  ng-if="modalOptions.addmeasurement.id" >Edit Item</button>
 				<button type="cancel" class="btn btn-danger btn-dan" ng-click="modalOptions.ok()">Cancel</button> 
 			</div>
 		</div>

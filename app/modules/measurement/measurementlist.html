@@ -3,20 +3,20 @@
 	<a class="btn btn-default" ng-click="openAddMeasurement(null)" tooltip="Add Measurement Item">Add Measurement Item</a>
 </div>
 <h3>Measurement Table</h3> 	
-<div class="row bottomspace">
+<div class="row bottomspace"><!-- ng-change="filter('date', fromDate)" -->
 	<div class="col-sm-3"> 
 		<label for="fromDate" class="control-label">From Date </label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="fromDate" name="fromDate" class="form-control" ng-model="fromDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" ng-change="filter('date', fromDate)" / >
+			<input type="text" placeholder="YYYY-DD-MM" id="fromDate" name="fromDate" class="form-control" ng-model="measurement.fromDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)"   ng-change="dateDiff (measurement)" ng-init="measurement.fromDate =currDate"/  >
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
 		</div>
 	</div>	
-	<div class="col-sm-3"> 
+	<div class="col-sm-3"> <!-- ng-change="filter('date', toDate)" -->
 		<label for="toDate" class="control-label">To Date </label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="toDate" name="toDate" class="form-control" ng-model="measurement.toDate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" ng-change="filter('date', toDate)" />
+			<input type="text" placeholder="YYYY-DD-MM" id="toDate" name="toDate" class="form-control" ng-model="toDate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)"  ng-change="dateDiff(measurement)" ng-init="measurement.toDate =currDate"/>
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
@@ -24,7 +24,7 @@
 	</div>
 	<div class="col-sm-3">
 		<label for="party" class="control-label">Select Party</label>
-		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('name', partyType.name)">
+		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType)">
 				<option value="">Select Party</option>
 		</select>
 	

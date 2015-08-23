@@ -10,6 +10,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.pageItems = 10;
 		$scope.alerts = [];
 		$scope.currDate = dataService.currentDate;
+		$scope.a = new Date();
+		
 		
 		// function to close alert
 		$scope.closeAlert = function(index) {
@@ -43,6 +45,26 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			});
 		}
+		
+		// to calculate difference between two dates
+			$scope.dateDiff = function(measurement){
+				$scope.toDate = $scope.measurement.toDate;
+				$scope.fromDate = $scope.measurement.fromDate;
+				$scope.y = $scope.toDate.getFullYear();
+				$scope.y1 = $scope.fromDate.getFullYear();
+				$scope.m = $scope.toDate.getMonth();
+				$scope.m1 = $scope.fromDate.getMonth();
+				$scope.d = $scope.toDate.getDate();
+				$scope.d1 = $scope.fromDate.getDate();
+				
+				
+				console.log($scope.newday);
+				//console.log($scope.fromDate);
+				//console.log(newday);
+				//$scope.newDate = 
+				
+			};
+		//end date function
 			$scope.openAddMeasurement = function (addmeasurement) {
 				console.log(addmeasurement);
 				var x = angular.copy(addmeasurement);
@@ -50,12 +72,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					templateUrl: 'modules/measurement/measurement.html',	
 					size : 'lg'
 				};
-				var area : function(){
-							
-						
-				}
+				
 				var modalOptions = {
 					addmeasurement : (addmeasurement) ? x :{},
+					area : function(){
+						console.log("this is area");
+						var c = addmeasurement.height;		
+						
+					},
 					postData : function(addmeasurement) {
 						console.log(addmeasurement);
 					dataService.post("measurement", addmeasurement).then(function(response){
@@ -99,7 +123,21 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							}
 						});
 					},
-					
+					cal : function (modalOptions){
+						
+						if((modalOptions.measurement_unit == "Sq.Ft")||(modalOptions.measurement_unit == "Sq.meter")){
+							modalOptions.area = modalOptions.length * modalOptions.width ;
+						}
+						if((modalOptions.measurement_unit == "Cum")||(modalOptions.measurement_unit == "Cft")){
+							modalOptions.area = modalOptions.length * modalOptions.width * modalOptions.height;
+						}
+						if((modalOptions.measurement_unit == "Rm")||(modalOptions.measurement_unit == "Fft")){
+							modalOptions.area = modalOptions.length ;
+						}
+						if(modalOptions.measurement_unit == "NOS"){
+							modalOptions.area = modalOptions.nos  ;
+						} 
+					}
 				};
 				modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 				});
