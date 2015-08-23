@@ -69,14 +69,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						}
 					});
 				},
-				totalCalculate : function(modalOptions){
-					//modalOptions.subTotal = 0;
-					modalOptions.total = 0;
-					//modalOptions.tax = {service_tax:0,other_tax:0,tds:0};
+				totalCal : function(modalOptions){
+					modalOptions.subTotal = 0;
 					for(var x in modalOptions.addquotation.particular){
-						//modalOptions.tax = dataService.calculateTax(modalOptions.addquotation.particular[x].tax, modalOptions.addquotation.particular[x].amount,modalOptions.tax);
-						//modalOptions.subTotal += modalOptions.addquotation.particular[x].amount;
-						modalOptions.total += modalOptions.particular.amount;
+						modalOptions.subTotal += modalOptions.addquotation.particular[x].amount;
 					}
 					return modalOptions;
 				},
@@ -88,7 +84,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					//modalOptions.addquotation.particular = (dtlObj);
 					modalOptions.addquotation.particular.push((dtlObj));
 					
-					var total = modalOptions.totalCalculate(modalOptions);
+					var total = modalOptions.totalCal(modalOptions);
 					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
