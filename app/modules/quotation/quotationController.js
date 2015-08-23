@@ -69,12 +69,27 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						}
 					});
 				},
+				totalCalculate : function(modalOptions){
+					//modalOptions.subTotal = 0;
+					modalOptions.total = 0;
+					//modalOptions.tax = {service_tax:0,other_tax:0,tds:0};
+					for(var x in modalOptions.addquotation.particular){
+						//modalOptions.tax = dataService.calculateTax(modalOptions.addquotation.particular[x].tax, modalOptions.addquotation.particular[x].amount,modalOptions.tax);
+						//modalOptions.subTotal += modalOptions.addquotation.particular[x].amount;
+						modalOptions.total += modalOptions.particular.amount;
+					}
+					return modalOptions;
+				},
+		
 				add : function(modalOptions){
 					modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 					
 					var dtlObj = angular.copy(modalOptions.particular);
 					//modalOptions.addquotation.particular = (dtlObj);
 					modalOptions.addquotation.particular.push((dtlObj));
+					
+					var total = modalOptions.totalCalculate(modalOptions);
+					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
 					remove : function(item, modalOptions) {

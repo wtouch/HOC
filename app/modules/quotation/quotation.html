@@ -120,6 +120,12 @@
 			<td>{{x.rate}}</td>
 			<td>{{x.amount}}</td>
 		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td class="text-right"><strong>Total</strong></td>
+			<td class="text-right">{{ modalOptions.total  | number : 2}}</td>
+			<td></td>
+		</tr>
 		
 	</table>
 		<input type="hidden" id="particular" name="particular" ng-model="modalOptions.addquotation.particular">
