@@ -50,16 +50,22 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					templateUrl: 'modules/measurement/measurement.html',	
 					size : 'lg'
 				};
+				var area : function(){
+							
+						
+				}
 				var modalOptions = {
 					addmeasurement : (addmeasurement) ? x :{},
 					postData : function(addmeasurement) {
-						dataService.post("measurement", addmeasurement).then(function(response){
+						console.log(addmeasurement);
+					dataService.post("measurement", addmeasurement).then(function(response){
+						console.log(response);
 							if(response.status == "success"){
 								$scope.getMeasurement($scope.currentPage, $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("Add record", response.message);
-						});;
+							$notification[response.status](response.message); 
+						});
 						console.log(addmeasurement); 
 					},
 					updateData : function(addmeasurement) {
@@ -93,6 +99,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 							}
 						});
 					},
+					
 				};
 				modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 				});
