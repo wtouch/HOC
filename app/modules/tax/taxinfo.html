@@ -1,90 +1,96 @@
-<h3 class="text-center">Tax Information</h3>
-<form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid" ng-init="getTax(taxinfo)">
-	<div class="form-group">
-		<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.service_tax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
-			<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
-				<span ng-show="taxInfoForm.serviceTax.$error.required" class="text-danger">Please Enter Service Tax.</span>
-				<span ng-show="taxInfoForm.serviceTax.$error.pattern" class="text-danger">Please Enter a Number.</span>
-			</span>
+<tabset>
+    <tab heading="Tax Information">
+		<h3 class="text-center">Tax Information</h3>
+		<form class="form-horizontal" name="taxInfoForm" role="form" novalidate ng-submit="taxInfoForm.$valid" ng-init="getTax(taxinfo)">
+			<div class="form-group">
+				<label for="serviceTax" class="col-sm-2 control-label">Service Tax *</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="serviceTax" name="serviceTax" placeholder="Service Tax" ng-model="taxinfo.service_tax" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+					<span class="block" ng-show="taxInfoForm.serviceTax.$invalid && taxInfoForm.serviceTax.$dirty">
+						<span ng-show="taxInfoForm.serviceTax.$error.required" class="text-danger">Please Enter Service Tax.</span>
+						<span ng-show="taxInfoForm.serviceTax.$error.pattern" class="text-danger">Please Enter a Number.</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="VAT" class="col-sm-2 control-label">VAT *</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.vat" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+					<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
+						<span ng-show="taxInfoForm.VAT.$error.required" class="text-danger">Please Enter VAT.</span>
+						<span ng-show="taxInfoForm.VAT.$error.pattern" class="text-danger">Please Enter a Number.</span>
+					</span>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label for="PAN" class="col-sm-2 control-label">Pan No. *</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.pan_no" required>
+					<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty" ng-pattern="^([A-Z]){5}([0-9]){4}([A-Z]){1}?$">
+						<span ng-show="taxInfoForm.PAN.$error.required" class="text-danger">Please Enter Pan No.</span>
+						<span ng-show="taxInfoForm.PAN.$error.pattern && (taxInfoForm.PAN.$dirty || submitted)" class="text-danger">Enter a valid PAN Number</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No. *</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.vat_tin_no" required>
+					<span class="block" ng-show="taxInfoForm.VATTIN.$invalid && taxInfoForm.VATTIN.$dirty">
+						<span ng-show="taxInfoForm.VATTIN.$error.required" class="text-danger">Please Enter VAT Tin No.</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.*</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.service_tax_no" required>
+					<span class="block" ng-show="taxInfoForm.ServTaxNo.$invalid && taxInfoForm.ServTaxNo.$dirty">
+						<span ng-show="taxInfoForm.ServTaxNo.$error.required" class="text-danger">Please Enter Service Tax No.</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-9">
+					<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="updateTax(taxinfo)">Submit</button>
+					<button type="reset" class="btn btn-danger">Cancel</button>
+				</div>
+			</div>
+		</form>
+	</tab>
+    <tab heading="Terms and Conditions">
+		<div class="row">
+			<div class="col-sm-6">
+				<h3>Terms and Conditions</h3>
+			</div>
+			<div class="col-sm-6">
+				<a class="btn btn-primary pull-right" style="margin-top : 10px;" ng-click="open()">Add Terms and Conditions</a>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="VAT" class="col-sm-2 control-label">VAT *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="VAT" name="VAT" placeholder="VAT" ng-model="taxinfo.vat" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
-			<span class="block" ng-show="taxInfoForm.VAT.$invalid && taxInfoForm.VAT.$dirty">
-				<span ng-show="taxInfoForm.VAT.$error.required" class="text-danger">Please Enter VAT.</span>
-				<span ng-show="taxInfoForm.VAT.$error.pattern" class="text-danger">Please Enter a Number.</span>
-			</span>
+		<div class="row">
+			<div class="col-sm-12 table-responsive">
+				<table class="table table-bordered" ng-init="getTerms(currentPage)">
+					<tr>
+						<th>Sr. No.</th>
+						<th>Terms and Conditions</th>
+						<th>Manage</th>
+					</tr>
+					<tr ng-repeat="term in termList">
+						<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
+						<td>{{term.description}}</td>
+						<td>
+							<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+								<span class="glyphicon glyphicon-remove"></span> 
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="text-center">
+				<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getTerms(currentPage,params)"></pagination>
+				<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
+			</div>
 		</div>
-	</div>
-	<hr>
-	<div class="form-group">
-		<label for="PAN" class="col-sm-2 control-label">Pan No. *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="PAN" name="PAN" placeholder="Pan No." ng-model="taxinfo.pan_no" required>
-			<span class="block" ng-show="taxInfoForm.PAN.$invalid && taxInfoForm.PAN.$dirty">
-				<span ng-show="taxInfoForm.PAN.$error.required" class="text-danger">Please Enter Pan No.</span>
-			</span>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="VATTIN" class="col-sm-2 control-label">VAT Tin No. *</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="VATTIN" name="VATTIN" placeholder="VAT Tin No." ng-model="taxinfo.vat_tin_no" required>
-			<span class="block" ng-show="taxInfoForm.VATTIN.$invalid && taxInfoForm.VATTIN.$dirty">
-				<span ng-show="taxInfoForm.VATTIN.$error.required" class="text-danger">Please Enter VAT Tin No.</span>
-			</span>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="ServTaxNo" class="col-sm-2 control-label">Service Tax No.*</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="ServTaxNo" name="ServTaxNo" placeholder="Service Tax No." ng-model="taxinfo.service_tax_no" required>
-			<span class="block" ng-show="taxInfoForm.ServTaxNo.$invalid && taxInfoForm.ServTaxNo.$dirty">
-				<span ng-show="taxInfoForm.ServTaxNo.$error.required" class="text-danger">Please Enter Service Tax No.</span>
-			</span>
-		</div>
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-sm-6">
-			<p><strong>TERMS AND CONDITIONS :</strong></p>
-		</div>
-		<div class="col-sm-6">
-			<a class="btn btn-primary pull-right" style="margin-bottom : 10px;" ng-click="open()">Add Terms and Conditions</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12 table-responsive">
-			<table class="table table-bordered" ng-init="getTerms(currentPage)">
-				<tr>
-					<th>Sr. No.</th>
-					<th>Terms and Conditions</th>
-					<th>Manage</th>
-				</tr>
-				<tr ng-repeat="term in termList">
-					<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
-					<td>{{term.description}}</td>
-					<td>
-						<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-							<span class="glyphicon glyphicon-remove"></span> 
-						</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="text-center">
-			<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getTerms(currentPage,params)"></pagination>
-			<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-primary" ng-disabled="taxInfoForm.$invalid" ng-click="updateTax(taxinfo)">Submit</button>
-			<button type="reset" class="btn btn-danger">Cancel</button>
-		</div>
-	</div>
-</form>
+	</tab>
+</tabset>

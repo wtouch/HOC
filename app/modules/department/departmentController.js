@@ -17,12 +17,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.today = function() {
 			$scope.date = new Date();
 		};
-		$scope.open1 = function($event,opened){
+		$scope.open = function($event,opened){
 			$event.preventDefault();
 			$event.stopPropagation();
 			$scope.opened = ($scope.opened==true)?false:true;
 		};
-		$scope.open2 = function($event,opened1){
+		$scope.open1 = function($event,opened1){
 			$event.preventDefault();
 			$event.stopPropagation();
 			$scope.opened1 = ($scope.opened1==true)?false:true;
@@ -64,7 +64,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
-		$scope.open = function (adddepartment) {
+		$scope.openDept = function (adddepartment) {
 			var x = angular.copy(adddepartment); 
 			var modalDefaults = {
 				templateUrl: 'modules/department/department.html',	
@@ -76,11 +76,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				today : function() {
 					$scope.date = new Date();
 				},
-				/* open3 : function($event,opened3){
+				open2 : function($event,opened2){
 					$event.preventDefault();
 					$event.stopPropagation();
-					$scope.opened3 = ($scope.opened3==true)?false:true;
-				}, */
+					$scope.opened2 = ($scope.opened2==true)?false:true;
+				},
 				getData : function(table, modalOptions, subobj) {
 					console.log(modalOptions);
 					$scope.params = {
@@ -198,6 +198,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 			});
+		}
+		$scope.calcDuration = function(type, duration){
+			var dateS = new Date(duration.start);
+			var dateE = new Date(duration.end);
+			var startDt = dateS.getFullYear() + "-" + (dateS.getMonth() + 1) + "-" + dateS.getDate();
+			var endtDt = dateE.getFullYear() + "-" + (dateE.getMonth() + 1) + "-" + (dateE.getDate() + 1 );
 		}
 		console.log("this is department controller");
 	 };		 
