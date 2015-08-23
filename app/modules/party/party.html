@@ -3,7 +3,6 @@
 </div>
  
 <div class="modal-body">
-	
 	<h3 class="text-center" ng-if="!modalOptions.addparty.id">Add New Party</h3>
 	<h3 class="text-center" ng-if="modalOptions.addparty.id">Update Party</h3>
 <form class="form-horizontal" name="addPartyForm" role="form" novalidate ng-submit="addPartyForm.$valid">
@@ -123,7 +122,7 @@
 		<label for="type" class="col-sm-2 control-label">Type *</label>
 		<div class="col-sm-9">
 			<select class="form-control" name="type" id="type" ng-model="modalOptions.addparty.type" required>
-				<option value="">-Select Type-</option>
+				<option value="">Select Type</option>
 				<option value="Vendor">Vendor</option>
 				<option value="Client">Client</option>
 			</select>

@@ -27,7 +27,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				postData : function(addquotation) {
 					addquotation.particular = JSON.stringify((addquotation.particular));
 					console.log(addquotation.particular);
-					
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
 								$scope.getQuotation($scope.currentPage, $scope.params);
@@ -37,6 +36,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						});
 					console.log(addquotation); 
 				},
+				
 				updateData : function(addquotation) {
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};

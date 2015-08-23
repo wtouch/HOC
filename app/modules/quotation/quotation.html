@@ -18,9 +18,6 @@
 				<select class="form-control" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist"ng-change="modalOptions.addquotation.party_name = partyType.name; modalOptions.addquotation.department = partyType.department">
 					<option value="">Select Department</option>
 				</select>
-				<!-- <span class="help-block" ng-show="addquotationForm.partyType.$dirty && 	addquotationForm.partyType $invalid">
-					<span ng-show="addquotationForm.partyType $error.required" class="text-danger">Required Field.</span>
-				</span>	 -->
 				<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name">
 				<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.department">
 			</div>
@@ -33,11 +30,11 @@
 		</div>
 	</div>
 	
+	
 	<div class="form-group">
 		<label  for="name" class="col-sm-2 control-label">Name *</label>
 			<div class="col-sm-9">
 				<input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.name" required>
-				
 				<span class="help-block" ng-show="addquotationForm.name.$dirty && addquotationForm.name.$invalid">
 					<span class="text-danger" ng-show="addquotationForm.name.$error.required">Required Field.</span>
 				</span>
@@ -90,13 +87,14 @@
 					</select>
 				</td>
 				<td>
-				<input type="text" id="area" name="area" ng-model="modalOptions.particular.area"/>
+					<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required>
 				</td>
 				<td>
-				<input type="text" id="rate" name="rate" ng-model="modalOptions.particular.rate"/>
+					<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required>
+					
 				</td>
 				<td>
-					<input type="text" id="amount" name="amount" ng-model="modalOptions.particular.amount" />
+					<input type="text" class="form-control" id="amount" name="amount" ng-model="modalOptions.particular.amount" ng-init="modalOptions.particular.amount" required readonly>
 				</td>
 			</tr>
 		</table>
@@ -106,7 +104,7 @@
 			<button type="submit" class="btn btn-success text-center" ng-click="modalOptions.add(modalOptions)">Add This</button>
 		</div>
 	</div>
-	<div class="table-responsive">{{modalOptions.addquotation.particular}}
+	<div class="table-responsive">
 	<table class="table table-bordered">
 		<tr>
 			<th>Description</th>
@@ -137,8 +135,8 @@
 		</table>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-9">
-			<button type="submit" class="btn btn-success" ng-disabled="addquotationForm.$invalid" ng-if="!modalOptions.addquotation.id" ng-click="modalOptions.postData(modalOptions.addquotation);modalOptions.ok()">Submit</button>
+		<div class="col-sm-offset-2 col-sm-9"><!--ng-disabled="addquotationForm.$invalid"-->
+			<button type="submit" class="btn btn-success"  ng-if="!modalOptions.addquotation.id" ng-click="modalOptions.postData(modalOptions.addquotation);modalOptions.ok()">Submit</button>
 			
 			<button type="submit" class="btn btn-success" ng-if="modalOptions.addquotation.id" ng-click="modalOptions.updateData(modalOptions.addquotation);modalOptions.ok()">Update Quotation</button>  
 			<button type="reset" class="btn btn-danger" ng-click="modalOptions.ok()">Cancel</button>
