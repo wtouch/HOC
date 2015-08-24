@@ -15,9 +15,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(addquotation);
 			var x = angular.copy(addquotation);
 			if(x!= undefined){
-			x.particular = (angular.isObject(addquotation.particular)) ? addquotation.particular : JSON.parse(addquotation.particular);
+			x.particular = (angular.isObject(addquotation.particular)) ? addquotation.particular : (addquotation.particular == undefined || addquotation.particular == "") ? [] : JSON.parse(addquotation.particular);
 			
-			x.termsnconditions = (angular.isObject(addquotation.termsnconditions)) ? addquotation.termsnconditions : JSON.parse(addquotation.termsnconditions);
+			x.termsnconditions = (angular.isObject(addquotation.termsnconditions)) ? addquotation.termsnconditions : (addquotation.termsnconditions == undefined || addquotation.termsnconditions == "") ? [] :  JSON.parse(addquotation.termsnconditions);
 			}
 			
 			var modalDefaults = {

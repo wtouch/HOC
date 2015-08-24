@@ -786,9 +786,9 @@ define(['app'], function (app) {
 			  });
 			}
 			else{
-				if(notification.type == "error" || notification.type == "warning"){
+				//if(notification.type == "error" || notification.type == "warning"){
 					queue.splice(0, queue.length);
-				}
+				//}
 				queue.push(notification);
 				$timeout(function removeFromQueueTimeout(){
 					queue.splice(queue.indexOf(notification), 1);
