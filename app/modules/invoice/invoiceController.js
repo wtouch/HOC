@@ -37,6 +37,22 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$event.stopPropagation();
 					opened :(opened==true)?false:true;
 				},
+				getData : function(table, modalOptions, subobj) {
+					console.log(modalOptions);
+					$scope.params = {
+						where : {
+							status : 1
+						}
+					};
+					
+					dataService.get(false,table,$scope.params)
+					.then(function(response) {
+						console.log(response);
+						if(response.status == "success"){
+							modalOptions[subobj] = response.data;
+						}
+					});
+				},
 				open1 : function($event,opened1){
 					$event.preventDefault();
 					$event.stopPropagation();

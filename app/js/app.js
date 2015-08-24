@@ -82,12 +82,12 @@ define(['angular',
 				.when('/dashboard/department/:id?', route.resolve({controller:'department', template: 'department', label: 'Department'}, 'department/'))
 				.when('/dashboard/departmentlist', route.resolve({controller:'department', template: 'departmentlist', label: 'Department Report'}, 'department/'))
 				.when('/dashboard/viewdepartment', route.resolve({controller:'department', template: 'viewdepartment', label: 'View Department'}, 'department/'))
-				
+				.when('/dashboard/invoice/summary', route.resolve({controller:'invoice', template: 'summary', label: 'Summary'}, 'invoice/'))
 				.when('/dashboard/invoice/:id?', route.resolve({controller:'invoice', template: 'invoice', label: 'Invoice'}, 'invoice/'))
 				.when('/dashboard/invoicelist', route.resolve({controller:'invoice', template: 'invoicelist', label: 'Invoice Report'}, 'invoice/'))
 				.when('/dashboard/viewinvoice', route.resolve({controller:'invoice', template: 'viewinvoice', label: 'View Invoice'}, 'invoice/'))
 				
-				.when('/dashboard/invoice/summary', route.resolve({controller:'invoice', template: 'summary', label: 'Summary'}, 'invoice/summary'))
+				
 				
 				.when('/dashboard/quotation/:id?', route.resolve({controller:'quotation', template: 'quotation', label: 'Quotation'}, 'quotation/'))
 				.when('/dashboard/quotationlist', route.resolve({controller:'quotation', template: 'quotationlist', label: 'Quotation Report'}, 'quotation/'))
