@@ -17,6 +17,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			if(x!= undefined){
 			x.particular = (angular.isObject(addquotation.particular)) ? addquotation.particular : JSON.parse(addquotation.particular);
 			}
+					
 			var modalDefaults = {
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
@@ -24,8 +25,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
-					modalOptions.addquotation.terms;
 					addquotation.particular = JSON.stringify((addquotation.particular));
+					addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
 					console.log(addquotation.terms);
 					dataService.post("quotation", addquotation).then(function(response){
 							if(response.status == "success"){
@@ -38,6 +39,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				},
 				updateData : function(addquotation) {
 					addquotation.particular = JSON.stringify((addquotation.particular));
+					//addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};
 					console.log(params);
@@ -88,12 +90,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
-				remove : function(item, modalOptions) {
+				remove : function(item, modalOptions) {			
 					console.log(modalOptions);
-					var index = modalOptions.termslist.indexOf(item);
-					modalOptions.termslist.splice(index, 1); 
+					var index = modalOptions.addquotation.termsnconditions.indexOf(item);
+					modalOptions.addquotation.termsnconditions.splice(index, 1); 
 				},
 				removep : function(item, modalOptions) {
+					
 					console.log(modalOptions);
 					var index = modalOptions.addquotation.particular.indexOf(item);
 					modalOptions.addquotation.particular.splice(index, 1); 
