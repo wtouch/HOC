@@ -195,12 +195,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		}
 		//end party list
 		$scope.filter = function(col, value, search){
+			
 			if(search == true){
-				if(!$scope.params.search) $scope.params.search = {};
-				$scope.params.search[col] = value;
+				if(value == "" || value == undefined){
+					alert(value, col);
+					delete $scope.params.search[col];
+				}else{
+					if(!$scope.params.search) $scope.params.search = {};
+					$scope.params.search[col] = value;
+				}
 			}else{
-				if(!$scope.params.where) $scope.params.where = {};
-				$scope.params.where[col] = value;
+				if(value == "" || value == undefined){
+					//alert(value, col);
+					delete $scope.params.where[col];
+				}else{
+					//alert(value, col);
+					if(!$scope.params.where) $scope.params.where = {};
+					$scope.params.where[col] = value;
+				}
 			}
 			$scope.getQuotation($scope.currentPage, $scope.params);
 		}
