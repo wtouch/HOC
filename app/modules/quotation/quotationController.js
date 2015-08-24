@@ -16,8 +16,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var x = angular.copy(addquotation);
 			if(x!= undefined){
 			x.particular = (angular.isObject(addquotation.particular)) ? addquotation.particular : JSON.parse(addquotation.particular);
+			
+			x.termsnconditions = (angular.isObject(addquotation.termsnconditions)) ? addquotation.termsnconditions : JSON.parse(addquotation.termsnconditions);
 			}
-					
+			
 			var modalDefaults = {
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
@@ -39,7 +41,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				},
 				updateData : function(addquotation) {
 					addquotation.particular = JSON.stringify((addquotation.particular));
-					//addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
+					addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};
 					console.log(params);
@@ -102,6 +104,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					modalOptions.addquotation.particular.splice(index, 1); 
 				}
 			};
+			if(x == undefined){
+				modalOptions.getData('terms', modalOptions.addquotation,'termsnconditions');
+			}
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
@@ -208,8 +213,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.changeStatus = {};
 			$scope.changeStatus[colName] = colValue;
 			console.log(colName, colValue);
+			//var x = angular.copy(addquotation);
 			dataService.put("quotation",$scope.changeStatus,{where : { id : id}})
 			.then(function(response) {
+				//addquotation : (addquotation) ? x : {},
 				//console.log(response);
 				if(response.status == "success"){
 					$scope.getQuotation($scope.currentPage, $scope.params);

@@ -33,25 +33,29 @@
 	<table class="table table-bordered" ng-init="getQuotation(currentPage)"> 
 		<tr>
 			<th>Sr.No</th>
-			<!-- <th>Name</th> -->
 			<th>Address</th>
 			<th>Subject</th>
-			<th>Terms & Conditions</th>
+			<th>status</th>
+			<!-- <th>Terms & Conditions</th> -->
+			<th>Party Name</th>
+			<th>Total Amount</th>
 			<th>Manage</th>
 		</tr>
 		<tr ng-repeat="x in quotationlist | orderBy:sort">
 			<td>{{$index + 1}}</td>
-			<!-- <td>{{x.name}}</td> -->
 			<td>{{x.address}}</td>
 			<td>{{x.subject}}</td>
-			<td>{{addquotation.termsnconditions.description}}</td>
+			<td>{{x.status}}</td>
+			<!-- <td>{{x.termsnconditions}}</td> -->
+			<td>{{x.party_name}}</td>
+			<td>{{x.total_amount}}</td>
 			<td class="col-sm-3">
 				<button ng-click="openAddQuotation(x)" class="btn btn-warning" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
 			
 				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="changeCol('status', x.status, x.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 					<span class="glyphicon glyphicon-remove"></span> 
 				</button>
-			
+				
 				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
 			</td>
 		</tr>				

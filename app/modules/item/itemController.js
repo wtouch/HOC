@@ -71,11 +71,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		console.log("this is item controller");
 		
 		$scope.getItem = function(page, params){
-			$scope.params = (params) ? params : {};
-				/* where : {
-					status : 1
+			$scope.params = (params) ? params : {
+				 where : {
+					status : 0
 				}
-			}; */
+			}; 
 			angular.extend($scope.params, {limit : {
 					page : page,
 					records : $scope.pageItems
