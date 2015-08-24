@@ -463,6 +463,14 @@ define(['app'], function (app) {
 						});
 						whereString += orderBy;
 					}
+					
+					//For between clause
+					if(params.dateDiff != undefined){
+						angular.forEach(params.dateDiff, function(value, key) {
+							whereString += " AND " + key + " BETWEEN" + value.toDate + "and" +value.fromDate;
+						});
+					}
+					
 				}
 				//console.log(whereString);
 				return whereString;

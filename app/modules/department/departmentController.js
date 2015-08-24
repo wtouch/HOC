@@ -10,7 +10,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.pageItems = 10;
 		$scope.numPages = "";	
 		$scope.alerts = [];
-		$scope.currentDate = dataService.currentDate;
+		$scope.currDate = dataService.currentDate;
+		/* $scope.currYear = currDate.getFullYear();
+		/*$scope.currMonth = $scope.currDate.getMonth();
+		$scope.currDt = $scope.currDate.getDate();
+		$scope.curDate = $scope.currDt + "-" + $scope.currMonth + "-" + $scope.currYear ; 
+		console.log($scope.currYear); */
 		$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
 		//datepicker
@@ -73,13 +78,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
 				format : $scope.formats[0],
+				cDate : $scope.currDate ,
 				today : function() {
 					$scope.date = new Date();
 				},
-				open2 : function($event,opened2){
+				open2 : function($event,modalOptions){
 					$event.preventDefault();
 					$event.stopPropagation();
-					$scope.opened2 = ($scope.opened2==true)?false:true;
+					$scope.modalOptions.opened2 = ($scope.modalOptions.opened2==true)?false:true;
 				},
 				getData : function(table, modalOptions, subobj) {
 					console.log(modalOptions);
@@ -98,15 +104,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					});
 				},
 				adddepartment : adddepartment ? x : {},
-				addDept : function(adddepartment) {
-					dataService.post("department", adddepartment)
-					.then(function(response) {
+				postData : function(adddepartment) {
+					console.log(adddepartment);
+					dataService.post("department", adddepartment).then(function(response){
+					console.log(response);
 						if(response.status == "success"){
 							$scope.getDept($scope.currentPage, $scope.params);
-							console.log(response);
-							$notification[response.status]("Record Added Successfully!", response.message);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status](response.message); 
 					});
 					console.log(adddepartment); 
 				} , 

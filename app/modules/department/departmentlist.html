@@ -57,7 +57,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="dept in deptList">
+			<tr ng-repeat="dept in deptList">{{deptList}}
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1 }}</td>
 				<td>{{dept.date}}</td>
 				<td>{{dept.item}}</td>

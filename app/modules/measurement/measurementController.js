@@ -44,26 +44,53 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
-		}
-		
-		// to calculate difference between two dates
+		};
+			$scope.filter = function(col, value, search){
+				if(search == true){
+					if(!$scope.params.search) $scope.params.search = {};
+					$scope.params.search[col] = value;
+				}else{
+					if(!$scope.params.where) $scope.params.where = {};
+					$scope.params.where[col] = value;
+				}
+				
+				$scope.getMeasurement($scope.currentPage, $scope.params);
+			}
+		/* // to calculate difference between two dates
 			$scope.dateDiff = function(measurement){
-				$scope.toDate = $scope.measurement.toDate;
-				$scope.fromDate = $scope.measurement.fromDate;
-				$scope.y = $scope.toDate.getFullYear();
-				$scope.y1 = $scope.fromDate.getFullYear();
-				$scope.m = $scope.toDate.getMonth();
-				$scope.m1 = $scope.fromDate.getMonth();
-				$scope.d = $scope.toDate.getDate();
-				$scope.d1 = $scope.fromDate.getDate();
+				if((measurement.fromDate!= null)&& (measurement.toDate!=null)){
+					
+					var tdatestring = ("0" + measurement.toDate.getDate()).slice(-2) + "-" + ("0"+(measurement.toDate.getMonth()+1)).slice(-2) + "-" +measurement.toDate.getFullYear() + " " + ("0" +measurement.toDate.getHours()).slice(-2) + ":" + ("0" + measurement.toDate.getMinutes()).slice(-2);
+					
+					var fdatestring = ("0" +  measurement.fromDate.getDate()).slice(-2) + "-" + ("0"+( measurement.fromDate.getMonth()+1)).slice(-2) + "-" + measurement.fromDate.getFullYear() + " " + ("0" +  measurement.fromDate.getHours()).slice(-2) + ":" + ("0" +  measurement.fromDate.getMinutes()).slice(-2); 
+					
+					
+					
+					
+				}
 				
+				/* if($scope.measurement!=null){
+					var tdatestring = ("0" + $scope.measurement.toDate.getDate()).slice(-2) + "-" + ("0"+($scope.measurement.toDate.getMonth()+1)).slice(-2) + "-" +$scope.measurement.toDate.getFullYear() + " " + ("0" +$scope.measurement.toDate.getHours()).slice(-2) + ":" + ("0" + $scope.measurement.toDate.getMinutes()).slice(-2);
 				
-				console.log($scope.newday);
+					var fdatestring = ("0" +  $scope.measurement.fromDate.getDate()).slice(-2) + "-" + ("0"+( $scope.measurement.fromDate.getMonth()+1)).slice(-2) + "-" + $scope.measurement.fromDate.getFullYear() + " " + ("0" +  $scope.measurement.fromDate.getHours()).slice(-2) + ":" + ("0" +  $scope.measurement.fromDate.getMinutes()).slice(-2);
+					
+					
+					console.log(tdatestring);
+					console.log(fdatestring);
+					console.log(diffdate);
+				} */
+				
+				//$scope.fromDate = $scope.measurement.fromDate;
+				//$scope.toDate = $scope.measurement.toDate;
+				/* 
+				
+				 
+				
 				//console.log($scope.fromDate);
 				//console.log(newday);
 				//$scope.newDate = 
 				
-			};
+			}; */
 		//end date function
 			$scope.openAddMeasurement = function (addmeasurement) {
 				console.log(addmeasurement);
@@ -82,7 +109,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					},
 					postData : function(addmeasurement) {
 						console.log(addmeasurement);
-					dataService.post("measurement", addmeasurement).then(function(response){
+						dataService.post("measurement", addmeasurement).then(function(response){
 						console.log(response);
 							if(response.status == "success"){
 								$scope.getMeasurement($scope.currentPage, $scope.params);
@@ -192,16 +219,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				$scope.opened1 = ($scope.opened==true)?false:true;
 			};
 			
-			$scope.filter = function(col, value, search){
-				if(search == true){
-					if(!$scope.params.search) $scope.params.search = {};
-					$scope.params.search[col] = value;
-				}else{
-					if(!$scope.params.where) $scope.params.where = {};
-					$scope.params.where[col] = value;
-				}
-				$scope.getMeasurement($scope.currentPage, $scope.params);
-			}
+			
 			$scope.orderBy = function(col, value){
 				if(!$scope.params.orderBy) $scope.params.orderBy = {};
 				$scope.params.orderBy[col] = value;

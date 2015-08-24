@@ -11,16 +11,17 @@
 					<div class="form-group">
 						<label for="inputdate" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-9">
-							<div class="input-group">
+							<input type="text"  class="form-control" placeholder="YYYY-DD-MM" id="date" ng-model="modalOptions.adddepartment.date" ng-init="modalOptions.adddepartment.date = modalOptions.cDate" readonly/>
+							<!-- <div class="input-group">
 								<input type="text" placeholder="YYYY-DD-MM" id="date" name="date" class="form-control" ng-model="modalOptions.adddepartment.date" datepicker-popup="{{format}}" is-open="opened2" min-date="minDate" max-date="'2020-12-31'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-click="modalOptions.open2($event,'opened2')" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-default" ng-click="modalOptions.open2($event,'opened2')"><i class="glyphicon glyphicon-calendar"></i></button>
 								</span>
-							</div>
+							</div> -->
 							<input  type="hidden" class="form-control" id="status" name="status" ng-model="modalOptions.adddepartment.status" ng-init="modalOptions.adddepartment.status=1">
-							<span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
+							<!-- <span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
 								<span ng-show="adddepartmentForm.date.$error.required" class="text-danger">Required Field.</span>
-							</span>
+							</span> -->
 						</div>
 					</div>
 					<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
@@ -68,7 +69,7 @@
 						<div class="col-sm-9">
 							<input  type="text" class="form-control" id="plastermeson" name="plastermeson" ng-model="modalOptions.adddepartment.plaster_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plaster Meson">
 							<span class="block" ng-show="adddepartmentForm.plastermeson.$invalid && adddepartmentForm.plastermeson.$dirty">
-								<!-- <span ng-show="adddepartmentForm.plastermeson.$error.required" class="text-danger">Required Field</span> -->
+								
 								<span ng-show="adddepartmentForm.plastermeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 							</span>
 						</div>
@@ -79,7 +80,7 @@
 						<div class="col-sm-9">
 							<input  type="text" class="form-control" id="plumbermeson" name="plumbermeson" ng-model="modalOptions.adddepartment.plumber_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Plamber Meson">
 							<span class="block" ng-show="adddepartmentForm.plumbermeson.$invalid && adddepartmentForm.plumbermeson.$dirty">
-								<!-- <span ng-show="adddepartmentForm.plumbermeson.$error.required" class="text-danger">Required Field</span> -->
+								
 								<span ng-show="adddepartmentForm.plumbermeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 							</span>
 						</div>
@@ -90,7 +91,7 @@
 							<div class="col-sm-9">
 								<input  type="text" class="form-control" id="bbmmeson" name="bbmmeson" ng-model="modalOptions.adddepartment.bbm_meson" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="BBM Meson">
 								<span class="block" ng-show="adddepartmentForm.bbmmeson.$invalid && adddepartmentForm.bbmmeson.$dirty">
-									<!-- <span ng-show="adddepartmentForm.bbmmeson.$error.required" class="text-danger">Required Field</span> -->
+									
 									<span ng-show="adddepartmentForm.bbmmeson.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -112,7 +113,7 @@
 							<div class="col-sm-9">
 								<input  type="text" class="form-control" id="helper" name="helper" ng-model="modalOptions.adddepartment.helper" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="helper">
 								<span class="block" ng-show="adddepartmentForm.helper.$invalid && adddepartmentForm.helper.$dirty">
-									<!-- <span ng-show="adddepartmentForm.helper.$error.required" class="text-danger">Required Field</span> -->
+									
 									<span ng-show="adddepartmentForm.helper.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
@@ -123,15 +124,15 @@
 							<div class="col-sm-9">
 								<input  type="text" class="form-control" id="breakingmachine" name="breakingmachine" ng-model="modalOptions.adddepartment.breaking_machine" ng-pattern="/^[0-9]{1,7}$/" maxlength="10" placeholder="Breaking Machine">
 								<span class="block" ng-show="adddepartmentForm.breakingmachine.$invalid && adddepartmentForm.breakingmachine.$dirty">
-									<!-- <span ng-show="adddepartmentForm.breakingmachine.$error.required" class="text-danger">Required Field</span> -->
+									
 									<span ng-show="adddepartmentForm.breakingmachine.$error.pattern" class="text-danger">Please Enter a Number.</span>
 								</span>
 							</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-9">
-							<button type="submit" ng-click="modalOptions.addDept(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="!modalOptions.adddepartment.id">Generate</button>
-							<button type="submit" ng-click="modalOptions.updateDept(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="modalOptions.adddepartment.id">Update</button>
+							<button type="submit" ng-click="modalOptions.postData(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="!modalOptions.adddepartment.id">Generate</button>
+							<button type="submit" ng-disabled="adddepartmentForm.$invalid" ng-click="modalOptions.updateDept(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope"  ng-if="modalOptions.adddepartment.id">Update</button>
 							<button type="reset" class="btn btn-danger">Cancel</button>
 						</div>
 					</div>
