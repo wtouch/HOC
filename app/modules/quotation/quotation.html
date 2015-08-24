@@ -68,23 +68,26 @@
 				<tr>
 					<th>Description</th>
 					<th>Unit</th>
-					<th>Area</th>
+					<th>Area/Volume/Length</th>
 					<th>Rate</th>
 					<th>Amount</th>
 				</tr>
 				<tr>
-					<td>
-						<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.particular.description" required/>
-						<span class="help-block" ng-show="addquotationForm.description.$dirty && addquotationForm.description.$invalid">
-							<span ng-show="addquotationForm.description.$error.required" class="text-danger">Required Field.</span>
-						</span>
+					<td ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
+					<select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
+						<option value="">Select Item</option>
+					</select>
 					</td>			
 					<td>
 						<select class="form-control" name="unit" id="unit" ng-model="modalOptions.particular.unit" required>
 							<option value="">Select Unit</option>
-							<option value="Sq.Ft">Sq.Ft</option>
-							<option value="Meter">Meter</option>
-							<option value="Cem">Cem</option>
+							<option value="sqft" >Sq.Ft</option>
+							<option value="sqm">Sq.meter</option>
+							<option value="rm">Rm</option>
+							<option value="fft">F.ft</option>
+							<option value="cum">Cum</option>
+							<option value="cft">Cft</option>
+							<option value="nos">Nos</option>
 						</select>
 					</td>
 					<td>

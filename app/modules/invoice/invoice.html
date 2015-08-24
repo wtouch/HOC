@@ -99,9 +99,9 @@
 					</div>	
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-9">
-						  <button type="submit" class="btn btn-primary" ng-disabled="invoiceform.$invalid"  ng-click="modalOptions.postData(modalOptions.addinvoice)">Generate</button>
-						  <button type="submit" class="btn btn-success"  ng-disabled="invoiceform.$invalid" ng-click="updateData(addinvoice)">Edit Invoice </button>
-						  <button type="reset" class="btn btn-danger">Cancel</button>
+						  <button type="submit" class="btn btn-primary" ng-disabled="invoiceform.$invalid"  ng-click="modalOptions.postData(modalOptions.addinvoice);modalOptions.ok()">Generate</button>
+						  <button type="submit" class="btn btn-success"  ng-disabled="invoiceform.$invalid" ng-click="updateData(addinvoice);modalOptions.ok()">Edit Invoice </button>
+						  <button type="reset" class="btn btn-danger" ng-click="modalOptions.ok()">Cancel</button>
 						</div>
 					</div>
 				</form>

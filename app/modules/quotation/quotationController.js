@@ -224,10 +224,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		}
 		
 		$scope.changeCol = function(colName, colValue, id){
-			$scope.changeStatus = {};
-			$scope.changeStatus[colName] = colValue;
+			$scope.changeStatus1 = {};
+			$scope.changeStatus1[colName] = colValue;
 			console.log(colName, colValue);
-			dataService.put("quotation",$scope.changeStatus,{where : { id : id}})
+			dataService.put("quotation",$scope.changeStatus1,{where : { id : id}})
 			.then(function(response) {
 				//console.log(response);
 				if(response.status == "success"){
@@ -254,7 +254,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			.then(function(response) {
 				//console.log(addquotation);
 				if(response.status == 'success'){
-					$scope.quotationlist = (response.data);
+					$scope.quotationlist = angular.copy(response.data);
 					$scope.totalRecords = response.totalRecords;
 				}else{
 					$scope.quotationlist = [];

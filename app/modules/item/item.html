@@ -56,8 +56,10 @@
 		</div>
 		<div class="form-group">
 			 <div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem)" ng-disabled="addItemForm.$invalid" ng-if="!modalOptions.additem.id">Add Item</button>
-				<button type="submit" class="btn btn-success btnsp" ng-click="modalOptions.updateData(modalOptions.additem)" ng-disabled="addItemForm.$invalid" ng-if="modalOptions.additem.id">Edit Item</button>
+				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem);modalOptions.ok()"" ng-disabled="addItemForm.$invalid" ng-if="!modalOptions.additem.id">Add Item</button>
+				
+				<button type="submit" class="btn btn-success btnsp" ng-click="modalOptions.updateData(modalOptions.additem);modalOptions.ok()" ng-disabled="addItemForm.$invalid" ng-if="modalOptions.additem.id">Edit Item</button>
+				
 				<button type="cancel" class="btn btn-danger btn-dan" ng-click="modalOptions.close()">Cancel</button> 
 			</div>			
 		</div>

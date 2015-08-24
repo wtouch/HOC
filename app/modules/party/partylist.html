@@ -1,5 +1,5 @@
 <div class="text-right bottomspace">
-	<a href="#/dashboard/partylist" class="btn btn-default">Party List</a>
+	<a href="#/dashboard/partylist" class="btn btn-default" ng-click="getParty(currentPage)">Party List</a>
 	<a class="btn btn-default"ng-click="openAddparty()" tooltip="Add New Party">Add Party/Vender</a>
 </div>
 <h3> Party View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
@@ -57,13 +57,13 @@
 			<td>{{x.city}}</td>
 			<td>{{x.type}}</td>
 			<td class="col-sm-3">
-				<button ng-click="openAddparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
+				<button ng-click="openAddparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party"> <span class="glyphicon glyphicon-pencil"></span></button>
 				
 				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="changeCol('status', x.status, x.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 					<span class="glyphicon glyphicon-remove"></span> 
 				</button>
 								
-				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
+				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party"> <span class="glyphicon glyphicon-eye-open"></span></button>
 			</td>
 		</tr>				
 	</table>

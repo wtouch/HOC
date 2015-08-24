@@ -1,5 +1,5 @@
 <div class="text-right bottomspace">
-	<a href="#/dashboard/quotationlist" class="btn btn-default">Quotation List</a>
+	<a href="#/dashboard/quotationlist" class="btn btn-default" ng-click="getQuotation(currentPage)">Quotation List</a>
 	<a class="btn btn-default" ng-click="openAddQuotation()" tooltip="Add New Quotation">Add New Quotation</a>
 </div>
 <h3> Quotation View</h3>
@@ -48,13 +48,13 @@
 			<td>{{x.party_name}}</td>
 			<td>{{x.total_amount}}</td>
 			<td class="col-sm-3">
-				<button ng-click="openAddQuotation(x)" class="btn btn-warning" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-pencil"></span></button>
+				<button ng-click="openAddQuotation(x)" class="btn btn-warning" type="button" tooltip-animation="true" tooltip="Edit Quotation"> <span class="glyphicon glyphicon-pencil"></span></button>
 			
 				<button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="changeCol('status', x.status, x.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 					<span class="glyphicon glyphicon-remove"></span> 
 				</button>
 				
-				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Party Information"> <span class="glyphicon glyphicon-eye-open"></span></button>
+				<button ng-click="openViewparty(x)" class="btn btn-primary" type="button" tooltip-animation="true" tooltip="Edit Quotation"> <span class="glyphicon glyphicon-eye-open"></span></button>
 			</td>
 		</tr>				
 	</table>

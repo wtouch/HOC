@@ -31,7 +31,7 @@
 		<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 			<label for="item" class="col-sm-2 control-label">Select item</label>
 				<div class="col-sm-9">
-					 <select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
+					<select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
 						<option value="">Select Item</option>
 					</select>
 					<input type="hidden" class="form-control" id="Item" ng-model="modalOptions.addmeasurement.item_id"  >

@@ -27,7 +27,8 @@
 					<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 						<label for="item" class="col-sm-2 control-label">Item</label>
 						<div class="col-sm-9">
-							<select class="form-control" id="item" name="item" ng-model="items" ng-options="item.item_name for item in modalOptions.itemlist" ng-change="modalOptions.adddepartment.item = items.item_name" required>
+							<select class="form-control" id="item" name="item" ng-model="items" ng-options="item.id as item.item_name  for item in modalOptions.itemlist"   ng-change="modalOptions.adddepartment.item = items.item_name" required>
+							
 								<option value="" ng-if="!modalOptions.adddepartment.id">Select Item</option>
 								<!-- <option value="modalOptions.adddepartment.item" ng-if="modalOptions.adddepartment.id"></option> -->
 							</select>
@@ -133,7 +134,7 @@
 						<div class="col-sm-offset-2 col-sm-9">
 							<button type="submit" ng-click="modalOptions.postData(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="!modalOptions.adddepartment.id">Add Department</button>
 							<button type="submit" ng-disabled="adddepartmentForm.$invalid" ng-click="modalOptions.updateDept(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope"  ng-if="modalOptions.adddepartment.id">Update</button>
-							<button type="reset" class="btn btn-danger">Cancel</button>
+							<button type="reset" class="btn btn-danger" ng-click="modalOptions.ok()">Cancel</button>
 						</div>
 					</div>
 				</form>
