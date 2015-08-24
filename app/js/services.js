@@ -776,18 +776,23 @@ define(['app'], function (app) {
 			  'timestamp': +new Date(),
 			  'userData': userData
 			};
+			if(notification.type == "error" || notification.type == "warning"){
+				notifications = [];
+			}
 			notifications.push(notification);
-
 			if(settings.html5Mode){
 			  html5Notify(image, title, content, function(){
 			  }, function(){
 			  });
 			}
 			else{
-			  queue.push(notification);
-			  $timeout(function removeFromQueueTimeout(){
-				queue.splice(queue.indexOf(notification), 1);
-			  }, settings[type].duration);
+				if(notification.type == "error" || notification.type == "warning"){
+					queue.splice(0, queue.length);
+				}
+				queue.push(notification);
+				$timeout(function removeFromQueueTimeout(){
+					queue.splice(queue.indexOf(notification), 1);
+				}, settings[type].duration);
 
 			}
 
