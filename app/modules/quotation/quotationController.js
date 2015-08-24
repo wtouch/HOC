@@ -102,6 +102,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					console.log(modalOptions);
 					var index = modalOptions.addquotation.particular.indexOf(item);
 					modalOptions.addquotation.particular.splice(index, 1); 
+					
+					var total = modalOptions.totalCal(modalOptions);
 				}
 			};
 			if(x == undefined){
@@ -213,10 +215,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.changeStatus = {};
 			$scope.changeStatus[colName] = colValue;
 			console.log(colName, colValue);
-			//var x = angular.copy(addquotation);
 			dataService.put("quotation",$scope.changeStatus,{where : { id : id}})
 			.then(function(response) {
-				//addquotation : (addquotation) ? x : {},
 				//console.log(response);
 				if(response.status == "success"){
 					$scope.getQuotation($scope.currentPage, $scope.params);

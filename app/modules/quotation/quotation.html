@@ -20,7 +20,7 @@
 		<div class="form-group">
 			<label  for="name" class="col-sm-2 control-label">Department *</label>
 			<div class="col-sm-9">
-					<select class="form-control" name="department" id="department" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist"ng-change="modalOptions.addquotation.party_name = partyType.name; modalOptions.addquotation.department = partyType.department">
+					<select class="form-control" name="department" id="department" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist" ng-change="modalOptions.addquotation.party_name = partyType.name; modalOptions.addquotation.department = partyType.department">
 						<option value="">Select Department</option>
 					</select>
 					
@@ -28,16 +28,16 @@
 						<span ng-show="addquotationForm.department.$error.required" class="text-danger">Required Field.</span>
 					</span>			
 
-					<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name">
-					<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.department">
+					<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.party_name"/>
+					<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.department"/>
 			</div>
 		</div>
 		<div class="form-group">	
 			<label  for="Date" class="col-sm-2 control-label">Date *</label>
 				<div class="col-sm-9">
-					<input type="text" id="Date" class="form-control" name="Date" placeholder="DD-MM-YYYY" ng-model="modalOptions.addquotation.Date" required>
-					<span class="help-block" ng-show="addquotationForm.Date.$dirty && addquotationForm.Date.$invalid">
-						<span class="text-danger" ng-show="addquotationForm.Date.$error.required">Required Field.</span>
+					<input type="text" id="Date" class="form-control" name="date" placeholder="DD-MM-YYYY" ng-model="modalOptions.addquotation.date" required/>
+					<span class="help-block" ng-show="addquotationForm.date.$dirty && addquotationForm.date.$invalid">
+						<span class="text-danger" ng-show="addquotationForm.date.$error.required">Required Field.</span>
 					</span>
 				</div>						
 		</div>	
@@ -57,7 +57,7 @@
 		<div class="form-group">	
 			<label  for="subject" class="col-sm-2 control-label">Subject *</label>
 				<div class="col-sm-9">
-					<input type="text" id="subject" class="form-control" name="subject" placeholder="Enter subject" ng-model="modalOptions.addquotation.subject" required>
+					<input type="text" id="subject" class="form-control" name="subject" placeholder="Enter subject" ng-model="modalOptions.addquotation.subject" required/>
 					<span class="help-block" ng-show="addquotationForm.subject.$dirty && addquotationForm.subject.$invalid">
 						<span class="text-danger" ng-show="addquotationForm.subject.$error.required">Required Field.</span>
 					</span>
@@ -74,7 +74,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.particular.description" required>
+						<input type="text" class="form-control" id="description" name="description" ng-model="modalOptions.particular.description" required/>
 						<span class="help-block" ng-show="addquotationForm.description.$dirty && addquotationForm.description.$invalid">
 							<span ng-show="addquotationForm.description.$error.required" class="text-danger">Required Field.</span>
 						</span>
@@ -88,14 +88,14 @@
 						</select>
 					</td>
 					<td>
-						<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required>
+						<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required/>
 					</td>
 					<td>
-						<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required>
+						<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required/>
 						
 					</td>
 					<td>
-						<input type="text" class="form-control" id="amount" name="amount" ng-model="modalOptions.particular.amount" ng-init="modalOptions.particular.amount" required readonly>
+						<input type="text" class="form-control" id="amount" name="amount" ng-model="modalOptions.particular.amount" ng-init="modalOptions.particular.amount" required readonly/>
 					</td>
 				</tr>
 			</table>
