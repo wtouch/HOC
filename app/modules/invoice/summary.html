@@ -7,7 +7,7 @@
 	</div>
 </div>
 <h3 class="text-center">Summary <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
-<div class="row bottomspace">
+<div class="row bottomspace" ng-init="modalOptions.getData('party', modalOptions,'partylist')">
 	<div class="col-sm-3">
 		<label for="fromdate" class="control-label">From Date </label>
 		<div class="input-group">
@@ -27,21 +27,25 @@
 			
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<!-- <div class="col-sm-2">
 		<label for="party" class="control-label">Party Name</label>
 			<select class="form-control" id="party">
 				<option>Select Party</option>
 				<option value="1">Sharma</option>
 				<option value="2">Kulkarni</option>
 			</select>
-	</div>
+	</div> -->
 	<div class="col-sm-2">
-		<label for="Department" class="control-label">Department Name</label>
-			<select class="form-control" id="Department">
-				<option>Select Department</option>
-				<option value="active">Dept 1</option>
-				<option value="deleted">Dept 2</option>
+	<label for="party" class="control-label">Party Name</label>
+			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
+				<option value="">Select Party</option>
 			</select>
+		</div>
+	<div class="col-sm-2">
+		<label for="department" class="control-label">Department Name</label>
+		<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }" ng-change="filter('department', partyType.department)">
+			<option value="">Select Department</option>
+		</select>
 	</div>
 	<div class="col-sm-2">
 		<label for="invoice" class="control-label" >Invoice</label>

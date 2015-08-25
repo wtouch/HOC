@@ -66,6 +66,32 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
+		
+		$scope.getParty = function(){
+			$scope.params = {
+				where : {
+					status : 1
+				},
+				orderBy : {
+					name : 'asc'
+				}
+			};
+			
+			dataService.get(false,"party", $scope.params)
+			.then(function(response) {
+				
+				if(response.status == 'success'){
+					$scope.partylist = response.data;
+					console.log($scope.partylist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.partylist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		}
 	};	
 	// Inject controller's dependencies
 	invoiceController.$inject = injectParams;

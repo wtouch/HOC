@@ -74,6 +74,7 @@
 				</tr>
 				<tr>
 					<td ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
+					<!--ng-change="modalOptions.getData('item',modalOptions,itemlist.item_no)"-->
 					<select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
 						<option value="">Select Item</option>
 					</select>
@@ -93,8 +94,8 @@
 					<td>
 						<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required/>
 					</td>
-					<td>
-						<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required/>
+					<td ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
+						<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-options="item.price for item in modalOptions.itemlist" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required/>
 						
 					</td>
 					<td>
