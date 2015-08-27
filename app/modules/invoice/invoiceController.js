@@ -1,11 +1,11 @@
 'use strict';
 define(['app'], function (app) {
-var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService'];
+var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
-	var invoiceController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService) {
+	var invoiceController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
-		$scope.CurrentPage = 1;
+		$scope.currentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";
 		console.log("this is invoice controller");
@@ -92,6 +92,61 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			});
 		}
+		$scope.getMeasurement = function(page, params){
+				
+			$scope.params = (params) ? params : {
+			 where : {
+					status : 1
+				}
+			}; 
+			angular.extend($scope.params, {limit : {
+					page : page,
+					records : $scope.pageItems
+				}
+			})
+			dataService.get(false,"measurement", $scope.params)
+			.then(function(response) {
+			
+				if(response.status == 'success'){
+					$scope.measurementlist = angular.copy(response.data);
+					console.log($scope.measurementlist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.measurementlist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		};
+		//
+		$scope.getDepartment = function(page, params){
+				
+			$scope.params = (params) ? params : {
+			 where : {
+					status : 1
+				}
+			}; 
+			angular.extend($scope.params, {limit : {
+					page : page,
+					records : $scope.pageItems
+				}
+			})
+			dataService.get(false,"department", $scope.params)
+			.then(function(response) {
+			
+				if(response.status == 'success'){
+					$scope.departmentlist = angular.copy(response.data);
+					console.log($scope.departmentlist);
+					$scope.totalRecords = response.totalRecords;
+				}else{
+					$scope.departmentlist = [];
+					$scope.totalRecords = 0;
+					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+					$notification[response.status]("Get Transactions", response.message);
+				}
+			});
+		};
 	};	
 	// Inject controller's dependencies
 	invoiceController.$inject = injectParams;

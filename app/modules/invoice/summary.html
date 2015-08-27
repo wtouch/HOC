@@ -2,8 +2,8 @@
 	<div class="col-sm-12 text-right">	
 		<a class="btn btn-default" href="#/invoice">Add Invoice</a>
 		<a class="btn btn-default" href="#/invoicelist">Invoice List</a>
-		<a class="btn btn-default" href="#/summary">Summary</a>
-		
+		<a class="btn btn-default" href="#/dashboard/invoice/summary">Summary</a>
+
 	</div>
 </div>
 <h3 class="text-center">Summary <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
@@ -56,37 +56,62 @@
 			</select>
 	</div>
 </div>
-<div class="table-responsive">
+<h3>Measurement</h3>
+<div class="table-responsive" ng-init="getMeasurement(currentPage)">
 	<table class="table table-bordered">
 		<tr>
 			<th>Sr. No.</th>
-			<th>Description</th>
-			<th>Unit</th>
+			<th>Party Id</th>
+			<th>Department Id</th>
+			<th>Item Id</th>
+			<th>Measurement Unit</th>
+			<th>Length</th>
 			<th>Area</th>
-			<th>Rate</th>
-			<th>Amount</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>Brick |Work</td>
-			<td>Cum</td>
-			<td>4.16</td>
-			<td>5350.40</td>
-			<td>22257.66</td>
+		<tr ng-repeat="x in measurementlist | orderBy:sort">
+			<td>{{$index + 1}}</td>
+			<td>{{x.party_id}}</td>
+			<td>{{x.department_id}}</td>
+			<td>{{x.item_id}}</td>
+			<td>{{x.measurement_unit}}</td>
+			<td>{{x.length}}</td>
+			<td>{{x.area}}</td>
 		</tr>
-		<tr>
-			<td>2</td>
-			<td>P.C.C. Work</td>
-			<td>Sqm.</td>
-			<td>19.03</td>
-			<td>356.89</td>
-			<td>6999.78</td>
-		</tr>
-		<tfoot>
+		<!-- <tfoot>
 			<tr>
 				<th colspan="5" class="text-right">Total :</th>
 				<td>194760.26</td>
 			</tr>
-		</tfoot>
+		</tfoot> -->
 	</table>
+</div>
+
+<h3>Department</h3>
+<div class="table-responsive" ng-init="getDepartment(currentPage)">
+	<table class="table table-bordered">
+		<tr>
+			<th>Sr. No.</th>
+			<th>Item</th>
+			<th>Date</th>
+			<th>Party Name</th>
+			<th>Department</th>
+		</tr>
+		<tr ng-repeat="x in departmentlist | orderBy:sort">
+			<td>{{$index + 1}}</td>
+			<td>{{x.item}}</td>
+			<td>{{x.date}}</td>
+			<td>{{x.party_name}}</td>
+			<td>{{x.department}}</td>
+		</tr>
+		<!-- <tfoot>
+			<tr>
+				<th colspan="5" class="text-right">Total :</th>
+				<td>194760.26</td>
+			</tr>
+		</tfoot> -->
+	</table>
+</div>
+<div class="text-center">
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getQuotation(currentPage,params)"></pagination>
+	<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>
