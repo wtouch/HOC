@@ -27,17 +27,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
-					addquotation.particular = JSON.stringify((addquotation.particular));
-					addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
-					console.log(addquotation.terms);
+					addquotation.particular = JSON.stringify(addquotation.particular);
+					addquotation.termsnconditions = JSON.stringify(addquotation.termsnconditions);
 					dataService.post("quotation", addquotation).then(function(response){
-							if(response.status == "success"){
-								$scope.getQuotation($scope.currentPage, $scope.params);
-							}
-							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-							$notification[response.status]("Add record", response.message);
-						});
-					console.log(addquotation); 
+						if(response.status == "success"){
+							$scope.getQuotation($scope.currentPage, $scope.params);
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Add record", response.message);
+						console.log(response);
+					});
 				},
 				updateData : function(addquotation) {
 					addquotation.particular = JSON.stringify((addquotation.particular));

@@ -75,9 +75,10 @@
 				<tr>
 					<td ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 					<!--ng-change="modalOptions.getData('item',modalOptions,itemlist.item_no)"-->
-					<select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
+					<select class="form-control" ng-model="item" ng-change="modalOptions.particular.item_name = item.item_name;modalOptions.particular.rate = item.price " ng-options="item as item.item_name  for item in modalOptions.itemlist" required name="item">
 						<option value="">Select Item</option>
 					</select>
+					<input type="hidden" ng-model="modalOptions.particular.item_name" />
 					</td>			
 					<td>
 						<select class="form-control" name="unit" id="unit" ng-model="modalOptions.particular.unit" required>
@@ -92,7 +93,7 @@
 						</select>
 					</td>
 					<td>
-						<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 0" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required/>
+						<input type="text" class="form-control" id="area" name="area" ng-model="modalOptions.particular.area" ng-init="modalOptions.particular.area = 1" ng-change="modalOptions.particular.amount = (modalOptions.particular.area * modalOptions.particular.rate)"  ng-pattern="/^\d{0,9}(\.\d{0,2}){0,1}$/" required/>
 					</td>
 					<td ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
 						<input type="number" class="form-control" id="rate"  ng-change="modalOptions.particular.amount = (modalOptions.particular.rate * modalOptions.particular.area)" name="rate" ng-model="modalOptions.particular.rate" ng-options="item.price for item in modalOptions.itemlist" ng-init="modalOptions.particular.rate = 1" ng-pattern="/^[1-9]\d{0,9}(\.\d{0,2}){0,1}$/"  required/>
@@ -120,7 +121,7 @@
 					<th>Remove</th>
 				</tr>
 				<tr ng-repeat="x in modalOptions.addquotation.particular">
-					<td>{{x.description}}</td>
+					<td>{{x.item_name}}</td>
 					<td>{{x.unit}}</td>
 					<td>{{x.area}}</td>
 					<td>{{x.rate}}</td>
@@ -128,25 +129,26 @@
 					<td><a tooltip="Remove This" ng-click="modalOptions.removep(x,modalOptions)"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
 				<tr>
-					<td colspan="3" ng-hide="!modalOptions.addquotation.particular"></td>
+					<td colspan="3"></td>
 					<td class="text-right"><strong>Total</strong></td>
 					<td class="text-right">{{ modalOptions.addquotation.total_amount  | number : 2}}</td>
 					<td></td>
 				</tr>
-				<input type="hidden" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount"/>
+				
 			</table>
+			<input type="hidden" id="total_amount" name="total_amount" ng-model="modalOptions.addquotation.total_amount"/>
 			<input type="hidden" id="particular" name="particular" ng-model="modalOptions.addquotation.particular">
 		</div>
 		
 		<button type="submit" class="btn btn-success" ng-if="modalOptions.addquotation.id" ng-click="modalOptions.getData('terms', modalOptions.addquotation,'termsnconditions')">Refresh Terms</button>
 		
-		<h5>Terms & Conditions</h5>
+		<h3>Terms & Conditions</h3>
 		<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.termsnconditions"/>
 		
 		<div class="table-responsive">
 			<table class="table table-bordered">
 				<tr ng-repeat="list in modalOptions.addquotation.termsnconditions">
-					<td>{{list.id}}</td>
+					<td>{{$index + 1}}</td>
 					<td>{{list.description}}</td>
 					<td><a tooltip="Remove This" ng-click="modalOptions.remove(x,modalOptions)"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
