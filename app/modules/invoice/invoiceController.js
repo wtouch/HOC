@@ -13,6 +13,20 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
+		$scope.today = function() {
+			$scope.date = new Date();
+		};
+		$scope.open = function($event,opened){
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.opened = ($scope.opened==true)?false:true;
+		};
+		$scope.open1 = function($event,opened){
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.opened1 = ($scope.opened==true)?false:true;
+		};
+			
 		$scope.openInvoice = function () {
 			var modalDefaults = {
 				templateUrl: 'modules/invoice/invoice.html',	
