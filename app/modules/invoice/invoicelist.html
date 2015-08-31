@@ -26,16 +26,13 @@
 			</span>
 		</div>
 	</div>	
-	<div class="col-sm-3">
-		<label for="partyname" class="control-label">Select People</label>
-		<div class="form-group">
-			<select class="form-control">
-				<option value="">Select Party/Vendors</option>
-				<option value="SPD">Party</option>
-				<option value="SPD">Venders</option>
+	
+	<div class="col-sm-2">
+		<label for="party" class="control-label">Party Name</label>
+			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
+				<option value="">Select Party</option>
 			</select>
-		</div>
-	</div>	
+	</div>
 	<div class="col-sm-3">
 		<label for="search" class="control-label">Search</label>
 		<div class="form-group">

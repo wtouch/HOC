@@ -76,7 +76,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					name : 'asc'
 				}
 			};
-			
 			dataService.get(false,"party", $scope.params)
 			.then(function(response) {
 				
@@ -91,6 +90,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
+		};
+		
+		$scope.groupBy = function(col,partyType,value){
+			console.log(col,partyType, value);
+			if(!$scope.params.groupBy) $scope.params.groupBy = {};
+			$scope.params.groupBy[col] = value;
+			
+			$scope.getMeasurement($scope.currentPage, $scope.params); 
+			
 		}
 		$scope.getMeasurement = function(page, params){
 				
@@ -120,8 +128,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		};
 		//
-		$scope.getDepartment = function(page, params){
-				
+		$scope.getDepartment = function(page, params){	
 			$scope.params = (params) ? params : {
 			 where : {
 					status : 1

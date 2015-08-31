@@ -448,8 +448,10 @@ define(['app'], function (app) {
 					// For GroupBy clause
 					if(params.groupBy != undefined){
 						var groupBy = " GROUP BY ";
-						angular.forEach(params.groupBy, function(value, key) {
-							groupBy += value + ",";
+						angular.forEach(params.groupBy, function(value, col,key) {
+							var wstr = "where"+col;
+							wstr = key;
+							groupBy += value + ","+wstr;
 						});
 						groupBy = groupBy.slice(0,-1);
 						whereString += groupBy;
