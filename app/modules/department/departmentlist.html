@@ -4,7 +4,7 @@
 		<a class="btn btn-default" ng-click="openDept(null)" title="Add New Department">Add New Department</a>			
 	</div>
 </div>
- <h3> Deparment  Table<button class="btn btn-primary pull-right" type="submit">Print</button></h3>
+<h3>Deparment Table <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace">
 	<div class="col-sm-3"> 
 		<label for="fromdate" class="control-label">From Date </label>
@@ -26,7 +26,7 @@
 	</div>	
 	<div class="col-sm-3">
 		<label for="sort" class="control-label">Select Party</label>
-		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
+		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType.name)">
 			<option value="">Select Party</option>
 		</select>
 	</div>
@@ -44,7 +44,7 @@
 				<th>Sr.No.</th>
 				<th>Date</th>
 				<th>Item</th>
-				<th>Party</th>
+				<th>Party Id</th>
 				<th>Department</th>
 				<th>Tiles Meson </th>
 				<th>Plaster Meson </th>
@@ -61,7 +61,7 @@
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1 }}</td>
 				<td>{{dept.date}}</td>
 				<td>{{dept.item}}</td>
-				<td>{{dept.party_name}}</td>
+				<td>{{dept.party_id}}</td>
 				<td>{{dept.department}}</td>
 				<td>{{dept.tile_meson}}</td>
 				<td>{{dept.plaster_meson}}</td>

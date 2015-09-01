@@ -43,7 +43,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};
-					console.log(params);
+					//console.log(params);
 					console.log(addquotation);
 					delete addquotation.id;
 					dataService.put("quotation",$scope.addquotation,params)
