@@ -42,11 +42,11 @@
 					<div class="form-group" ng-init="modalOptions.getData('party', modalOptions,'partylist')">
 						<label for="item" class="col-sm-2 control-label">Party</label>
 							<div class="col-sm-9">
-								<select class="form-control" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist" ng-change="modalOptions.adddepartment.party_name = partyType.name; modalOptions.adddepartment.department = partyType.department" required>
+								<select class="form-control" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist" ng-change="modalOptions.adddepartment.party_id = partyType.id; modalOptions.adddepartment.department = partyType.department" required>
 									<option value="" ng-if="!modalOptions.adddepartment.id">Select Party</option>
 									<!-- <option value="modalOptions.adddepartment.party_name" ng-if="modalOptions.adddepartment.id">modalOptions.adddepartment.party_name</option> -->
 								</select>
-								<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.adddepartment.party_name">
+								<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.adddepartment.party_id">
 								<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.adddepartment.department">
 								<span class="block" ng-show="adddepartmentForm.party.$invalid && adddepartmentForm.party.$dirty">
 									<span ng-show="adddepartmentForm.party.$error.required" class="text-danger">Required Field</span>

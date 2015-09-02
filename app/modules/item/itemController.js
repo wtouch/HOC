@@ -98,7 +98,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.filter = function(col, value, search){
 				if(search == true){
 				if(value == "" || value == undefined){
-					alert(value, col);
 					delete $scope.params.search[col];
 				}else{
 					if(!$scope.params.search) $scope.params.search = {};
