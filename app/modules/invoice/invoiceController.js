@@ -189,7 +189,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		};
 		//
-		$scope.getDepartment = function(page, params){	
+		$scope.getDepartment = function(page, params){
 			$scope.params = (params) ? params : {
 			 where : {
 					status : 1
