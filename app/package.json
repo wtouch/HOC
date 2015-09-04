@@ -26,7 +26,7 @@
         "min_height": 500, 
         "show_in_taskbar": true, 
         "transparent": false, 
-        "toolbar": false, 
+        "toolbar":true, 
         "icon": "logo.png", 
         "max_width": 1200, 
         "kiosk_emulation": false, 
