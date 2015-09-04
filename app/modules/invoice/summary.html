@@ -57,7 +57,7 @@
 			</select>
 	</div>
 </div>
-<h3>Measurement</h3>
+<!-- <h3>Measurement</h3>
 <div class="table-responsive" ng-init="getMeasurement(currentPage)">
 	<table class="table table-bordered">
 		<tr>
@@ -83,25 +83,33 @@
 				<th colspan="5" class="text-right">Total :</th>
 				<td>194760.26</td>
 			</tr>
-		</tfoot> -->
+		</tfoot> - ->
 	</table>
-</div>
+</div> -->
 
 <h3>Department</h3>
 <div class="table-responsive" ng-init="getDepartment(currentPage)">
 	<table class="table table-bordered">
 		<tr>
 			<th>Sr. No.</th>
-			<th>Item</th>
+			<th>Description</th>
 			<th>Date</th>
-			<th>Party Name</th>
+			<!-- <th>Party Name</th> -->
+			<th>Unit</th>
+			<th>Area</th>
+			<th>Rate</th>
+			<th>Amount</th>
 			<th>Department</th>
 		</tr>
 		<tr ng-repeat="x in departmentlist | orderBy:sort">
 			<td>{{$index + 1}}</td>
 			<td>{{x.item}}</td>
 			<td>{{x.date}}</td>
-			<td>{{x.party_id}}</td>
+			<!-- <td>{{x.party_id}}</td> -->
+			<td>{{x.measurement_unit}}</td>
+			<td>{{x.area}}</td>
+			<td>{{x.rate}}</td>
+			<td>{{x.amount}}</td>
 			<td>{{x.department}}</td>
 		</tr>
 		<!-- <tfoot>

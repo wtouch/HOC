@@ -6,7 +6,7 @@
 		<h4 class="text-center">Party Details</h4>
 		<div class="table-responsive">
 			<table class="table table-stripped">
-				<tr>
+				<!-- <tr>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Contact</th>	
@@ -23,7 +23,68 @@
 					<td>{{modalOptions.addparty.city}}</td>	
 					<td>{{modalOptions.addparty.area}}</td>	
 					<td>{{modalOptions.addparty.location}}</td>
-				</tr>	
+				</tr>	 -->
+				
+				<tr>
+					<td ng-if="modalOptions.addparty.name"><b>Name</b></td>
+					<td ng-if="modalOptions.addparty.name">						
+						<p>{{modalOptions.addparty.name}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.department"><b>Department</b></td>
+					<td ng-if="modalOptions.addparty.department">						
+						<p>{{modalOptions.addparty.department}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.type"><b>Type</b></td>
+					<td ng-if="modalOptions.addparty.type">						
+						<p>{{modalOptions.addparty.type}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.contact_person"><b>Contact person</b></td>
+					<td ng-if="modalOptions.addparty.contact_person">						
+						<p>{{modalOptions.addparty.contact_person}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.email"><b>Email </b></td>
+					<td ng-if="modalOptions.addparty.email">						
+						<p>{{modalOptions.addparty.email}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.contact"><b>Conatct </b></td>
+					<td ng-if="modalOptions.addparty.contact">						
+						<p>{{modalOptions.addparty.contact}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.address"><b>Address </b></td>
+					<td ng-if="modalOptions.addparty.address">						
+						<p>{{modalOptions.addparty.address}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.city"><b>City</b></td>
+					<td ng-if="modalOptions.addparty.city">						
+						<p>{{modalOptions.addparty.city}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.area"><b>Area </b></td>
+					<td ng-if="modalOptions.addparty.area">						
+						<p>{{modalOptions.addparty.area}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td ng-if="modalOptions.addparty.location"><b>Location </b></td>
+					<td ng-if="modalOptions.addparty.location">						
+						<p>{{modalOptions.addparty.location}}</p>
+					</td>
+				</tr>
 			</table>
 		</div>
 	</div>

@@ -116,14 +116,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		}
 		
 		$scope.filter = function(col, value, search){
-				if(search == true){
-				if(value == "" || value == undefined){
-					alert(value, col);
-					delete $scope.params.search[col];
-				}else{
-					if(!$scope.params.search) $scope.params.search = {};
-					$scope.params.search[col] = value;
-				}
+			if(search == true){
+			if(value == "" || value == undefined){
+				alert(value, col);
+				delete $scope.params.search[col];
+			}else{
+				if(!$scope.params.search) $scope.params.search = {};
+				$scope.params.search[col] = value;
+			}
 			}else{
 				if(value == "" || value == undefined){
 					//alert(value, col);
@@ -134,32 +134,32 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$scope.params.where[col] = value;
 				}
 			}
-				$scope.getMeasurement($scope.currentPage, $scope.params);
-				$scope.getDepartment($scope.currentPage, $scope.params);
-			}
+			$scope.getMeasurement($scope.currentPage, $scope.params);
+			$scope.getDepartment($scope.currentPage, $scope.params);
+		}
 			
-			$scope.orderBy = function(col, value){
-				if(!$scope.params.orderBy) $scope.params.orderBy = {};
-				$scope.params.orderBy[col] = value;
-				$scope.getMeasurement($scope.currentPage, $scope.params);
-				$scope.getDepartment($scope.currentPage, $scope.params);
-			}
+		$scope.orderBy = function(col, value){
+			if(!$scope.params.orderBy) $scope.params.orderBy = {};
+			$scope.params.orderBy[col] = value;
+			$scope.getMeasurement($scope.currentPage, $scope.params);
+			$scope.getDepartment($scope.currentPage, $scope.params);
+		}
 			
-			$scope.changeCol = function(colName, colValue, id){
-				$scope.changeStatus = {};
-				$scope.changeStatus[colName] = colValue;
-				console.log(colName, colValue);
-				dataService.put("party",$scope.changeStatus,{where : { id : id}})
-				.then(function(response) {
-					//console.log(response);
-					if(response.status == "success"){
-						$scope.getMeasurement($scope.currentPage, $scope.params);
-						$scope.getDepartment($scope.currentPage, $scope.params);
-					}
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Add record", response.message);
-				});
-			}
+		$scope.changeCol = function(colName, colValue, id){
+			$scope.changeStatus = {};
+			$scope.changeStatus[colName] = colValue;
+			console.log(colName, colValue);
+			dataService.put("party",$scope.changeStatus,{where : { id : id}})
+			.then(function(response) {
+				//console.log(response);
+				if(response.status == "success"){
+					$scope.getMeasurement($scope.currentPage, $scope.params);
+					$scope.getDepartment($scope.currentPage, $scope.params);
+				}
+				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+				$notification[response.status]("Add record", response.message);
+			});
+		}
 		
 		$scope.getMeasurement = function(page, params){
 				
