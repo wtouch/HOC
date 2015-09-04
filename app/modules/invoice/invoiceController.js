@@ -8,7 +8,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.currentPage = 1;
 		$scope.pageItems = 10;
 		$scope.numPages = "";
-		console.log("this is invoice controller");
 		//code to open modal
 		$scope.ok = function () {
 			$modalOptions.close('ok');
