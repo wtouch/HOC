@@ -437,6 +437,11 @@ define(['app'], function (app) {
 							whereString += " AND " + key + " = '" + value + "'";
 						});
 					}
+					if(params.whereRaw != undefined){
+						angular.forEach(params.whereRaw, function(value, key) {
+							whereString += " AND " + value;
+						});
+					}
 					
 					// For search LIKE clause
 					if(params.search != undefined){
@@ -513,6 +518,7 @@ define(['app'], function (app) {
 							data.data = null;
 							data.status = 'warning';
 							data.message = "Data not found!";
+							$rootScope.loading = false;
 							deferred.resolve(data);
 						}
 						//console.log(data);
@@ -527,6 +533,7 @@ define(['app'], function (app) {
 					  //console.log(data);
 				  });
 				});
+				
 				return deferred.promise;
 			};
 			

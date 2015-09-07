@@ -163,9 +163,13 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.getMeasurement = function(page, params){
 				
 			$scope.params = (params) ? params : {
-			 where : {
+				where : {
 					status : 1
-				}
+				},
+				whereRaw : [
+					"id = 5 and type = 'department' ",
+					"vilas = 'xyz' OR xtype = 'adepartment' "
+				]
 			}; 
 			angular.extend($scope.params, {limit : {
 					page : page,
