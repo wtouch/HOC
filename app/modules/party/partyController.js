@@ -80,24 +80,28 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			
 			$scope.filter = function(col, value, search){
 				if(search == true){
-				if(value == "" || value == undefined){
-					alert(value, col);
-					delete $scope.params.search[col];
+					if(value == "" || value == undefined){
+						alert(value, col);
+						delete $scope.params.search[col];
+					}else{
+						if(!$scope.params.search) $scope.params.search = {};
+						$scope.params.search[col] = value;
+						$scope.getParty($scope.currentPage, $scope.params);
+						//location.reload();
+					}
 				}else{
-					if(!$scope.params.search) $scope.params.search = {};
-					$scope.params.search[col] = value;
+					if(value == "" || value == undefined){
+						//alert(value, col);
+						delete $scope.params.where[col];
+					}else{
+						//alert(value, col);
+						if(!$scope.params.where) $scope.params.where = {};
+						$scope.params.where[col] = value;
+						$scope.getParty($scope.currentPage, $scope.params);
+					}
 				}
-			}else{
-				if(value == "" || value == undefined){
-					//alert(value, col);
-					delete $scope.params.where[col];
-				}else{
-					//alert(value, col);
-					if(!$scope.params.where) $scope.params.where = {};
-					$scope.params.where[col] = value;
-				}
-			}
-				$scope.getParty($scope.currentPage, $scope.params);
+				
+				//$scope.getParty($scope.currentPage, $scope.params);
 			}
 			
 			$scope.orderBy = function(col, value){

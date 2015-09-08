@@ -26,7 +26,7 @@
 					{{ 256 - additem.description.length + " Chars left" }}
 				</span>	
 				<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
-					<span class="text-danger" ng-show="addItemForm.description.$error.required">Please Enter Item Description.</span>
+					<span class="text-danger" ng-show="addItemForm.description.$error.required">Required Field.</span>
 					<span class="text-danger" ng-show="addItemForm.description.$error.maxlength">Sorry You are Exceeding the Limit</span>
 				</span>	
 			</div>
