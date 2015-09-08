@@ -45,6 +45,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 			});
 		}
+		
+		$scope.remove = function(item) {			
+			//console.log(modalOptions);
+			var index = term.indexOf(item);
+			term.splice(index, 1); 
+		}
 		$scope.getTerms = function(page, params){
 			$scope.params = (params) ? params : {
 				where : {

@@ -52,19 +52,27 @@
 						<label  for="fromdate" class="col-sm-2 control-label">From Date *</label>
 						<div class="col-sm-3"> 
 							<div class="input-group">
-								<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="modalOptions.addinvoice.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+								<input type="date" class="form-control" id="date" placeholder="date" ng-model="modalOptions.addmeasurement.date" required>
+									<span class="block" ng-show="addmeasurmentForm.date.$invalid && addmeasurmentForm.date.$dirty">
+									<span ng-show="addmeasurmentForm.date.$error.required" class="text-danger">Required Field</span>
+									</span>
+								<!-- <input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="modalOptions.addinvoice.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="modalOptions.open($event)" />
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-								</span>
+									<button type="button" class="btn btn-default" ng-click="modalOptions.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span> -->
 							</div>
 						</div>
 						<label  for="todate" class="col-sm-2 control-label">To Date *</label>
 						<div class="col-sm-3">
 							<div class="input-group">
-								<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="modalOptions.addinvoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+								<!-- <input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="modalOptions.addinvoice.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-								</span>
+								</span> -->
+								<input type="date" class="form-control" id="dates" placeholder="dates" ng-model="modalOptions.addmeasurement.dates" required>
+									<span class="block" ng-show="addmeasurmentForm.dates.$invalid && addmeasurmentForm.dates.$dirty">
+									<span ng-show="addmeasurmentForm.dates.$error.required" class="text-danger">Required Field</span>
+									</span>
 							</div>
 						</div>
 					</div>	

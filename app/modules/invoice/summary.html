@@ -17,6 +17,7 @@
 			</span>
 		</div>
 	</div>
+	
 	<div class="col-sm-3">
 		<label for="todate" class="control-label">To Date </label>
 		<div class="input-group">
@@ -27,27 +28,21 @@
 			
 		</div>
 	</div>
-	<!-- <div class="col-sm-2">
-		<label for="party" class="control-label">Party Name</label>
-			<select class="form-control" id="party">
-				<option>Select Party</option>
-				<option value="1">Sharma</option>
-				<option value="2">Kulkarni</option>
-			</select>
-	</div> -->
+	
 	<div class="col-sm-2">
-	<label for="party" class="control-label">Party Name</label>
-
+		<label for="party" class="control-label">Party Name</label>
 			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name);groupBy('item_id',partyType.name,partyType.id)">
 				<option value="">Select Party</option>
 			</select>
-		</div>
+	</div>
+	
 	<div class="col-sm-2">
 		<label for="department" class="control-label">Department Name</label>
 		<select class="form-control" ng-model="department" ng-options="item.department for item in partylist | filter : { name : partyType.name }" ng-change="filter('department', partyType.department)">
 			<option value="">Select Department</option>
 		</select>
 	</div>
+	
 	<div class="col-sm-2">
 		<label for="invoice" class="control-label" >Invoice</label>
 			<select class="form-control" id="invoice">
@@ -59,14 +54,12 @@
 </div>
 <h3>Measurement</h3>
 <div class="table-responsive" ng-init="getMeasurement(currentPage)">
-	<table class="table table-bordered">
+	<table class="table table-bordered">{{modalOptions.measurementlist}}
 		<tr>
 			<th>Sr. No.</th>
-			<!-- <th>Party Id</th> -->
 			<th>Date</th>
 			<th>Department</th>
 			<th>Description</th>
-			
 			<th>Unit</th>
 			<th>Area</th>
 			<th>Rate</th>
@@ -74,7 +67,6 @@
 		</tr>
 		<tr ng-repeat="x in measurementlist | orderBy:sort">
 			<td>{{$index + 1}}</td>
-			<!-- <td>{{x.party_id}}</td> -->
 			<td>{{x.date}}</td>
 			<td>{{x.department_id}}</td>
 			<td>{{x.item_id}}</td>
@@ -84,12 +76,6 @@
 			<td>{{x.rate}}</td>
 			<td>{{x.amount}}</td>
 		</tr>
-		<!-- <tfoot>
-			<tr>
-				<th colspan="5" class="text-right">Total :</th>
-				<td>194760.26</td>
-			</tr>
-		</tfoot> -->
 	</table>
 </div>
 
@@ -120,12 +106,6 @@
 			<td>{{x.amount}}</td>
 			
 		</tr>
-		<!-- <tfoot>
-			<tr>
-				<th colspan="5" class="text-right">Total :</th>
-				<td>194760.26</td>
-			</tr>
-		</tfoot> -->
 	</table>
 </div>
 <div class="text-center">

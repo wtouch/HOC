@@ -100,7 +100,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						$scope.getParty($scope.currentPage, $scope.params);
 					}
 				}
-				
 				//$scope.getParty($scope.currentPage, $scope.params);
 			}
 			

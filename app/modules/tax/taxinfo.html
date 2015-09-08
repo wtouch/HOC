@@ -73,7 +73,7 @@
 			<div class="col-sm-12 table-responsive">
 				<table class="table table-bordered" ng-init="getTerms(currentPage)">
 					<tr>
-						<th>Sr. No.</th>
+						<th>Sr.No.</th>
 						<th>Terms and Conditions</th>
 						<th>Manage</th>
 					</tr>
@@ -81,9 +81,14 @@
 						<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
 						<td>{{term.description}}</td>
 						<td>
-							<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+						<!--ng-click="remove(x)"  tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" -->
+							<button type="button" tooltip="{{(term.status == 1) ? 'Delete' : 'Active'}}" ng-class="(term.status == 1) ? 'btn btn-success' : 'btn btn-danger'" 		 ng-model="term.status" ng-change="changeCol('status', term.status, term.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 								<span class="glyphicon glyphicon-remove"></span> 
 							</button>
+							
+							<!-- <button type="button" tooltip="{{(x.status == 1) ? 'Delete' : 'Active'}}" ng-class="(x.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="x.status" ng-change="changeCol('status', x.status, x.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0"> -->
+					
+				</button>
 						</td>
 					</tr>
 				</table>
