@@ -1,5 +1,5 @@
 <div class="text-right bottomspace">
-	<a href="#/dashboard/partylist" class="btn btn-default" ng-click="getParty(currentPage)">Party List</a>
+	<a href="#/dashboard/partylist" class="btn btn-default" ng-click="getParty(currentPage);status=  options[0];search=null;partyType=options[0];sort=options[0]" >Party List</a>
 	<a class="btn btn-default"ng-click="openAddparty()" tooltip="Add New Party">Add Party/Vender</a>
 </div>
 <h3> Party View <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
@@ -8,7 +8,7 @@
 		<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="filter('name', search, true)">
 	</div>
 	<div class="col-sm-2">
-		<select class="form-control" ng-model="sort" ng-change="orderBy('name', sort)">
+		<select class="form-control" name="sort" ng-model="sort" ng-change="orderBy('name', sort)">
 			<option value="">Sort By</option>
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
