@@ -3,7 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
 	var partyController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
-		$rootScope.metaTitle = "Real Estate Project";
+		$rootScope.metaTitle = "HOC Project";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
@@ -124,18 +124,26 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			}
 			
-			$scope.getParty = function(page, params){
+			$scope.getParty = function(page, params,selectCols,joinString){
 				$scope.params = (params) ? params : {
 					where : {
 						status : 1
 					}
 				};
+				$scope.joinString = (joinString) ? joinString : {
+					joinType : "INNER JOIN",
+					joinTable : "party",
+					joinCol : "user_id",
+					joinOn : {}
+				};
+				console.log($scope.joinString);
+				$scope.selectCols = (selectCols) ? selectCols : ["name","type"];
 				angular.extend($scope.params, {limit : {
 						page : page,
 						records : $scope.pageItems
 					}
 				})
-				dataService.get(false,"party", $scope.params)
+				dataService.get(false,"party",$scope.selectCols,$scope.params,$scope.joinString)
 				.then(function(response) {
 					//console.log(response);
 					if(response.status == 'success'){

@@ -422,11 +422,52 @@ define(['app'], function (app) {
 			  dec += decipher.final('utf8');
 			  return dec;
 			}
-			 
+			var tablesJoined = null; 
 			var hw = encrypt("hello world")
 			console.log(hw);
 			 //outputs hello world
 			//console.log(decrypt(hw));
+			
+			//code to set table
+			obj.setTable =function(table){
+				console.log(table);
+				tablesJoined = 0;
+				var tableAlias = "t"+tablesJoined;
+				console.log(tableAlias);
+				return tableAlias; 
+			}
+			
+			//code to set coloumns
+			obj.setColumns = function (selectTable,selectCols,params){
+				var selectColumns ="select";
+				if(selectCols!= undefined && selectTable!= undefined){
+					angular.forEach(selectCols, function(value, key) {
+						selectColumns  = selectColumns +" "+ selectCols + "from " + " " + selectTable + "." + key + " as "+ value + ",";
+						
+					});
+					console.log(selectColumns);
+					return true;
+					
+				}else{
+					return false;
+				}
+			}
+			
+			
+			//code for join table
+			obj.setJoinString = function (joinString){
+				var joinQueryString = "";
+				if(joinString != undefined ){
+					joinQueryString = (joinString == null) ? " "+joinString.joinType : joinQueryString +" "+joinString.joinType;
+					tablesJoined = (tablesJoined== null) ? 1 : tablesJoined + 1 ;
+					
+					angular.forEach(joinString.joinOn, function(value, key) {
+						joinQueryString  = joinQueryString +" "+ joinString.joinTable + "as t" ;
+					});
+					console.log(joinQueryString);
+					console.log(tablesJoined);
+				}
+			}
 			
 			obj.setWhere = function(params){
 				var whereString = " WHERE 1 = 1 ";
@@ -491,12 +532,21 @@ define(['app'], function (app) {
 				//console.log(params.limit);
 				return limitString;
 			}
-			obj.get = function (signle,table, params) {
+			
+		
+			
+			
+			obj.get = function (signle,table,selectCols,params,joinString) {
 				$rootScope.loading = true;
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
 				var whereClause = obj.setWhere(params);
 				var limitClause = obj.setLimit(params);
+				var selectTable = obj.setTable(table);
+				var join = obj.setJoinString(joinString);
+				console.log(selectTable);
+				var setCol = obj.setColumns(selectTable,selectCols,params);
+				console.log(setCol)
 				db.transaction(function (tx) {
 				  tx.executeSql('SELECT * FROM ' + table + whereClause + limitClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
@@ -508,7 +558,7 @@ define(['app'], function (app) {
 						  data.data.push(results.rows.item(i));
 						}
 					}
-					tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
+					tx.executeSql(setCol + table + whereClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
 						data.totalRecords = results.rows.length;
 						
