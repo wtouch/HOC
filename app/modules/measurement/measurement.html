@@ -16,7 +16,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="party" class="col-sm-2 control-label">Select Department</label>
+			<label for="party" class="col-sm-2 control-label">Select Department *</label>
 				<div class="col-sm-9">
 					<select class="form-control" ng-model="partyType" ng-options="item as item.department group by item.name for item in modalOptions.partylist"ng-change="addmeasurement.party_name = partyType.name; addmeasurement.department = partyType.department;modalOptions.addmeasurement.party_id = partyType.id;partyType.department;modalOptions.addmeasurement.department_id = partyType.id;" required>
 						<option value="">Select Department</option>
@@ -28,12 +28,12 @@
 		</div>
 		
 		<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
-			<label for="item" class="col-sm-2 control-label">Select item</label>
+			<label for="item" class="col-sm-2 control-label">Select Item *</label>
 				<div class="col-sm-9">
 					<select class="form-control" ng-model="modalOptions.addmeasurement.item_id"  ng-options="item.id as item.item_name  for item in modalOptions.itemlist" required name="item">
 						<option value="">Select Item</option>
 					</select>
-					<input type="hidden" class="form-control" id="Item" ng-model="modalOptions.addmeasurement.item_id"  >
+					<input type="hidden" class="form-control" id="Item" ng-model="modalOptions.addmeasurement.item_id"  />
 					<input type="hidden" class="form-control" id="Item" ng-model="modalOptions.addmeasurement.status"  ng-init="modalOptions.addmeasurement.status = '1'" >
 			
 					<span class="block" ng-show="addmeasurmentForm.item.$invalid && addmeasurmentForm.item.$dirty">
@@ -43,7 +43,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="date" class="col-sm-2 control-label">Date</label>
+			<label for="date" class="col-sm-2 control-label">Date *</label>
 			<div class="col-sm-9">
 				<input type="date" class="form-control" id="date" placeholder="date" ng-model="modalOptions.addmeasurement.date" required>
 				<span class="block" ng-show="addmeasurmentForm.date.$invalid && addmeasurmentForm.date.$dirty">
@@ -53,7 +53,7 @@
 		</div>
 	
 		<div class="form-group">
-			<label for="receipt_no" class="col-sm-2 control-label">Receipt number</label>
+			<label for="receipt_no" class="col-sm-2 control-label">Receipt number *</label>
 			<div class="col-sm-9">
 				<input  type="text" class="form-control" id="receipt_no" name="receipt_no" ng-model="modalOptions.addmeasurement.receipt_no" cols="30" rows="4" ng-maxlength="5000" placeholder="Receipt number" required>
 				<span class="block" ng-show="addmeasurmentForm.receipt_no.$invalid && addmeasurmentForm.receipt_no.$dirty">
@@ -63,7 +63,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="qty" class="col-sm-2 control-label">Quantity</label>
+			<label for="qty" class="col-sm-2 control-label">Quantity *</label>
 				<div class="col-sm-9">
 					<input class="form-control" id="qty" name="qty" type="text" ng-model="modalOptions.addmeasurement.quantity" placeholder="Quantity" required ng-pattern="/^\d{0,9}(d{1,9})?$/">
 					<span class="block" ng-show="addmeasurmentForm.qty.$invalid && addmeasurmentForm.qty.$dirty">
@@ -74,7 +74,7 @@
 		</div>
 
 		<div class="form-group">
-			<label for="measurement" class="col-sm-2 control-label">Measurement Unit</label>
+			<label for="measurement" class="col-sm-2 control-label">Measurement Unit *</label>
 				<div class="col-sm-3">
 					<select class="form-control" Id="measurement" name="measurement"ng-model="modalOptions.addmeasurement.measurement_unit"  required>
 							<option value="">Select Unit</option>
@@ -117,7 +117,7 @@
 		</div>	
 
 		<div class="form-group" >
-			<label for="area" class="col-sm-2 control-label">Area</label>
+			<label for="area" class="col-sm-2 control-label">Area *</label>
 			<div class="col-sm-9">
 				<input class="form-control" id="area" name="area" type="text" ng-model="modalOptions.addmeasurement.area" placeholder="Area"  >
 				<span class="block" ng-show="addmeasurmentForm.area.$invalid && addmeasurmentForm.area.$dirty">
