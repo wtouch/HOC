@@ -8,12 +8,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
 		$scope.pageItems = 10;
-		$scope.alerts = [];
-		
-		// function to close alert
-		$scope.closeAlert = function(index) {
-			$scope.alerts.splice(index, 1);
-		};
 		
 		$scope.openAddItem = function (additem) {
 			var x =angular.copy(additem);
@@ -74,7 +68,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.params = (params) ? params : {
 				 where : {
 					status : 0
-				}
+				},
+				cols : ["*"]
 			}; 
 			angular.extend($scope.params, {limit : {
 					page : page,
@@ -83,6 +78,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			})
 			dataService.get(false,"item", $scope.params)
 			.then(function(response) {
+				console.log($scope.params);
 				console.log(response);
 				if(response.status == 'success'){
 					$scope.itemlist = angular.copy(response.data);
