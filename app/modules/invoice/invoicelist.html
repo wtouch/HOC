@@ -11,7 +11,7 @@
 	<div class="col-sm-3">
 		<label for="fromdate" class="control-label">From Date </label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
+			<input type="text" placeholder="YYYY-DD-MM" id="fromdate" name="fromdate" class="form-control" ng-model="invoicelist.fromdate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-10-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" />
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
@@ -20,7 +20,7 @@
 	<div class="col-sm-3">
 		<label for="todate" class="control-label">To Date</label>
 		<div class="input-group">
-			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoicelist.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
+			<input type="text" placeholder="YYYY-DD-MM" id="todate" name="todate" class="form-control" ng-model="invoicelist.todate" datepicker-popup="{{format}}" is-open="opened1" min-date="minDate" max-date="'2015-10-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open1($event)" />
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 			</span>
@@ -33,6 +33,7 @@
 				<option value="">Select Party</option>
 			</select>
 	</div>
+	
 	<div class="col-sm-3">
 		<label for="search" class="control-label">Search</label>
 		<div class="form-group">

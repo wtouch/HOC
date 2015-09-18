@@ -75,13 +75,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/department/department.html',	
 				size : 'lg'
 			};
+			
+				var curDate = new Date();
+				var month = curDate.getMonth() + 1;
 			var modalOptions = {
-				formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
-				format : $scope.formats[0],
-				cDate : $scope.currDate ,
-				today : function() {
-					$scope.date = new Date();
-				},
+				//formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
+				currentDate : curDate.getFullYear() + "-" + month + "-" +curDate.getDate(),
+				//format : $scope.formats[0],
+				//cDate : $scope.currDate ,
+				//today : function() {
+					//$scope.date = new Date();
+				//},
 				open2 : function($event,modalOptions){
 					$event.preventDefault();
 					$event.stopPropagation();

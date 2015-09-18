@@ -24,7 +24,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				templateUrl: 'modules/quotation/quotation.html',	
 				size : 'lg'
 			};
+			var curDate = new Date();
+			var month = curDate.getMonth() + 1;
+			
 			var modalOptions = {
+				currentDate : curDate.getFullYear() + "-" + month + "-" +curDate.getDate(),
 				addquotation : (addquotation) ? x : {},
 				postData : function(addquotation) {
 					addquotation.particular = JSON.stringify(addquotation.particular);

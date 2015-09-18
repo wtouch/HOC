@@ -409,14 +409,13 @@ define(['app'], function (app) {
 			obj.resetQueryString = function(){
 				obj.colString = "";
 				obj.tablesJoined = 0;
-				obj.table = null;
 			}
 			obj.setTable = function(tableName){
 				var tableAlias = "t"+obj.tablesJoined;
 				obj.table = tableName + " as " + tableAlias;
 				return tableAlias;
 			};
-			obj.setColumns = function(params, table){
+			obj.setColumns = function(params, table, raw){
 				if(params.cols != undefined){
 					if(angular.isArray(params.cols)){
 						angular.forEach(params.cols, function(value, key) {
@@ -495,10 +494,10 @@ define(['app'], function (app) {
 				var data = {data : [], status : "success", message : "Data Selected!"};
 				var whereClause = obj.setWhere(params, table);
 				var limitClause = obj.setLimit(params);
-				var columns = obj.setColumns(params, table);
+				var columns = obj.setColumns(params, table).slice(0,-2);
 				
 				db.transaction(function (tx) {
-				  tx.executeSql('SELECT * FROM ' + obj.table + whereClause + limitClause, [], function (tx, results) {
+				  tx.executeSql('SELECT '+columns+' FROM ' + obj.table + whereClause + limitClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
 					if(len == 1 && signle == true){
@@ -534,7 +533,6 @@ define(['app'], function (app) {
 				  });
 				});
 				obj.resetQueryString();
-				console.log('SELECT * FROM ' + obj.table + whereClause);
 				console.log(data);
 				return deferred.promise;
 			};

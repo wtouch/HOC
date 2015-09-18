@@ -32,7 +32,7 @@
 					<input type="hidden" id="name" class="form-control" name="name" placeholder="Enter Name" ng-model="modalOptions.addquotation.department"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label for="date" class="col-sm-2 control-label">Date</label>
 			<div class="col-sm-9">
 				<input type="date" class="form-control" id="date" placeholder="date" ng-model="modalOptions.addquotation.date" required />
@@ -40,13 +40,19 @@
 					<span ng-show="addquotationForm.date.$error.required" class="text-danger">Required Field</span>
 				</span>
 			</div>
-		</div>
+		</div> -->
+		<div class="form-group">
+			<label for="date" class="col-sm-2 control-label">Date</label>
+			<div class="col-sm-9">
+				<input type="text"  name="date" id="date" ng-model="modalOptions.addquotation.date" class="form-control" ng-init="modalOptions.addquotation.date = modalOptions.currentDate"/>
+			</div>
+		</div>	
 		<div class="form-group">	
 			<label  for="address" class="col-sm-2 control-label">Address *</label>
 			<div class="col-sm-9">
-				<textarea type="text" class="form-control" id="address" name="address" ng-model="modalOptions.addquotation.address" cols="30" rows="3" ng-maxlength="256" placeholder="Enter address"  required></textarea>
+				<textarea type="text" class="form-control" id="address" name="address" ng-model="modalOptions.addquotation.address" cols="30" rows="3" ng-maxlength="1000" placeholder="Enter address"  required></textarea>
 				<p ng-hide="addquotationForm.address.$error.maxlength">
-					{{ 256 - modalOptions.addquotation.address.length + " Chars left" }}
+					{{ 1000 - modalOptions.addquotation.address.length + " Chars left" }}
 				</p>
 				<span class="help-block" ng-show="addquotationForm.address.$dirty && addquotationForm.address.$invalid">
 					<span ng-show="addquotationForm.address.$error.maxlength"class="text-danger">Sorry You are Exceeding the Limit</span>

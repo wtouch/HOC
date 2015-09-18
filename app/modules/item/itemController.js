@@ -69,7 +69,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				 where : {
 					status : 0
 				},
-				cols : ["*"]
+				cols : ["*"],
+				join : ["INNER JOIN users as t1 ON t0.user_id = t1.id"]
 			}; 
 			angular.extend($scope.params, {limit : {
 					page : page,
