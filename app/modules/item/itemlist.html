@@ -5,7 +5,7 @@
 		<a class="btn btn-default" ng-click="openAddItem(null)" tooltip="Add New Party">Add New Item</a>
 	</div>
 </div>
-<h3>Items View </h3>
+<h3>Items List </h3>
 <div class="row bottomspace">
 	<div class="col-sm-3">
 	<label for="searchItem" class="control-label">Search </label>
@@ -66,7 +66,7 @@
 	</table>
 </div>
 <div class="text-center">
-	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getItem(currentPage,params)"></pagination>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getItem(currentPage)"></pagination>
 	
 	 <pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>

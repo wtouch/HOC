@@ -34,7 +34,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					templateUrl: 'modules/party/party.html',	
 					size : 'lg'
 				};
+				
+				var curDate = new Date();
+				var month = curDate.getMonth() + 1;
 				var modalOptions = {
+					currentDate : curDate.getFullYear() + "-" + month + "-" +curDate.getDate(),
 					addparty : (addparty) ? x : {},
 					postData : function(addparty) {
 						dataService.post("party", addparty).then(function(response){

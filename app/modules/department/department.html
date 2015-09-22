@@ -11,7 +11,9 @@
 					<div class="form-group">
 						<label for="inputdate" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-9">
-							<input type="text"  class="form-control" placeholder="YYYY-DD-MM" id="date" ng-model="modalOptions.adddepartment.date" ng-init="modalOptions.adddepartment.date = modalOptions.cDate" readonly/>
+							<!-- <input type="text"  class="form-control" placeholder="YYYY-DD-MM" id="date" ng-model="modalOptions.adddepartment.date" ng-init="modalOptions.adddepartment.date = modalOptions.cDate" readonly/> -->
+							
+							<input type="text"  name="date" id="date" ng-model="modalOptions.addparty.date" class="form-control" ng-init="modalOptions.addparty.date = modalOptions.currentDate"/>
 							
 							<input  type="hidden" class="form-control" id="status" name="status" ng-model="modalOptions.adddepartment.status" ng-init="modalOptions.adddepartment.status=1">
 							<!-- <span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
@@ -51,6 +53,16 @@
 									<span ng-show="addmeasurmentForm.party.$error.required" class="text-danger">Required Field.</span>
 								</span>	
 							</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="receipt_no" class="col-sm-2 control-label">Receipt number *</label>
+						<div class="col-sm-9">
+							<input  type="text" class="form-control" id="receipt_no" name="receipt_no" ng-model="modalOptions.adddepartment.receipt_no" cols="30" rows="4" placeholder="Receipt number" required>
+							<span class="block" ng-show="adddepartmentForm.receipt_no.$invalid && adddepartmentForm.receipt_no.$dirty">
+								<span ng-show="adddepartmentForm.receipt_no.$error.required" class="text-danger">Required Field</span>
+							</span>
+						</div>
 					</div>
 		
 					<div class="form-group">

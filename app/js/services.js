@@ -309,9 +309,6 @@ define(['app'], function (app) {
 				return newObj;
 			}
 			
-				
-
-			
 			obj.rememberPass = function(remb){
 				//$cookieStore.put('auth',remb);
 				sessionStorage.clear();
@@ -405,14 +402,42 @@ define(['app'], function (app) {
 			console.log(hw);
 			 //outputs hello world
 			//console.log(decrypt(hw));
+			obj.colString = "";
+			obj.tablesJoined = 0;
+			obj.table = null;
 			
-			obj.setWhere = function(params){
+			obj.resetQueryString = function(){
+				obj.colString = "";
+				obj.tablesJoined = 0;
+			}
+			obj.setTable = function(tableName){
+				var tableAlias = "t"+obj.tablesJoined;
+				obj.table = tableName + " as " + tableAlias;
+				return tableAlias;
+			};
+			obj.setColumns = function(params, table, raw){
+				if(params.cols != undefined){
+					if(angular.isArray(params.cols)){
+						angular.forEach(params.cols, function(value, key) {
+							obj.colString += " " + value + ", ";
+						});
+					}else{
+						angular.forEach(params.cols, function(value, key) {
+							obj.colString += " " +  table+"."+key + " as " + value + ", ";
+						});
+					}
+					
+				}
+				console.log(obj.colString);
+				return obj.colString;
+			}
+			obj.setWhere = function(params, table){
 				var whereString = " WHERE 1 = 1 ";
 				if(params){
 					// Set WHERE clause
 					if(params.where != undefined){
 						angular.forEach(params.where, function(value, key) {
-							whereString += " AND " + key + " = '" + value + "'";
+							whereString += " AND " +  table+"."+key + " = '" + value + "'";
 						});
 					}
 					if(params.whereRaw != undefined){
@@ -424,7 +449,7 @@ define(['app'], function (app) {
 					// For search LIKE clause
 					if(params.search != undefined){
 						angular.forEach(params.search, function(value, key) {
-							whereString += " AND " + key + " LIKE '%" + value + "%'";
+							whereString += " AND " +  table+"."+key + " LIKE '%" + value + "%'";
 						});
 					}
 					
@@ -432,7 +457,7 @@ define(['app'], function (app) {
 					if(params.groupBy != undefined){
 						var groupBy = " GROUP BY ";
 						angular.forEach(params.groupBy, function(value, key) {
-							groupBy += key + ",";
+							groupBy +=  table+"."+key + ",";
 						});
 						groupBy = groupBy.slice(0,-1);
 						console.log(groupBy);
@@ -443,20 +468,13 @@ define(['app'], function (app) {
 					if(params.orderBy != undefined){
 						var orderBy = " ORDER BY ";
 						angular.forEach(params.orderBy, function(value, key) {
-							orderBy += key + " " + value;
+							orderBy += table+"."+key + " " + value;
 						});
 						whereString += orderBy;
 					}
 					
-					//For between clause
-					if(params.dateDiff != undefined){
-						angular.forEach(params.dateDiff, function(value, key) {
-							whereString += " AND " + key + " BETWEEN" + value.toDate + "and" +value.fromDate;
-						});
-					}
-					
 				}
-				//console.log(whereString);
+				console.log(whereString);
 				return whereString;
 			}
 			obj.setLimit = function(params){
@@ -469,14 +487,17 @@ define(['app'], function (app) {
 				//console.log(params.limit);
 				return limitString;
 			}
-			obj.get = function (signle,table, params) {
+			obj.get = function (signle, table, params) {
 				$rootScope.loading = true;
+				var table = obj.setTable(table);
 				var deferred = $q.defer();
 				var data = {data : [], status : "success", message : "Data Selected!"};
-				var whereClause = obj.setWhere(params);
+				var whereClause = obj.setWhere(params, table);
 				var limitClause = obj.setLimit(params);
+				var columns = obj.setColumns(params, table).slice(0,-2);
+				
 				db.transaction(function (tx) {
-				  tx.executeSql('SELECT * FROM ' + table + whereClause + limitClause, [], function (tx, results) {
+				  tx.executeSql('SELECT '+columns+' FROM ' + obj.table + whereClause + limitClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
 					var len = results.rows.length, i;
 					if(len == 1 && signle == true){
@@ -486,7 +507,7 @@ define(['app'], function (app) {
 						  data.data.push(results.rows.item(i));
 						}
 					}
-					tx.executeSql('SELECT * FROM ' + table + whereClause, [], function (tx, results) {
+					tx.executeSql('SELECT * FROM ' + obj.table + whereClause, [], function (tx, results) {
 					//console.log(results.rows.item(1));
 						data.totalRecords = results.rows.length;
 						
@@ -511,7 +532,8 @@ define(['app'], function (app) {
 					  //console.log(data);
 				  });
 				});
-				
+				obj.resetQueryString();
+				console.log(data);
 				return deferred.promise;
 			};
 			

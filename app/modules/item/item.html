@@ -18,12 +18,13 @@
 				</span>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label for="description" class="col-sm-2 control-label" >Description *</label>
 			<div class="col-sm-9">
-				<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="200" ng-model="modalOptions.additem.description" required></textarea>
+				<textarea class="form-control" rows="3" id="description" name="description" placeholder="Item Description" ng-maxlength="1000" ng-model="modalOptions.additem.description" required></textarea>
 				<span ng-hide="addItemForm.description.$error.maxlength">
-					{{ 256 - additem.description.length + " Chars left" }}
+					{{ 1000 - additem.description.length + " Chars left" }}
 				</span>	
 				<span class="help-block ng-hide" ng-show="addItemForm.description.$dirty && addItemForm.description.$invalid">
 					<span class="text-danger" ng-show="addItemForm.description.$error.required">Required Field.</span>
@@ -54,6 +55,52 @@
 				</span>
 			</div>
 		</div>
+		
+		<div class="form-group">
+			<label for="measurement" class="col-sm-2 control-label">Measurement Unit *</label>
+				<div class="col-sm-3">
+					<select class="form-control" Id="measurement" name="measurement"ng-model="modalOptions.additem.measurement_unit"  required>
+							<option value="">Select Unit</option>
+							<option value="Sq.Ft" >Sq.Ft</option>
+							<option value="Sq.meter">Sq.meter</option>
+							<option value="Rm">Rm</option>
+							<option value="Fft">Fft</option>
+							<option value="Cum">Cum</option>
+							<option value="Cft">Cft</option>
+							<option value="NOS">NOS</option>
+					</select>
+						<span class="block" ng-show="addItemForm.measurement.$invalid && addItemForm.measurement.$dirty">
+							<span ng-show="addItemForm.measurement.$error.required" class="text-danger">Required Field</span>
+						</span>
+				</div>
+				<div class="col-sm-2"  ng-if="(modalOptions.additem.measurement_unit =='Sq.Ft' )||(modalOptions.additem.measurement_unit =='Cum')||(modalOptions.additem.measurement_unit =='Cft')||(modalOptions.additem.measurement_unit =='Sq.meter' )||(modalOptions.additem.measurement_unit =='Rm' )||(modalOptions.additem.measurement_unit =='Fft' )">
+					<input  type="text" class="form-control" id="length" name="length" ng-model="modalOptions.additem.length" placeholder="length" ng-pattern="/^[0-9]{1,7}$/" required ng-change ="modalOptions.cal(modalOptions.additem)">
+					<span class="block" ng-show="addItemForm.length.$invalid && addItemForm.length.$dirty">
+						<span ng-show="addItemForm.length.$error.pattern" class="text-danger">Please Enter a Number.</span>
+					</span>
+				</div>
+				<div class="col-sm-2" ng-if="(modalOptions.additem.measurement_unit =='Sq.Ft' )||(modalOptions.additem.measurement_unit =='Cum')||(modalOptions.additem.measurement_unit =='Cft')||(modalOptions.additem.measurement_unit =='Sq.meter' )">
+					<input  type="text" class="form-control" id="Width" name="Width" ng-model="modalOptions.additem.width"  placeholder="Width" required ng-change ="modalOptions.cal(modalOptions.additem)">
+					<span class="block" ng-show="addItemForm.Width.$invalid && addItemForm.Width.$dirty">
+							<span ng-show="addItemForm.Width.$error.required" class="text-danger">Required Field</span>
+						</span>
+				</div>
+				<div class="col-sm-2" ng-if="(modalOptions.additem.measurement_unit =='Cum')||(modalOptions.additem.measurement_unit =='Cft') ">
+					<input  type="text" class="form-control" id="Height" name="Height" ng-model="modalOptions.additem.height"  placeholder="Height" required ng-change ="modalOptions.cal(modalOptions.additem)">
+					<span class="block" ng-show="addItemForm.Height.$invalid && addItemForm.Height.$dirty">
+						<span ng-show="addItemForm.Height.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+				<div class="col-sm-2"  ng-if="modalOptions.additem.measurement_unit =='NOS' ">
+					<input  type="text" class="form-control" id="NOS" name="NOS" ng-model="modalOptions.additem.nos" placeholder="NOS" required ng-change ="modalOptions.cal(modalOptions.additem)">
+					<span class="block" ng-show="addItemForm.NOS.$invalid && addItemForm.NOS.$dirty">
+							<span ng-show="addItemForm.NOS.$error.required" class="text-danger">Required Field</span>
+					</span>
+				</div>
+		</div>
+		
+		
+		
 		<div class="form-group">
 			 <div class="col-sm-offset-2 col-sm-9">
 				<button type="submit" class="btn btn-primary" ng-click="modalOptions.postData(modalOptions.additem);modalOptions.ok()"" ng-disabled="addItemForm.$invalid" ng-if="!modalOptions.additem.id">Add Item</button>

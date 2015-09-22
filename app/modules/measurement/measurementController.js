@@ -110,7 +110,11 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					size : 'lg'
 				};
 				
+				var curDate = new Date();
+				var month = curDate.getMonth() + 1;
+				
 				var modalOptions = {
+					currentDate : curDate.getFullYear() + "-" + month + "-" +curDate.getDate(),
 					addmeasurement : (addmeasurement) ? x :{},
 					area : function(){
 						console.log("this is area");
