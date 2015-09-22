@@ -3,7 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
 	var partyController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
-		$rootScope.metaTitle = "Real Estate Project";
+		$rootScope.metaTitle = "HOC Project";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
@@ -80,24 +80,27 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			
 			$scope.filter = function(col, value, search){
 				if(search == true){
-				if(value == "" || value == undefined){
-					alert(value, col);
-					delete $scope.params.search[col];
+					if(value == "" || value == undefined){
+						alert(value, col);
+						delete $scope.params.search[col];
+					}else{
+						if(!$scope.params.search) $scope.params.search = {};
+						$scope.params.search[col] = value;
+						$scope.getParty($scope.currentPage, $scope.params);
+						//location.reload();
+					}
 				}else{
-					if(!$scope.params.search) $scope.params.search = {};
-					$scope.params.search[col] = value;
+					if(value == "" || value == undefined){
+						//alert(value, col);
+						delete $scope.params.where[col];
+					}else{
+						//alert(value, col);
+						if(!$scope.params.where) $scope.params.where = {};
+						$scope.params.where[col] = value;
+						$scope.getParty($scope.currentPage, $scope.params);
+					}
 				}
-			}else{
-				if(value == "" || value == undefined){
-					//alert(value, col);
-					delete $scope.params.where[col];
-				}else{
-					//alert(value, col);
-					if(!$scope.params.where) $scope.params.where = {};
-					$scope.params.where[col] = value;
-				}
-			}
-				$scope.getParty($scope.currentPage, $scope.params);
+				//$scope.getParty($scope.currentPage, $scope.params);
 			}
 			
 			$scope.orderBy = function(col, value){
@@ -121,18 +124,26 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			}
 			
-			$scope.getParty = function(page, params){
+			$scope.getParty = function(page, params,selectCols,joinString){
 				$scope.params = (params) ? params : {
 					where : {
 						status : 1
 					}
 				};
+				$scope.joinString = (joinString) ? joinString : {
+					joinType : "INNER JOIN",
+					joinTable : "party",
+					joinCol : "user_id",
+					joinOn : {}
+				};
+				console.log($scope.joinString);
+				$scope.selectCols = (selectCols) ? selectCols : ["name","type"];
 				angular.extend($scope.params, {limit : {
 						page : page,
 						records : $scope.pageItems
 					}
 				})
-				dataService.get(false,"party", $scope.params)
+				dataService.get(false,"party",$scope.selectCols,$scope.params,$scope.joinString)
 				.then(function(response) {
 					//console.log(response);
 					if(response.status == 'success'){
