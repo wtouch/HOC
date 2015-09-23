@@ -23,7 +23,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.params = (params) ? params : {
 			 where : {
 					status : 1
-				}
+				},
+				cols : ["*"],
+				
 			}; 
 			angular.extend($scope.params, {limit : {
 					page : page,

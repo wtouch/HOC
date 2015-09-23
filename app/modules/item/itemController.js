@@ -20,7 +20,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				additem : (additem) ? x :{},
 				postData : function(additem) {
 					dataService.post("item", additem).then(function(response) {
-						console.log(response);
+						//console.log(response);
 						if(response.status == "success"){
 							$scope.getItem($scope.currentPage, $scope.params);
 						}
