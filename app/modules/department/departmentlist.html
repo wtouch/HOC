@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12 text-right">
-		<a href="#/dashboard/departmentlist" class="btn btn-default" title="Add New Department" ng-click="getDept(currentPage);status=  options[0];search=null;partyType=options[0];department=options[0];sort=options[0]"">Deparment List</a>
+		<a href="#/dashboard/departmentlist" class="btn btn-default" title="Add New Department" ng-click="getData(currentPage, 'department', 'deptList' );status=  options[0];search=null;partyType=options[0];department=options[0];sort=options[0]">Deparment List</a>
 		<a class="btn btn-default" ng-click="openDept(null)" title="Add New Department">Add New Department</a>			
 	</div>
 </div>
@@ -26,7 +26,7 @@
 	</div>	
 	<div class="col-sm-3">
 		<label for="sort" class="control-label">Select Party</label>
-		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType.name)">
+		<select class="form-control" ng-model="partyType" ng-init="getData(false, 'party', 'partylist' )" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType.name)">
 			<option value="">Select Party</option>
 		</select>
 	</div>
@@ -38,7 +38,7 @@
 	</div>
 </div>
 <div class="table-responsive">		
-	<table class="table table-bordered" ng-init="getDept(currentPage)">
+	<table class="table table-bordered" ng-init="getData(currentPage, 'department', 'deptList' )">
 		<thead> 
 			<tr>
 				<th>Sr.No.</th>

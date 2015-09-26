@@ -1,5 +1,5 @@
 <div class="text-right">
-	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add new property" ng-click="getMeasurement(currentPage);status=options[0];department=options[0];search=null;partyType=options[0];sort=options[0]">Measurement Sheet </a>	
+	<a href="#/dashboard/measurementlist" class="btn btn-default" title="Add new property" ng-click="getData(currentPage, 'measurement', 'measurementlist' );status=options[0];department=options[0];search=null;partyType=options[0];sort=options[0]">Measurement Sheet </a>	
 	<a class="btn btn-default" ng-click="openAddMeasurement(null)" tooltip="Add Measurement Item">Add Measurement Item</a>
 </div>
 <h3>Measurement List</h3> 	
@@ -22,12 +22,11 @@
 			</span>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-3" ng-init="getData(false, 'party', 'partylist')" >
 		<label for="party" class="control-label">Select Party</label>
-		<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType.id)">
+		<select class="form-control" ng-model="partyType" ng-options="item.name for item in partylist" ng-change="filter('party_id', partyType.id)">
 				<option value="">Select Party</option>
 		</select>
-	
 	</div>
 	<div class="col-sm-3">
 	<label for="department" class="control-label">Select Department</label>
@@ -38,7 +37,7 @@
 </div>
 
 	<div class="table-responsive">		
-	<table class="table table-bordered" ng-init="getMeasurement(currentPage)">
+	<table class="table table-bordered" ng-init="getData(currentPage, 'measurement', 'measurementlist' )">
 	<thead>
 		<tr>
 			<th>Sr.No.</th>

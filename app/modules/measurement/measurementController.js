@@ -17,38 +17,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.closeAlert = function(index) {
 			$scope.alerts.splice(index, 1);
 		};
-		
-		$scope.getMeasurement = function(page, params){
-				
-			$scope.params = (params) ? params : {
-			 where : {
-					status : 1
-				},
-				cols : ["*"],
-				
-			}; 
-			angular.extend($scope.params, {limit : {
-					page : page,
-					records : $scope.pageItems
-				}
-			})
-			dataService.get(false,"measurement", $scope.params)
-			.then(function(response) {
-			
-				if(response.status == 'success'){
-					$scope.measurementlist = angular.copy(response.data);
-					console.log($scope.measurementlist);
-					$scope.totalRecords = response.totalRecords;
-				}else{
-					$scope.measurementlist = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
-				}
-			});
-		};
-			$scope.filter = function(col, value, search){
-				if(search == true){
+	
+		$scope.filter = function(col, value, search){
+			if(search == true){
 				if(value == "" || value == undefined){
 					alert(value, col);
 					delete $scope.params.search[col];
@@ -56,53 +27,17 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					if(!$scope.params.search) $scope.params.search = {};
 					$scope.params.search[col] = value;
 				}
+			}else{
+				if(value == "" || value == undefined){
+					delete $scope.params.where[col];
 				}else{
-					if(value == "" || value == undefined){
-						//alert(value, col);
-						delete $scope.params.where[col];
-					}else{
-						//alert(value, col);
-						if(!$scope.params.where) $scope.params.where = {};
-						$scope.params.where[col] = value;
-					}
+					if(!$scope.params.where) $scope.params.where = {};
+					$scope.params.where[col] = value;
 				}
-				$scope.getMeasurement($scope.currentPage, $scope.params);
 			}
-		/* // to calculate difference between two dates
-			$scope.dateDiff = function(measurement){
-				if((measurement.fromDate!= null)&& (measurement.toDate!=null)){
-					
-					var tdatestring = ("0" + measurement.toDate.getDate()).slice(-2) + "-" + ("0"+(measurement.toDate.getMonth()+1)).slice(-2) + "-" +measurement.toDate.getFullYear() + " " + ("0" +measurement.toDate.getHours()).slice(-2) + ":" + ("0" + measurement.toDate.getMinutes()).slice(-2);
-					
-					var fdatestring = ("0" +  measurement.fromDate.getDate()).slice(-2) + "-" + ("0"+( measurement.fromDate.getMonth()+1)).slice(-2) + "-" + measurement.fromDate.getFullYear() + " " + ("0" +  measurement.fromDate.getHours()).slice(-2) + ":" + ("0" +  measurement.fromDate.getMinutes()).slice(-2); 
-					
-					
-					
-					
-				}
-				
-				/* if($scope.measurement!=null){
-					var tdatestring = ("0" + $scope.measurement.toDate.getDate()).slice(-2) + "-" + ("0"+($scope.measurement.toDate.getMonth()+1)).slice(-2) + "-" +$scope.measurement.toDate.getFullYear() + " " + ("0" +$scope.measurement.toDate.getHours()).slice(-2) + ":" + ("0" + $scope.measurement.toDate.getMinutes()).slice(-2);
-				
-					var fdatestring = ("0" +  $scope.measurement.fromDate.getDate()).slice(-2) + "-" + ("0"+( $scope.measurement.fromDate.getMonth()+1)).slice(-2) + "-" + $scope.measurement.fromDate.getFullYear() + " " + ("0" +  $scope.measurement.fromDate.getHours()).slice(-2) + ":" + ("0" +  $scope.measurement.fromDate.getMinutes()).slice(-2);
-					
-					
-					console.log(tdatestring);
-					console.log(fdatestring);
-					console.log(diffdate);
-				} */
-				
-				//$scope.fromDate = $scope.measurement.fromDate;
-				//$scope.toDate = $scope.measurement.toDate;
-				/* 
-				
-				 
-				
-				//console.log($scope.fromDate);
-				//console.log(newday);
-				//$scope.newDate = 
-				
-			}; */
+			$scope.getData($scope.currentPage, "measurement", "measurementlist", $scope.params);
+		}
+		
 		//end date function
 			$scope.openAddMeasurement = function (addmeasurement) {
 				console.log(addmeasurement);
@@ -128,7 +63,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						dataService.post("measurement", addmeasurement).then(function(response){
 						console.log(response);
 							if(response.status == "success"){
-								$scope.getMeasurement($scope.currentPage, $scope.params);
+								$scope.getData($scope.currentPage, "measurement", "measurementlist", $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 							$notification[response.status](response.message); 
@@ -144,27 +79,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						.then(function(response) {
 							console.log(response);
 							if(response.status == "success"){
-								$scope.getMeasurement($scope.currentPage, $scope.params);
+								//$scope.getMeasurement($scope.currentPage, $scope.params);
+								$scope.getData($scope.currentPage, "measurement", "measurementlist", $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 							$notification[response.status]("Update record", response.message);
 						});
 					},
 					getData : function(table, modalOptions, subobj) {
-						console.log(modalOptions);
-						$scope.params = {
-							where : {
-								status : 1
-							}
-						};
-						
-						dataService.get(false,table,$scope.params)
-						.then(function(response) {
-							console.log(response);
-							if(response.status == "success"){
-								modalOptions[subobj] = response.data;
-							}
-						});
+						$scope.getData(false, table, subobj, false, modalOptions);
 					},
 					cal : function (modalOptions){
 						
@@ -198,29 +121,46 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				});
 			};
 			
-			$scope.getParty = function(){
-				$scope.params = {
+			$scope.getData = function(page, table, subobj, params, modalOptions) {
+				$scope.params = (params) ? params : {
 					where : {
 						status : 1
-					}
-					
+					},
+					cols : ["*"]
 				};
+				if(page){
+					angular.extend($scope.params, {
+						limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+				}
 				
-				dataService.get(false,"party", $scope.params)
+				dataService.get(false,table,$scope.params)
 				.then(function(response) {
-					
 					if(response.status == 'success'){
-						$scope.partylist = response.data;
-						console.log($scope.partylist);
-						$scope.totalRecords = response.totalRecords;
+						if(modalOptions != undefined){
+							modalOptions[subobj] = response.data;
+							modalOptions.totalRecords = response.totalRecords;
+						}else{
+							$scope[subobj] = response.data;
+							$scope.totalRecords = response.totalRecords;
+						}
 					}else{
-						$scope.partylist = [];
-						$scope.totalRecords = 0;
+						if(modalOptions != undefined){
+							modalOptions[subobj] = [];
+							modalOptions.totalRecords = 0;
+						}else{
+							$scope[subobj] = [];
+							$scope.totalRecords = 0;
+						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status]("Get Transactions", response.message);
 					}
 				});
 			}
+			
 			$scope.today = function() {
 				$scope.date = new Date();
 			};
@@ -239,7 +179,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$scope.orderBy = function(col, value){
 				if(!$scope.params.orderBy) $scope.params.orderBy = {};
 				$scope.params.orderBy[col] = value;
-				$scope.getMeasurement($scope.currentPage, $scope.params);
+				$scope.getData($scope.currentPage, "measurement", "measurementlist", $scope.params);
 			}
 			$scope.changeCol = function(colName, colValue, id){
 				$scope.changeStatus = {};
@@ -249,7 +189,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				.then(function(response) {
 					//console.log(response);
 					if(response.status == "success"){
-						$scope.getMeasurement($scope.currentPage, $scope.params);
+						$scope.getData($scope.currentPage, "measurement", "measurementlist", $scope.params);
 					}
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("record updated", response.message);

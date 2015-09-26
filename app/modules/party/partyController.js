@@ -3,7 +3,7 @@ define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
   // This is controller for this view
 	var partyController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
-		$rootScope.metaTitle = "Real Estate Project";
+		$rootScope.metaTitle = "HOC Project";
 		$scope.maxSize = 5;
 		$scope.totalRecords = "";
 		$scope.currentPage = 1;
@@ -43,7 +43,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					postData : function(addparty) {
 						dataService.post("party", addparty).then(function(response){
 							if(response.status == "success"){
-								$scope.getParty($scope.currentPage, $scope.params);
+								$scope.getData($scope.currentPage, "party", "partylist", $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 							$notification[response.status]("Add record", response.message);
@@ -59,7 +59,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						.then(function(response) {
 						console.log(response);
 							if(response.status == "success"){
-								$scope.getParty($scope.currentPage, $scope.params);
+								$scope.getData($scope.currentPage, "party", "partylist", $scope.params);
 							}
 							if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 								$notification[response.status]("Update record", response.message);
@@ -84,30 +84,30 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			
 			$scope.filter = function(col, value, search){
 				if(search == true){
-				if(value == "" || value == undefined){
-					alert(value, col);
-					delete $scope.params.search[col];
+					if(value == "" || value == undefined){
+						alert(value, col);
+						delete $scope.params.search[col];
+					}else{
+						if(!$scope.params.search) $scope.params.search = {};
+						$scope.params.search[col] = value;
+					}
 				}else{
-					if(!$scope.params.search) $scope.params.search = {};
-					$scope.params.search[col] = value;
+					if(value == "" || value == undefined){
+						//alert(value, col);
+						delete $scope.params.where[col];
+					}else{
+						//alert(value, col);
+						if(!$scope.params.where) $scope.params.where = {};
+						$scope.params.where[col] = value;
+					}
 				}
-			}else{
-				if(value == "" || value == undefined){
-					//alert(value, col);
-					delete $scope.params.where[col];
-				}else{
-					//alert(value, col);
-					if(!$scope.params.where) $scope.params.where = {};
-					$scope.params.where[col] = value;
-				}
-			}
-				$scope.getParty($scope.currentPage, $scope.params);
+					$scope.getData($scope.currentPage, "party", "partylist", $scope.params);
 			}
 			
 			$scope.orderBy = function(col, value){
 				if(!$scope.params.orderBy) $scope.params.orderBy = {};
 				$scope.params.orderBy[col] = value;
-				$scope.getParty($scope.currentPage, $scope.params);
+				$scope.getData($scope.currentPage, "party", "partylist", $scope.params);
 			}
 			
 			$scope.changeCol = function(colName, colValue, id){
@@ -118,35 +118,47 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				.then(function(response) {
 					//console.log(response);
 					if(response.status == "success"){
-						$scope.getParty($scope.currentPage, $scope.params);
+						$scope.getData($scope.currentPage, "party", "partylist", $scope.params);
 					}
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("Add record", response.message);
 				});
 			}
 			
-			$scope.getParty = function(page, params){
+			$scope.getData = function(page, table, subobj, params, modalOptions) {
 				$scope.params = (params) ? params : {
 					where : {
 						status : 1
 					},
-					cols : ["*"],
-					
+					cols : ["*"]
 				};
-				angular.extend($scope.params, {limit : {
-						page : page,
-						records : $scope.pageItems
-					}
-				})
-				dataService.get(false,"party", $scope.params)
+				if(page){
+					angular.extend($scope.params, {
+						limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+				}
+				
+				dataService.get(false,table,$scope.params)
 				.then(function(response) {
-					//console.log(response);
 					if(response.status == 'success'){
-						$scope.partylist = angular.copy(response.data);
-						$scope.totalRecords = response.totalRecords;
+						if(modalOptions != undefined){
+							modalOptions[subobj] = response.data;
+							modalOptions.totalRecords = response.totalRecords;
+						}else{
+							$scope[subobj] = response.data;
+							$scope.totalRecords = response.totalRecords;
+						}
 					}else{
-						$scope.partylist = [];
-						$scope.totalRecords = 0;
+						if(modalOptions != undefined){
+							modalOptions[subobj] = [];
+							modalOptions.totalRecords = 0;
+						}else{
+							$scope[subobj] = [];
+							$scope.totalRecords = 0;
+						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status]("Get Transactions", response.message);
 					}

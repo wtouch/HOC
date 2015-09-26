@@ -54,27 +54,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					.then(function(response) {
 					console.log(response);
 						if(response.status == "success"){
-							$scope.getQuotation($scope.currentPage, $scope.params);
+							$scope.getData($scope.currentPage, "quotation", "quotationlist", $scope.params);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 							$notification[response.status]("Update record", response.message);
 					});
 				},
 				getData : function(table, modalOptions, subobj) {
-					console.log(modalOptions);
-					$scope.params = {
-						where : {
-							status : 1
-						}
-					};
-					
-					dataService.get(false,table,$scope.params)
-					.then(function(response) {
-						console.log(response);
-						if(response.status == "success"){
-							modalOptions[subobj] = response.data;
-						}
-					});
+					$scope.getData(false, table, subobj, false, modalOptions);
 				},
 				totalCal : function(modalOptions){
 					modalOptions.addquotation.total_amount = 0;
@@ -88,7 +75,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					modalOptions.addquotation.particular = (modalOptions.addquotation.particular) ? modalOptions.addquotation.particular : [];
 					
 					var dtlObj = angular.copy(modalOptions.particular);
-					//modalOptions.addquotation.particular = (dtlObj);
+				
 					modalOptions.addquotation.particular.push((dtlObj));
 					
 					var total = modalOptions.totalCal(modalOptions);
@@ -124,82 +111,55 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var modalOptions = {
 				addquotation : addquotation,
 				getData : function(table, modalOptions, subobj) {
-					console.log(modalOptions);
-					$scope.params = {
-						where : {
-							status : 1
-						}
-					};
-					
-					dataService.get(false,table,$scope.params)
-					.then(function(response) {
-						console.log(response);
-						if(response.status == "success"){
-							modalOptions[subobj] = response.data;
-						}
-					});
+					$scope.getData(false, table, subobj, false, modalOptions);
 				},
 			};
 			modalService.showModal(modalDefaults, modalOptions).then(function (result) {
 			});
 		};
-		//
-		$scope.getTerms = function(page, params){
+		$scope.getData = function(page, table, subobj, params, modalOptions) {
 			$scope.params = (params) ? params : {
 				where : {
 					status : 1
 				},
 				cols : ["*"],
+				join : ["INNER JOIN users as t1 ON t0.user_id = t1.id"]
 			};
-			angular.extend($scope.params, {limit : {
-					page : page,
-					records : $scope.pageItems
-				}
-			})
-			dataService.get(false,"terms", $scope.params)
-			.then(function(response) {
-				console.log(response);
-				if(response.status == 'success'){
-					$scope.termslist = angular.copy(response.data);
-					console.log($scope.termslist);
-					$scope.totalRecords = response.totalRecords;
-				}else{
-					$scope.termslist = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
-				}
-			});
-		}
-		//request for party list
-		$scope.getParty = function(){
-			$scope.params = {
-				where : {
-					status : 1
-				},
-				orderBy : {
-					name : 'asc'
-				}
-			};
+			if(page){
+				angular.extend($scope.params, {
+					limit : {
+						page : page,
+						records : $scope.pageItems
+					}
+				})
+			}
 			
-			dataService.get(false,"party", $scope.params)
+			dataService.get(false,table,$scope.params)
 			.then(function(response) {
-				
 				if(response.status == 'success'){
-					$scope.partylist = response.data;
-					console.log($scope.partylist);
-					$scope.totalRecords = response.totalRecords;
+					if(modalOptions != undefined){
+						modalOptions[subobj] = response.data;
+						modalOptions.totalRecords = response.totalRecords;
+					}else{
+						$scope[subobj] = response.data;
+						$scope.totalRecords = response.totalRecords;
+					}
 				}else{
-					$scope.partylist = [];
-					$scope.totalRecords = 0;
+					if(modalOptions != undefined){
+						modalOptions[subobj] = [];
+						modalOptions.totalRecords = 0;
+					}else{
+						$scope[subobj] = [];
+						$scope.totalRecords = 0;
+					}
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
 		}
-		//end party list
+		
+		
 		$scope.filter = function(col, value, search){
-			
 			if(search == true){
 				if(value == "" || value == undefined){
 					alert(value, col);
@@ -210,21 +170,21 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			}else{
 				if(value == "" || value == undefined){
-					//alert(value, col);
+					
 					delete $scope.params.where[col];
 				}else{
-					//alert(value, col);
+					
 					if(!$scope.params.where) $scope.params.where = {};
 					$scope.params.where[col] = value;
 				}
 			}
-			$scope.getQuotation($scope.currentPage, $scope.params);
+				$scope.getData($scope.currentPage, "quotation", "quotationlist", $scope.params);
 		}
 			
 		$scope.orderBy = function(col, value){
 			if(!$scope.params.orderBy) $scope.params.orderBy = {};
 			$scope.params.orderBy[col] = value;
-			$scope.getQuotation($scope.currentPage, $scope.params);
+			$scope.getData($scope.currentPage, "quotation", "quotationlist", $scope.params);
 		}
 		
 		$scope.changeCol = function(colName, colValue, id){
@@ -233,41 +193,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(colName, colValue);
 			dataService.put("quotation",$scope.changeStatus1,{where : { id : id}})
 			.then(function(response) {
-				//console.log(response);
+				
 				if(response.status == "success"){
-					$scope.getQuotation($scope.currentPage, $scope.params);
+					$scope.getData($scope.currentPage, "quotation", "quotationlist", $scope.params);
 				}
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 				$notification[response.status]("Add record", response.message);
-			});
-		}
-			
-		$scope.getQuotation = function(page,params){
-			$scope.params = (params) ? params : {
-				where : {
-					status : 1
-				},
-				cols : ["*"],
-				join : ["INNER JOIN users as t1 ON t0.user_id = t1.id"]
-			
-			};
-			angular.extend($scope.params, {limit : {
-					page : page,
-					records : $scope.pageItems
-				}
-			})
-			dataService.get(false,"quotation",$scope.params)
-			.then(function(response) {
-				//console.log(addquotation);
-				if(response.status == 'success'){
-					$scope.quotationlist = angular.copy(response.data);
-					$scope.totalRecords = response.totalRecords;
-				}else{
-					$scope.quotationlist = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
-				}
 			});
 		}
 		

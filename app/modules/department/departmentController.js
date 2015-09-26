@@ -11,11 +11,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.numPages = "";	
 		$scope.alerts = [];
 		$scope.currDate = dataService.currentDate;
-		/* $scope.currYear = currDate.getFullYear();
-		/*$scope.currMonth = $scope.currDate.getMonth();
-		$scope.currDt = $scope.currDate.getDate();
-		$scope.curDate = $scope.currDt + "-" + $scope.currMonth + "-" + $scope.currYear ; 
-		console.log($scope.currYear); */
 		$scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
 		//datepicker
@@ -41,31 +36,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.dynamicTooltip = function(status, active, notActive){
 			return (status==1) ? active : notActive;
 		};
-		$scope.getParty = function(page, params){
-			$scope.params = (params) ? params : {
-				where : {
-					status : 1
-				}
-			};
-			angular.extend($scope.params, {limit : {
-					page : page,
-					records : $scope.pageItems
-				}
-			})
-			dataService.get(false,"party", $scope.params)
-			.then(function(response) {
-				//console.log(response);
-				if(response.status == 'success'){
-					$scope.partylist = angular.copy(response.data);
-					$scope.totalRecords = response.totalRecords;
-					console.log($scope.partylist);
-				}else{
-					$scope.partylist = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-				}
-			});
-		}	
+		
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
@@ -79,33 +50,14 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				var curDate = new Date();
 				var month = curDate.getMonth() + 1;
 			var modalOptions = {
-				//formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
 				currentDate : curDate.getFullYear() + "-" + month + "-" +curDate.getDate(),
-				//format : $scope.formats[0],
-				//cDate : $scope.currDate ,
-				//today : function() {
-					//$scope.date = new Date();
-				//},
 				open2 : function($event,modalOptions){
 					$event.preventDefault();
 					$event.stopPropagation();
 					$scope.modalOptions.opened2 = ($scope.modalOptions.opened2==true)?false:true;
 				},
 				getData : function(table, modalOptions, subobj) {
-					console.log(modalOptions);
-					$scope.params = {
-						where : {
-							status : 1
-						}
-					};
-					
-					dataService.get(false,table,$scope.params)
-					.then(function(response) {
-						console.log(response);
-						if(response.status == "success"){
-							modalOptions[subobj] = response.data;
-						}
-					});
+					$scope.getData(false,table, subobj,false,modalOptions);
 				},
 				adddepartment : adddepartment ? x : {},
 				postData : function(adddepartment) {
@@ -125,7 +77,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					dataService.put("department",adddepartment,params)
 					.then(function(response) {
 						if(response.status == "success"){
-							$scope.getDept($scope.currentPage, $scope.params);
+							$scope.getData($scope.currentPage, "department", "departmentlist", $scope.params);
 							$notification[response.status]("Record Updated Successfully!", response.message);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
@@ -135,66 +87,64 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
 		};
-		$scope.getDept = function(page, params){
+		$scope.getData = function(page, table, subobj, params, modalOptions) {
 			$scope.params = (params) ? params : {
 				where : {
 					status : 1
 				},
-				cols : ["*"],
+				cols : ["*"]
 			};
-			angular.extend($scope.params, {limit : {
-					page : page,
-					records : $scope.pageItems
-				}
-			})
-			dataService.get(false,"department", $scope.params)
-			.then(function(response) {
-				//console.log(response);
-				if(response.status == 'success'){
-					$scope.deptList = angular.copy(response.data);
-					$scope.totalRecords = response.totalRecords;
-				}else{
-					$scope.deptList = [];
-					$scope.totalRecords = 0;
-					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-					$notification[response.status]("Get Transactions", response.message);
-				}
-			});
-		}
-		$scope.getParty = function(){
-			$scope.params = {
-				where : {
-					status : 1
-				},
-				orderBy : {
-					name : 'asc'
-				}
-			};
+			if(page){
+				angular.extend($scope.params, {
+					limit : {
+						page : page,
+						records : $scope.pageItems
+					}
+				})
+			}
 			
-			dataService.get(false,"party", $scope.params)
+			dataService.get(false,table,$scope.params)
 			.then(function(response) {
-				
 				if(response.status == 'success'){
-					$scope.partylist = response.data;
-					console.log($scope.partylist);
-					$scope.totalRecords = response.totalRecords;
+					if(modalOptions != undefined){
+						modalOptions[subobj] = response.data;
+						modalOptions.totalRecords = response.totalRecords;
+					}else{
+						$scope[subobj] = response.data;
+						$scope.totalRecords = response.totalRecords;
+					}
 				}else{
-					$scope.partylist = [];
-					$scope.totalRecords = 0;
+					if(modalOptions != undefined){
+						modalOptions[subobj] = [];
+						modalOptions.totalRecords = 0;
+					}else{
+						$scope[subobj] = [];
+						$scope.totalRecords = 0;
+					}
 					if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
 		}
+		
 		$scope.filter = function(col, value, search){
 			if(search == true){
-				if(!$scope.params.search) $scope.params.search = {};
-				$scope.params.search[col] = value;
+				if(value == "" || value == undefined){
+					alert(value, col);
+					delete $scope.params.search[col];
+				}else{
+					if(!$scope.params.search) $scope.params.search = {};
+					$scope.params.search[col] = value;
+				}
 			}else{
-				if(!$scope.params.where) $scope.params.where = {};
-				$scope.params.where[col] = value;
+				if(value == "" || value == undefined){
+					delete $scope.params.where[col];
+				}else{
+					if(!$scope.params.where) $scope.params.where = {};
+					$scope.params.where[col] = value;
+				}
 			}
-			$scope.getDept($scope.currentPage, $scope.params);
+				$scope.getData($scope.currentPage, "department", "departmentlist", $scope.params);
 		}
 		$scope.changeCol = function(colName, colValue, id){
 			$scope.changeStatus = {};
@@ -202,7 +152,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			console.log(colName, colValue);
 			dataService.put("department",$scope.changeStatus,{where : { id : id}})
 			.then(function(response) {
-				//console.log(response);
 				if(response.status == "success"){
 					$scope.getDept($scope.currentPage, $scope.params);
 					$notification[response.status]("Record Deleted Successfully!", response.message);

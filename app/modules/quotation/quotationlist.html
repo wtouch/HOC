@@ -1,5 +1,5 @@
 <div class="text-right bottomspace">
-	<a href="#/dashboard/quotationlist" class="btn btn-default" ng-click="getQuotation(currentPage);status=  options[0];search=null;partyType=options[0];sort=options[0]"">Quotation List</a>
+	<a href="#/dashboard/quotationlist" class="btn btn-default" ng-click="getData(currentPage, 'quotation', 'quotationlist' );status=  options[0];search=null;partyType=options[0];sort=options[0]"">Quotation List</a>
 	<a class="btn btn-default" ng-click="openAddQuotation()" tooltip="Add New Quotation">Add New Quotation</a>
 </div>
 <h3> Quotation List</h3>
@@ -18,8 +18,8 @@
 				<option value="0">Deleted</option>
 			</select>
 		</div>
-		<div class="col-sm-2">
-			<select class="form-control" ng-model="partyType" ng-init="getParty()" ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
+		<div class="col-sm-2" ng-init="getData(false,'party','partylist')">
+			<select class="form-control" ng-model="partyType"  ng-options="item.name for item in partylist" ng-change="filter('party_name', partyType.name)">
 				<option value="">Select Party</option>
 			</select>
 		</div>
@@ -30,7 +30,7 @@
 		</div>
 </div>
 <div class="table-responsive">
-	<table class="table table-bordered" ng-init="getQuotation(currentPage)"> 
+	<table class="table table-bordered" ng-init="getData(currentPage, 'quotation', 'quotationlist' )"> 
 		<tr>
 			<th>Sr.No</th>
 			<th>Address</th>
