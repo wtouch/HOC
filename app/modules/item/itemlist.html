@@ -27,7 +27,7 @@
 			<tr>
 				<th>Sr.No</th>
 				<th>Item Name</th>	
-				<th>Description</th>
+				<!-- <th>Description</th> -->
 				<th>Price</th>
 				<th>Item Type</th>
 				<th>Manage</th>
@@ -35,7 +35,7 @@
 			<tr ng-repeat="x in itemlist | orderBy:sort">
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
 				<td>{{x.item_name}}</td>
-				<td>{{x.description}}</td>
+				<!-- <td>{{x.description}}</td> -->
 				<td>{{x.price}}</td>
 				<td>{{x.item_type}}</td>
 				<td>

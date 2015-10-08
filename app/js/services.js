@@ -435,9 +435,14 @@ define(['app'], function (app) {
 				var whereString = " WHERE 1 = 1 ";
 				if(params){
 					// Set WHERE clause
-					if(params.where != undefined){
+					if(params.where != undefined && table != undefined){
 						angular.forEach(params.where, function(value, key) {
 							whereString += " AND " +  table+"."+key + " = '" + value + "'";
+						});
+					}
+					if(params.where != undefined && table == undefined){
+						angular.forEach(params.where, function(value, key) {
+							whereString += " AND " + key + " = '" + value + "'";
 						});
 					}
 					if(params.whereRaw != undefined){
