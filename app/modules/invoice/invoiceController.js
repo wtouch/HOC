@@ -160,15 +160,16 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		}
 		
-		$scope.getMeasurement = function(page, params){
+		 $scope.getMeasurement = function(page, params){
 				
 			$scope.params = (params) ? params : {
 				where : {
 					status : 1
 				},
+				//groupBy :"department_id",
 				whereRaw : [
-					"id = 5 and type = 'department' ",
-					"vilas = 'xyz' OR xtype = 'adepartment' "
+					
+					"left join measurement on measurement.department_id = department.id"
 				]
 			}; 
 			angular.extend($scope.params, {limit : {
@@ -190,7 +191,48 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
-		};
+		}; 
+			/* $scope.getData = function(page, table, subobj, params, modalOptions) {
+				$scope.params = (params) ? params : {
+					where : {
+						status : 1
+					},
+					
+					cols : ["*"]
+				};
+				if(page){
+					angular.extend($scope.params, {
+						limit : {
+							page : page,
+							records : $scope.pageItems
+						}
+					})
+				}
+				
+				dataService.get(false,table,$scope.params)
+				.then(function(response) {
+					if(response.status == 'success'){
+						if(modalOptions != undefined){
+							modalOptions[subobj] = response.data;
+							modalOptions.totalRecords = response.totalRecords;
+						}else{
+							$scope[subobj] = response.data;
+							$scope.totalRecords = response.totalRecords;
+						}
+					}else{
+						if(modalOptions != undefined){
+							modalOptions[subobj] = [];
+							modalOptions.totalRecords = 0;
+						}else{
+							$scope[subobj] = [];
+							$scope.totalRecords = 0;
+						}
+						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
+						$notification[response.status]("Get Transactions", response.message);
+					}
+				});
+			} */
+			
 		//
 		$scope.getDepartment = function(page, params){
 			$scope.params = (params) ? params : {

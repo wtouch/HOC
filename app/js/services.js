@@ -573,7 +573,7 @@ define(['app'], function (app) {
 				function error(t, e) {
 					var data = {
 						status : "error",
-						message : e,
+						message : t,
 						data : null
 					};
 					deferred.resolve(data);;

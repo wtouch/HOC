@@ -1,12 +1,11 @@
 <div class="row">
 	<div class="col-sm-12 text-right">	
-		<a class="btn btn-default" href="#/invoice">Add Invoice</a>
-		<a class="btn btn-default" href="#/invoicelist">Invoice List</a>
+		<a class="btn btn-default" href="#/dashboard/invoicelist">Invoice List</a>
+		<a class="btn btn-default" ng-click="openInvoice()">Add Invoice</a>
 		<a class="btn btn-default" href="#/dashboard/invoice/summary">Summary</a>
-
-	</div>
+	</div> 
 </div>
-<h3 class="text-center">Summary <button class="btn btn-primary pull-right" type="submit">Print</button></h3>
+<h3 class="text-center">Summary<button class="btn btn-primary pull-right" type="submit">Print</button></h3>
 <div class="row bottomspace" ng-init="modalOptions.getData('party', modalOptions,'partylist')">
 	<div class="col-sm-3">
 		<label for="fromdate" class="control-label">From Date </label>
@@ -53,8 +52,8 @@
 	</div>
 </div>
 <h3>Measurement</h3>
-<div class="table-responsive" ng-init="getMeasurement(currentPage)">
-	<table class="table table-bordered">{{modalOptions.measurementlist}}
+<div class="table-responsive" ng-init="getMeasurement(currentPage)" >
+	<table class="table table-bordered">
 		<tr>
 			<th>Sr. No.</th>
 			<th>Date</th>
