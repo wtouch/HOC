@@ -63,6 +63,6 @@
 	</table>
 </div>
 <div class="text-center">
-	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getParty(currentPage,params)"></pagination>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getData(currentPage, 'party', 'partylist' )"></pagination>
 	<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>

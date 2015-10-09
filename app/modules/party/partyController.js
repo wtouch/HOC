@@ -111,7 +111,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			}
 			
 			$scope.changeCol = function(colName, colValue, id){
-				$scope.changeStatus = {};
+				//$scope.changeStatus = {};
 				$scope.changeStatus[colName] = colValue;
 				console.log(colName, colValue);
 				dataService.put("party",$scope.changeStatus,{where : { id : id}})
@@ -145,10 +145,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				.then(function(response) {
 					if(response.status == 'success'){
 						if(modalOptions != undefined){
-							modalOptions[subobj] = response.data;
+							modalOptions[subobj] = angular.copy(response.data);
 							modalOptions.totalRecords = response.totalRecords;
 						}else{
-							$scope[subobj] = response.data;
+							$scope[subobj] = angular.copy(response.data);
 							$scope.totalRecords = response.totalRecords;
 						}
 					}else{

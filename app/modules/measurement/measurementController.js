@@ -141,10 +141,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				.then(function(response) {
 					if(response.status == 'success'){
 						if(modalOptions != undefined){
-							modalOptions[subobj] = response.data;
+							modalOptions[subobj] = angular.copy(response.data);
 							modalOptions.totalRecords = response.totalRecords;
 						}else{
-							$scope[subobj] = response.data;
+							$scope[subobj] = angular.copy(response.data);
 							$scope.totalRecords = response.totalRecords;
 						}
 					}else{

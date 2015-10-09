@@ -82,10 +82,18 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
-				remove : function(item, modalOptions) {			
+				/* remove : function(item, modalOptions) {			
 					console.log(modalOptions);
 					var index = modalOptions.addquotation.termsnconditions.indexOf(item);
 					modalOptions.addquotation.termsnconditions.splice(index, 1); 
+				}, */
+				remove : function(item, modalOptions) {
+					
+					console.log(modalOptions);
+					//var index = modalOptions.addquotation.termsnconditions.indexOf(item);
+					modalOptions.addquotation.termsnconditions.splice(item, 1); 
+					
+					
 				},
 				removep : function(item, modalOptions) {
 					
@@ -138,10 +146,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			.then(function(response) {
 				if(response.status == 'success'){
 					if(modalOptions != undefined){
-						modalOptions[subobj] = response.data;
+						modalOptions[subobj] = angular.copy(response.data);
 						modalOptions.totalRecords = response.totalRecords;
 					}else{
-						$scope[subobj] = response.data;
+						$scope[subobj] = angular.copy(response.data);
 						$scope.totalRecords = response.totalRecords;
 					}
 				}else{

@@ -42,6 +42,7 @@
 		<tr>
 			<th>Sr.No.</th>
 			<th>Date</th>
+			<th>Receipt No</th>
 			<th>Quantity</th>
 			<th>Unit</th>
 			<th>Nos </th>
@@ -56,6 +57,7 @@
 			<tr ng-repeat="x in measurementlist | orderBy:sort">
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1}}</td>
 				<td>{{x.date}}</td>
+				<td>{{x.receipt_no}}</td>
 				<td>{{x.quantity}}</td>
 				<td>{{x.measurement_unit}}</td>
 				<td>{{x.nos}}</td>
@@ -80,7 +82,7 @@
 	</table>
 </div>
 <div class="text-center">
-	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getMeasurement(currentPage,params)"></pagination>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getData(currentPage, 'measurement', 'measurementlist' )"></pagination>
 	
 	 <pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>

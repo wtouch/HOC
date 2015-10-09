@@ -43,6 +43,7 @@
 			<tr>
 				<th>Sr.No.</th>
 				<th>Date</th>
+				<th>Receipt No</th>
 				<th>Item</th>
 				<th>Party Id</th>
 				<th>Department</th>
@@ -60,6 +61,7 @@
 			<tr ng-repeat="dept in deptList">
 				<td>{{((currentPage - 1) * pageItems ) + $index + 1 }}</td>
 				<td>{{dept.date}}</td>
+				<td>{{dept.receipt_no}}</td>
 				<td>{{dept.item}}</td>
 				<td>{{dept.party_id}}</td>
 				<td>{{dept.department}}</td>
@@ -75,6 +77,10 @@
 						<span class=" glyphicon glyphicon-pencil"></span> 
 					</button>
 					
+					<div class="btn-group">	
+						<button type="button" tooltip="View" class="btn btn-info" ng-click="viewDepartment(x)"><span class="glyphicon glyphicon-eye-open"></span></button>
+					</div>
+					
 					<button type="button" tooltip="{{(dept.status == 1) ? 'Delete' : 'Active'}}" ng-class="(dept.status == 1) ? 'btn btn-success' : 'btn btn-danger'" ng-model="dept.status" ng-change="changeCol('status', dept.status, dept.id)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 						<span class="glyphicon glyphicon-remove"></span> 
 					</button>
@@ -83,9 +89,10 @@
 		</tbody>
 	</table>
 </div>
+
 <div class="text-center">
-	<pagination total-items="totalItems" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getParty(currentPage,params)" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-	 <pre>Page: {{currentPage}} / {{totalRecords}}</pre>
+	<pagination total-items="totalRecords" items-per-page="pageItems"  ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="getData(currentPage, 'department', 'deptList' )"></pagination>
+	<pre>Page: {{currentPage}} / {{totalRecords}}</pre>
 </div>
 	
 			

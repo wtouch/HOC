@@ -11,14 +11,12 @@
 					<div class="form-group">
 						<label for="inputdate" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-9">
-							<!-- <input type="text"  class="form-control" placeholder="YYYY-DD-MM" id="date" ng-model="modalOptions.adddepartment.date" ng-init="modalOptions.adddepartment.date = modalOptions.cDate" readonly/> -->
-							
-							<input type="text"  name="date" id="date" ng-model="modalOptions.addparty.date" class="form-control" ng-init="modalOptions.addparty.date = modalOptions.currentDate"/>
-							
+							<input type="text"  class="form-control" placeholder="YYYY-DD-MM" id="date" ng-model="modalOptions.adddepartment.date" ng-init="modalOptions.adddepartment.date = modalOptions.currentDate" readonly/> 
+		
+							<!-- <input type="text"  name="date" id="date" ng-model="modalOptions.addparty.date" class="form-control" ng-init="modalOptions.addparty.date = modalOptions.currentDate"/>
+							 -->
 							<input  type="hidden" class="form-control" id="status" name="status" ng-model="modalOptions.adddepartment.status" ng-init="modalOptions.adddepartment.status=1">
-							<!-- <span class="from-control" ng-show="adddepartmentForm.date.$dirty && adddepartmentForm.date.$invalid">
-								<span ng-show="adddepartmentForm.date.$error.required" class="text-danger">Required Field.</span>
-							</span> -->
+							
 						</div>
 					</div>
 					<div class="form-group" ng-init="modalOptions.getData('item', modalOptions,'itemlist')">
@@ -137,7 +135,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-9">
 							<button type="submit" ng-click="modalOptions.postData(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope" ng-disabled="adddepartmentForm.$invalid" ng-if="!modalOptions.adddepartment.id">Add Department</button>
-							<button type="submit" ng-disabled="adddepartmentForm.$invalid" ng-click="modalOptions.updateDept(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope"  ng-if="modalOptions.adddepartment.id">Update</button>
+							<button type="submit" ng-disabled="adddepartmentForm.$invalid" ng-click="modalOptions.updateData(modalOptions.adddepartment);modalOptions.ok()" class="btn btn-success btn text-center  ng-scope"  ng-if="modalOptions.adddepartment.id">Update</button>
 							<button type="reset" class="btn btn-danger" ng-click="modalOptions.ok()">Cancel</button>
 						</div>
 					</div>

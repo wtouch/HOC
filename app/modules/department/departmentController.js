@@ -65,14 +65,15 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					dataService.post("department", adddepartment).then(function(response){
 					console.log(response);
 						if(response.status == "success"){
-							$scope.getDept($scope.currentPage, $scope.params);
+							$scope.getData($scope.currentPage, "department", "departmentlist", $scope.params);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status](response.message); 
 					});
-					console.log(adddepartment); 
+					console.log(adddepartment);  
+
 				} , 
-				updateDept : function(adddepartment) {
+				updateData : function(adddepartment) {
 					var params={where:{id:adddepartment.id}};
 					dataService.put("department",adddepartment,params)
 					.then(function(response) {
@@ -107,10 +108,10 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			.then(function(response) {
 				if(response.status == 'success'){
 					if(modalOptions != undefined){
-						modalOptions[subobj] = response.data;
+						modalOptions[subobj] = angular.copy(response.data);
 						modalOptions.totalRecords = response.totalRecords;
 					}else{
-						$scope[subobj] = response.data;
+						$scope[subobj] = angular.copy(response.data);
 						$scope.totalRecords = response.totalRecords;
 					}
 				}else{
@@ -127,6 +128,20 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			});
 		}
 		
+		$scope.viewDepartment = function (measurementdata) {
+				var modalDefaults = {
+					templateUrl: 'modules/measurement/viewmeasurement.html',	
+					size : 'lg'
+				};
+				var modalOptions = {
+					measurement : measurementdata,
+				};
+				modalService.showModal(modalDefaults,modalOptions).then(function (result) {
+				
+				});
+			};
+			
+			
 		$scope.filter = function(col, value, search){
 			if(search == true){
 				if(value == "" || value == undefined){
@@ -153,7 +168,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			dataService.put("department",$scope.changeStatus,{where : { id : id}})
 			.then(function(response) {
 				if(response.status == "success"){
-					$scope.getDept($scope.currentPage, $scope.params);
+					$scope.getData($scope.currentPage, "department", "departmentlist", $scope.params);
 					$notification[response.status]("Record Deleted Successfully!", response.message);
 				}
 				if(response.status == undefined) response = {status :"error", message:"Unknown Error"};

@@ -166,9 +166,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				where : {
 					status : 1
 				},
-				//groupBy :"department_id",
+				groupBy :"department_id",
 				whereRaw : [
-					
 					"left join measurement on measurement.department_id = department.id"
 				]
 			}; 
