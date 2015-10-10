@@ -27,10 +27,6 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			$event.stopPropagation();
 			$scope.opened1 = ($scope.opened1==true)?false:true;
 		};
-		//function to close alert
-		$scope.closeAlert = function(index) {
-			$scope.alerts.splice(index, 1);
-		};
 		
 		//for dynamic tooltip
 		$scope.dynamicTooltip = function(status, active, notActive){

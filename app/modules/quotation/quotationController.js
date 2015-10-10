@@ -1,7 +1,7 @@
 'use strict';
 define(['app'], function (app) {
 var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataService','modalService','$notification'];
-  // This is controller for this view
+  
 	var quotationController = function ($scope, $injector,$routeParams,$rootScope,dataService,modalService,$notification) {
 		$rootScope.metaTitle = "Hari Om Constructions!";
 		$scope.maxSize = 5;
@@ -35,19 +35,18 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					addquotation.termsnconditions = JSON.stringify(addquotation.termsnconditions);
 					dataService.post("quotation", addquotation).then(function(response){
 						if(response.status == "success"){
-							$scope.getQuotation($scope.currentPage, $scope.params);
+							$scope.getData($scope.currentPage, "quotation", "quotationlist", $scope.params);
 						}
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
-						$notification[response.status]("Add record", response.message);
-						console.log(response);
+							$notification[response.status]("Add record", response.message);
 					});
 				},
+					
 				updateData : function(addquotation) {
 					addquotation.particular = JSON.stringify((addquotation.particular));
 					addquotation.termsnconditions = JSON.stringify((addquotation.termsnconditions));
 					$scope.addquotation = addquotation;
 					var params={where:{id:addquotation.id}};
-					//console.log(params);
 					console.log(addquotation);
 					delete addquotation.id;
 					dataService.put("quotation",$scope.addquotation,params)
@@ -82,18 +81,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					
 					modalOptions.particular = { description : " ", unit : "",area : "",rate : "",amount : ""};
 				},
-				/* remove : function(item, modalOptions) {			
-					console.log(modalOptions);
-					var index = modalOptions.addquotation.termsnconditions.indexOf(item);
-					modalOptions.addquotation.termsnconditions.splice(index, 1); 
-				}, */
 				remove : function(item, modalOptions) {
-					
 					console.log(modalOptions);
-					//var index = modalOptions.addquotation.termsnconditions.indexOf(item);
-					modalOptions.addquotation.termsnconditions.splice(item, 1); 
-					
-					
+					modalOptions.addquotation.termsnconditions.splice(item, 1); 	
 				},
 				removep : function(item, modalOptions) {
 					
@@ -105,7 +95,9 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				}
 			};
 			if(x == undefined){
+				
 				modalOptions.getData('terms', modalOptions.addquotation,'termsnconditions');
+				
 			}
 			modalService.showModal(modalDefaults,modalOptions).then(function (result) {
 			});
@@ -147,7 +139,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 				if(response.status == 'success'){
 					if(modalOptions != undefined){
 						modalOptions[subobj] = angular.copy(response.data);
-						modalOptions.totalRecords = response.totalRecords;
+						//modalOptions.totalRecords = response.totalRecords;
 					}else{
 						$scope[subobj] = angular.copy(response.data);
 						$scope.totalRecords = response.totalRecords;

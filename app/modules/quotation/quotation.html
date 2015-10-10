@@ -20,7 +20,7 @@
 		<div class="form-group">
 			<label  for="name" class="col-sm-2 control-label">Department *</label>
 			<div class="col-sm-9">
-					<select class="form-control" name="department" id="department" ng-model="partyType" ng-options="item as item.name group by item.name for item in modalOptions.partylist" ng-change="modalOptions.addquotation.party_name = partyType.name; modalOptions.addquotation.department = partyType.department">
+					<select class="form-control" name="department" id="department" ng-model="partyType" ng-options="item as item.name group by item.name for item in modalOptions.partylist" ng-change="modalOptions.addquotation.party_name = partyType.name; modalOptions.addquotation.department_id = partyType.department_id">
 						<option value="">Select Department</option>
 					</select>
 
