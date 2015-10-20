@@ -53,7 +53,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$scope.modalOptions.opened2 = ($scope.modalOptions.opened2==true)?false:true;
 				},
 				getData : function(table, modalOptions, subobj) {
-					$scope.getData(false,table, subobj,false,modalOptions);
+					$scope.params.where = {item_type : 'Department', status : 1};
+					$scope.getData(false,table, subobj,$scope.params,modalOptions);
 				},
 				adddepartment : adddepartment ? x : {},
 				postData : function(adddepartment) {

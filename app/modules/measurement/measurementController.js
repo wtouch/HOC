@@ -87,7 +87,8 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						});
 					},
 					getData : function(table, modalOptions, subobj) {
-						$scope.getData(false, table, subobj, false, modalOptions);
+						$scope.params.where = {item_type : 'Measurement', status : 1};
+						$scope.getData(false, table, subobj, $scope.params, modalOptions);
 					},
 					cal : function (modalOptions){
 						
@@ -136,7 +137,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 						}
 					})
 				}
-				
+				console.log($scope.params);
 				dataService.get(false,table,$scope.params)
 				.then(function(response) {
 					if(response.status == 'success'){

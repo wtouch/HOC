@@ -11,19 +11,24 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 		$scope.currentPage = 1;
 		$scope.pageItems = 10;
 		
-		$scope.getTax = function(taxinfo, params){
-			$scope.params ={where : {id : 1}};
+		$scope.getTax = function(taxinfo, params, scopeObj){
+			$scope.params ={
+				where : {
+					id : 1
+				},
+				cols : ["*"]
+			};
 			dataService.get(true,"tax", $scope.params)
 			.then(function(response) {
 				console.log(response);
 				if(response.status == 'success'){
-					$scope.taxinfo = angular.copy(response.data);
-				}else{
-					$scope.taxinfo = {
+					$scope[scopeObj] = angular.copy(response.data);
+				}else if(table == "tax"){
+					$scope[scopeObj] = {
 						service_tax : 14,
 						vat : 5
 					};
-					dataService.post('tax',$scope.taxinfo).then(function(response){
+					dataService.post(table,$scope.taxinfo).then(function(response){
 						console.log(response);
 						if(response.status == undefined) response = {status :"error", message:"Unknown Error"};
 						$notification[response.status]("Get Transactions", response.message);
@@ -51,11 +56,12 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 			var index = term.indexOf(item);
 			term.splice(index, 1); 
 		}
-		$scope.getTerms = function(page, params){
+		/* $scope.getTerms = function(page, params){
 			$scope.params = (params) ? params : {
 				where : {
 					status : 1
-				}
+				},
+				cols : ["*"]
 			};
 			angular.extend($scope.params, {limit : {
 					page : page,
@@ -75,7 +81,7 @@ var injectParams = ['$scope', '$injector','$routeParams','$rootScope','dataServi
 					$notification[response.status]("Get Transactions", response.message);
 				}
 			});
-		}
+		} */
 		$scope.ok = function () {
 			$modalOptions.close('ok');
 		};
